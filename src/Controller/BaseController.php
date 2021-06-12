@@ -1,18 +1,15 @@
 <?php
 
-
 namespace App\Controller;
-
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BaseController extends AbstractController
 {
     /**
-     * @Route("/loginSuccess", name="login_success")
+     * @Route("/dashboardMenu", name="dashboard_menu")
      */
-    public function loginSuccess()
+    public function dashboardMenu()
     {
         return $this->render('dashboardMenu.html.twig');
     }
