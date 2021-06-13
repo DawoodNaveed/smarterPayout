@@ -11,6 +11,9 @@ class BaseController extends AbstractController
      */
     public function dashboardMenu()
     {
-        return $this->render('dashboardMenu.html.twig');
+        if ($this->getUser()) {
+            return $this->render('dashboardMenu.html.twig');
+        }
+        return $this->redirectToRoute('app_login');
     }
 }
