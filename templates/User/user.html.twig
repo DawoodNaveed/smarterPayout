@@ -1,0 +1,38 @@
+{% block main %}
+<div class="col-md-12 form-group">
+     {{ form_start(form) }}
+     <div class="row m-l-3p">
+         <div class="col-md-12 pad-l-0">
+             {{ form_widget(form.email) }}{{ form_errors(form.email) }}
+         </div>
+     </div>
+
+     <div class="row m-l-3p">
+         <div class="col-md-12 pad-l-0">
+             {{ form_widget(form.password) }}{{ form_errors(form.password) }}
+         </div>
+     </div>
+     <div class="row m-l-3p">
+         <div class="col-md-12 pad-l-0">
+             {{ form_widget(form.username) }}{{ form_errors(form.username) }}
+         </div>
+     </div>
+    <div class="row m-l-3p">
+        <div class="col-md-12 pad-l-0">
+            {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
+        </div>
+    </div>
+     <div class="row m-l-3p">
+         <div class="col-md-12 pad-l-0">
+             {{ form_widget(form.businessPhone) }}{{ form_errors(form.businessPhone) }}
+         </div>
+     </div>
+     <div class="row m-l-3p">
+         <div class="col-md-12 pad-l-0">
+             {{ form_widget(form.phoneNumber) }}{{ form_errors(form.phoneNumber) }}
+         </div>
+     </div>
+        {{ form_errors(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock main %}

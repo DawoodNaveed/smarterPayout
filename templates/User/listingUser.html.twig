@@ -1,0 +1,7 @@
+{% for user in users %}
+    <span>{{ user.username }}</span>
+    <span>{{ user.phoneNumber }}</span>
+    <a href="{{ path('user_form', {'userId' : user.id}) }}">Edit</a>
+{% endfor %}
+
+<a href="{{ path('user_form') }}">AddUser</a>
