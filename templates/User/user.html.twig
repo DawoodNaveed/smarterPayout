@@ -17,9 +17,14 @@
              {{ form_widget(form.username) }}{{ form_errors(form.username) }}
          </div>
      </div>
+    <div class="row m-l-3p">
+        <div class="col-md-12 pad-l-0">
+            {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
+        </div>
+    </div>
      <div class="row m-l-3p">
          <div class="col-md-12 pad-l-0">
-             {{ form_widget(form.address) }}{{ form_errors(form.address) }}
+             {{ form_widget(form.businessPhone) }}{{ form_errors(form.businessPhone) }}
          </div>
      </div>
      <div class="row m-l-3p">
@@ -27,11 +32,6 @@
              {{ form_widget(form.phoneNumber) }}{{ form_errors(form.phoneNumber) }}
          </div>
      </div>
-{#     <div class="row m-l-3p">#}
-{#         <div class="col-md-12 pad-l-0">#}
-{#             {{ form_widget(form.save) }}{{ form_errors(form.save) }}#}
-{#         </div>#}
-{#     </div>#}
         {{ form_errors(form) }}
         {{ form_end(form) }}
     </div>

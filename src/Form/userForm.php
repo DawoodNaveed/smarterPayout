@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class newUserForm extends AbstractType
+class userForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -27,7 +27,8 @@ class newUserForm extends AbstractType
                 'second_options' => ['label' => 'Repeat Password'],
             ])
             ->add('username', TextType::class)
-            ->add('address', TextareaType::class, ['required' => false])
+            ->add('businessPhone', TextType::class, ['required' => false])
+            ->add('jobTitle', TextType::class)
             ->add('phoneNumber', TextType::class,['required' => false])
             ->add('save', SubmitType::class);
     }

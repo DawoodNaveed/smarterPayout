@@ -38,15 +38,19 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180)
-     * @Assert\Length(min = 8, max = 20, minMessage = "min_lenght", maxMessage = "max_lenght")
-     * @Assert\Regex(pattern="/^[0-9]*$/", message="number_only")
      */
     private $phoneNumber;
-
+    
     /**
      * @ORM\Column(type="string", length=180)
      */
-    private $address;
+    private $businessPhone;
+
+    /**
+     * @ORM\Column(type="string", length=180)
+     * @Assert\NotBlank(message="Job title can't be blanked")
+     */
+    private $jobTitle;
 
     /**
      * @ORM\Column(type="json")
@@ -164,20 +168,36 @@ class User implements UserInterface
     {
         $this->phoneNumber = $phoneNumber;
     }
-
+    
     /**
      * @return mixed
      */
-    public function getAddress()
+    public function getBusinessPhone()
     {
-        return $this->address;
+        return $this->businessPhone;
     }
-
+    
     /**
-     * @param mixed $address
+     * @param mixed $businessPhone
      */
-    public function setAddress($address): void
+    public function setBusinessPhone($businessPhone): void
     {
-        $this->address = $address;
+        $this->businessPhone = $businessPhone;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+    
+    /**
+     * @param mixed $jobTitle
+     */
+    public function setJobTitle($jobTitle): void
+    {
+        $this->jobTitle = $jobTitle;
     }
 }
