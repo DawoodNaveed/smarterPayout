@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+{#        <meta charset="UTF-8">#}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
+            <link href="{{ asset('resources/css/bootstrap.min.css')}}" rel="stylesheet">
+            <link href="{{ asset('resources/css/custom-admin.css')}}" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
 
         {% block javascripts %}
+            <script src="{{ asset('resources/js/jquery-3.2.1.slim.min.js') }}"></script>
+            <script src="{{ asset('resources/js/popper.min.js') }}"></script>
+            <script src="{{ asset('resources/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('resources/js/custom-admin.js') }}"></script>
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
