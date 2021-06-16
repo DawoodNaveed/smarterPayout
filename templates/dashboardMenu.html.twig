@@ -105,8 +105,7 @@
                         </li>
                         <li>
                             <hr>
-                            <a href="#">
-                                <i class="far fa-user"></i>
+                            <a href="{{ path('listing_users') }}"> <i class="far fa-user"></i>
                                 <span>Users</span>
                             </a>
                         </li>
@@ -117,5 +116,9 @@
             <!-- sidebar-content  -->
         </nav>
         <!-- sidebar-wrapper  -->
+    </div>
+
+    <div class="container main-content">
+        {% block content %}{% endblock %}
     </div>
 {% endblock %}

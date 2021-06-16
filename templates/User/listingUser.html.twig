@@ -1,0 +1,42 @@
+{% extends 'dashboardMenu.html.twig' %}
+
+{% block title %}User Management!{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-center mt-5">User Management</h1>
+
+    <a class="btn btn-sm btn-primary mb-5" href="{{ path('user_form') }}"><span class="fa fa-plus"> Add New User</span></a>
+    <table id="data_table" class="display table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Phone Number</th>
+            <th>Business Phone</th>
+            <th>Email</th>
+            <th>Job title</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.phoneNumber }}</td>
+                <td>{{ user.businessPhone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.jobTitle }}</td>
+                <td>
+                    <a class="fas fa-edit text-primary p-1" title="Edit User" href="{{ path('user_form', {'userId' : user.id}) }}"></a>
+                    <a class="fas fa-trash text-danger p-1" title="Delete User" href="{{ path('user_form', {'userId' : user.id}) }}"></a>
+                    <a class="fas fa-info text-info p-1" title="View Details" href="{{ path('user_form', {'userId' : user.id}) }}"></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+

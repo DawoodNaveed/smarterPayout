@@ -10,14 +10,17 @@
             <link href="{{ asset('resources/css/bootstrap.min.css')}}" rel="stylesheet">
             <link href="{{ asset('resources/css/custom-admin.css')}}" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
             <link rel="shortcut icon" href="#">
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
+
 
         {% block javascripts %}
             <script src="{{ asset('resources/js/jquery-3.2.1.slim.min.js') }}"></script>
             <script src="{{ asset('resources/js/popper.min.js') }}"></script>
             <script src="{{ asset('resources/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
             <script src="{{ asset('resources/js/custom-admin.js') }}"></script>
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
