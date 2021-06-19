@@ -4,10 +4,10 @@
 
 {% block body %}
 
-    <div class="page-wrapper chiller-theme toggled">
+    <div class="page-wrapper chiller-theme toggled ">
         <nav class="navbar navbar-expand-lg fixed-top navbar-light">
             <div class="navbar-brand">
-                <a href="#" class="text-center">Smarter Payouts</a>
+                <a href="{{ path('dashboard_menu') }}" class="text-center">Smarter Payouts</a>
                 <a id="close-sidebar" class="btn-sm pl-4 pb-0" href="#">
                     <i class="fas fa-bars"></i>
                 </a>
@@ -27,7 +27,7 @@
                 </li>
 
             </ul>
-         </nav>
+        </nav>
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-header">
@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="far fa-address-book"></i>
+                                <i class="fas fa-address-book"></i>
                                 <span>Client Profile</span>
                             </a>
                         </li>
@@ -99,13 +99,13 @@
                         <li>
                             <hr>
                             <a href="#">
-                                <i class="far fa-gem"></i>
+                                <i class="fas fa-gem"></i>
                                 <span>Awards</span>
                             </a>
                         </li>
                         <li>
                             <hr>
-                            <a href="{{ path('listing_users') }}"> <i class="far fa-user"></i>
+                            <a href="{{ path('listing_users') }}"> <i class="fas fa-user"></i>
                                 <span>Users</span>
                             </a>
                         </li>
@@ -116,9 +116,11 @@
             <!-- sidebar-content  -->
         </nav>
         <!-- sidebar-wrapper  -->
-    </div>
 
-    <div class="container main-content">
-        {% block content %}{% endblock %}
+        <main class="page-content">
+            <div class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
     </div>
 {% endblock %}
