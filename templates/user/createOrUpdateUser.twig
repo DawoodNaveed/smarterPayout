@@ -4,10 +4,10 @@
 
 {% block content %}
 
-{#        {{ dump(path(app.request.attributes.get('_route')))}}#}
+        {{ dump(app.request.attributes.get('_route'))}}
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-sm btn-primary float-right" href="{{ path('listing_users') }}" title="Back to grid"> <i class="fas fa-arrow-left"></i></a>
+                <a class="btn btn-sm btn-primary float-right" href="{{ path('user_list') }}" title="Back to grid"> <i class="fas fa-arrow-left"></i></a>
                 <h3 class="text-center">Create New User</h3>
             </div>
             <div class="card-body">
@@ -38,15 +38,17 @@
                         {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
                     </div>
 
-                    <div class="form-row col-md-6 mb-3">
-                        <label for="password.first">Password:</label>
-                        {{ form_widget(form.password.first) }}{{ form_errors(form.password) }}
-                    </div>
+                    {% if app.request.attributes.get('_route') is same as("/user/add") %}
+                        <div class="form-row col-md-6 mb-3">
+                            <label for="password.first">Password:</label>
+                            {{ form_widget(form.password.first) }}{{ form_errors(form.password) }}
+                        </div>
 
-                    <div class="form-row col-md-6 mb-3">
-                        <label for="password.second">Confirm Password:</label>
-                        {{ form_widget(form.password.second) }}{{ form_errors(form.password) }}
-                    </div>
+                        <div class="form-row col-md-6 mb-3">
+                            <label for="password.second">Confirm Password:</label>
+                            {{ form_widget(form.password.second) }}{{ form_errors(form.password) }}
+                        </div>
+                    {% endif %}
 
                 </div>
                 {{ form_errors(form) }}

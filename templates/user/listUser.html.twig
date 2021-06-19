@@ -1,11 +1,63 @@
-{% for user in users %}
-    <span>{{ user.username }}</span>
-    <span>{{ user.phoneNumber }}</span>
-    <a href="{{ path('edit_user', {'userId' : user.id}) }}">Edit</a>
-    <a href="{{ path('show_user', {'userId' : user.id}) }}">Show</a>
-    <a href="{{ path('delete_user', {'userId' : user.id}) }}">Delete</a>
-{% endfor %}
+{#{% for user in users %}#}
+{#    <span>{{ user.username }}</span>#}
+{#    <span>{{ user.phoneNumber }}</span>#}
+{#    <a href="{{ path('edit_user', {'userId' : user.id}) }}">Edit</a>#}
+{#    <a href="{{ path('show_user', {'userId' : user.id}) }}">Show</a>#}
+{#    <a href="{{ path('delete_user', {'userId' : user.id}) }}">Delete</a>#}
+{#{% endfor %}#}
 
-<a href="{{ path('add_user') }}">AddUser</a>
-<a href="{{ path('add_message') }}">Add Message</a>
-<a href="{{ path('edit_message', {'messageId' : 1}) }}">Edit Message</a>
+{#<a href="{{ path('add_user') }}">AddUser</a>#}
+{#<a href="{{ path('add_message') }}">Add Message</a>#}
+{#<a href="{{ path('edit_message', {'messageId' : 1}) }}">Edit Message</a>#}
+{% extends 'dashboardMenu.html.twig' %}
+
+{% block title %}User Management!{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-sm btn-primary float-right" href="{{ path('add_user') }}"> Create New <span class="fa fa-plus"></span></a>
+            <h3 class="text-center">User Management</h3>
+        </div>
+        <div class="card-body">
+            <table id="data_table" class="display table-hover table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone Number</th>
+                    <th>Business Phone</th>
+                    <th>Email</th>
+                    <th>Job title</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.phoneNumber }}</td>
+                        <td>{{ user.businessPhone }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.jobTitle }}</td>
+                        <td>
+                            <a class="fas fa-edit text-primary p-1 ml-4" title="Edit User"
+                               href="{{ path('edit_user', {'userId' : user.id}) }}"></a>
+                            <a class="fas fa-trash text-danger p-1 ml-4" title="Delete User"
+                               href="{{ path('delete_user', {'userId' : user.id}) }}"></a>
+                            <a class="fas fa-info text-info p-1 ml-4" title="View Details"
+                               href="{{ path('show_user', {'userId' : user.id}) }}"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -14,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\User\User;
 
 class userForm extends AbstractType
 {
@@ -40,7 +40,9 @@ class userForm extends AbstractType
             ->add('businessPhone', TelType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control',
-                    'placeholder' => 'Enter your business phone here']
+                    'placeholder' => 'Enter your business phone here',
+                    'pattern' => '^(\+|00)[0-9]{1,3}[0-9]{4,14}$'
+                ]
             ])
             ->add('jobTitle', TextType::class, [
                 'attr' => ['class' => 'form-control',
@@ -48,20 +50,8 @@ class userForm extends AbstractType
             ])
             ->add('phoneNumber', TelType::class, [
                 'required' => false, 'attr' => ['class' => 'form-control',
-                    'placeholder' => 'Enter your phone number here']
-            ])
-            ->add('username', TextType::class)
-            ->add('businessPhone', TextType::class, ['attr' => [
-                'placeholder' => 'Enter the business phone number',
-                'pattern' => '^(\+|00)[0-9]{1,3}[0-9]{4,14}$',
-                'required' => false
-            ], 'required false'
-            ])
-            ->add('jobTitle', TextType::class)
-            ->add('phoneNumber', TextType::class, ['attr' => [
-                'placeholder' => 'Enter the phone number',
-                'pattern' => '^(\+|00)[0-9]{1,3}[0-9]{4,14}$',
-            ], 'required' => false
+                    'placeholder' => 'Enter your phone number here','pattern' => '^(\+|00)[0-9]{1,3}[0-9]{4,14}$'
+                ]
             ])
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary float-right',
