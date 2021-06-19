@@ -13,17 +13,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/userForm", name="user_form")
+     * @Route("/user/add", name="add_user")
      */
-    public function UserForm(Request $request, UserPasswordEncoderInterface $encoder, UserService $userService): Response
+    public function addUserAction(Request $request, UserPasswordEncoderInterface $encoder, UserService $userService): Response
     {
-        $user = '';
-        $userId = $request->get('userId');
-        if ($userId) {
-            $user = $userService->findUserById($userId);
-        } else {
-            $user = new User();
-        }
+        $user = new User();
         $form = $this->createForm(userForm::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -31,26 +25,78 @@ class UserController extends AbstractController
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
             $userService->addOrEditUser($user);
-            $this->addFlash('success', 'User Added Successfully');
+            $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
         }
 
-        return $this->render('User/user.html.twig', [
+        return $this->render('user/user.html.twig', [
             'form' => $form->createView(),
         ]);
     }
     
     /**
-     * @Route("/listingUsers", name="listing_users")
-     * @param UserService $userService
-     * @return Response
+     * @Route("/user/edit/{userId}", name="edit_user")
      */
-    public function listingUsers(UserService $userService)
+    public function editUserAction(Request $request, UserPasswordEncoderInterface $encoder, UserService $userService): Response
     {
-        return $this->render('User/listingUser.html.twig', [
-            'users' => $userService->getAllUsers(),
+        $userId = $request->get('userId');
+        if ($userId) {
+            $user = $userService->findUserById($userId);
+        } else {
+            $user = new User();
+        }
+        $form = $this->createForm(userForm::class, $user);
+        $form->remove('password');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encodedPassword);
+            $userService->addOrEditUser($user);
+            $this->addFlash('success', 'user Added Successfully');
+            return $this->redirectToRoute('listing_users');
+        }
+        
+        return $this->render('user/user.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
     
+    /**
+     * @Route("/user/show/{userId}", name="show_user")
+     */
+    public function showUserAction(Request $request, UserService $userService): Response
+    {
+        $userId = $request->get('userId');
+        $user = $userService->findUserById($userId);
+        
+        return $this->render('user/showUser.html.twig', [
+            'user' => $user,
+        ]);
+    }
     
+    /**
+     * @Route("/user/delete/{userId}", name="delete_user")
+     */
+    public function deleteUserAction(Request $request, UserService $userService): Response
+    {
+        $userId = $request->get('userId');
+        $user = $userService->findUserById($userId);
+        $user->setIsDeleted(true);
+        $userService->addEditDeleteUser($user);
+        
+        return $this->redirectToRoute('user_list');
+    }
+    
+    /**
+     * @Route("/users", name="user_list")
+     * @param UserService $userService
+     * @return Response
+     */
+    public function userListAction(UserService $userService)
+    {
+        return $this->render('user/listingUser.html.twig', [
+            'users' => $userService->getAllUsers(),
+        ]);
+    }
 }

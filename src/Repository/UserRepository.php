@@ -39,14 +39,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * @param $user
      */
-    public function addOrEditUser($user)
+    public function addEditDeleteUser($user)
     {
         $this->_em->persist($user);
         $this->_em->flush();
     }
 
     // /**
-    //  * @return User[] Returns an array of User objects
+    //  * @return user[] Returns an array of user objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     */
 
     /*
-    public function findOneBySomeField($value): ?User
+    public function findOneBySomeField($value): ?user
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

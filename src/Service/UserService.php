@@ -27,7 +27,7 @@ class UserService
      */
     public function getAllUsers()
     {
-        return $this->userRepository->findAll();
+        return $this->userRepository->findBy(['isDeleted' => false]);
     }
     
     /**
@@ -42,8 +42,8 @@ class UserService
     /**
      * @param User $user
      */
-    public function addOrEditUser($user)
+    public function addEditDeleteUser($user)
     {
-        $this->userRepository->addOrEditUser($user);
+        $this->userRepository->addEditDeleteUser($user);
     }
 }

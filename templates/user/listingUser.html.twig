@@ -1,0 +1,11 @@
+{% for user in users %}
+    <span>{{ user.username }}</span>
+    <span>{{ user.phoneNumber }}</span>
+    <a href="{{ path('edit_user', {'userId' : user.id}) }}">Edit</a>
+    <a href="{{ path('show_user', {'userId' : user.id}) }}">Show</a>
+    <a href="{{ path('delete_user', {'userId' : user.id}) }}">Delete</a>
+{% endfor %}
+
+<a href="{{ path('add_user') }}">AddUser</a>
+<a href="{{ path('add_message') }}">Add Message</a>
+<a href="{{ path('edit_message', {'messageId' : 1}) }}">Edit Message</a>
