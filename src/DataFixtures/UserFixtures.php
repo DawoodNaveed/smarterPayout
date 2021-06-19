@@ -18,6 +18,10 @@ class UserFixtures extends Fixture
     {
         $user = new User();
         $user->setEmail('dawood@gmail.com');
+        $user->setUsername('David Masseh');
+        $user->setJobTitle('Sweeper');
+        $user->setPhoneNumber('03310306899');
+        $user->setBusinessPhone('03310306899');
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
         'Dawood123'
