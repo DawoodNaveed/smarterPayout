@@ -34,9 +34,17 @@ class MessageService
     /**
      * @param Message $message
      */
-    public function addEditDeleteMessage($message)
+    public function addEditMessage($message)
     {
-        $this->messageRepository->addEditDeleteMessage($message);
+        $this->messageRepository->addEditMessage($message);
+    }
+    
+    /**
+     * @param Message $message
+     */
+    public function deleteMessage($message)
+    {
+        $this->messageRepository->remove($message);
     }
     
     /**

@@ -19,7 +19,7 @@ class MessageController extends AbstractController
      */
     public function listMessages(MessageService $messageService)
     {
-        return $this->render('message/listingMessage.html.twig', [
+        return $this->render('message/listMessage.html.twig', [
             'messages' => $messageService->getAllMessages(),
         ]);
     }
@@ -34,7 +34,7 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $message = $form->getData();
-            $messageService->addEditDeleteMessage($message);
+            $messageService->addEditMessage($message);
         }
 
         return $this->render('message/message.html.twig', [
@@ -53,8 +53,7 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $message = $form->getData();
-            $message->updatedTimestamps();
-            $messageService->addEditDeleteMessage($message);
+            $messageService->addEditMessage($message);
         }
 
         return $this->render('message/message.html.twig', [
@@ -70,7 +69,7 @@ class MessageController extends AbstractController
         $messageId = $request->get('messageId');
         $message = $messageService->findMessageById($messageId);
         $message->setIsDeleted(true);
-        $messageService->addEditDeleteMessage($message);
+        $messageService->deleteMessage($message);
 
         return $this->redirectToRoute('message_list');
     }

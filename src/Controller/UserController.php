@@ -24,12 +24,12 @@ class UserController extends AbstractController
             $user = $form->getData();
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
-            $userService->addOrEditUser($user);
+            $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
         }
 
-        return $this->render('user/user.html.twig', [
+        return $this->render('user/createOrUpdateUser.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -52,12 +52,12 @@ class UserController extends AbstractController
             $user = $form->getData();
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
-            $userService->addOrEditUser($user);
+            $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
         }
 
-        return $this->render('user/user.html.twig', [
+        return $this->render('user/createOrUpdateUser.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -70,7 +70,7 @@ class UserController extends AbstractController
         $userId = $request->get('userId');
         $user = $userService->findUserById($userId);
 
-        return $this->render('user/showUser.html.twig', [
+        return $this->render('user/viewUser.html.twig', [
             'user' => $user,
         ]);
     }
@@ -82,8 +82,7 @@ class UserController extends AbstractController
     {
         $userId = $request->get('userId');
         $user = $userService->findUserById($userId);
-        $user->setIsDeleted(true);
-        $userService->addEditDeleteUser($user);
+        $userService->deleteUser($user);
 
         return $this->redirectToRoute('user_list');
     }
@@ -95,7 +94,7 @@ class UserController extends AbstractController
      */
     public function userListAction(UserService $userService)
     {
-        return $this->render('user/listingUser.html.twig', [
+        return $this->render('user/listUser.html.twig', [
             'users' => $userService->getAllUsers(),
         ]);
     }

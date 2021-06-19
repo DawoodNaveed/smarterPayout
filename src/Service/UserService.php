@@ -42,8 +42,16 @@ class UserService
     /**
      * @param User $user
      */
-    public function addEditDeleteUser($user)
+    public function addEditUser($user)
     {
-        $this->userRepository->addEditDeleteUser($user);
+        $this->userRepository->addEditUser($user);
+    }
+    
+    /**
+     * @param User $user
+     */
+    public function deleteUser($user)
+    {
+        $this->userRepository->remove($user);
     }
 }

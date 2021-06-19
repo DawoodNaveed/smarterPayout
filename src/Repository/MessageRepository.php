@@ -24,7 +24,7 @@ class MessageRepository extends AbstractRepository
     /**
      * @param Message $message
      */
-    public function addEditDeleteMessage($message)
+    public function addEditMessage($message)
     {
         $this->persist($message);
         $this->_em->flush();

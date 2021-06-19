@@ -50,9 +50,7 @@ class AbstractRepository extends ServiceEntityRepository
      */
     public function remove($object, $isFlush = false)
     {
-        $this->_em->remove($object);
-        if ($isFlush) {
-            $this->flush();
-        }
+        $object->setIsDeleted(true);
+        $this->persist($object,true);
     }
 }
