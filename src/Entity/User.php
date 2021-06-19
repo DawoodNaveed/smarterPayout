@@ -60,7 +60,7 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
-    
+
     /**
      * @var \DateTime
      *
@@ -68,7 +68,7 @@ class User implements UserInterface
      * @Gedmo\Timestampable(on="create")
      */
     protected $created;
-    
+
     /**
      * @var \DateTime
      *
@@ -76,7 +76,7 @@ class User implements UserInterface
      * @Gedmo\Timestampable(on="update")
      */
     protected $updated;
-    
+
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", options={"default"=0})

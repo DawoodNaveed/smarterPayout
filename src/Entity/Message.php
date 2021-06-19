@@ -20,13 +20,13 @@ class Message extends AbstractEntity
      * @Assert\NotBlank(message="Please enter the message day. You can't left it blank")
      */
     private $messageDay;
-    
+
     /**
      * @ORM\Column(type="string", length=5000)
      * @Assert\NotBlank(message="Please enter the message. You can't left it blank")
      */
     private $message;
-    
+
     /**
      * @return mixed
      */
@@ -34,7 +34,7 @@ class Message extends AbstractEntity
     {
         return $this->messageDay;
     }
-    
+
     /**
      * @param mixed $messageDay
      */
@@ -42,7 +42,7 @@ class Message extends AbstractEntity
     {
         $this->messageDay = $messageDay;
     }
-    
+
     /**
      * @return mixed
      */
@@ -50,7 +50,7 @@ class Message extends AbstractEntity
     {
         return $this->message;
     }
-    
+
     /**
      * @param mixed $message
      */

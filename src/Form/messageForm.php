@@ -19,7 +19,7 @@ class messageForm extends AbstractType
             ->add('message', TextareaType::class)
             ->add('save', SubmitType::class);
     }
-    
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

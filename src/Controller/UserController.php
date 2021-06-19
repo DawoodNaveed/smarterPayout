@@ -33,7 +33,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    
+
     /**
      * @Route("/user/edit/{userId}", name="edit_user")
      */
@@ -56,12 +56,12 @@ class UserController extends AbstractController
             $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
         }
-        
+
         return $this->render('user/user.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    
+
     /**
      * @Route("/user/show/{userId}", name="show_user")
      */
@@ -69,12 +69,12 @@ class UserController extends AbstractController
     {
         $userId = $request->get('userId');
         $user = $userService->findUserById($userId);
-        
+
         return $this->render('user/showUser.html.twig', [
             'user' => $user,
         ]);
     }
-    
+
     /**
      * @Route("/user/delete/{userId}", name="delete_user")
      */
@@ -84,10 +84,10 @@ class UserController extends AbstractController
         $user = $userService->findUserById($userId);
         $user->setIsDeleted(true);
         $userService->addEditDeleteUser($user);
-        
+
         return $this->redirectToRoute('user_list');
     }
-    
+
     /**
      * @Route("/users", name="user_list")
      * @param UserService $userService

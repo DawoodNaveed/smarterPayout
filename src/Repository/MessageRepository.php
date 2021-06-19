@@ -20,14 +20,12 @@ class MessageRepository extends AbstractRepository
     {
         parent::__construct($registry, Message::class);
     }
-    
+
     /**
      * @param Message $message
      */
     public function addEditDeleteMessage($message)
     {
-//        dump($message);
-//        die();
         $this->persist($message);
         $this->_em->flush();
     }

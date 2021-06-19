@@ -23,7 +23,7 @@ class MessageController extends AbstractController
             'messages' => $messageService->getAllMessages(),
         ]);
     }
-    
+
     /**
      * @Route("/message/add", name="add_message")
      */
@@ -36,12 +36,12 @@ class MessageController extends AbstractController
             $message = $form->getData();
             $messageService->addEditDeleteMessage($message);
         }
-        
+
         return $this->render('message/message.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    
+
     /**
      * @Route("/message/edit/{messageId}", name="edit_message")
      */
@@ -56,12 +56,12 @@ class MessageController extends AbstractController
             $message->updatedTimestamps();
             $messageService->addEditDeleteMessage($message);
         }
-        
+
         return $this->render('message/message.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    
+
     /**
      * @Route("/message/delete/{messageId}", name="delete_message")
      */
@@ -71,7 +71,7 @@ class MessageController extends AbstractController
         $message = $messageService->findMessageById($messageId);
         $message->setIsDeleted(true);
         $messageService->addEditDeleteMessage($message);
-        
+
         return $this->redirectToRoute('message_list');
     }
 }

@@ -99,19 +99,4 @@ abstract class AbstractEntity
     {
         $this->isDeleted = $isDeleted;
     }
-    
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updatedTimestamps(): void
-    {
-        $dateTimeNow = new DateTime('now');
-        
-        $this->setUpdated($dateTimeNow);
-        
-        if ($this->getCreated() === null) {
-            $this->setCreated($dateTimeNow);
-        }
-    }
 }
