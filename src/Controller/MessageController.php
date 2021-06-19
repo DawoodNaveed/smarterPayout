@@ -68,7 +68,6 @@ class MessageController extends AbstractController
     {
         $messageId = $request->get('messageId');
         $message = $messageService->findMessageById($messageId);
-        $message->setIsDeleted(true);
         $messageService->deleteMessage($message);
 
         return $this->redirectToRoute('message_list');

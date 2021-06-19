@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserService
 {
@@ -42,8 +43,10 @@ class UserService
     /**
      * @param User $user
      */
-    public function addEditUser($user)
+    public function addEditUser($user,UserPasswordEncoderInterface $encoder = null)
     {
+        $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
+        $user->setPassword($encodedPassword);
         $this->userRepository->addEditUser($user);
     }
     

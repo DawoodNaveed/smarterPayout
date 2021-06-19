@@ -22,8 +22,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encodedPassword);
             $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
@@ -42,16 +40,12 @@ class UserController extends AbstractController
         $userId = $request->get('userId');
         if ($userId) {
             $user = $userService->findUserById($userId);
-        } else {
-            $user = new User();
         }
         $form = $this->createForm(userForm::class, $user);
         $form->remove('password');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-            $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encodedPassword);
             $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
             return $this->redirectToRoute('listing_users');
