@@ -1,0 +1,18 @@
+{% block main %}
+    <div class="col-md-12 form-group">
+        {{ form_start(form) }}
+        <div class="row m-l-3p">
+            <div class="col-md-12 pad-l-0">
+                {{ form_widget(form.messageDay) }}{{ form_errors(form.messageDay) }}
+            </div>
+        </div>
+
+        <div class="row m-l-3p">
+            <div class="col-md-12 pad-l-0">
+                {{ form_widget(form.message) }}{{ form_errors(form.message) }}
+            </div>
+        </div>
+        {{ form_errors(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock main %}

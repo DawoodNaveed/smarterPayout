@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class UserRepository extends AbstractRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -32,21 +32,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
 
         $user->setPassword($newEncodedPassword);
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $this->persist($user,true);
     }
     
     /**
      * @param $user
      */
-    public function addOrEditUser($user)
+    public function addEditUser($user)
     {
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $this->persist($user,true);
     }
 
     // /**
-    //  * @return User[] Returns an array of User objects
+    //  * @return user[] Returns an array of user objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +61,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     */
 
     /*
-    public function findOneBySomeField($value): ?User
+    public function findOneBySomeField($value): ?user
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

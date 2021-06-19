@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserService
 {
@@ -27,7 +28,7 @@ class UserService
      */
     public function getAllUsers()
     {
-        return $this->userRepository->findAll();
+        return $this->userRepository->findBy(['isDeleted' => false]);
     }
     
     /**
@@ -42,8 +43,18 @@ class UserService
     /**
      * @param User $user
      */
-    public function addOrEditUser($user)
+    public function addEditUser($user,UserPasswordEncoderInterface $encoder = null)
     {
-        $this->userRepository->addOrEditUser($user);
+        $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
+        $user->setPassword($encodedPassword);
+        $this->userRepository->addEditUser($user);
+    }
+    
+    /**
+     * @param User $user
+     */
+    public function deleteUser($user)
+    {
+        $this->userRepository->remove($user);
     }
 }

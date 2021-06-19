@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BaseController extends AbstractController
+class HomeController extends AbstractController
 {
     /**
-     * @Route("/dashboardMenu", name="dashboard_menu")
+     * @Route("/dashboard", name="dashboard_menu")
      */
     public function dashboardMenu()
     {
