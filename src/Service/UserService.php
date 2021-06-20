@@ -43,10 +43,8 @@ class UserService
     /**
      * @param User $user
      */
-    public function addEditUser($user,UserPasswordEncoderInterface $encoder = null)
+    public function addEditUser($user)
     {
-        $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
-        $user->setPassword($encodedPassword);
         $this->userRepository->addEditUser($user);
     }
     

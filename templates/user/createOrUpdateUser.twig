@@ -1,11 +1,8 @@
 {% extends 'dashboardMenu.html.twig' %}
 
 {% block title %}User Management | Add New{% endblock %}
-
 {% block content %}
-
-        {{ dump(app.request.attributes.get('_route'))}}
-        <div class="card">
+     <div class="card">
             <div class="card-header">
                 <a class="btn btn-sm btn-primary float-right" href="{{ path('user_list') }}" title="Back to grid"> <i class="fas fa-arrow-left"></i></a>
                 <h3 class="text-center">Create New User</h3>
@@ -38,12 +35,11 @@
                         {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
                     </div>
 
-                    {% if app.request.attributes.get('_route') is same as("/user/add") %}
+                    {% if app.request.attributes.get('_route') is same as("add_user") %}
                         <div class="form-row col-md-6 mb-3">
                             <label for="password.first">Password:</label>
                             {{ form_widget(form.password.first) }}{{ form_errors(form.password) }}
                         </div>
-
                         <div class="form-row col-md-6 mb-3">
                             <label for="password.second">Confirm Password:</label>
                             {{ form_widget(form.password.second) }}{{ form_errors(form.password) }}

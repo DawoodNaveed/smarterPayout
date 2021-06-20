@@ -200,3 +200,8 @@ body{
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
     color: #262626;
 }
+
+.modal-icon{
+    font-size: 40px;
+    padding: 10px;
+}

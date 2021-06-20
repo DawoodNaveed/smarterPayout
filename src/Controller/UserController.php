@@ -22,9 +22,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+            $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encodedPassword);
             $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
-            return $this->redirectToRoute('listing_users');
+            return $this->redirectToRoute('user_list');
         }
 
         return $this->render('user/createOrUpdateUser.twig', [
@@ -48,7 +50,7 @@ class UserController extends AbstractController
             $user = $form->getData();
             $userService->addEditUser($user);
             $this->addFlash('success', 'user Added Successfully');
-            return $this->redirectToRoute('listing_users');
+            return $this->redirectToRoute('user_list');
         }
 
         return $this->render('user/createOrUpdateUser.twig', [
@@ -64,7 +66,7 @@ class UserController extends AbstractController
         $userId = $request->get('userId');
         $user = $userService->findUserById($userId);
 
-        return $this->render('user/viewUser.html.twig', [
+        return $this->render('user/display.html.twig', [
             'user' => $user,
         ]);
     }

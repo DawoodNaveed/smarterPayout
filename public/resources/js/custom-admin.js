@@ -9,4 +9,11 @@ $(document).ready(function () {
     });
 
     $('#data_table').DataTable();
+
+    $('.deleteRecord').click(function (){
+        let recordUrl=$(this).data('url');
+        console.log(recordUrl);
+        $("#deletebtn").attr("href", recordUrl);
+
+    });
 });
