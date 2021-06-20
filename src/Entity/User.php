@@ -81,7 +81,7 @@ class User implements UserInterface
      * @var boolean|null
      * @ORM\Column(type="boolean", options={"default"=0})
      */
-    private $isDeleted;
+    protected $isDeleted = 0;
 
     /**
      * @var string The hashed password

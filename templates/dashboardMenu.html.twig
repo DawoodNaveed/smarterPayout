@@ -1,1 +1,126 @@
-<a href="{{ path('user_list') }}">Lisitng</a>
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard!{% endblock %}
+
+{% block body %}
+
+    <div class="page-wrapper chiller-theme toggled ">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+            <div class="navbar-brand">
+                <a href="{{ path('dashboard_menu') }}" class="text-center">Smarter Payouts</a>
+                <a id="close-sidebar" class="btn-sm pl-4 pb-0" href="#">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-4">
+                    <a href="#">
+                        <i class="fas fa-user-circle"></i>
+                        <span>User-001</span>
+                    </a>
+                </li>
+                <li class="nav-item ml-4">
+                    <a href="{{ path('app_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <div class="user-pic mb-5">
+                        {# Call/Text etc buttons Here... #}
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>Profile</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Personal Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-address-book"></i>
+                                <span>Client Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="header-menu">
+                            <span>Management</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-users"></i>
+                                <span>Client Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Leads Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Documents</span>
+                            </a>
+                        </li>
+                        <li class="header-menu">
+                            <span>Lists</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>Prospects List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>Warm List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>Active List</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr>
+                            <a href="#">
+                                <i class="fas fa-gem"></i>
+                                <span>Awards</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr>
+                            <a href="{{ path('user_list') }}"> <i class="fas fa-user"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
+        </nav>
+        <!-- sidebar-wrapper  -->
+
+        <main class="page-content">
+            <div class="container-fluid">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+{% endblock %}
