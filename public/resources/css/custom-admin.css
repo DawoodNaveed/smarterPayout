@@ -1,12 +1,14 @@
-body{
+body {
     background: #F6F6F6;
 }
+
 .navbar-brand {
     display: flex;
     align-items: center;
 }
 
-.navbar .nav-item a, .navbar-brand > a {
+.navbar .nav-item a,
+.navbar-brand > a {
     text-decoration: none;
     color: #262626;
 }
@@ -30,6 +32,9 @@ body{
 
 .login-form {
     margin-top: 25%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 2px lightgray;
+    background: white;
 }
 
 .page-wrapper .sidebar-wrapper,
@@ -46,16 +51,26 @@ body{
     height: 100vh;
 }
 
-.page-wrapper .theme {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 4px;
-    margin: 2px;
+.page-wrapper.toggled .sidebar-wrapper {
+    left: 50px;
+    top: 100px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 2px lightgray;
+    background: white;
 }
 
-.page-wrapper.toggled .sidebar-wrapper {
-    left: 0px;
+::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-wrapper {
+    width: 260px;
+    height: 100%;
+    max-height: 100%;
+    position: fixed;
+    top: 100px;
+    left: -300px;
+    z-index: 999;
 }
 
 @media screen and (min-width: 768px) {
@@ -64,16 +79,18 @@ body{
     }
 }
 
-/*----------------sidebar-wrapper----------------*/
+@media only screen and (max-width: 768px) {
+    .sidebar-wrapper {
+        width: 80px;
+    }
 
-.sidebar-wrapper {
-    width: 260px;
-    height: 100%;
-    max-height: 100%;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    z-index: 999;
+    .page-wrapper.toggled .page-content {
+        padding-left: 150px;
+    }
+
+    .sidebar-menu ul li a span {
+        display: none;
+    }
 }
 
 .sidebar-wrapper ul {
@@ -86,16 +103,12 @@ body{
     text-decoration: none;
 }
 
-/*----------------sidebar-content----------------*/
-
 .sidebar-content {
     max-height: calc(100% - 30px);
     height: calc(100% - 30px);
     overflow-y: auto;
     position: relative;
 }
-
-/*--------------------sidebar-header----------------------*/
 
 .sidebar-wrapper .sidebar-header {
     padding: 20px;
@@ -111,19 +124,6 @@ body{
     overflow: hidden;
 }
 
-/*----------------------sidebar-menu-------------------------*/
-
-.sidebar-wrapper .sidebar-menu {
-    padding-bottom: 10px;
-}
-
-.sidebar-wrapper .sidebar-menu .header-menu span {
-    font-weight: bold;
-    font-size: 14px;
-    padding: 15px 20px 5px 20px;
-    display: inline-block;
-}
-
 .sidebar-wrapper .sidebar-menu ul li a {
     display: inline-block;
     width: 100%;
@@ -133,9 +133,9 @@ body{
 }
 
 .sidebar-wrapper .sidebar-menu ul li a i,
-.navbar .nav-item a i{
+.navbar .nav-item a i {
     margin-right: 10px;
-    font-size: 12px;
+    font-size: 18px;
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -158,29 +158,28 @@ body{
     overflow-x: hidden;
 }
 
-/*-----------------------------chiller-theme-------------------------------------------------*/
-
 .chiller-theme .sidebar-wrapper {
     background: #FFFFFF;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
-.navbar .nav-item a{
+.navbar .nav-item a {
     color: #262626;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a i,
-.navbar .nav-item:hover >a i{
-    transition: background-color 1s, font-size 1s;
+.navbar .nav-item:hover > a i {
+    transition: background-color 1s;
     background: #09B44D;
-    font-size: 16px;
+    font-size: 18px;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a
-{
-    transition: color 0s, font-size 1s;
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {
     background-color: #F6F6F6;
+    -webkit-transition: background 2s; /* For Safari 3.0 to 6.0 */
+    transition: background 2s; /* For modern browsers */
     font-weight: bold;
+    border-radius: 30px 0 0 30px;
 }
 
 .page-wrapper.chiller-theme.toggled #close-sidebar {
@@ -192,16 +191,11 @@ body{
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
-.navbar .nav-item a i{
-    background: #b6fbd2;
+.navbar .nav-item a i {
+    background: #f6f6f6;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-    color: #262626;
-}
-
-.modal-icon{
+.modal-icon {
     font-size: 40px;
     padding: 10px;
 }

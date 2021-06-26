@@ -53,10 +53,6 @@ class userForm extends AbstractType
                 'required' => false, 'attr' => ['class' => 'form-control',
                     'placeholder' => 'Enter your phone number here','pattern' => '^(\+|00)[0-9]{1,3}[0-9]{4,14}$'
                 ]
-            ])
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary float-right',
-                'title'=>'Create now']
             ]);
     }
 
