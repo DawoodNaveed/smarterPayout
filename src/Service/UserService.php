@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\User;
+use App\Helper\CustomHelper;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -41,6 +42,14 @@ class UserService
     }
     
     /**
+     * @param $searchKey
+     */
+    public function findOneBy($searchKey)
+    {
+        return $this->userRepository->findOneBy($searchKey);
+    }
+    
+    /**
      * @param User $user
      */
     public function addEditUser($user)
@@ -54,5 +63,23 @@ class UserService
     public function deleteUser($user)
     {
         $this->userRepository->remove($user);
+    }
+    
+    /**
+     * @param User $user
+     * @param string $resetPasswordToken
+     * @param string $expireDateTime
+     * @return bool
+     */
+    public function validateResetPasswordLink(User $user, string $resetPasswordToken, string $expireDateTime)
+    {
+        if ($user->getResetPasswordToken() != $resetPasswordToken) {
+            return false;
+        }
+        if (date(CustomHelper::DATE_FORMAT) > $expireDateTime)
+        {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,8 +1,12 @@
 <?php
 namespace App\Controller;
 
+use App\Form\resetPasswordEmailForm;
+use App\Form\resetPasswordForm;
 use App\Form\userForm;
 use App\Service\UserService;
+use App\Service\EmailService;
+use App\Service\UtilService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -92,6 +96,93 @@ class UserController extends AbstractController
     {
         return $this->render('user/listUser.html.twig', [
             'users' => $userService->getAllUsers(),
+        ]);
+    }
+    
+    /**
+     * @Route ("/forgotPassword", name="forgot_password")
+     * @param Request $request
+     * @param EmailService $emailService
+     * @param UtilService $utilService
+     * @param UserService $userService
+     */
+    public function forgotPasswordAction(
+        Request $request,
+        EmailService $emailService,
+        UtilService $utilService,
+        UserService $userService
+    )
+    {
+        $form = $this->createForm(resetPasswordEmailForm::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+            $userEmail = $formData['email'];
+            $user = $userService->findOneBy(['email' => $userEmail]);
+            if (!$user) {
+                $this->addFlash('error', 'User Not found');
+                return $this->render('user/resetPassword.html.twig',[
+                    'form' => $form->createView()
+                ]);
+            }
+            $resetPasswordToken = $utilService->generateToken();
+            $expireDateTime = $utilService->getExpireDateAndTimeForResetPasswordUrl();
+            $user->setResetPasswordToken($resetPasswordToken);
+            $userService->addEditUser($user);
+            $replacements = [
+                'userEmail' => $userEmail,
+                'resetPasswordToken' => $resetPasswordToken,
+                'expireDateTime' => urlencode($expireDateTime)
+            ];
+            $emailService->send(
+                'Reset Password',
+                $userEmail,
+                'user/resetPasswordEmail.html.twig',
+                $replacements
+            );
+            $this->addFlash('success', 'Check your email');
+            return $this->render('user/resetPassword.html.twig',[
+                'form' => $form->createView()
+            ]);
+        }
+        return $this->render('user/resetPassword.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+    
+    /**
+     * @Route("/reset/{userEmail}/{resetPasswordToken}/{expireDateTime}", name="reset")
+     * @param Request $request
+     * @param UserService $userService
+     * @param UserPasswordEncoderInterface $encoder
+     */
+    public function resetPasswordAction(Request $request, UserService $userService, UserPasswordEncoderInterface $encoder)
+    {
+        $userEmail = $request->get('userEmail');
+        $resetPasswordToken = $request->get('resetPasswordToken');
+        $expireDateTime = urldecode($request->get('expireDateTime'));
+        $user = $userService->findOneBy(['email' => $userEmail]);
+        if (!$user) {
+            $this->addFlash('error', 'User not found');
+            return $this->redirectToRoute('app_login');
+        }
+        $validUrl = $userService->validateResetPasswordLink($user, $resetPasswordToken, $expireDateTime);
+        if (!$validUrl) {
+            $this->addFlash('error', 'Reset Password Url is not valid');
+            return $this->redirectToRoute('app_login');
+        }
+        $form = $this->createForm(resetPasswordForm::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+            $encodedPassword = $encoder->encodePassword($user, $formData['password']);
+            $user->setPassword($encodedPassword);
+            $userService->addEditUser($user);
+            $this->addFlash('success', 'Password Updated Successfully');
+            return $this->redirectToRoute('app_login');
+        }
+        return $this->render('user/resetPassword.html.twig',[
+            'form' => $form->createView()
         ]);
     }
 }
