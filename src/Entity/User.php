@@ -90,6 +90,12 @@ class User implements UserInterface
      * @Assert\Regex(pattern="/^(?=.*[a-z])(?=.*\d).{6,}$/i", message="Password is required to be minimum 6 chars in length and to include at least one letter and one number.")
      */
     private $password;
+    
+    /**
+     * @var string
+     * @ORM\Column (type="string", nullable=true)
+     */
+    private $resetPasswordToken;
 
     public function getId(): ?int
     {
@@ -273,5 +279,21 @@ class User implements UserInterface
     public function setUpdated(\DateTime $updated): void
     {
         $this->updated = $updated;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getResetPasswordToken()
+    {
+        return $this->resetPasswordToken;
+    }
+    
+    /**
+     * @param string $resetPasswordToken
+     */
+    public function setResetPasswordToken(string $resetPasswordToken)
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
     }
 }
