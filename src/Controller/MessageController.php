@@ -19,7 +19,7 @@ class MessageController extends AbstractController
      */
     public function listMessages(MessageService $messageService)
     {
-        return $this->render('message/listMessage.html.twig', [
+        return $this->render('message/list.html.twig', [
             'messages' => $messageService->getAllMessages(),
         ]);
     }
@@ -35,9 +35,10 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $message = $form->getData();
             $messageService->addEditMessage($message);
+            return $this->redirectToRoute('message_list');
         }
 
-        return $this->render('message/message.html.twig', [
+        return $this->render('message/createOrUpdate.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -54,9 +55,10 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $message = $form->getData();
             $messageService->addEditMessage($message);
+            return $this->redirectToRoute('message_list');
         }
 
-        return $this->render('message/message.html.twig', [
+        return $this->render('message/createOrUpdate.html.twig', [
             'form' => $form->createView(),
         ]);
     }

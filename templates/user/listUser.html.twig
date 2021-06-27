@@ -1,38 +1,9 @@
-{# {% for user in users %} #}
-{# <span>{{ user.username }}</span> #}
-{# <span>{{ user.phoneNumber }}</span> #}
-{# <a href="{{ path('edit_user', {'userId' : user.id}) }}">Edit</a> #}
-{# <a href="{{ path('show_user', {'userId' : user.id}) }}">Show</a> #}
-{# <a href="{{ path('delete_user', {'userId' : user.id}) }}">Delete</a> #}
-{# {% endfor %} #}
-
-{# <a href="{{ path('add_user') }}">AddUser</a> #}
-{# <a href="{{ path('add_message') }}">Add Message</a> #}
-{# <a href="{{ path('edit_message', {'messageId' : 1}) }}">Edit Message</a> #}
 {% extends 'dashboardMenu.html.twig' %}
 
 {% block title %}User Management!{% endblock %}
 
 {% block content %}
 
-    <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
-         aria-labelledby="deleteModel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title"><i class="fa fa-exclamation-triangle text-warning modal-icon"></i> Are you
-                        sure you want to delete?</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <a class="btn btn-primary" href="" id="deletebtn"> Yes</a>
-            </div>
-        </div>
-    </div>
-    </div>
     <div class="card">
         <div class="card-header">
             <a class="btn btn-sm btn-primary float-right" href="{{ path('add_user') }}"> Create New <span

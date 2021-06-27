@@ -15,9 +15,15 @@ class messageForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('messageDay', TextType::class)
-            ->add('message', TextareaType::class)
-            ->add('save', SubmitType::class);
+            ->add('messageDay', TextType::class, [
+                'attr' => ['class' => 'form-control',
+                    'placeholder' => 'Enter message day here'],
+            ])
+            ->add('message', TextareaType::class, [
+                'attr' => ['class' => 'form-control',
+                    'placeholder' => 'Enter message here',
+                    'rows' => '5'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

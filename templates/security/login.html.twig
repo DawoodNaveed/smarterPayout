@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-6">
                 <form method="post">
-                    <div class="d-flex align-items-center flex-column login-form">
+                    <div class="d-flex align-items-center flex-column col-md-8 login-form">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
@@ -27,7 +27,7 @@
                         <img class="img rounded-circle" height="150px" width="150px"
                             alt="Avatar" src="{{ asset ('resources/images/user.png') }}">
 
-                        <div class="form-row col-md-8 pb-3">
+                        <div class="form-row col-md-12 pb-3">
                             <label for="inputEmail">Email:</label>
                             <input placeholder="Enter your email here..." type="email" value="{{ last_username }}"
                                    name="email" id="inputEmail"
@@ -35,7 +35,7 @@
                                    autocomplete="email" required autofocus>
                         </div>
 
-                        <div class="form-row col-md-8 pb-3">
+                        <div class="form-row col-md-12 pb-3">
                             <label for="inputPassword">Password:</label>
                             <input placeholder="Enter your password here..." type="password" name="password"
                                    id="inputPassword" class="form-control"
