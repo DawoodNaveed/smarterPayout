@@ -3,65 +3,56 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row login">
-            <div class="col d-flex align-items-center justify-content-center p-0">
-                <div class="col-lg-8 d-none d-lg-block p-0">
-                    <img class="img-fluid rounded" alt="Image" src="{{ asset ('resources/images/bg-login.jpg') }}">
+    <div class="d-flex justify-content-center align-items-center login">
+        <div class="col-md-8 rounded p-5">
+            <div class="row">
+                <div class="col-md-6 d-flex justify-content-center align-items-center custom-border-right">
+                    <img class="rounded img-fluid"
+                         alt="Logo" src="{{ asset ('resources/images/logo.png') }}">
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <form method="post">
-                    <div class="d-flex align-items-center flex-column col-md-8 login-form">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
+                <div class="col-md-6">
+                    <form method="post">
+                        <div class="d-flex align-items-center flex-column login-form">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
 
-                        {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a
-                                        href="{{ path('app_logout') }}">Logout</a>
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.username }}, <a
+                                            href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+
+                            <h3 class="pb-5 font-weight-bold">Login</h3>
+
+                            <div class="form-row col-md-12 pb-4 ">
+                                <input placeholder="Email" type="email" value="{{ last_username }}"
+                                       name="email" id="inputEmail"
+                                       class="form-control custom-input text-indent"
+                                       autocomplete="email" required autofocus>
                             </div>
-                        {% endif %}
 
-                        <img class="img rounded-circle" height="150px" width="150px"
-                            alt="Avatar" src="{{ asset ('resources/images/user.png') }}">
+                            <div class="form-row col-md-12 pb-3">
+                                <input placeholder="Password" type="password" name="password"
+                                       id="inputPassword" class="form-control custom-input text-indent"
+                                       autocomplete="current-password " required>
+                            </div>
+                            <div class="form-row col-md-12 pb-5">
+                                <a class="ml-auto pr-2" href="{{ path('forgot_password') }}">Forgot Password?</a>
+                            </div>
 
-                        <div class="form-row col-md-12 pb-3">
-                            <label for="inputEmail">Email:</label>
-                            <input placeholder="Enter your email here..." type="email" value="{{ last_username }}"
-                                   name="email" id="inputEmail"
-                                   class="form-control"
-                                   autocomplete="email" required autofocus>
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}">
+
+                            <div class="form-row col-md-12 pb-3">
+                                <input class="form-control btn btn-outline-success custom-input custom-btn-success"
+                                       title="Log In"
+                                       type="submit" value="Log In">
+                            </div>
                         </div>
-
-                        <div class="form-row col-md-12 pb-3">
-                            <label for="inputPassword">Password:</label>
-                            <input placeholder="Enter your password here..." type="password" name="password"
-                                   id="inputPassword" class="form-control"
-                                   autocomplete="current-password" required>
-                        </div>
-                        <input type="hidden" name="_csrf_token"
-                               value="{{ csrf_token('authenticate') }}">
-
-                        {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
-
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
-                        </div>
-                        #}
-
-                        <button class="btn btn-lg btn-outline-light mt-3" title="Sign In" type="submit">
-                            Sign in
-                        </button>
-                        <a href="{{ path('forgot_password') }}">Reset Password</a>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

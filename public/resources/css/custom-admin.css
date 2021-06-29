@@ -1,5 +1,5 @@
 body {
-    background: #F6F6F6;
+    background: #f6f6f6;
 }
 
 .navbar-brand {
@@ -21,20 +21,44 @@ body {
 }
 
 .navbar {
-    background: #09B44D;
+    background: #09b44d;
 }
 
 .login {
-    height: 795px;
-    background: #f0f0f0;
-    color: #262626;
+    height: 100vh;
+    overflow: auto;
+    background-image: url("/resources/images/bglogin.jpg");
 }
 
-.login-form {
-    margin-top: 25%;
-    border-radius: 15px;
-    box-shadow: 0 0 20px 2px lightgray;
-    background: white;
+.login .rounded {
+    background: #ffffff;
+}
+
+.login-form .custom-input {
+    border-radius: 100px;
+    height: 50px;
+}
+.custom-border-right {
+    border-right: 2px solid gray;
+}
+
+.custom-btn-success {
+    color: #09b44d;
+}
+
+.custom-btn-success :hover {
+    background: #09b44d;
+}
+
+@media only screen and (max-width: 768px) {
+    .custom-border-right {
+        border-right: none;
+        padding-top: 110px;
+    }
+}
+.text-indent {
+    text-indent: 15px;
+    background: #f6f6f6;
 }
 
 .page-wrapper .sidebar-wrapper,
@@ -55,7 +79,7 @@ body {
     left: 50px;
     top: 100px;
     border-radius: 15px;
-    box-shadow: 0 0 20px 2px lightgray;
+    box-shadow: 0 0 20px 2px gray;
     background: white;
 }
 
@@ -75,11 +99,33 @@ body {
 
 @media screen and (min-width: 768px) {
     .page-wrapper.toggled .page-content {
-        padding-left: 300px;
+        padding-left: 250px;
+    }
+
+    .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {
+        background-color: #f6f6f6;
+        -webkit-transition: background 1s;
+        transition: background 1s;
+        font-weight: bold;
+        color: black;
+        opacity: 1;
+        transform: scale(1.1);
+        border-right: 18px #09b44d solid;
     }
 }
 
 @media only screen and (max-width: 768px) {
+    .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {
+        background-color: #f6f6f6;
+        -webkit-transition: background 1s;
+        transition: background 1s;
+        font-weight: bold;
+        color: black;
+        opacity: 1;
+        transform: scale(1.1);
+        border-right: 10px #09b44d solid;
+    }
+
     .sidebar-wrapper {
         width: 80px;
     }
@@ -129,12 +175,12 @@ body {
     width: 100%;
     text-decoration: none;
     position: relative;
-    padding: 8px 30px 8px 20px;
+    padding: 8px 0px 8px 20px;
+    transition: all 0.2s ease-in-out;
 }
 
 .sidebar-wrapper .sidebar-menu ul li a i,
 .navbar .nav-item a i {
-    margin-right: 10px;
     font-size: 18px;
     width: 30px;
     height: 30px;
@@ -159,27 +205,18 @@ body {
 }
 
 .chiller-theme .sidebar-wrapper {
-    background: #FFFFFF;
+    background: #ffffff;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
 .navbar .nav-item a {
-    color: #262626;
+    color: black;
+    opacity: 0.8;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a i,
 .navbar .nav-item:hover > a i {
-    transition: background-color 1s;
-    background: #09B44D;
-    font-size: 18px;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {
-    background-color: #F6F6F6;
-    -webkit-transition: background 2s; /* For Safari 3.0 to 6.0 */
-    transition: background 2s; /* For modern browsers */
-    font-weight: bold;
-    border-radius: 30px 0 0 30px;
+    background: #09b44d;
 }
 
 .page-wrapper.chiller-theme.toggled #close-sidebar {
@@ -187,7 +224,7 @@ body {
 }
 
 .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
@@ -198,4 +235,34 @@ body {
 .modal-icon {
     font-size: 40px;
     padding: 10px;
+}
+
+.sidebar-wrapper-right {
+    width: 300px;
+    height: 100%;
+    max-height: 100%;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 999;
+}
+
+.sidebar-wrapper-right nav ul li a {
+    color: black;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-wrapper-right nav ul li {
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+.sidebar-wrapper-right nav ul li:hover > a {
+    background-color: #f6f6f6;
+    -webkit-transition: background 2s;
+    transition: background 2s;
+    font-weight: bold;
+    border-radius: 30px 0 0 30px;
+    transform: scale(1.1);
 }

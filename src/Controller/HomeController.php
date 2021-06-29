@@ -12,7 +12,6 @@ class HomeController extends AbstractController
      */
     public function dashboardMenu()
     {
-        return $this->render('letter/lcp1.html.twig');
         if ($this->getUser()) {
             return $this->render('dashboardMenu.html.twig');
         }

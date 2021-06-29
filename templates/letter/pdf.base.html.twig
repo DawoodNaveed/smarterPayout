@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {#        <meta charset="UTF-8">#}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block stylesheets %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <link rel="shortcut icon" href="#">
+        {#{{ encore_entry_link_tags('app') }}#}
+        <style>
+            body {
+                background-color: #FFFFFF;
+            }
+            .contact-color{
+                color: dodgerblue;
+            }
+            .cursor{
+                cursor: pointer;
+            }
+
+            .hr{
+                border: 1px solid dodgerblue;
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>
