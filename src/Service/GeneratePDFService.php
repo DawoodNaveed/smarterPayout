@@ -33,7 +33,6 @@ class GeneratePDFService
         
         $html = $this->twig->render('letter/' . $letterFileName .'.html.twig', [
         ]);
-        
         $domPdf->loadHtml($html);
         $domPdf->setPaper('A4', 'portrait');
         $domPdf->render();

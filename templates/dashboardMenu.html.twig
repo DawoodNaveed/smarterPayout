@@ -111,6 +111,13 @@
                                 <span>Users</span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{ path('letter_list') }}">
+                                <i class="fas fa-envelope"></i>
+                                <span>Letters</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ path('app_logout') }}">
                                 <i class="fas fa-sign-out-alt"></i>
@@ -126,7 +133,46 @@
         </nav>
         <!-- sidebar-wrapper  -->
 
-        <main class="page-content">
+        <div class="ml-auto sidebar-wrapper-right d-none d-lg-block d-xl-block">
+            <div>
+                <h5 class="text-center">Dream Board</h5>
+                <img class="img-fluid rounded" height="300" width="350" alt="Image"
+                     src="{{ asset ('resources/images/bg-login.jpg') }}">
+            </div>
+            <!-- Sidebar -->
+            <nav>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">Sales Resources</a>
+                    </li>
+                    <li>
+                        <a href="#">Manager Assistance </a>
+                    </li>
+                    <li>
+                        <a href="#">Call Interactions</a>
+                    </li>
+                    <li>
+                        <a href="#">Text messages</a>
+                    </li>
+                    <li>
+                        <a href="#">Marketing Letters</a>
+                    </li>
+                    <li>
+                        <a href="#">Voicemail Recordings</a>
+                    </li>
+                    <li>
+                        <a href="#">Help Desk </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="pt-3">
+                <h6 class="p-1 font-weight-bold">Hours Worked: $20 </h6>
+                <h6 class="p-1 font-weight-bold">Pending Commissions: $35,000 </h6>
+                <h6 class="p-1 font-weight-bold">Earned Commissions: $35,000 </h6>
+            </div>
+        </div>
+
+        <main class="page-content col-lg-10">
             <div class="container-fluid">
                 {% block content %}{% endblock %}
             </div>

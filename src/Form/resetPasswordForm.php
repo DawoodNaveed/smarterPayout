@@ -24,11 +24,13 @@ class resetPasswordForm extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'form-control',
-                    'placeholder' => 'Enter your password here']],
                 'required' => true,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password']
+                'first_options' => ['label' => 'New password',
+                    'attr' => ['class' => 'form-control custom-input text-indent',
+                        'placeholder' => 'Password']],
+                'second_options' => ['label' => 'Repeat new password',
+                    'attr' => ['class' => 'form-control custom-input text-indent',
+                        'placeholder' => 'Confirm Password']],
             ]);
     }
 }

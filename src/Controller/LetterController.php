@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class PDFController
+ * Class LetterController
  * @package App\Controller
  */
-class PDFController extends AbstractController
+class LetterController extends AbstractController
 {
     /**
      * @Route ("/generatePdf/{letterFileName}", name="generate_pdf")
@@ -22,5 +22,14 @@ class PDFController extends AbstractController
     {
         $letterFileName = $request->get('letterFileName');
         $generatePDFService->getLetterPDF($letterFileName);
+    }
+
+    /**
+     * @Route ("/letterList", name="letter_list")
+     * @param Request
+     */
+    public function listAction(Request $request)
+    {
+        return $this->render('letter/listLetter.html.twig');
     }
 }

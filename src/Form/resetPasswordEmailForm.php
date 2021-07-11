@@ -21,8 +21,8 @@ class resetPasswordEmailForm extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Enter your email here'
+                    'class' => 'form-control custom-input text-indent',
+                    'placeholder' => 'Email'
                 ],
             ]);
     }

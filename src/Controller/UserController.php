@@ -137,7 +137,7 @@ class UserController extends AbstractController
             $emailService->send(
                 'Reset Password',
                 $userEmail,
-                'user/resetPasswordEmail.html.twig',
+                'email/resetPassword.html.twig',
                 $replacements
             );
             $this->addFlash('success', 'Check your email');
