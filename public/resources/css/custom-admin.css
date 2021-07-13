@@ -38,6 +38,13 @@ body {
     border-radius: 100px;
     height: 50px;
 }
+
+.custom-button {
+    line-height: 35px;
+    border-radius: 100px;
+    height: 50px;
+}
+
 .custom-border-right {
     border-right: 2px solid gray;
 }
@@ -56,6 +63,7 @@ body {
         padding-top: 110px;
     }
 }
+
 .text-indent {
     text-indent: 15px;
     background: #f6f6f6;
@@ -99,7 +107,7 @@ body {
 
 @media screen and (min-width: 768px) {
     .page-wrapper.toggled .page-content {
-        padding-left: 250px;
+        padding-left: 300px;
     }
 
     .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {

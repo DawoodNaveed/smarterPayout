@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Form\resetPasswordEmailForm;
@@ -98,7 +99,7 @@ class UserController extends AbstractController
             'users' => $userService->getAllUsers(),
         ]);
     }
-    
+
     /**
      * @Route ("/forgotPassword", name="forgot_password")
      * @param Request $request
@@ -121,7 +122,7 @@ class UserController extends AbstractController
             $user = $userService->findOneBy(['email' => $userEmail]);
             if (!$user) {
                 $this->addFlash('error', 'User Not found');
-                return $this->render('user/resetPassword.html.twig',[
+                return $this->render('user/resetPassword.html.twig', [
                     'form' => $form->createView()
                 ]);
             }
@@ -140,16 +141,15 @@ class UserController extends AbstractController
                 'email/resetPassword.html.twig',
                 $replacements
             );
-            $this->addFlash('success', 'Check your email');
-            return $this->render('user/resetPassword.html.twig',[
+            return $this->render('user/resetPasswordEmailSent.html.twig', [
                 'form' => $form->createView()
             ]);
         }
-        return $this->render('user/resetPassword.html.twig',[
+        return $this->render('user/resetPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }
-    
+
     /**
      * @Route("/reset/{userEmail}/{resetPasswordToken}/{expireDateTime}", name="reset")
      * @param Request $request
@@ -181,7 +181,7 @@ class UserController extends AbstractController
             $this->addFlash('success', 'Password Updated Successfully');
             return $this->redirectToRoute('app_login');
         }
-        return $this->render('user/resetPassword.html.twig',[
+        return $this->render('user/resetPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }
