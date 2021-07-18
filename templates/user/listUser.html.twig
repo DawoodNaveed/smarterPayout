@@ -34,8 +34,9 @@
                         <td>
                             <a class="fas fa-edit text-primary p-1 ml-4" title="Edit User"
                                href="{{ path('edit_user', {'userId' : user.id}) }}"></a>
-                            <a class="fas fa-trash text-danger p-1 ml-4 deleteRecord" data-toggle="modal" data-target="#deleteModel"
-                               title="Delete User" data-url="{{ path('delete_user', {'userId' : user.id})}}"></a>
+                            <a class="fas fa-trash text-danger p-1 ml-4 deleteRecord" data-toggle="modal"
+                               data-target="#deleteModel"
+                               title="Delete User" data-url="{{ path('delete_user', {'userId' : user.id}) }}"></a>
                             <a class="fas fa-info text-info p-1 ml-4" title="View Details"
                                href="{{ path('show_user', {'userId' : user.id}) }}"></a>
                         </td>
