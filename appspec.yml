@@ -1,0 +1,24 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/smarter-payouts
+    overwrite: yes
+permissions:
+  - object: /var/www/html/
+    pattern: "**"
+    owner: www-data
+    group: www-data
+    type:
+      - file
+      - directory
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh
+      timeout: 300
+  ApplicationStart:
+    - location: scripts/changePermission.sh
+      timeout: 3600
+  AfterInstall:
+    - location: scripts/afterInstall.sh
+      timeout: 300
