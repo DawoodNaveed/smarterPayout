@@ -179,6 +179,7 @@ $(document).ready(function () {
             url: '/voicemail',
             data: { callSid: callSid },
             success: function (data, status) {
+                console.log(data);
             }
         });
     })

@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\userForm;
 use App\Service\TwilioService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Class TwilioController
@@ -24,15 +28,6 @@ class TwilioController extends CustomerController
         $twilioService->sendSms($messageDay, $customerNumber);
     }
     
-//    /**
-//     * @Route("/call", name="call")
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function userListAction()
-//    {
-//        return $this->render('message/call.html.twig', []);
-//    }
-    
     /**
      * @Route("/voicemail", name="send_voicemail")
      * @param Request $request
@@ -42,5 +37,16 @@ class TwilioController extends CustomerController
     {
         $parentCallSid = $request->get('callSid');
         $twilioService->sendVoicemail($parentCallSid);
+    }
+    
+    /**
+     * @Route("/smsTemplate", name="get_sms_template")
+     * @param Request $request
+     */
+    public function smsTemplate(Request $request)
+    {
+        $template = $this->renderView('message/day1.html.twig');
+        
+        return new JsonResponse($template);
     }
 }

@@ -109,6 +109,69 @@ class CustomerMeta extends AbstractEntity
     private $drivingInfraction;
     
     /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $phoneNumber1;
+    
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $phoneNumber2;
+    
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $phoneNumber3;
+    
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber1()
+    {
+        return $this->phoneNumber1;
+    }
+    
+    /**
+     * @param mixed $phoneNumber1
+     */
+    public function setPhoneNumber1($phoneNumber1): void
+    {
+        $this->phoneNumber1 = $phoneNumber1;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber2()
+    {
+        return $this->phoneNumber2;
+    }
+    
+    /**
+     * @param mixed $phoneNumber2
+     */
+    public function setPhoneNumber2($phoneNumber2): void
+    {
+        $this->phoneNumber2 = $phoneNumber2;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber3()
+    {
+        return $this->phoneNumber3;
+    }
+    
+    /**
+     * @param mixed $phoneNumber3
+     */
+    public function setPhoneNumber3($phoneNumber3): void
+    {
+        $this->phoneNumber3 = $phoneNumber3;
+    }
+    
+    /**
      * @var Customer
      * @ORM\OneToOne(targetEntity="Customer", fetch="LAZY")
      * @ORM\JoinColumn(referencedColumnName="id")
