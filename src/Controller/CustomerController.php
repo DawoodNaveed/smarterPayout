@@ -24,6 +24,7 @@ class CustomerController extends AbstractController
      */
     public function insertCustomer(CustomerRepository $userRepository, Request $request)
     {
+        #TODO
         $customer = new Customer();
         $customerMeta = new CustomerMeta();
         $customer->setFirstName('iffi');
@@ -58,21 +59,21 @@ class CustomerController extends AbstractController
     }
     
     /**
-     * @Route("/getCustomers", name="get_customers")
+     * @Route("/customers", name="get_customers", methods={"GET"})
      * @return Response
      */
-    public function getAllCustomers(CustomerMetaService $customerMetaService)
+    public function getCustomersAction(CustomerMetaService $customerMetaService)
     {
-        return $this->render('message/day1.html.twig', ['customers' => $customerMetaService->getAllCustomers()]);
+        return $this->render('message/day1.html.twig', ['customers' => $customerMetaService->getCustomers()]);
     }
     
     /**
-     * @Route("/getCustomer", name="get_customer")
+     * @Route("/customer/{id}", name="get_customer", methods={"GET"})
      * @param Request $request
      * @param CustomerMetaService $customerMetaService
      * @param CustomerService $customerService
      */
-    public function getCustomerById(
+    public function getCustomerAction(
         Request $request,
         CustomerMetaService $customerMetaService,
         CustomerService $customerService

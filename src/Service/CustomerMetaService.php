@@ -9,14 +9,10 @@ use App\Repository\CustomerMetaRepository;
 /**
  * Class CustomerMetaService
  * @package App\Service
+ * @property CustomerMetaRepository customerMetaRepository
  */
 class CustomerMetaService
 {
-    /**
-     * @var CustomerMetaRepository
-     */
-    private $customerMetaRepository;
-    
     /**
      * CustomerMetaService constructor.
      * @param CustomerMetaRepository $customerMetaRepository
@@ -30,7 +26,7 @@ class CustomerMetaService
     /**
      * @return CustomerMeta[]
      */
-    public function getAllCustomers()
+    public function getCustomers()
     {
         return $this->customerMetaRepository->findAll();
     }

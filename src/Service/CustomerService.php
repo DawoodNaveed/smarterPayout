@@ -8,14 +8,10 @@ use App\Repository\CustomerRepository;
 /**
  * Class CustomerService
  * @package App\Service
+ * @property CustomerRepository customerRepository
  */
 class CustomerService
 {
-    /**
-     * @var CustomerRepository
-     */
-    private $customerRepository;
-    
     /**
      * CustomerService constructor.
      * @param CustomerRepository $customerRepository

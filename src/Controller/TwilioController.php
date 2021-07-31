@@ -21,8 +21,9 @@ class TwilioController extends CustomerController
      * @param Request $request
      * @param TwilioService $twilioService
      */
-    public function sendSms(Request $request, TwilioService $twilioService)
+    public function sendSmsAction(Request $request, TwilioService $twilioService)
     {
+        #TODO
         $messageDay = $request->get('messageDay');
         $customerNumber = $request->get('customerNumber');
         $twilioService->sendSms($messageDay, $customerNumber);
@@ -33,8 +34,9 @@ class TwilioController extends CustomerController
      * @param Request $request
      * @param TwilioService $twilioService
      */
-    public function voicemail(Request $request, TwilioService $twilioService)
+    public function voicemailAction(Request $request, TwilioService $twilioService)
     {
+        #TODO
         $parentCallSid = $request->get('callSid');
         $twilioService->sendVoicemail($parentCallSid);
     }
@@ -42,8 +44,9 @@ class TwilioController extends CustomerController
     /**
      * @Route("/smsTemplate", name="get_sms_template")
      * @param Request $request
+     * @return JsonResponse
      */
-    public function smsTemplate(Request $request)
+    public function smsTemplateAction(Request $request)
     {
         $template = $this->renderView('message/day1.html.twig');
         
