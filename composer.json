@@ -41,7 +41,8 @@
         "symfony/web-server-bundle": "4.4.*",
         "symfony/yaml": "4.4.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "twilio/sdk": "^6.27"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
