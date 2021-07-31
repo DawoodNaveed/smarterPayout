@@ -3,21 +3,25 @@
 {% block title %}Dashboard!{% endblock %}
 
 {% block body %}
-
     <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
          aria-labelledby="deleteModel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title"><i class="fa fa-exclamation-triangle text-warning modal-icon"></i> Are you
-                        sure you want to delete?</h6>
+                <div class="modal-header bg-theme">
+                    <h5 class="modal-title">Delete Record</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div class="modal-body">
+                    <h6 class="modal-title"><i class="fa fa-exclamation-triangle text-warning modal-icon"></i> Are you
+                        sure you want to delete?</h6>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <a class="btn btn-primary" href="" id="deletebtn"> Yes</a>
+                    <button type="button" class="btn btn-outline-custom-default btn-light-custom" data-dismiss="modal">
+                        No
+                    </button>
+                    <a class="btn btn-outline-custom-default btn-danger-custom" href="" id="deletebtn"> Yes</a>
                 </div>
             </div>
         </div>
@@ -32,7 +36,7 @@
                 </a>
             </div>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-4">
+                <li class="nav-item">
                     <a href="#">
                         <i class="fas fa-user-circle"></i>
                         <span>User-001</span>
@@ -43,12 +47,7 @@
 
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
-                <div class="sidebar-header">
-                    <div class="user-pic mb-5">
-                        {# Call/Text etc buttons Here... #}
-                    </div>
-                </div>
-                <div class="sidebar-menu">
+                <div class="sidebar-menu pt-3 pb-2">
                     <ul>
                         <li>
                             <a href="#">
@@ -133,12 +132,13 @@
         </nav>
         <!-- sidebar-wrapper  -->
 
-        <div class="ml-auto sidebar-wrapper-right d-none d-lg-block d-xl-block">
-            <div>
-                <h5 class="text-center">Dream Board</h5>
-                <img class="img-fluid rounded" height="300" width="350" alt="Image"
-                     src="{{ asset ('resources/images/bg-login.jpg') }}">
-            </div>
+        <div class="ml-auto sidebar-wrapper-right collapsed col-lg-2">
+            <a id="close-right-sidebar" class="d-lg-none d-xl-none animate-open" href="#">
+                <i class="fas fa-angle-double-left"></i>
+            </a>
+            <h5 class="text-center pt-2">Dream Board</h5>
+            <img class="img-fluid rounded" height="300" width="350" alt="Image"
+                 src="{{ asset ('resources/images/bg-login.jpg') }}">
             <!-- Sidebar -->
             <nav>
                 <ul class="list-unstyled">
@@ -172,9 +172,153 @@
             {# </div> #}
         </div>
 
-        <main class="page-content col-lg-10">
+        <main class="page-content col-lg-10 mx-auto">
             <div class="container-fluid">
-                {% block content %}{% endblock %}
+                {% block content %}
+                    <div class="row">
+                        <div class="col-md-4 m-3">
+                            <button class="btn btn-outline-custom-default btn-success-custom">Some text here</button>
+                        </div>
+                        <div class="col-md-4 m-3">
+                            <button class="btn btn-outline-custom-default btn-danger-custom">Some text here</button>
+                        </div>
+                        <div class="col-md-4 m-3">
+                            <button class="btn btn-outline-custom-default btn-warning-custom">Some text here</button>
+                        </div>
+                        <div class="col-md-4 m-3">
+                            <button class="btn btn-outline-custom-default btn-light-custom">Some text here</button>
+                        </div>
+                    </div>
+
+                    <div class="card custom-card">
+                        <div class="card-header bg-theme m-0">
+                            <h4>Data Table</h4>
+                        </div>
+                        <div class="card-body">
+                            <table id="data_table" class="display table-hover table-striped table-responsive-lg">
+                                <thead>
+                                <tr>
+                                    <th>Col 01</th>
+                                    <th>Col 02</th>
+                                    <th>Col 03</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>C1R1</td>
+                                    <td>C2R1</td>
+                                    <td>C3R1</td>
+                                    <td class="d-flex align-items-center justify-content-center">
+                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>C1R2</td>
+                                    <td>C2R2</td>
+                                    <td>C3R2</td>
+                                    <td class="d-flex align-items-center justify-content-center">
+                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                                        <a href="" title="Delete"
+                                           data-toggle="modal"
+                                           data-target="#deleteModel">
+                                            <i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>C1R3</td>
+                                    <td>C2R3</td>
+                                    <td>C3R3</td>
+                                    <td class="d-flex align-items-center justify-content-center">
+                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card custom-card">
+                        <div class="card-header bg-theme m-0">
+                            <h4>Add User</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="form-row col-lg-6 mb-3">
+                                            <label for="username">Username:</label>
+                                            <input class="form-control" type="text"
+                                                   placeholder="Enter Username here...">
+                                        </div>
+                                        <div class="form-row col-lg-6 mb-3">
+                                            <label for="firstname">First Name:</label>
+                                            <input class="form-control" type="text"
+                                                   placeholder="Enter first name here...">
+                                        </div>
+                                        <div class="form-row col-lg-6 mb-3">
+                                            <label for="lastname">Last Name:</label>
+                                            <input class="form-control" type="text"
+                                                   placeholder="Enter last name here...">
+                                        </div>
+                                        <div class="form-row col-lg-12 mb-3">
+                                            <label for="description">Description:</label>
+                                            <textarea class="form-control" type="text" rows="4"
+                                                      placeholder="Enter description here..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-3">
+                                        <button class="btn btn-outline-custom-default btn-success-custom float-right">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">
+                                <div class="card-header bg-theme">
+                                    <div class="row">
+                                        <div class="col-lg-4 border-right-custom">
+                                            <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="card-title text-center">Today's Tasks</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p>Some elements here...</p>
+                                </div>
+                            </div>
+                            <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">
+                                <div class="card-header bg-theme">
+                                    <div class="row">
+                                        <div class="col-lg-4 border-right-custom">
+                                            <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="card-title text-center">Notifications</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p>Some elements here...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endblock %}
             </div>
         </main>
     </div>
