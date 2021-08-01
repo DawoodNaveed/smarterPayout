@@ -1,0 +1,199 @@
+{% extends 'managerDashboardMenu.html.twig' %}
+
+{% block title %}Manager Admin{% endblock %}
+
+{% block content %}
+    <h3 class="text-center p-0">Super Admin</h3>
+    <div class="offset-lg-7 col-lg-5 float-right pt-0">
+        <p class="float-right"><b>Total Companies:</b>35
+            <br><b>Active Companies:</b>30
+            <br><b>Companies 1 year+:</b>6
+            <br><b>Companies 3 - 4 years:</b>4
+            <br><b>Companies 4 - 12 years:</b>6</p>
+    </div>
+    <div class="row p-0">
+        <div class="col-md-3">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <h5 class="card-title text-left custom-border-bottom">Companies 1 - 6 months</h5>
+                    <h6>Companies : 4</h6>
+                    <dl class="d-flex justify-content-center justify-content-start flex-wrap decoration-none">
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="employee-image pl-0">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <div class="card-body">
+                    <h5 class="card-title text-left custom-border-bottom">Companies 6 - 12 months +</h5>
+                    <h6>Companies : 2</h6>
+                    <dl class="d-flex justify-content-center justify-content-start flex-wrap decoration-none">
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="employee-image pl-0">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <div class="card-body">
+                    <h5 class="card-title text-left custom-border-bottom">Companies 1 year +</h5>
+                    <h6>Companies : 6</h6>
+                    <dl class="d-flex justify-content-start justify-content-center flex-wrap decoration-none">
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="employee-image pl-0">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="pl-0 employee-image">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                        <div class="employee-image pl-0">
+                            <a href="#">
+                                <img class="img-fluid rounded-circle" alt="Image"
+                                     src="{{ asset ('resources/images/user.png') }}">
+                                <small class="text-center">Smarter Payout</small>
+                            </a>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card custom-card">
+                <div class="card-body pb-0">
+                    <h5 class="card-title text-center custom-border-bottom">All Companies Overview</h5>
+                    <dl class="row">
+                        <div class="col-3">
+                            <p>Total Leads: 111111111</p>
+                            <p>Prospect Leads: 111111111</p>
+                            <p>Warm Leads: 111111111</p>
+                            <p>Active List: 111111111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>BH Questionnaire Submitted: </small>11111</p>
+                            <p><small>BH Questionnaire Submitted: </small>11111</p>
+                            <p><small>Disclosures sent: </small>11111</p>
+                            <p><small>Disclosures received: </small>11111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>K-Packs Submitted: </small>11111</p>
+                            <p><small>K-Packs Received: </small>11111</p>
+                            <p><small>Hearings scheduled: </small>11111</p>
+                            <p><small>Hearing's appearance: </small>11111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>Hearings declined: </small>11111</p>
+                            <p><small>Hearings approved: </small>11111</p>
+                            <p><small>Total aggregate purchased: </small>11111</p>
+                            <p><small>Total Revenue generated: </small>11111</p>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <div class="card-body pb-0">
+                    <h5 class="card-title text-center custom-border-bottom">Smarter Payout's Overview <small>(Member since May
+                            2020)</small></h5>
+                    <dl class="row">
+                        <div class="col-3">
+                            <p>Total Leads: 111111111</p>
+                            <p>Prospect Leads: 111111111</p>
+                            <p>Warm Leads: 111111111</p>
+                            <p>Active List: 111111111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>BH Questionnaire Submitted: </small>11111</p>
+                            <p><small>BH Questionnaire Submitted: </small>11111</p>
+                            <p><small>Disclosures sent: </small>11111</p>
+                            <p><small>Disclosures received: </small>11111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>K-Packs Submitted: </small>11111</p>
+                            <p><small>K-Packs Received: </small>11111</p>
+                            <p><small>Hearings scheduled: </small>11111</p>
+                            <p><small>Hearing's appearance: </small>11111</p>
+                        </div>
+                        <div class="col-3">
+                            <p><small>Hearings declined: </small>11111</p>
+                            <p><small>Hearings approved: </small>11111</p>
+                            <p><small>Total aggregate purchased: </small>11111</p>
+                            <p><small>Total Revenue generated: </small>11111</p>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <div class="card-body pb-0">
+                    <h5 class="card-title text-center custom-border-bottom">Smarter Payout's overall Statistics</h5>
+                    <dl class="row">
+                        <div class="col-4">
+                            <p><small>Total calls 12 months:</small> 111111111</p>
+                            <p><small>Total calls 30 days:</small> 111111111</p>
+                            <p><small>Total calls today:</small> 111111111</p>
+                        </div>
+                        <div class="col-4">
+                            <p><small>Total messages 12 months:</small> 111111111</p>
+                            <p><small>Total messages 30 days:</small> 111111111</p>
+                            <p><small>Total messages today:</small> 111111111</p>
+                        </div>
+                        <div class="col-4">
+                            <p><small>Fasano submitted 30 day:</small> 111111111</p>
+                            <p><small>Total Fasano priced:</small> 111111111</p>
+                            <p><small>Fasano waiting pricing:</small> 111111111</p>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

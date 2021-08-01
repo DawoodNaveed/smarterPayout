@@ -1,42 +1,64 @@
 {% extends 'dashboardMenu.html.twig' %}
 
-{% block title %}Leads Interaction!{% endblock %}
+{% block title %}Leads Interaction - Smarter Payouts{% endblock %}
 
 {% block content %}
     {# Confirmation Popup Model for Messages #}
-    <div class="modal fade" id="messageConfirmationModel" tabindex="-1" role="dialog" aria-labelledby="messageConfirmationModel" aria-hidden="true">
+    <div class="modal fade" id="messageConfirmationModel" tabindex="-1" role="dialog"
+         aria-labelledby="messageConfirmationModel" aria-hidden="true">
         <div class="modal-xl modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-theme">
                     <h5 class="modal-title">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <dl class="row">
                         <div class="col-12">
-                            <dd>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </dd>
+                            <dd>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book. It has
+                                survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                                publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </dd>
                         </div>
                     </dl>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-custom-default btn-light-custom" data-dismiss="modal"> Cancel </button> <a class="btn btn-outline-custom-default btn-success-custom" href="" id="sendMessage"> Send Now</a> </div>
+                    <button type="button" class="btn btn-outline-custom-default btn-light-custom" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <a class="btn btn-outline-custom-default btn-success-custom" href="" id="sendMessage"> Send Now</a>
+                </div>
             </div>
         </div>
     </div>
     <div class="card custom-card">
         <div class="card-body">
             <dl class="row">
-                <div class="col-md-6 row"> <dt class="col-md-4">Name:</dt>
-                    <dd class="col-md-8">John</dd> <dt class="col-md-4">Address:</dt>
-                    <dd class="col-md-8">Muslim town, Lahore</dd> <dt class="col-md-4">Date of birth:</dt>
-                    <dd class="col-md-8">18/12/1999</dd> <dt class="col-md-4">Email:</dt>
+                <div class="col-md-6 row">
+                    <dt class="col-md-4">Name:</dt>
+                    <dd class="col-md-8">John</dd>
+                    <dt class="col-md-4">Address:</dt>
+                    <dd class="col-md-8">Muslim town, Lahore</dd>
+                    <dt class="col-md-4">Date of birth:</dt>
+                    <dd class="col-md-8">18/12/1999</dd>
+                    <dt class="col-md-4">Email:</dt>
                     <dd class="col-md-8">john@gmail.com</dd>
                 </div>
-                <div class="col-md-6 row"> <dt class="col-md-4">Company:</dt>
-                    <dd class="col-md-8">Transamerica's</dd> <dt class="col-md-4">Offer range:</dt>
-                    <dd class="col-md-8">$12345 to $36547</dd> <dt class="col-md-4">Payments:</dt>
-                    <dd class="col-md-8">$121561 <small>5% monthly increase</small></dd> <dt class="col-md-4">Dates:</dt>
-                    <dd class="col-md-8">09/10/2020 to 09/10/2025</dd> <dt class="col-md-4">Benefit:</dt>
+                <div class="col-md-6 row">
+                    <dt class="col-md-4">Company:</dt>
+                    <dd class="col-md-8">Transamerica's</dd>
+                    <dt class="col-md-4">Offer range:</dt>
+                    <dd class="col-md-8">$12345 to $36547</dd>
+                    <dt class="col-md-4">Payments:</dt>
+                    <dd class="col-md-8">$121561 <small>5% monthly increase</small></dd>
+                    <dt class="col-md-4">Dates:</dt>
+                    <dd class="col-md-8">09/10/2020 to 09/10/2025</dd>
+                    <dt class="col-md-4">Benefit:</dt>
                     <dd class="col-md-8">$15215621</dd>
                 </div>
             </dl>
@@ -56,17 +78,18 @@
                 <div class="card-body">
                     <h5 class="custom-border-bottom text-center">Contact</h5>
                     <div class="d-flex justify-content-around flex-md-wrap">
-                        <a title="Text Message" data-toggle="modal" data-target="#messageConfirmationModel"> <i class="fa fa-comment m-1 bg-outline-theme"></i></a> <a href="" title="Call"><i
-                                    class="fa fa-phone m-1 bg-outline-theme"></i></a> <a href="" title="Voice mail"><i
-                                    class="fa fa-microphone m-1 bg-outline-theme"></i></a> <a href="" title="Letter"><i
-                                    class="fa fa-envelope m-1 bg-outline-theme"></i></a> </div>
+                        <a title="Text Message" data-toggle="modal" data-target="#messageConfirmationModel"> <i
+                                    class="fa fa-comment m-1 bg-outline-theme"></i></a>
+                        <a href="" title="Call"><i class="fa fa-phone m-1 bg-outline-theme"></i></a>
+                        <a href="" title="Voice mail"><i class="fa fa-microphone m-1 bg-outline-theme"></i></a>
+                        <a href="" title="Letter"><i class="fa fa-envelope m-1 bg-outline-theme"></i></a></div>
                 </div>
             </div>
         </div>
     </div>
     <div class="card custom-card">
         <div class="card-header bg-theme m-0">
-            <h4>Leads Interaction</h4> </div>
+            <h4>Leads Interaction</h4></div>
         <div class="card-body">
             <table id="data_table" class="table-hover table-striped table-responsive">
                 <thead>
@@ -81,13 +104,14 @@
                     <th>Voice Tag</th>
                     <th>Notes</th>
                     <th>Date/Time</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>
                         <div class="checkbox icheck-default">
-                            <input type="checkbox" checked id="r1" />
+                            <input type="checkbox" checked id="r1"/>
                             <label for="r1"></label>
                         </div>
                     </td>
@@ -99,11 +123,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c1b1" name="c1" />
+                                    <input type="radio" id="c1b1" name="c1"/>
                                     <label for="c1b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c1b3" name="c1" />
+                                    <input type="radio" id="c1b3" name="c1"/>
                                     <label for="c1b3"></label>
                                 </div>
                             </div>
@@ -114,11 +138,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c2b1" name="c2" />
+                                    <input type="radio" id="c2b1" name="c2"/>
                                     <label for="c2b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c2b3" name="c2" />
+                                    <input type="radio" id="c2b3" name="c2"/>
                                     <label for="c2b3"></label>
                                 </div>
                             </div>
@@ -129,11 +153,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c3b1" name="c3" />
+                                    <input type="radio" id="c3b1" name="c3"/>
                                     <label for="c3b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c3b3" name="c3" />
+                                    <input type="radio" id="c3b3" name="c3"/>
                                     <label for="c3b3"></label>
                                 </div>
                             </div>
@@ -143,12 +167,16 @@
                                     class="fa fa-file-audio m-1 bg-outline-theme"></i></a></td>
                     <td>Client is at work, will call at 5 pm</td>
                     <td>10:15 am
-                        <br> 10/15/2021</td>
+                        <br> 10/15/2021
+                    </td>
+                    <td>
+                        <a href="" title="Details"><i class="fa fa-info m-1 bg-outline-theme"></i></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="checkbox icheck-default">
-                            <input type="checkbox" checked id="r2" />
+                            <input type="checkbox" checked id="r2"/>
                             <label for="r2"></label>
                         </div>
                     </td>
@@ -160,11 +188,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c1b1" name="c1" />
+                                    <input type="radio" id="c1b1" name="c1"/>
                                     <label for="c1b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c1b3" name="c1" />
+                                    <input type="radio" id="c1b3" name="c1"/>
                                     <label for="c1b3"></label>
                                 </div>
                             </div>
@@ -175,11 +203,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c2b1" name="c2" />
+                                    <input type="radio" id="c2b1" name="c2"/>
                                     <label for="c2b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c2b3" name="c2" />
+                                    <input type="radio" id="c2b3" name="c2"/>
                                     <label for="c2b3"></label>
                                 </div>
                             </div>
@@ -190,11 +218,11 @@
                         <div class="d-flex justify-content-center">
                             <div class="custom-control-inline">
                                 <div class="radio icheck-success">
-                                    <input type="radio" id="c3b1" name="c3" />
+                                    <input type="radio" id="c3b1" name="c3"/>
                                     <label for="c3b1"></label>
                                 </div>
                                 <div class="radio icheck-danger">
-                                    <input type="radio" id="c3b3" name="c3" />
+                                    <input type="radio" id="c3b3" name="c3"/>
                                     <label for="c3b3"></label>
                                 </div>
                             </div>
@@ -205,7 +233,11 @@
                     </td>
                     <td>Client is at work, will call at 5 pm</td>
                     <td>10:15 am
-                        <br> 10/15/2021</td>
+                        <br> 10/15/2021
+                    </td>
+                    <td>
+                        <a href="" title="Details"><i class="fa fa-info m-1 bg-outline-theme"></i></a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
