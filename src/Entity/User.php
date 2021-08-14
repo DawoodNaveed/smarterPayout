@@ -60,6 +60,32 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Audio", mappedBy="user")
+     */
+    private $audio;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="user")
+     */
+    private $customer;
+    
+    /**
+     * @return mixed
+     */
+    public function getAudio()
+    {
+        return $this->audio;
+    }
+    
+    /**
+     * @param mixed $audio
+     */
+    public function setAudio($audio): void
+    {
+        $this->audio = $audio;
+    }
 
     /**
      * @var \DateTime
@@ -295,5 +321,21 @@ class User implements UserInterface
     public function setResetPasswordToken(string $resetPasswordToken)
     {
         $this->resetPasswordToken = $resetPasswordToken;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+    
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer): void
+    {
+        $this->customer = $customer;
     }
 }

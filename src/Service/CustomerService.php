@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Customer;
+use App\Entity\User;
 use App\Repository\CustomerRepository;
 
 /**
@@ -23,11 +24,20 @@ class CustomerService
     }
     
     /**
-     * @param integer $userId
+     * @param int $customerId
      * @return Customer
      */
-    public function getCustomer(int $userId)
+    public function getCustomer(int $customerId)
     {
-        return $this->customerRepository->find($userId);
+        return $this->customerRepository->find($customerId);
+    }
+    
+    /**
+     * @param User $user
+     * @return array|null
+     */
+    public function getCustomersByUser(User $user): ?array
+    {
+        return $this->customerRepository->getCustomersByUser($user);
     }
 }
