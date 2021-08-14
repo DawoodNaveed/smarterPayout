@@ -30,4 +30,27 @@ $(document).ready(function () {
         let recordUrl = $(this).data('url');
         $("#deletebtn").attr("href", recordUrl);
     });
+
+    $('.audioPlay').click(function () {
+        var curr = $(this);
+        var prev = curr.prev().get(0);
+
+        curr.hide();
+        prev.controls = true;
+        prev.load();
+        setTimeout(function (){
+            curr.prev().removeClass('audio-player-min');
+            curr.prev().addClass('audio-player-max');}, 100);
+
+        prev.play();
+        prev.addEventListener('ended', (event) => {
+            curr.prev().removeClass('audio-player-max');
+            curr.prev().addClass('audio-player-min');
+            setTimeout(function (){
+                prev.controls = false;
+                prev.load();
+                curr.show();
+            }, 300);
+        });
+    });
 });

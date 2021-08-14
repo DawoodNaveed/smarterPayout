@@ -1,0 +1,49 @@
+{% extends 'dashboardMenu.html.twig' %}
+
+{% block title %}Messages - Smarter Payouts{% endblock %}
+
+{% block content %}
+    <div class="col-12 p-0">
+        <div class="card custom-card">
+            <div class="card-body pb-0">
+                <h5 class="card-title text-center custom-border-bottom">All Text Messages</h5>
+
+                <div class="float-right">
+                    Text message Campaign:<b> Hardship</b>
+                </div>
+
+                <div class="radio icheck-default">
+                    <input type="radio" id="message1" name="message" checked/>
+                    <label for="message1">Text Message One</label>
+                </div>
+                <div class="radio icheck-default">
+                    <input type="radio" id="message2" name="message"/>
+                    <label for="message2">Text Message Two</label>
+                </div>
+                <div class="radio icheck-default">
+                    <input type="radio" id="message3" name="message"/>
+                    <label for="message3">Text Message Three</label>
+                </div>
+                <div class="radio icheck-default">
+                    <input type="radio" id="message4" name="message"/>
+                    <label for="message4">Text Message Four</label>
+                </div>
+                <div class="radio icheck-default">
+                    <input type="radio" id="message5" name="message"/>
+                    <label for="message5">Text Message Five</label>
+                </div>
+                <div class="radio icheck-default">
+                    <input type="radio" id="message6" name="message"/>
+                    <label for="message6">Text Message Six</label>
+                </div>
+            </div>
+        </div>
+        <div class="card custom-card">
+            <div class="card-body">
+                <h5 class="card-title text-center custom-border-bottom">Text Message One</h5>
+
+                <textarea class="form-control resize-disable" rows="4" placeholder="Select message..." readonly>Hey Oscar it’s Stephanie at Capital Now hope all is well! Great new to share that you may qualify for our Hardship Program based on the region you reside. Would you like to see how much you might be entitled to?   </textarea>
+            </div>
+        </div>
+    </div>
+{% endblock %}

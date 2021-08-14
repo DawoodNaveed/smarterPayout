@@ -1,0 +1,225 @@
+{% extends 'dashboardMenu.html.twig' %}
+
+{% block title %}Leads Interaction - Smarter Payouts{% endblock %}
+
+{% block content %}
+    <div class="col-12 p-0">
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="custom-border-bottom text-center">
+                    Day One Messages
+                    <div class="checkbox icheck-default float-right">
+                        <input type="checkbox" checked id="r1"/>
+                        <label for="r1"></label>
+                    </div>
+                </h5>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-10 p-0">
+                            <div class="row">
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(A-1)</label>
+                                    <small>Name tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(B)</label>
+                                    <small>Message tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(C)</label>
+                                    <small>Hardship tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-0">
+                            <div class="p-3 d-flex align-items-center flex-column">
+                                <label>Play all</label>
+                                <small>Day one message</small>
+                                <audio class="audio-player-min" id="player"
+                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                <a class="audioPlay"><i class='fa fa-file-audio audio-file'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="custom-border-bottom text-center">
+                    Day Two Messages
+                    <div class="checkbox icheck-default float-right">
+                        <input type="checkbox" checked id="day2"/>
+                        <label for="day2"></label>
+                    </div>
+                </h5>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-10 p-0">
+                            <div class="row">
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(A-1)</label>
+                                    <small>Name tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(B)</label>
+                                    <small>Message tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(C)</label>
+                                    <small>Hardship tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-0">
+                            <div class="p-3 d-flex align-items-center flex-column">
+                                <label>Play all</label>
+                                <small>Day two message</small>
+                                <audio class="audio-player-min" id="player"
+                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                <a class=""><i class='fa fa-file-audio audio-file'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="custom-border-bottom text-center">
+                    Day Three Messages
+                    <div class="checkbox icheck-default float-right">
+                        <input type="checkbox" checked id="day3"/>
+                        <label for="day3"></label>
+                    </div>
+                </h5>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-10 p-0">
+                            <div class="row">
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(A-1)</label>
+                                    <small>Name tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(B)</label>
+                                    <small>Message tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(C)</label>
+                                    <small>Hardship tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>1(D)</label>
+                                    <small>Intro tag</small>
+                                    <audio class="audio-player-min" id="player"
+                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 p-0">
+                            <div class="p-3 d-flex align-items-center flex-column">
+                                <label>Play all</label>
+                                <small>Day three message</small>
+                                <audio class="audio-player-min" id="player"
+                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
+                                <a class="audioPlay"><i class='fa fa-file-audio audio-file'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
