@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Customer;
 use App\Entity\CustomerMeta;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,5 +20,18 @@ class CustomerRepository extends AbstractRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Customer::class);
+    }
+    
+    /**
+     * @param User $user
+     * @return null|array
+     */
+    public function getCustomersByUser(User $user): ?array
+    {
+        $qb = $this->createQueryBuilder('customer')
+            ->where('customer.user = :user')
+            ->setParameter('user', $user);
+        
+        return $qb->getQuery()->getResult();
     }
 }

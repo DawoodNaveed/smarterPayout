@@ -36,10 +36,14 @@ class AwsS3Service
         $awsS3bucket
     ) {
         $this->setBucket($awsS3bucket);
-        $this->setClient(new S3Client([
+        $this->client = new S3Client([
+            'credentials' => [
+                'key' => $awsKey,
+                'secret' => $awsSecret,
+            ],
             'region' => $awsRegion,
             'version' => $awsSdkVersion
-        ]));
+        ]);
     }
 
     /**
@@ -54,11 +58,11 @@ class AwsS3Service
         $content,
         array $meta = [],
         string $privacy = self::AWS_S3_FILE_PRIVACY_PRIVATE
-    ):bool {
+    ) {
         try {
             return $this->getClient()->upload($this->getBucket(), $fileName, $content, $privacy)->toArray();
         } catch (\Exception $exception) {
-            $this->logger->error('S3 file upload failed: ', [$exception]);
+//            $this->logger->error('S3 file upload failed: ', [$exception]);
             return false;
         }
     }
@@ -100,7 +104,7 @@ class AwsS3Service
         $newFilename = null,
         array $meta = [],
         string $privacy = self::AWS_S3_FILE_PRIVACY_PRIVATE
-    ): bool
+    )
     {
         if (!$newFilename) {
             $newFilename = basename($fileName);

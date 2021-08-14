@@ -60,6 +60,43 @@ class Customer extends AbstractEntity
     private $weight;
     
     /**
+     * @var Audio
+     * @ORM\OneToOne(targetEntity="App\Entity\Audio", inversedBy="customer")
+     * @ORM\JoinColumn(name="audio_id", referencedColumnName="id", nullable=true)
+     */
+    private $audio;
+    
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customer")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     */
+    private $user;
+    
+    /**
+     * @var InsuranceCompany
+     * @ORM\ManyToOne(targetEntity="App\Entity\InsuranceCompany", inversedBy="customer")
+     * @ORM\JoinColumn(name="insurance_company_id", referencedColumnName="id", nullable=true)
+     */
+    private $insuranceCompany;
+    
+    /**
+     * @return Audio
+     */
+    public function getAudio()
+    {
+        return $this->audio;
+    }
+    
+    /**
+     * @param Audio $audio
+     */
+    public function setAudio(Audio $audio): void
+    {
+        $this->audio = $audio;
+    }
+    
+    /**
      * @return string
      */
     public function getFirstName(): string
@@ -185,5 +222,37 @@ class Customer extends AbstractEntity
     public function setHeightInches(int $heightInches): void
     {
         $this->heightInches = $heightInches;
+    }
+    
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+    
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+    
+    /**
+     * @return InsuranceCompany
+     */
+    public function getInsuranceCompany(): InsuranceCompany
+    {
+        return $this->insuranceCompany;
+    }
+    
+    /**
+     * @param InsuranceCompany $insuranceCompany
+     */
+    public function setInsuranceCompany(InsuranceCompany $insuranceCompany): void
+    {
+        $this->insuranceCompany = $insuranceCompany;
     }
 }
