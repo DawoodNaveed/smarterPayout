@@ -65,24 +65,19 @@
         </div>
     </div>
     <div class="col-12 p-0">
-        <div class="d-flex justify-content-between flex-wrap">
-            <div class="card custom-dashboard-card col-lg-6 col-md-6">
-                <div class="card-body">
-                    <h5 class="card-title text-center custom-border-bottom">Progress</h5>
-                    <div class="col-12 pb-2 pl-md-1 d-flex justify-content-center">
-                        <div style="width: 100%" id="chart_div"></div>
-                    </div>
+        <div class="d-flex justify-content-center flex-wrap">
+            <div class="col-lg-8">
+                <div class="col-12 pb-2 pl-md-1 d-flex justify-content-center">
+                    <div style="width: 100%" id="chart_div"></div>
                 </div>
             </div>
-            <div class="card custom-dashboard-card col-lg-5 col-md-5">
-                <div class="card-body">
-                    <h5 class="custom-border-bottom text-center">Contact</h5>
-                    <div class="d-flex justify-content-around flex-md-wrap">
-                        <a title="Text Message" data-toggle="modal" data-target="#messageConfirmationModel"> <i
-                                    class="fa fa-comment m-1 bg-outline-theme"></i></a>
-                        <a href="" title="Call"><i class="fa fa-phone m-1 bg-outline-theme"></i></a>
-                        <a href="" title="Voice mail"><i class="fa fa-microphone m-1 bg-outline-theme"></i></a>
-                        <a href="" title="Letter"><i class="fa fa-envelope m-1 bg-outline-theme"></i></a></div>
+            <div class="col-lg-5 pt-2">
+                <div class="d-flex justify-content-around flex-md-wrap">
+                    <a title="Text Message" data-toggle="modal" data-target="#messageConfirmationModel"> <i
+                                class="fa fa-comment bg-outline-large-theme"></i></a>
+                    <a href="" title="Call"><i class="fa fa-phone bg-outline-large-theme"></i></a>
+                    <a href="" title="Voice mail"><i class="fa fa-microphone bg-outline-large-theme"></i></a>
+                    <a href="" title="Letter"><i class="fa fa-envelope bg-outline-large-theme"></i></a>
                 </div>
             </div>
         </div>
@@ -108,137 +103,86 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <div class="checkbox icheck-default">
-                            <input type="checkbox" checked id="r1"/>
-                            <label for="r1"></label>
-                        </div>
-                    </td>
-                    <td>LCP</td>
-                    <td>584512</td>
-                    <td>John</td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c1b1" name="c1"/>
-                                    <label for="c1b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c1b3" name="c1"/>
-                                    <label for="c1b3"></label>
+
+                {% for customer in customers %}
+                    <tr>
+                        <td>
+                            <div class="checkbox icheck-info">
+                                <input class="customer-details" type="radio" data-uri="{{ path('get_customer', {'id' : customer.id})}}" data-customerId="{{ customer.id }}" name="customer" id="{{ customer.id }}"/>
+                                <label for="{{ customer.id }}"></label>
+                            </div>
+                        </td>
+                        <td>LCP</td>
+                        <td>584512</td>
+                        <td>{{ customer.firstName }}</td>
+                        <td>
+                            <p>{{ customer.customerMeta.phoneNumber1 }}</p>
+                            <div class="d-flex justify-content-center">
+                                <div class="custom-control-inline">
+                                    <div class="radio icheck-success">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber1_success" name="{{ customer.id  }}_phoneNumber1"/>
+                                        <label for="{{ customer.id }}_phoneNumber1_success"></label>
+                                    </div>
+                                    <div class="radio icheck-warning">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber1_warning" name="{{ customer.id  }}_phoneNumber1"/>
+                                        <label for="{{ customer.id }}_phoneNumber1_warning"></label>
+                                    </div>
+                                    <div class="radio icheck-danger">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber1_danger" name="{{ customer.id  }}_phoneNumber1"/>
+                                        <label for="{{ customer.id }}_phoneNumber1_danger"></label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c2b1" name="c2"/>
-                                    <label for="c2b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c2b3" name="c2"/>
-                                    <label for="c2b3"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c3b1" name="c3"/>
-                                    <label for="c3b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c3b3" name="c3"/>
-                                    <label for="c3b3"></label>
+                        </td>
+                        <td>
+                            <p>{{ customer.customerMeta.phoneNumber2 }}</p>
+                            <div class="d-flex justify-content-center">
+                                <div class="custom-control-inline">
+                                    <div class="radio icheck-success">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber2_success" name="{{ customer.id  }}_phoneNumber2"/>
+                                        <label for="{{ customer.id }}_phoneNumber2_success"></label>
+                                    </div>
+                                    <div class="radio icheck-warning">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber2_warning" name="{{ customer.id  }}_phoneNumber2"/>
+                                        <label for="{{ customer.id }}_phoneNumber2_warning"></label>
+                                    </div>
+                                    <div class="radio icheck-danger">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber2_danger" name="{{ customer.id  }}_phoneNumber2"/>
+                                        <label for="{{ customer.id }}_phoneNumber2_danger"></label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>Day 1 MSG 2 <a href="" title="Voice Tags"><i
-                                    class="fa fa-file-audio m-1 bg-outline-theme"></i></a></td>
-                    <td>Client is at work, will call at 5 pm</td>
-                    <td>10:15 am
-                        <br> 10/15/2021
-                    </td>
-                    <td>
-                        <a href="" title="Details"><i class="fa fa-info m-1 bg-outline-theme"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="checkbox icheck-default">
-                            <input type="checkbox" checked id="r2"/>
-                            <label for="r2"></label>
-                        </div>
-                    </td>
-                    <td>LCP</td>
-                    <td>584512</td>
-                    <td>John</td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c1b1" name="c1"/>
-                                    <label for="c1b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c1b3" name="c1"/>
-                                    <label for="c1b3"></label>
+                        </td>
+                        <td>
+                            <p>{{ customer.customerMeta.phoneNumber3 }}</p>
+                            <div class="d-flex justify-content-center">
+                                <div class="custom-control-inline">
+                                    <div class="radio icheck-success">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber3_success" name="{{ customer.id  }}_phoneNumber3"/>
+                                        <label for="{{ customer.id }}_phoneNumber3_success"></label>
+                                    </div>
+                                    <div class="radio icheck-warning">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber3_warning" name="{{ customer.id  }}_phoneNumber3"/>
+                                        <label for="{{ customer.id }}_phoneNumber3_warning"></label>
+                                    </div>
+                                    <div class="radio icheck-danger">
+                                        <input type="radio" id="{{ customer.id }}_phoneNumber3_danger" name="{{ customer.id  }}_phoneNumber3"/>
+                                        <label for="{{ customer.id }}_phoneNumber3_danger"></label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c2b1" name="c2"/>
-                                    <label for="c2b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c2b3" name="c2"/>
-                                    <label for="c2b3"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p>561-321-9351</p>
-                        <div class="d-flex justify-content-center">
-                            <div class="custom-control-inline">
-                                <div class="radio icheck-success">
-                                    <input type="radio" id="c3b1" name="c3"/>
-                                    <label for="c3b1"></label>
-                                </div>
-                                <div class="radio icheck-danger">
-                                    <input type="radio" id="c3b3" name="c3"/>
-                                    <label for="c3b3"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>Day 1 MSG 2
-                        <a href="" title="Verify Voice Tags"> <i class="fa fa-file-audio m-1 bg-outline-dark"></i></a>
-                    </td>
-                    <td>Client is at work, will call at 5 pm</td>
-                    <td>10:15 am
-                        <br> 10/15/2021
-                    </td>
-                    <td>
-                        <a href="" title="Details"><i class="fa fa-info m-1 bg-outline-theme"></i></a>
-                    </td>
-                </tr>
+                        </td>
+                        <td><a href="{{ path('get_audio', {'customerId' : customer.id}) }}" title="Verify Voice Tags"><i
+                                        class="fa fa-file-audio m-1 bg-outline-theme"></i></a></td>
+                        <td>Client is at work, will call at 5 pm</td>
+                        <td>10:15 am
+                            <br> 10/15/2021
+                        </td>
+                        <td>
+                            <a href="" title="Details"><i class="fa fa-info m-1 bg-outline-theme"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

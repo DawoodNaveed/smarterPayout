@@ -13,9 +13,6 @@ class insuranceAudioForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('audioText', TextareaType::class, [
-                'attr' => ['class' => 'form-control'],
-            ])
             ->add('audioFile', FileType::class)
             ->add('companyId', TextType::class);
     }

@@ -68,8 +68,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fas fa-user-cog"></i>
+                            <a href="{{ path('get_customers') }}">
+                            <i class="fas fa-user-cog faa-horizontal animated-hover"></i>
                                 <span>Leads Management</span>
                             </a>
                         </li>
@@ -110,7 +110,12 @@
                                 <span>Users</span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="{{ path('create_audio') }}">
+                                <i class="fa fa-file-audio"></i>
+                                <span>Voice Tags</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ path('letter_list') }}">
                                 <i class="fas fa-envelope"></i>
@@ -165,11 +170,6 @@
                     </li>
                 </ul>
             </nav>
-            {# <div class="pt-3"> #}
-            {# <h6 class="p-1 font-weight-bold">Hours Worked: $20 </h6> #}
-            {# <h6 class="p-1 font-weight-bold">Pending Commissions: $35,000 </h6> #}
-            {# <h6 class="p-1 font-weight-bold">Earned Commissions: $35,000 </h6> #}
-            {# </div> #}
         </div>
 
         <main class="page-content col-lg-10 mx-auto">

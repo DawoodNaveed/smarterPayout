@@ -3,13 +3,27 @@
 {% block title %}Leads Interaction - Smarter Payouts{% endblock %}
 
 {% block content %}
+    <div class="col-12">
+        <dl class="d-flex justify-content-start pl-2">
+            <div>
+                <div class="row">
+                    <dt class="pr-2">CRM ID:</dt>
+                    <dd>0015</dd>
+                </div>
+                <div class="row">
+                    <dt class="pr-2">Name:</dt>
+                    <dd>John Smith</dd>
+                </div>
+            </div>
+        </dl>
+    </div>
     <div class="col-12 p-0">
         <div class="card custom-dashboard-card">
             <div class="card-body">
                 <h5 class="custom-border-bottom text-center">
                     Day One Messages
                     <div class="checkbox icheck-default float-right">
-                        <input type="checkbox" checked id="r1"/>
+                        <input type="checkbox" checked id="r1" disabled/>
                         <label for="r1"></label>
                     </div>
                 </h5>
@@ -20,30 +34,51 @@
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(A-1)</label>
                                     <small>Name tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if customerAudio is defined and customerAudio is not null %}
+                                        <audio class="audio-player-min day-one" id="player"
+                                               src="{{ customerAudio }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(B)</label>
                                     <small>Message tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if firstGenericTag is defined and firstGenericTag is not null %}
+                                        <audio class="audio-player-min day-one" id="player"
+                                               src="{{ firstGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
+
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(C)</label>
                                     <small>Hardship tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if secondGenericTag is defined and secondGenericTag is not null %}
+                                        <audio class="audio-player-min day-one" id="player"
+                                               src="{{ secondGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(D)</label>
                                     <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if thirdGenericTag is defined and thirdGenericTag is not null %}
+                                        <audio class="audio-player-min day-one" id="player"
+                                               src="{{ thirdGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -51,9 +86,7 @@
                             <div class="p-3 d-flex align-items-center flex-column">
                                 <label>Play all</label>
                                 <small>Day one message</small>
-                                <audio class="audio-player-min" id="player"
-                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                <a class="audioPlay"><i class='fa fa-file-audio audio-file'></i></a>
+                                <a class="dayOneAudioPlay"><i class='fa fa-file-audio audio-file'></i></a>
                             </div>
                         </div>
                     </div>
@@ -65,7 +98,7 @@
                 <h5 class="custom-border-bottom text-center">
                     Day Two Messages
                     <div class="checkbox icheck-default float-right">
-                        <input type="checkbox" checked id="day2"/>
+                        <input type="checkbox" id="day2" disabled/>
                         <label for="day2"></label>
                     </div>
                 </h5>
@@ -76,37 +109,62 @@
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(A-1)</label>
                                     <small>Name tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if customerAudio is defined and customerAudio is not null %}
+                                        <audio class="audio-player-min day-two" id="player"
+                                               src="{{ customerAudio }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(B)</label>
                                     <small>Message tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if firstGenericTag is defined and firstGenericTag is not null %}
+                                        <audio class="audio-player-min day-two" id="player"
+                                               src="{{ firstGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(C)</label>
-                                    <small>Hardship tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    <label>2(A-1)</label>
+                                    <small>Insurance Tag</small>
+                                    {% if insuranceCompanyAudio is defined and insuranceCompanyAudio is not null %}
+                                        <audio class="audio-player-min day-two" id="player"
+                                               src="{{ insuranceCompanyAudio }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
+                                </div>
+                                <div class="p-3 d-flex align-items-center flex-column">
+                                    <label>2(B)</label>
+                                    <small>Cash Relief Tag</small>
+                                    {% if fourthGenericTag is defined and fourthGenericTag is not null %}
+                                        <audio class="audio-player-min day-two" id="player"
+                                               src="{{ fourthGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(D)</label>
                                     <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if thirdGenericTag is defined and thirdGenericTag is not null %}
+                                        <audio class="audio-player-min day-two" id="player"
+                                               src="{{ thirdGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -114,9 +172,7 @@
                             <div class="p-3 d-flex align-items-center flex-column">
                                 <label>Play all</label>
                                 <small>Day two message</small>
-                                <audio class="audio-player-min" id="player"
-                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                <a class=""><i class='fa fa-file-audio audio-file'></i></a>
+                                <a class="dayTwoAudioPlay"><i class='fa fa-file-audio audio-file'></i></a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +184,7 @@
                 <h5 class="custom-border-bottom text-center">
                     Day Three Messages
                     <div class="checkbox icheck-default float-right">
-                        <input type="checkbox" checked id="day3"/>
+                        <input type="checkbox" id="day3" disabled/>
                         <label for="day3"></label>
                     </div>
                 </h5>
@@ -139,72 +195,62 @@
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(A-1)</label>
                                     <small>Name tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if customerAudio is defined and customerAudio is not null %}
+                                        <audio class="audio-player-min day-three" id="player"
+                                               src="{{ customerAudio }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(B)</label>
                                     <small>Message tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if firstGenericTag is defined and firstGenericTag is not null %}
+                                        <audio class="audio-player-min day-three" id="player"
+                                               src="{{ firstGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(C)</label>
-                                    <small>Hardship tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    <label>2(A-1)</label>
+                                    <small>Insurance Tag</small>
+                                    {% if insuranceCompanyAudio is defined and insuranceCompanyAudio is not null %}
+                                        <audio class="audio-player-min day-three" id="player"
+                                               src="{{ insuranceCompanyAudio }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    <label>3(B)</label>
+                                    <small>Cash Relief Tag</small>
+                                    {% if fifthGenericTag is defined and fifthGenericTag is not null %}
+                                        <audio class="audio-player-min day-three" id="player"
+                                               src="{{ fifthGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex align-items-center flex-column">
                                     <label>1(D)</label>
                                     <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
-                                </div>
-                                <div class="p-3 d-flex align-items-center flex-column">
-                                    <label>1(D)</label>
-                                    <small>Intro tag</small>
-                                    <audio class="audio-player-min" id="player"
-                                           src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                    <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% if thirdGenericTag is defined and thirdGenericTag is not null %}
+                                        <audio class="audio-player-min day-three" id="player"
+                                               src="{{ thirdGenericTag }}"></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file'></i></a>
+                                    {% else %}
+                                        <audio class="audio-player-min" id="player" src=""></audio>
+                                        <a class="audioPlay"><i class='fa fa-play audio-file-danger'></i></a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -212,9 +258,7 @@
                             <div class="p-3 d-flex align-items-center flex-column">
                                 <label>Play all</label>
                                 <small>Day three message</small>
-                                <audio class="audio-player-min" id="player"
-                                       src="https://s3.us-east-2.amazonaws.com/smarterpayouts.staging/phppV6q6U?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4OMUFA37EJTY76MD%2F20210801%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210801T143723Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=763e26d15829b4b70b4f1120e925baed2bfa4cbc17d3b0d23580fc5d98e31234"></audio>
-                                <a class="audioPlay"><i class='fa fa-file-audio audio-file'></i></a>
+                                <a class="dayThreeAudioPlay"><i class='fa fa-file-audio audio-file'></i></a>
                             </div>
                         </div>
                     </div>

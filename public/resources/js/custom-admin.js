@@ -1,15 +1,24 @@
-$(document).ready(function () {
-    $("#close-sidebar").click(function () {
+$(document).ready(function() {
+    // Initialize data table
+    $('#data_table').DataTable();
+
+    // Initialize searchable select
+    $(".select2").select2();
+
+    // toggle left sidebar
+    $("#close-sidebar").click(function() {
         var pageWrapper = '.page-wrapper';
-        if ($(pageWrapper).hasClass("toggled")) {
+        if($(pageWrapper).hasClass("toggled")) {
             $(pageWrapper).removeClass("toggled");
         } else {
             $(pageWrapper).addClass("toggled");
         }
     });
-    $("#close-right-sidebar").click(function () {
+
+    // toggle right sidebar
+    $("#close-right-sidebar").click(function() {
         var sidebarWrapperRight = '.sidebar-wrapper-right';
-        if ($(sidebarWrapperRight).hasClass("collapsed")) {
+        if($(sidebarWrapperRight).hasClass("collapsed")) {
             $(this).removeClass("animate-open");
             $(this).addClass("animate-close");
             $(sidebarWrapperRight).removeClass("collapsed");
@@ -25,32 +34,16 @@ $(document).ready(function () {
             $(sidebarWrapperRight).find('i').addClass("fa-angle-double-left");
         }
     });
-    $('#data_table').DataTable();
-    $('.deleteRecord').click(function () {
+
+    // delete record using generic pop-up modal
+    $('.deleteRecord').click(function() {
         let recordUrl = $(this).data('url');
         $("#deletebtn").attr("href", recordUrl);
     });
-
-    $('.audioPlay').click(function () {
-        var curr = $(this);
-        var prev = curr.prev().get(0);
-
-        curr.hide();
-        prev.controls = true;
-        prev.load();
-        setTimeout(function (){
-            curr.prev().removeClass('audio-player-min');
-            curr.prev().addClass('audio-player-max');}, 100);
-
-        prev.play();
-        prev.addEventListener('ended', (event) => {
-            curr.prev().removeClass('audio-player-max');
-            curr.prev().addClass('audio-player-min');
-            setTimeout(function (){
-                prev.controls = false;
-                prev.load();
-                curr.show();
-            }, 300);
+    $('.customer-details').click(function() {
+        var uri = $(this).data('uri');
+        $.get(uri, function(data) {
+            // needs to implement functionality
         });
     });
 });

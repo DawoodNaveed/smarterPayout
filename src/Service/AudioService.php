@@ -6,6 +6,7 @@ use App\Entity\Audio;
 use App\Entity\Customer;
 use App\Entity\InsuranceCompany;
 use App\Entity\User;
+use App\Helper\CustomHelper;
 use App\Repository\AudioRepository;
 use Symfony\Component\Validator\Constraints\Time;
 
@@ -17,8 +18,6 @@ use Symfony\Component\Validator\Constraints\Time;
  */
 class AudioService
 {
-    const GENERIC_TAGS = ['1(B)', '1(C)', '1(D)', '2(B)', '3(B)'];
-    
     /**
      * AudioService constructor.
      * @param AudioRepository $audioRepository
@@ -98,7 +97,7 @@ class AudioService
      */
     public function getGenericTagAudios($params, User $user): ?array
     {
-        foreach (AudioService::GENERIC_TAGS as $GENERIC_TAG)
+        foreach (CustomHelper::GENERIC_TAGS as $GENERIC_TAG)
         {
             $audio = $this->audioRepository->getAudio($GENERIC_TAG, $user);
             if ($audio) {

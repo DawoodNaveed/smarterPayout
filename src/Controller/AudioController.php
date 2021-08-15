@@ -69,6 +69,9 @@ class AudioController extends AbstractController
             $fileName = $audioService->createFileName($this->getUser()->getId(), $data['tagId'], 'tagType');
             $awsS3Service->uploadFile($data['audioFile'],$fileName);
             $audioService->saveAudio($data, $fileName, $this->getUser());
+
+            $this->addFlash('success', 'Uploaded Successfully');
+            return $this->redirectToRoute('create_audio');
         }
         
         if ($userAudioForm->isSubmitted() && $userAudioForm->isValid()) {
@@ -77,13 +80,20 @@ class AudioController extends AbstractController
             $awsS3Service->uploadFile($data['audioFile'],$fileName);
             $customer = $customerService->getCustomer($data['userId']);
             $audioService->saveCustomerAudio($customer, $this->getUser(), $fileName);
+
+            $this->addFlash('success', 'Uploaded Successfully');
+            return $this->redirectToRoute('create_audio');
         } elseif ($insuranceAudioForm->isSubmitted() && $insuranceAudioForm->isValid()) {
             $data = $insuranceAudioForm->getData();
             $fileName = $audioService->createFileName($this->getUser()->getId(), $data['companyId'], 'insuranceType');
             $awsS3Service->uploadFile($data['audioFile'], $fileName);
             $insuranceCompany = $insuranceCompanyService->getInsuranceCompany($data['companyId']);
             $audioService->saveInsuranceAudio($insuranceCompany, $this->getUser(), $fileName);
+
+            $this->addFlash('success', 'Uploaded Successfully');
+            return $this->redirectToRoute('create_audio');
         }
+
         $params = [
             'genericAudioForm1' => $genericAudioForm1->createView(),
             'genericAudioForm2' => $genericAudioForm2->createView(),
@@ -93,11 +103,11 @@ class AudioController extends AbstractController
             'userAudioForm' => $userAudioForm->createView(),
             'insuranceAudioForm' => $insuranceAudioForm->createView(),
             'customers' => $customers,
-            'insuranceCompanies' => $insuranceCompanies
+            'insuranceCompanies' => $insuranceCompanies,
         ];
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
-    
-        return $this->render('message/day1.html.twig', $params);
+
+        return $this->render('voiceTags/voiceLibraryRecording.html.twig', $params);
     }
     
     /**
@@ -114,6 +124,7 @@ class AudioController extends AbstractController
         AwsS3Service $awsS3Service,
         AudioService $audioService
     ): Response {
+
         $params = [];
         $customerId = $request->get('customerId');
         $customer = $customerService->getCustomer($customerId);
@@ -122,7 +133,7 @@ class AudioController extends AbstractController
         }
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
         $params = $audioService->getInsuranceCompanyAudio($params, $customer);
-    
-        return $this->render('message/day1.html.twig', $params);
+
+        return $this->render('voiceTags/voiceMailRecordings.html.twig', $params);
     }
 }
