@@ -13,17 +13,23 @@ use Symfony\Component\Validator\Constraints\Time;
  * Class AudioService
  * @package App\Service
  * @property AudioRepository audioRepository
+ * @property AwsS3Service awsS3Service
  */
 class AudioService
 {
+    const GENERIC_TAGS = ['1(B)', '1(C)', '1(D)', '2(B)', '3(B)'];
+    
     /**
      * AudioService constructor.
      * @param AudioRepository $audioRepository
+     * @param AwsS3Service $awsS3Service
      */
     public function __construct(
-        AudioRepository $audioRepository
+        AudioRepository $audioRepository,
+        AwsS3Service $awsS3Service
     ) {
         $this->audioRepository = $audioRepository;
+        $this->awsS3Service = $awsS3Service;
     }
     
     /**
@@ -83,5 +89,40 @@ class AudioService
         if (!$insuranceCompany->getAudio()) {
             $this->audioRepository->saveInsuranceAudio($insuranceCompany, $user, $filename);
         }
+    }
+    
+    /**
+     * @param null|array $params
+     * @param User $user
+     * @return null|array
+     */
+    public function getGenericTagAudios($params, User $user): ?array
+    {
+        foreach (AudioService::GENERIC_TAGS as $GENERIC_TAG)
+        {
+            $audio = $this->audioRepository->getAudio($GENERIC_TAG, $user);
+            if ($audio) {
+                $params[$GENERIC_TAG] = $this->awsS3Service->getPreSignedUrl($audio[0]->getFileName());
+            }
+        }
+        
+        return $params;
+    }
+    
+    /**
+     * @param null|array $params
+     * @param Customer $customer
+     * @return null|array
+     */
+    public function getInsuranceCompanyAudio(array $params, Customer $customer): ?array
+    {
+        if ($customer->getInsuranceCompany()) {
+            $insuranceCompany = $customer->getInsuranceCompany();
+            if ($insuranceCompany->getAudio()) {
+                $params['insuranceCompanyAudio'] = $this->awsS3Service->getPreSignedUrl($insuranceCompany->getAudio()->getFileName());
+            }
+        }
+        
+        return $params;
     }
 }
