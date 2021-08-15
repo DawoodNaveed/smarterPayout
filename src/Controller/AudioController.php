@@ -84,8 +84,7 @@ class AudioController extends AbstractController
             $insuranceCompany = $insuranceCompanyService->getInsuranceCompany($data['companyId']);
             $audioService->saveInsuranceAudio($insuranceCompany, $this->getUser(), $fileName);
         }
-    
-        return $this->render('message/day1.html.twig', [
+        $params = [
             'genericAudioForm1' => $genericAudioForm1->createView(),
             'genericAudioForm2' => $genericAudioForm2->createView(),
             'genericAudioForm3' => $genericAudioForm3->createView(),
@@ -95,6 +94,35 @@ class AudioController extends AbstractController
             'insuranceAudioForm' => $insuranceAudioForm->createView(),
             'customers' => $customers,
             'insuranceCompanies' => $insuranceCompanies
-        ]);
+        ];
+        $params = $audioService->getGenericTagAudios($params, $this->getUser());
+    
+        return $this->render('message/day1.html.twig', $params);
+    }
+    
+    /**
+     * @Route("/audio/{customerId}", name="get_audio")
+     * @param Request $request
+     * @param CustomerService $customerService
+     * @param AwsS3Service $awsS3Service
+     * @param AudioService $audioService
+     * @return Response
+     */
+    public function getCustomerAudioAction(
+        Request $request,
+        CustomerService $customerService,
+        AwsS3Service $awsS3Service,
+        AudioService $audioService
+    ): Response {
+        $params = [];
+        $customerId = $request->get('customerId');
+        $customer = $customerService->getCustomer($customerId);
+        if ($customer->getAudio()) {
+            $params['customerAudio'] = $awsS3Service->getPreSignedUrl($customer->getAudio()->getFileName());
+        }
+        $params = $audioService->getGenericTagAudios($params, $this->getUser());
+        $params = $audioService->getInsuranceCompanyAudio($params, $customer);
+    
+        return $this->render('message/day1.html.twig', $params);
     }
 }
