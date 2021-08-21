@@ -49,11 +49,6 @@ class Customer extends AbstractEntity
     private $height;
     
     /**
-     * @var integer
-     */
-    private $heightInches;
-    
-    /**
      * @var float
      * @ORM\Column(name="weight", type="float")
      */
@@ -206,22 +201,6 @@ class Customer extends AbstractEntity
     public function setWeight(float $weight): void
     {
         $this->weight = $weight;
-    }
-    
-    /**
-     * @return int
-     */
-    public function getHeightInches(): int
-    {
-        return $this->heightInches;
-    }
-    
-    /**
-     * @param int $heightInches
-     */
-    public function setHeightInches(int $heightInches): void
-    {
-        $this->heightInches = $heightInches;
     }
     
     /**
