@@ -172,13 +172,6 @@ class CustomerMeta extends AbstractEntity
     }
     
     /**
-     * @var Customer
-     * @ORM\OneToOne(targetEntity="Customer", fetch="LAZY")
-     * @ORM\JoinColumn(referencedColumnName="id")
-     */
-    private $customer;
-    
-    /**
      * @return \DateTime
      */
     public function getPaymentStartDate(): \DateTime
@@ -432,21 +425,5 @@ class CustomerMeta extends AbstractEntity
     public function setPercentStep(float $percentStep): void
     {
         $this->percentStep = $percentStep;
-    }
-    
-    /**
-     * @return Customer
-     */
-    public function getCustomer(): Customer
-    {
-        return $this->customer;
-    }
-    
-    /**
-     * @param Customer $customer
-     */
-    public function setCustomer(Customer $customer): void
-    {
-        $this->customer = $customer;
     }
 }

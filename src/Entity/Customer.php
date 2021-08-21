@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CustomerRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Customer
@@ -62,6 +64,16 @@ class Customer extends AbstractEntity
     private $audio;
     
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",
+     *     message="not_valid_email")
+     * @Assert\NotBlank(message="email can't be blanked")
+     * @Assert\Unique(message="This email has already exist")
+     */
+    private $email;
+    
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customer")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
@@ -74,6 +86,13 @@ class Customer extends AbstractEntity
      * @ORM\JoinColumn(name="insurance_company_id", referencedColumnName="id", nullable=true)
      */
     private $insuranceCompany;
+    
+    /**
+     * @var CustomerMeta
+     * @ORM\OneToOne(targetEntity="CustomerMeta", fetch="LAZY")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    private $customerMeta;
     
     /**
      * @return Audio
@@ -233,5 +252,64 @@ class Customer extends AbstractEntity
     public function setInsuranceCompany(InsuranceCompany $insuranceCompany): void
     {
         $this->insuranceCompany = $insuranceCompany;
+    }
+    
+    /**
+     * @param null|bool $isAudioTagCompleted
+     * @return array
+     */
+    public function toArray(bool $isAudioTagCompleted = false)
+    {
+        $data =  [
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'height' => $this->height,
+            'audio' => $this->audio,
+            'email' => $this->email,
+            'dateOfBirth' => $this->dateOfBirth,
+            'audioTagCompleted' => $isAudioTagCompleted
+        ];
+        if ($this->customerMeta) {
+            $data['phoneNumber1'] = $this->customerMeta->getPhoneNumber1();
+            $data['phoneNumber2'] = $this->customerMeta->getPhoneNumber2();
+            $data['phoneNumber3'] = $this->customerMeta->getPhoneNumber3();
+        }
+        if ($this->insuranceCompany) {
+            $data['InsuranceCompanyName'] = $this->insuranceCompany->getName();
+        }
+        
+        return $data;
+    }
+    
+    /**
+     * @return CustomerMeta
+     */
+    public function getCustomerMeta(): CustomerMeta
+    {
+        return $this->customerMeta;
+    }
+    
+    /**
+     * @param CustomerMeta $customerMeta
+     */
+    public function setCustomerMeta(CustomerMeta $customerMeta): void
+    {
+        $this->customerMeta = $customerMeta;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
     }
 }

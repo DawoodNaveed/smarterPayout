@@ -13,16 +13,16 @@ use App\Repository\InsuranceCompanyRepository;
 class InsuranceCompany extends AbstractEntity
 {
     /**
-     * @var string Company name
-     * @ORM\Column(name="company_name", type="string")
+     * @var string Name
+     * @ORM\Column(name="name", type="string")
      */
-    private $companyName;
+    private $name;
     
     /**
-     * @var string Company name
-     * @ORM\Column(name="company_number", type="string")
+     * @var string Number
+     * @ORM\Column(name="number", type="string")
      */
-    private $companyNumber;
+    private $number;
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="insuranceCompany")
@@ -53,38 +53,6 @@ class InsuranceCompany extends AbstractEntity
     private $audio;
     
     /**
-     * @return string
-     */
-    public function getCompanyName(): string
-    {
-        return $this->companyName;
-    }
-    
-    /**
-     * @param string $companyName
-     */
-    public function setCompanyName(string $companyName): void
-    {
-        $this->companyName = $companyName;
-    }
-    
-    /**
-     * @return string
-     */
-    public function getCompanyNumber(): string
-    {
-        return $this->companyNumber;
-    }
-    
-    /**
-     * @param string $companyNumber
-     */
-    public function setCompanyNumber(string $companyNumber): void
-    {
-        $this->companyNumber = $companyNumber;
-    }
-    
-    /**
      * @return mixed
      */
     public function getCustomer()
@@ -98,5 +66,37 @@ class InsuranceCompany extends AbstractEntity
     public function setCustomer($customer): void
     {
         $this->customer = $customer;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getNumber(): string
+    {
+        return $this->number;
+    }
+    
+    /**
+     * @param string $number
+     */
+    public function setNumber(string $number): void
+    {
+        $this->number = $number;
     }
 }
