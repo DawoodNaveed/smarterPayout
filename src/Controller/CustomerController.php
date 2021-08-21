@@ -8,6 +8,7 @@ use App\Repository\CustomerRepository;
 use App\Service\CustomerMetaService;
 use App\Service\CustomerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,6 +42,7 @@ class CustomerController extends AbstractController
     {
         $customerId = $request->get('id');
         $customer = $customerService->getCustomer($customerId);
-        return $this->render('message/day1.html.twig', ['customer' => $customerMetaService->getCustomer($customer)]);
+        
+        return new JsonResponse($customer->toArray());
     }
 }
