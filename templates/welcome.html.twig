@@ -1,0 +1,57 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+
+        h1 {
+            color:#09b44d;
+            text-align: center;
+            font-size: 3em;
+            letter-spacing: 11px;
+        }
+        h2 {
+            color: #FBC233;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 5em;
+            letter-spacing: 11px;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #geeks-countdown{
+            margin-top:2%;
+        }
+
+        #heading {
+            animation: rotate 4s infinite;
+            transform: scale(1);
+        }
+
+        @keyframes rotate {
+            10% {
+                transform: scale(2);
+            }
+            30% {
+                transform: scale(1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="geeks-countdown">
+    <img class="center" src="{{ asset ('resources/images/logo.png') }}" width="250" height="450">
+
+    <h2> <span class="w3-animate-left">Welcome to</span> <br> <span class="w3-animate-right">SMARTER PAYOUTS</span></h2>
+    <h1 id="heading">Coming Soon</h1>
+    <div id="clock"></div>
+
+</div>
+</body>
+</html>
