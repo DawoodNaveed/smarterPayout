@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Entity\CustomerMeta;
 use App\Repository\CustomerRepository;
+use App\Repository\InsuranceCompanyRepository;
 use App\Service\CustomerMetaService;
 use App\Service\CustomerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,9 @@ class CustomerController extends AbstractController
      * @Route("/customers", name="get_customers", methods={"GET"})
      * @return Response
      */
-    public function getCustomersAction(CustomerMetaService $customerMetaService)
+    public function getCustomersAction(CustomerService $customerService, InsuranceCompanyRepository $companyRepository)
     {
-        return $this->render('message/day1.html.twig', ['customers' => $customerMetaService->getCustomers()]);
+        return $this->render('leads/leadsInteraction.html.twig', ['customers' => $customerService->getCustomersByUser($this->getUser())]);
     }
     
     /**
@@ -42,7 +43,7 @@ class CustomerController extends AbstractController
     {
         $customerId = $request->get('id');
         $customer = $customerService->getCustomer($customerId);
-        
+
         return new JsonResponse($customer->toArray());
     }
 }

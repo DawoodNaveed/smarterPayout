@@ -24,9 +24,9 @@ class HomeController extends AbstractController
     public function indexAction()
     {
         return $this->render('welcome.html.twig');
-//        if ($this->getUser()) {
-//            return $this->redirectToRoute('dashboard_menu');
-//        }
-//        return $this->redirectToRoute('app_login');
+        if ($this->getUser()) {
+            return $this->redirectToRoute('dashboard_menu');
+        }
+        return $this->redirectToRoute('app_login');
     }
 }

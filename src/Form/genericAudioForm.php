@@ -14,7 +14,7 @@ class genericAudioForm extends AbstractType
     {
         $builder
             ->add('audioText', TextareaType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control textarea-scroll', 'readonly' => 'true', 'rows'=> '2'],
             ])
             ->add('audioFile', FileType::class)
             ->add('tagId', TextType::class);
