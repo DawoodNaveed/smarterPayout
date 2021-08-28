@@ -1,0 +1,301 @@
+{% extends 'admin/dashboardMenu.html.twig' %}
+
+{% block title %}Leads Interaction - Smarter Payouts{% endblock %}
+
+{% block content %}
+    <div class="col-12 p-0">
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="card-title text-center custom-border-bottom">Generic Tags</h5>
+
+                <div id="accordion">
+                    <div class="card border-left-0 border-right-0">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <label>Message Tag</label>
+                                    <i class="fas fa-chevron-down rotate-icon float-right"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordion">
+                            <div class="card-body">
+                                {{ form_start(genericAudioForm1) }}
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        {{ form_widget(genericAudioForm1.audioText, {value : 'I sent you a text Messages, don’t know if received it. It’s Marc with Capital Now, I have a positive important update to share with you'}) }}{{ form_errors(genericAudioForm1.audioText) }}
+                                    </div>
+                                    <div class="col-md-3 pt-3 file-input">
+                                        {{ form_widget(genericAudioForm1.audioFile,{id:'generic1'}) }}{{ form_errors(genericAudioForm1.audioFile) }}
+                                        <label class="file-label" for="generic1">Choose file</label>
+                                    </div>
+                                    <div hidden>
+                                        {{ form_widget(genericAudioForm1.tagId, {'value' : 'firstGenericTag'}) }}
+                                    </div>
+                                    <div class="col-md-1 pt-3">
+                                        {% if firstGenericTag is defined %}
+                                            <button type="submit" class="btn-link" title="Re-Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-theme"></i></button>
+                                        {% else %}
+                                            <button type="submit" class="btn-link" title="Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {{ form_errors(genericAudioForm1) }}
+                                {{ form_end(genericAudioForm1) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-left-0 border-right-0">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <label>Hardship Tag</label>
+                                    <i class="fas fa-chevron-down rotate-icon float-right"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                             data-parent="#accordion">
+                            <div class="card-body">
+                                {{ form_start(genericAudioForm2) }}
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        {{ form_widget(genericAudioForm2.audioText, {value : 'You are still eligible for our Hardship Program based on the region you reside. Would you like to see how much you might be entitled to?'}) }}{{ form_errors(genericAudioForm2.audioText) }}
+                                    </div>
+                                    <div class="col-md-3 pt-3 file-input">
+                                        {{ form_widget(genericAudioForm2.audioFile ,{id:'generic2'}) }}{{ form_errors(genericAudioForm2.audioFile) }}
+                                        <label class="file-label" for="generic2">Choose file</label>
+                                    </div>
+                                    <div hidden>
+                                        {{ form_widget(genericAudioForm2.tagId, {'value' : 'secondGenericTag'}) }}
+                                    </div>
+                                    <div class="col-md-1 pt-3">
+                                        {% if secondGenericTag is defined %}
+                                            <button type="submit" class="btn-link" title="Re-Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-theme"></i></button>
+                                        {% else %}
+                                            <button type="submit" class="btn-link" title="Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {{ form_errors(genericAudioForm2) }}
+                                {{ form_end(genericAudioForm2) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-left-0 border-right-0">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <label>Intro tag</label>
+                                    <i class="fas fa-chevron-down rotate-icon float-right"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                             data-parent="#accordion">
+                            <div class="card-body">
+                                {{ form_start(genericAudioForm3) }}
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        {{ form_widget(genericAudioForm3.audioText, {value : 'My office number is 954-852-8547 and my direct number is 954-854-8535. I am available Monday-Friday between 9am-6pm Est”. Please feel free to contact me if you have any question. “I am here to assist you!'}) }}{{ form_errors(genericAudioForm3.audioText) }}
+                                    </div>
+                                    <div class="col-md-3 pt-3 file-input">
+                                        {{ form_widget(genericAudioForm3.audioFile, {id:'generic3'}) }}{{ form_errors(genericAudioForm3.audioFile) }}
+                                        <label class="file-label" for="generic3">Choose file</label>
+                                    </div>
+                                    <div hidden>
+                                        {{ form_widget(genericAudioForm3.tagId, {'value' : 'thirdGenericTag'}) }}
+                                    </div>
+                                    <div class="col-md-1 pt-3">
+                                        {% if thirdGenericTag is defined %}
+                                            <button type="submit" class="btn-link" title="Re-Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-theme"></i></button>
+                                        {% else %}
+                                            <button type="submit" class="btn-link" title="Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {{ form_errors(genericAudioForm3) }}
+                                {{ form_end(genericAudioForm3) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-left-0 border-right-0">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse"
+                                        data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <label>Cash Relief Tag</label>
+                                    <i class="fas fa-chevron-down rotate-icon float-right"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordion">
+                            <div class="card-body">
+                                {{ form_start(genericAudioForm4) }}
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        {{ form_widget(genericAudioForm4.audioText, {value : 'Qualified recipient can get cash advance relief up to $1500.00 within 48 hours. If you are Interested let me know, I am here to assist you!'}) }}{{ form_errors(genericAudioForm4.audioText) }}
+                                    </div>
+                                    <div class="col-md-3 pt-3 file-input">
+                                        {{ form_widget(genericAudioForm4.audioFile, {id:'generic4'}) }}{{ form_errors(genericAudioForm4.audioFile) }}
+                                        <label class="file-label" for="generic4">Choose file</label>
+                                    </div>
+                                    <div hidden>
+                                        {{ form_widget(genericAudioForm4.tagId, {'value' : 'fourthGenericTag'}) }}
+                                    </div>
+                                    <div class="col-md-1 pt-3">
+                                        {% if fourthGenericTag is defined %}
+                                            <button type="submit" class="btn-link" title="Re-Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-theme"></i></button>
+                                        {% else %}
+                                            <button type="submit" class="btn-link" title="Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {{ form_errors(genericAudioForm4) }}
+                                {{ form_end(genericAudioForm4) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-left-0 border-right-0">
+                        <div class="card-header" id="headingFive">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link w-100 text-left collapsed" data-toggle="collapse"
+                                        data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <label>Cash Relief With Opportunity Tag</label>
+                                    <i class="fas fa-chevron-down rotate-icon float-right"></i>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                             data-parent="#accordion">
+                            <div class="card-body">
+                                {{ form_start(genericAudioForm5) }}
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        {{ form_widget(genericAudioForm5.audioText, {value : 'As an entitled recipient you can exchange as low as $500/month. To buy a house, purchase car, payoff credit cards high interest or even start your own business. Let me know.'}) }}{{ form_errors(genericAudioForm5.audioText) }}
+                                    </div>
+                                    <div class="col-md-3 pt-3 file-input">
+                                        {{ form_widget(genericAudioForm5.audioFile, {id:'generic5'}) }}{{ form_errors(genericAudioForm5.audioFile) }}
+                                        <label class="file-label" for="generic5">Choose file</label>
+                                    </div>
+                                    <div hidden>
+                                        {{ form_widget(genericAudioForm5.tagId, {'value' : 'fifthGenericTag'}) }}
+                                    </div>
+                                    <div class="col-md-1 pt-3">
+                                        {% if fifthGenericTag is defined %}
+                                            <button type="submit" class="btn-link" title="Re-Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-theme"></i></button>
+                                        {% else %}
+                                            <button type="submit" class="btn-link" title="Upload"><i
+                                                        class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {{ form_errors(genericAudioForm5) }}
+                                {{ form_end(genericAudioForm5) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 p-0">
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="custom-border-bottom text-center">Client Name Tags</h5>
+                {{ form_start(userAudioForm) }}
+                <div class="col-lg-6 p-2 pt-3 pb-3">
+                    <select class="form-control select2">
+                        <option>Select Customer</option>
+                        {% for customer in customers %}
+                            <option data-name="{{ customer.firstName }}"
+                                    data-file="{% if customer.audio is not null %} {{ (customer.audio.id) }} {% endif %}"
+                                    value="{{ customer.Id }}">{{ customer.firstName }} {{ customer.LastName }}
+                                - {{ customer.Id }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row p-2">
+                    <div class="col-md-8">
+                        <textarea data-default="Hey -------" rows="1" class="form-control"
+                                  readonly>Hey -------</textarea>
+                    </div>
+                    <div class="col-md-3 file-input">
+                        {{ form_widget(userAudioForm.audioFile, {id:'clientFile'}) }}{{ form_errors(userAudioForm.audioFile) }}
+                        <label class="file-label" for="clientFile">Choose file</label>
+                    </div>
+                    <div hidden>
+                        {{ form_widget(userAudioForm.userId) }}{{ form_errors(userAudioForm.userId) }}
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn-link" title="Upload"><i
+                                    class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                    </div>
+                </div>
+                {{ form_errors(userAudioForm) }}
+                {{ form_end(userAudioForm) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-12 p-0">
+        <div class="card custom-dashboard-card">
+            <div class="card-body">
+                <h5 class="custom-border-bottom text-center">Insurance Company Tags</h5>
+                {{ form_start(insuranceAudioForm) }}
+                <div class="col-lg-6 p-2 pt-3 pb-3">
+                    <select class="form-control select2">
+                        <option>Select Company</option>
+                        {% for company in insuranceCompanies %}
+                            <option data-name="{{ company.name }}"
+                                    data-file="{% if company.audio is not null %} {{ (company.audio.id) }} {% endif %}"
+                                    value="{{ company.Id }}">
+                                {{ company.name }} - {{ company.Id }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row p-2">
+                    <div class="col-md-8">
+                        <textarea
+                                data-default="A portion of your payments with ------- are eligible for our Hardship program"
+                                class="form-control" rows="1" readonly> A portion of your payments with ------- are eligible for our Hardship program</textarea>
+                    </div>
+                    <div class="col-md-3 file-input">
+                        {{ form_widget(insuranceAudioForm.audioFile, {id:'companyFile'}) }}{{ form_errors(insuranceAudioForm.audioFile) }}
+                        <label class="file-label" for="companyFile">Choose file</label>
+                    </div>
+                    <div hidden>
+                        {{ form_widget(insuranceAudioForm.companyId) }}{{ form_errors(insuranceAudioForm.companyId) }}
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn-link" title="Upload"><i
+                                    class="fa fa-upload m-1 bg-outline-dark"></i></button>
+                    </div>
+                </div>
+                {{ form_errors(insuranceAudioForm) }}
+                {{ form_end(insuranceAudioForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

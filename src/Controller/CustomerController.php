@@ -26,7 +26,7 @@ class CustomerController extends AbstractController
      */
     public function getCustomersAction(CustomerService $customerService, InsuranceCompanyRepository $companyRepository)
     {
-        return $this->render('leads/leadsInteraction.html.twig', ['customers' => $customerService->getCustomersByUser($this->getUser())]);
+        return $this->render('admin/leads/leadsInteraction.html.twig', ['customers' => $customerService->getCustomersByUser($this->getUser())]);
     }
     
     /**

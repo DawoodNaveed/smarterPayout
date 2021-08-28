@@ -1,0 +1,58 @@
+{% extends 'admin/dashboardMenu.html.twig' %}
+
+{% block title %}User Management | Add New{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-sm btn-primary float-right" href="{{ path('user_list') }}" title="Back to grid"> <i
+                        class="fas fa-arrow-left"></i></a>
+            <h3 class="text-center">Create New User</h3>
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="row col-md-12 p-0">
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Username:</label>
+                    {{ form_widget(form.username) }}{{ form_errors(form.username) }}
+                </div>
+
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Email:</label>
+                    {{ form_widget(form.email) }}{{ form_errors(form.email) }}
+                </div>
+
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Phone Number:</label>
+                    {{ form_widget(form.phoneNumber) }}{{ form_errors(form.phoneNumber) }}
+                </div>
+
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Business Phone:</label>
+                    {{ form_widget(form.businessPhone) }}{{ form_errors(form.businessPhone) }}
+                </div>
+
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Job Title:</label>
+                    {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
+                </div>
+
+                {% if app.request.attributes.get('_route') is same as("add_user") %}
+                    <div class="form-row col-lg-6 mb-3">
+                        <label for="password.first">Password:</label>
+                        {{ form_widget(form.password.first) }}{{ form_errors(form.password) }}
+                    </div>
+                    <div class="form-row col-lg-6 mb-3">
+                        <label for="password.second">Confirm Password:</label>
+                        {{ form_widget(form.password.second) }}{{ form_errors(form.password) }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <button class="btn btn-sm btn-primary float-right" type="submit" title="Create User">Save</button>
+
+            {{ form_errors(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock content %}

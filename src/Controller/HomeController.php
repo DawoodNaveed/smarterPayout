@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     public function dashboardMenu()
     {
         if ($this->getUser()) {
-            return $this->render('dashboardMenu.html.twig');
+            return $this->render('admin/dashboardMenu.html.twig');
         }
         return $this->redirectToRoute('app_login');
     }
