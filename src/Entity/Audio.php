@@ -31,6 +31,13 @@ class Audio extends AbstractEntity
     private $customer;
     
     /**
+     * @var InsuranceCompany
+     * @ORM\ManyToOne(targetEntity="App\Entity\InsuranceCompany", inversedBy="audio")
+     * @ORM\JoinColumn(name="insurance_company_id", referencedColumnName="id", nullable=true)
+     */
+    private $insuranceCompany;
+    
+    /**
      * @return Customer
      */
     public function getCustomer(): Customer
@@ -45,28 +52,6 @@ class Audio extends AbstractEntity
     {
         $this->customer = $customer;
     }
-    
-    /**
-     * @return InsuranceCompany
-     */
-    public function getInsuranceCompany(): InsuranceCompany
-    {
-        return $this->insuranceCompany;
-    }
-    
-    /**
-     * @param InsuranceCompany $insuranceCompany
-     */
-    public function setInsuranceCompany(InsuranceCompany $insuranceCompany): void
-    {
-        $this->insuranceCompany = $insuranceCompany;
-    }
-    
-    /**
-     * @var InsuranceCompany
-     * @ORM\OneToOne(targetEntity="App\Entity\InsuranceCompany", mappedBy="audio")
-     */
-    private $insuranceCompany;
     
     /**
      * @return string
@@ -122,4 +107,20 @@ class Audio extends AbstractEntity
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;
+    
+    /**
+     * @return InsuranceCompany
+     */
+    public function getInsuranceCompany(): InsuranceCompany
+    {
+        return $this->insuranceCompany;
+    }
+    
+    /**
+     * @param InsuranceCompany $insuranceCompany
+     */
+    public function setInsuranceCompany(InsuranceCompany $insuranceCompany): void
+    {
+        $this->insuranceCompany = $insuranceCompany;
+    }
 }

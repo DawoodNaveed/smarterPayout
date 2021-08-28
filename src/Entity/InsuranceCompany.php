@@ -30,25 +30,14 @@ class InsuranceCompany extends AbstractEntity
     private $customer;
     
     /**
-     * @return Audio
+     * @var CreditRating
+     * @ORM\ManyToOne(targetEntity="App\Entity\CreditRating", inversedBy="insuranceCompany")
+     * @ORM\JoinColumn(name="credit_rating_id", referencedColumnName="id", nullable=true)
      */
-    public function getAudio()
-    {
-        return $this->audio;
-    }
+    private $creditRating;
     
     /**
-     * @param Audio $audio
-     */
-    public function setAudio(Audio $audio): void
-    {
-        $this->audio = $audio;
-    }
-    
-    /**
-     * @var Audio
-     * @ORM\OneToOne(targetEntity="App\Entity\Audio", inversedBy="insuranceCompany")
-     * @ORM\JoinColumn(name="audio_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Audio", mappedBy="insuranceCompany")
      */
     private $audio;
     
@@ -98,5 +87,37 @@ class InsuranceCompany extends AbstractEntity
     public function setNumber(string $number): void
     {
         $this->number = $number;
+    }
+    
+    /**
+     * @return CreditRating
+     */
+    public function getCreditRating(): CreditRating
+    {
+        return $this->creditRating;
+    }
+    
+    /**
+     * @param CreditRating $creditRating
+     */
+    public function setCreditRating(CreditRating $creditRating): void
+    {
+        $this->creditRating = $creditRating;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getAudio()
+    {
+        return $this->audio;
+    }
+    
+    /**
+     * @param mixed $audio
+     */
+    public function setAudio($audio): void
+    {
+        $this->audio = $audio;
     }
 }
