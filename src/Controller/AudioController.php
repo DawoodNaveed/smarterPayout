@@ -107,7 +107,7 @@ class AudioController extends AbstractController
         ];
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
 
-        return $this->render('voiceTags/voiceLibraryRecording.html.twig', $params);
+        return $this->render('admin/voiceTags/voiceLibraryRecording.html.twig', $params);
     }
     
     /**
@@ -134,6 +134,6 @@ class AudioController extends AbstractController
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
         $params = $audioService->getInsuranceCompanyAudio($params, $customer);
 
-        return $this->render('voiceTags/voiceMailRecordings.html.twig', $params);
+        return $this->render('admin/voiceTags/voiceMailRecordings.html.twig', $params);
     }
 }

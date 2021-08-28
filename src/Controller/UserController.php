@@ -34,7 +34,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/createOrUpdateUser.twig', [
+        return $this->render('admin/user/createOrUpdateUser.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -58,7 +58,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/createOrUpdateUser.twig', [
+        return $this->render('admin/user/createOrUpdateUser.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -71,7 +71,7 @@ class UserController extends AbstractController
         $userId = $request->get('userId');
         $user = $userService->findUserById($userId);
 
-        return $this->render('user/display.html.twig', [
+        return $this->render('admin/user/display.html.twig', [
             'user' => $user,
         ]);
     }
@@ -95,7 +95,7 @@ class UserController extends AbstractController
      */
     public function userListAction(UserService $userService)
     {
-        return $this->render('user/listUser.html.twig', [
+        return $this->render('admin/user/listUser.html.twig', [
             'users' => $userService->getAllUsers(),
         ]);
     }
@@ -122,7 +122,7 @@ class UserController extends AbstractController
             $user = $userService->findOneBy(['email' => $userEmail]);
             if (!$user) {
                 $this->addFlash('error', 'User Not found');
-                return $this->render('user/resetPassword.html.twig', [
+                return $this->render('admin/user/resetPassword.html.twig', [
                     'form' => $form->createView()
                 ]);
             }
@@ -138,14 +138,14 @@ class UserController extends AbstractController
             $emailService->send(
                 'Reset Password',
                 $userEmail,
-                'email/resetPassword.html.twig',
+                'admin/email/resetPassword.html.twig',
                 $replacements
             );
-            return $this->render('user/resetPasswordEmailSent.html.twig', [
+            return $this->render('admin/user/resetPasswordEmailSent.html.twig', [
                 'form' => $form->createView()
             ]);
         }
-        return $this->render('user/resetPassword.html.twig', [
+        return $this->render('admin/user/resetPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -181,7 +181,7 @@ class UserController extends AbstractController
             $this->addFlash('success', 'Password Updated Successfully');
             return $this->redirectToRoute('app_login');
         }
-        return $this->render('user/resetPassword.html.twig', [
+        return $this->render('admin/user/resetPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }

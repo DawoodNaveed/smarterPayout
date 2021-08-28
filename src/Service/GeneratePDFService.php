@@ -31,7 +31,7 @@ class GeneratePDFService
         $pdfOptions->set('isRemoteEnabled', true);
         $domPdf = new Dompdf($pdfOptions);
         
-        $html = $this->twig->render('letter/' . $letterFileName .'.html.twig', [
+        $html = $this->twig->render('admin/letter/' . $letterFileName .'.html.twig', [
         ]);
         $domPdf->loadHtml($html);
         $domPdf->setPaper('A4', 'portrait');

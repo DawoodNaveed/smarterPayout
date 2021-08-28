@@ -30,6 +30,6 @@ class LetterController extends AbstractController
      */
     public function listAction(Request $request)
     {
-        return $this->render('letter/lettersLibrary.html.twig');
+        return $this->render('admin/letter/lettersLibrary.html.twig');
     }
 }
