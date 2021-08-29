@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Form\genericAudioForm;
 use App\Form\insuranceAudioForm;
 use App\Form\userAudioForm;
-use App\Repository\InsuranceCompanyRepository;
 use App\Service\AudioService;
 use App\Service\AwsS3Service;
 use App\Service\CustomerService;
@@ -15,6 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route(path="/admin")
+ * Class AudioController
+ * @package App\Controller
+ */
 class AudioController extends AbstractController
 {
     /**

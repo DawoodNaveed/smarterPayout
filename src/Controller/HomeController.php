@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/dashboard", name="dashboard_menu")
+     * @Route("/admin/dashboard", name="dashboard_menu")
      */
     public function dashboardMenu()
     {
@@ -21,9 +26,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function indexAction()
+    public function indexAction(): RedirectResponse
     {
-        return $this->render('welcome.html.twig');
         if ($this->getUser()) {
             return $this->redirectToRoute('dashboard_menu');
         }
