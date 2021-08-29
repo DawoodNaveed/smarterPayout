@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\Date;
 
 /**
+ * @Route(path="/admin")
  * Class TwilioController
  * @package App\Controller
  */

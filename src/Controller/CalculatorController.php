@@ -11,13 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @Route(path="/user")
  * Class CalculatorController
  * @package App\Controller
  */
 class CalculatorController extends AbstractController
 {
     /**
-     * @Route("/userCalculator", name="calculator_action")
+     * @Route("/calculator", name="calculator_action")
      * @param Request $request
      * @param CalculatorService $calculatorService
      * @return Response

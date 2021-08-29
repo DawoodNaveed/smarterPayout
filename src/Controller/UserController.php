@@ -2,19 +2,22 @@
 
 namespace App\Controller;
 
-use App\Form\resetPasswordEmailForm;
 use App\Form\resetPasswordForm;
 use App\Form\userForm;
 use App\Service\UserService;
-use App\Service\EmailService;
-use App\Service\UtilService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Route(path="/admin")
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
     /**
@@ -101,60 +104,11 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route ("/forgotPassword", name="forgot_password")
-     * @param Request $request
-     * @param EmailService $emailService
-     * @param UtilService $utilService
-     * @param UserService $userService
-     */
-    public function forgotPasswordAction(
-        Request $request,
-        EmailService $emailService,
-        UtilService $utilService,
-        UserService $userService
-    )
-    {
-        $form = $this->createForm(resetPasswordEmailForm::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $formData = $form->getData();
-            $userEmail = $formData['email'];
-            $user = $userService->findOneBy(['email' => $userEmail]);
-            if (!$user) {
-                $this->addFlash('error', 'User Not found');
-                return $this->render('admin/user/resetPassword.html.twig', [
-                    'form' => $form->createView()
-                ]);
-            }
-            $resetPasswordToken = $utilService->generateToken();
-            $expireDateTime = $utilService->getExpireDateAndTimeForResetPasswordUrl();
-            $user->setResetPasswordToken($resetPasswordToken);
-            $userService->addEditUser($user);
-            $replacements = [
-                'userEmail' => $userEmail,
-                'resetPasswordToken' => $resetPasswordToken,
-                'expireDateTime' => urlencode($expireDateTime)
-            ];
-            $emailService->send(
-                'Reset Password',
-                $userEmail,
-                'admin/email/resetPassword.html.twig',
-                $replacements
-            );
-            return $this->render('admin/user/resetPasswordEmailSent.html.twig', [
-                'form' => $form->createView()
-            ]);
-        }
-        return $this->render('admin/user/resetPassword.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/reset/{userEmail}/{resetPasswordToken}/{expireDateTime}", name="reset")
      * @param Request $request
      * @param UserService $userService
      * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
      */
     public function resetPasswordAction(Request $request, UserService $userService, UserPasswordEncoderInterface $encoder)
     {
