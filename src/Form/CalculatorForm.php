@@ -40,7 +40,10 @@ class CalculatorForm extends AbstractType
             ->add('paymentStartDate', TextType::class)
             ->add('paymentEndDate', TextType::class)
             ->add('paymentAmount', TextType::class)
-            ->add('frequency', TextType::class)
+            ->add('frequency', ChoiceType::class, [
+                'choices' => CalculatorEnum::frequencyValues
+            ])
+            ->add('percentStep', TextType::class)
             ->add('phoneNo', TextType::class)
             ->add('emailAddress', TextType::class)
             ->add('smoker' , ChoiceType::class, [

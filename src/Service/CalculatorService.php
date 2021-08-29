@@ -2,8 +2,10 @@
 
 namespace App\Service;
 
+use App\Enum\CalculatorEnum;
 use App\Repository\AgeBaseRateRepository;
 use App\Repository\CreditRatingRepository;
+use DateTime;
 
 /**
  * Class CalculatorService
@@ -79,11 +81,71 @@ class CalculatorService
     
     /**
      * @param array $data
+     * @param array $discountRate
+     * @return array
+     * @throws \Exception
      */
-    public function calculateFutureValue(array $data)
+    public function calculatePresentValueByStartDate(array $data, array $discountRate) {
+        $pv = [];
+        $paymentStartDate = DateTime::createFromFormat('d/m/Y', $data['paymentStartDate']);
+        $paymentStartDate = $paymentStartDate->format('Y-m-d');
+        $paymentEndDate = DateTime::createFromFormat('d/m/Y', $data['paymentEndDate']);
+        $paymentEndDate = $paymentEndDate->format('Y-m-d');
+        $paymentStartDate = new DateTime($paymentStartDate);
+        $paymentEndDate = new DateTime($paymentEndDate);
+        $dateDifference = $paymentStartDate->diff($paymentEndDate);
+        $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
+    
+        $minFrequencyDiscountRate = $discountRate['min'] / $data['frequency'];
+        $maxFrequencyDiscountRate = $discountRate['max'] / $data['frequency'];
+        $pv['min'] = $data['paymentAmount'] + ($data['paymentAmount'] *
+                (((1 - (pow(1 / (1 + ($minFrequencyDiscountRate)), $dateDifference * $data['frequency']))))
+                    / $minFrequencyDiscountRate));
+        $pv['max'] = $data['paymentAmount'] + ($data['paymentAmount'] *
+            (((1 - (pow(1 / (1 + ($maxFrequencyDiscountRate)), $dateDifference * $data['frequency']))))
+                / $maxFrequencyDiscountRate));
+        
+        return $pv;
+    }
+    
+    /**
+     * @param array $pv
+     * @param array $data
+     * @param array $discountRate
+     * @throws \Exception
+     */
+    public function calculatePresentValueByCurrentDay(array $pv, array $data, array $discountRate)
     {
-        if ($data['productType'] === 'lcp') {
+        $todayDate = new DateTime();
+        $paymentStartDate = DateTime::createFromFormat('d/m/Y', $data['paymentStartDate']);
+        $paymentStartDate = $paymentStartDate->format('Y-m-d');
+        $paymentStartDate = new DateTime($paymentStartDate);
+        $dateDifference = $todayDate->diff($paymentStartDate);
+        $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
+        
+        $minDiscountRate = (pow(1 + ($discountRate['min'] / $data['frequency']), $data['frequency'])) - 1;
+        $maxDiscountRate = (pow(1 + ($discountRate['max'] / $data['frequency']), $data['frequency'])) - 1;
+        $pv['min'] = ($pv['min']) / (pow((1 + $minDiscountRate), $dateDifference));
+        $pv['max'] = ($pv['max']) / (pow((1 + $maxDiscountRate), $dateDifference));
+        
+        return $pv;
+    }
+    
+    /**
+     * @param array $data
+     * @throws \Exception
+     */
+    public function calculatePresentValue(array $data)
+    {
+        $discountRate = CalculatorEnum::gpDiscountsRate;
+        if ($data['productType'] === CalculatorEnum::productType['LCP']) {
             $discountRate = $this->getLcpDiscountRate($data);
+        }
+        if (!($data['percentStep'])) {
+            $pv = $this->calculatePresentValueByStartDate($data, $discountRate);
+            $pv = $this->calculatePresentValueByCurrentDay($pv, $data, $discountRate);
+        } else {
+            #TODO work needs to be done for percent step
         }
     }
 }
