@@ -34,10 +34,10 @@ class CalculatorController extends AbstractController
                 $this->addFlash('error', 'Age is not valid');
                 return $this->redirectToRoute('calculator_action');
             }
-            $calculatorService->calculateFutureValue($data);
+            $calculatorService->calculatePresentValue($data);
         }
     
-        return $this->render('message/day1.html.twig', [
+        return $this->render('admin/message/day1.html.twig', [
             'form' => $form->createView()
         ]);
     }

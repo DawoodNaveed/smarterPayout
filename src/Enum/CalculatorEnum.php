@@ -4,7 +4,10 @@ namespace App\Enum;
 
 class CalculatorEnum
 {
-    const minAge = 20; const maxAge = 85;
+    const minAge = 20;
+    const maxAge = 85;
+    const gpDiscountsRate = 0.058;
+    const daysInYear = 365;
     const productType = [
         'LCP' => 'lcp',
         'GP' => 'gp'
@@ -89,6 +92,14 @@ class CalculatorEnum
         'overWeight' => 0.15,
         'obese' => 0.25,
         'Prefer To Put Manually' => 0
+    ];
+    #Frequency Value
+    const frequencyValues = [
+        'Weekly' => 52,
+        'Monthly' => 12,
+        'Quarterly' => 4,
+        'SemiAnnually' => 2,
+        'Yearly' => 1
     ];
     #Smoker Values
     const smokerValues = [
