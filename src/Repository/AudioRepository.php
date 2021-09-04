@@ -84,8 +84,17 @@ class AudioRepository extends AbstractRepository
         $audio = new Audio();
         $audio->setFileName($filename);
         $audio->setUser($user);
+        $audio->setInsuranceCompany($insuranceCompany);
         $this->persist($audio, true);
-        $insuranceCompany->setAudio($audio);
-        $this->persist($insuranceCompany,true);
+    }
+    
+    /**
+     * @param InsuranceCompany $insuranceCompany
+     * @param User $user
+     * @return null|Audio
+     */
+    public function getAudioByCompanyAndUser(InsuranceCompany $insuranceCompany, User $user)
+    {
+        return $this->findOneBy(['insuranceCompany' => $insuranceCompany, 'user' => $user]);
     }
 }

@@ -120,4 +120,19 @@ class InsuranceCompany extends AbstractEntity
     {
         $this->audio = $audio;
     }
+    
+    /**
+     * @param bool $audioAdded
+     * @return array
+     */
+    public function toArray(bool $audioAdded): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'number' => $this->number,
+            'rating' => $this->creditRating,
+            'audioAdded' => $audioAdded
+        ];
+    }
 }

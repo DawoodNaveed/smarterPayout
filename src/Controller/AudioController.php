@@ -38,7 +38,7 @@ class AudioController extends AbstractController
         InsuranceCompanyService $insuranceCompanyService
     ):  Response {
         $customers = $customerService->getCustomersByUser($this->getUser());
-        $insuranceCompanies = $insuranceCompanyService->getInsuranceCompanies();
+        $insuranceCompanies = $insuranceCompanyService->getInsuranceCompanies($this->getUser());
         
         $genericAudioForm1 = $this->createForm(genericAudioForm::class);
         $genericAudioForm2 = $this->createForm(genericAudioForm::class);
