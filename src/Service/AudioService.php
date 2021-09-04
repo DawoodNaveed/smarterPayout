@@ -85,7 +85,7 @@ class AudioService
      */
     public function saveInsuranceAudio(InsuranceCompany $insuranceCompany, User $user, string $filename)
     {
-        if (!$insuranceCompany->getAudio()) {
+        if (!($this->audioRepository->getAudioByCompanyAndUser($insuranceCompany, $user))) {
             $this->audioRepository->saveInsuranceAudio($insuranceCompany, $user, $filename);
         }
     }

@@ -268,9 +268,9 @@
                         <option>Select Company</option>
                         {% for company in insuranceCompanies %}
                             <option data-name="{{ company.name }}"
-                                    data-file="{% if company.audio is not null %} {{ (company.audio.id) }} {% endif %}"
-                                    value="{{ company.Id }}">
-                                {{ company.name }} - {{ company.Id }}
+                                    data-file="{{ company.audioAdded }}"
+                                    value="{{ company.id }}">
+                                {{ company.name }}
                             </option>
                         {% endfor %}
                     </select>
