@@ -6,7 +6,6 @@ class CalculatorEnum
 {
     const minAge = 20;
     const maxAge = 85;
-    const gpDiscountsRate = 0.058;
     const daysInYear = 365;
     const productType = [
         'LCP' => 'lcp',
