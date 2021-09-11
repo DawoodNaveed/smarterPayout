@@ -183,6 +183,10 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.6);
     background: white;
+    overscroll-behavior: contain;
+    position: fixed;
+    overflow-y: scroll;
+    bottom: 30px;
 }
 
 ::-webkit-scrollbar {
@@ -197,11 +201,13 @@ body {
     top: 100px;
     left: -300px;
     z-index: 999;
+    overflow-y: scroll;
 }
 
 @media screen and (min-width: 768px) {
     .page-wrapper.toggled .page-content {
         padding-left: 250px;
+        overflow-y: scroll;
     }
 
     .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a {
@@ -340,18 +346,6 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.fa:hover::before,
-.fas:hover::before,
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a .fa::before,
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a .fas::before {
-    background: #e0a800;
-    background: -webkit-linear-gradient(to right, #e0a800 30%, #000000 100%);
-    background: -moz-linear-gradient(to right, #e0a800 30%, #000000 100%);
-    background: linear-gradient(to right, #e0a800 30%, #000000 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .sidebar-wrapper .sidebar-menu ul li a i,
 .navbar .nav-item a i {
     font-size: 25px;
@@ -385,7 +379,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
 .navbar .nav-item a {
     color: black;
-    opacity: 0.8;
+    opacity:1;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a i,
@@ -406,6 +400,40 @@ body {
 
 .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
     color: #ffffff;
+}
+
+.active-i{
+    font-size: 27px;
+    background: #09b44d;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    font-size 0.15s ease-in-out;
+    -webkit-animation: horizontal 2s ease infinite;
+    animation: horizontal 2s ease infinite;
+}
+
+.active-a{
+    background-color: #f6f6f6;
+    -webkit-transition: background 1s;
+    transition: background 1s;
+    font-weight: bold;
+    color: black;
+    opacity: 1;
+    transform: scale(1.1);
+    border-right: 18px #09b44d solid;
+}
+
+.fa:hover::before,
+.fas:hover::before,
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a .fa::before,
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a .fas::before,
+.chiller-theme .sidebar-wrapper .sidebar-menu ul li a .active-i::before {
+    background: #e0a800;
+    background: -webkit-linear-gradient(to right, #e0a800 30%, #000000 100%);
+    background: -moz-linear-gradient(to right, #e0a800 30%, #000000 100%);
+    background: linear-gradient(to right, #e0a800 30%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 #close-right-sidebar {
@@ -467,11 +495,6 @@ body {
 #close-right-sidebar:hover {
     color: #ffffff;
     border: none;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
-.navbar .nav-item a i {
-    background: #f6f6f6;
 }
 
 .modal-icon {
