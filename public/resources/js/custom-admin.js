@@ -46,4 +46,26 @@ $(document).ready(function() {
             // needs to implement functionality
         });
     });
+
+    //  in case of load/reload sidebar active
+    var setDefaultActive = function() {
+        var path = window.location.pathname;
+        console.log(path);
+        var element = $(".sidebar-content .sidebar-menu ul li a[href='" + path + "']");
+        element.parent('li').addClass("active-li");
+        element.addClass("active-a");
+        element.find('i').addClass("active-i");
+    }
+    setDefaultActive();
+
+    //  in case of navigation link click sidebar active
+    var navigationLinks = $(".sidebar-content .sidebar-menu ul li");
+    for(var i = 0; i < navigationLinks.length; i++) {
+        navigationLinks[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active-li");
+            console.log(current);
+            current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
 });
