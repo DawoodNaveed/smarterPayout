@@ -6,6 +6,9 @@ body {
     background-color: #FFFFFF;
     padding-top: 3.5rem;
     background-image: url("/resources/images/bg-home.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 }
 
 .primary-heading{
@@ -430,4 +433,9 @@ textarea{
     bottom: 0;
     opacity: 1;
     transition: bottom 1s ease-out;
+}
+
+.job-info p{
+    padding: 5px;
+    color: #808080;
 }
