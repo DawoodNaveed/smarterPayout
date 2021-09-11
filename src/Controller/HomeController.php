@@ -26,11 +26,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function indexAction(): RedirectResponse
+    public function indexAction()
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('dashboard_menu');
-        }
-        return $this->redirectToRoute('app_login');
+        return $this->render('client/website.html.twig');
     }
 }
