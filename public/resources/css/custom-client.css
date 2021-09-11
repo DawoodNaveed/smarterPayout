@@ -1,4 +1,4 @@
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -11,7 +11,7 @@ body {
     background-position: top;
 }
 
-.primary-heading{
+.primary-heading {
     color: #09b44d;
     font-size: 3rem;
     font-weight: bolder;
@@ -19,13 +19,13 @@ body {
     padding-bottom: 0.2rem;
 }
 
-.heading-primary-tagline{
+.heading-primary-tagline {
     color: #808080;
     font-size: 1rem;
     font-weight: bolder;
 }
 
-.heading-secondary-tagline{
+.heading-secondary-tagline {
     color: #808080;
     font-size: 0.9rem;
     font-weight: normal;
@@ -57,7 +57,7 @@ body {
     border-color: #09b44d;
 }
 
-#home{
+#home {
     background-image: url("/resources/images/bg-home.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,6 +67,8 @@ body {
 .logo {
     width: auto;
     height: 5.8rem;
+    padding: 0;
+    margin: 0;
 }
 
 @media only screen and (min-width: 992px) {
@@ -185,7 +187,7 @@ body {
     cursor: pointer;
 }
 
-#contact{
+#contact {
     padding-top: 4rem;
     height: 100%;
     background-image: url("/resources/images/bg-contact.svg");
@@ -194,14 +196,13 @@ body {
     background-position: center;
 }
 
-.contact-us-section-one{
+.contact-us-section-one {
     padding-top: 80px;
     padding-bottom: 80px;
     margin-bottom: 100px;
 }
 
-
-.contact-us-section-two{
+.contact-us-section-two {
     background-color: #09b44d;
     min-height: 400px;
     height: 60%;
@@ -231,7 +232,7 @@ body {
     transform: translateY(-125%);
     font-size: 0.75em;
     font-weight: bold;
-    /*color: #262626;*/
+    /*color: #262626;*/;
 }
 
 .form-input {
@@ -244,6 +245,7 @@ body {
     transition: box-shadow 150ms ease-out;
     background-color: transparent;
 }
+
 .form-input:focus {
     box-shadow: 0 2px 0 0 #FBC233;
 }
@@ -252,7 +254,7 @@ body {
     box-shadow: 0 2px 0 0 #09b44d;
 }
 
-textarea{
+textarea {
     resize: none;
 }
 
@@ -274,34 +276,35 @@ textarea{
     from {
         -webkit-transform: rotate(0deg);
     }
+
     to {
         -webkit-transform: rotate(359deg);
     }
 }
 
-.contact-info h4, .contact-info h6{
+.contact-info h4, .contact-info h6 {
     color: #FFFFFF;
     font-weight: bold;
 }
 
-.contact-info p{
+.contact-info p {
     text-align: left;
     margin-top: 50px;
 }
 
-.contact-info p i{
+.contact-info p i {
     text-align: left;
     font-size: 20px;
     color: #FBC233;
 }
 
-.contact-info p span{
+.contact-info p span {
     margin-left: 30px;
     color: #f6f6f6;
     font-weight: lighter;
 }
 
-.contact-info .social-media a{
+.contact-info .social-media a {
     text-decoration: none;
     color: #FFFFFF;
     height: 29px;
@@ -310,17 +313,17 @@ textarea{
     text-align: center;
 }
 
-.contact-info .social-media a i{
+.contact-info .social-media a i {
     font-size: 29px;
 }
 
-.contact-info .social-media a:hover{
+.contact-info .social-media a:hover {
     transform: scale(1.3);
     color: #f6f6f6;
     transition: all 0.30s ease;
 }
 
-#career{
+#career {
     padding-top: 8rem;
     padding-bottom: 4rem;
     height: 100%;
@@ -330,7 +333,7 @@ textarea{
     background-position: center;
 }
 
-.career-card{
+.career-card {
     height: 150px;
     /*width: 350px;*/
     box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.3);
@@ -340,13 +343,13 @@ textarea{
     background-color: #f6f6f6;
 }
 
-.career-card .custom-card-body{
+.career-card .custom-card-body {
     position: absolute;
     bottom: 0px;
     padding-left: 0;
 }
 
-.career-card a{
+.career-card a {
     text-decoration: none;
     font-size: 0.8rem;
     color: #09b44d;
@@ -354,7 +357,7 @@ textarea{
     cursor: pointer;
 }
 
-#about-us{
+#about-us {
     background-image: url("/resources/images/bg-about-us.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -365,37 +368,38 @@ textarea{
 }
 
 @media (max-width: 992px) {
-    .about-us-section-one{
+    .about-us-section-one {
         text-align: center;
         padding: 20px;
         margin-bottom: 50px;
     }
 
-    .contact-us-section-one{
+    .contact-us-section-one {
         text-align: center;
         padding: 30px;
         margin-bottom: 100px;
     }
-    .contact-us-section-two{
+
+    .contact-us-section-two {
         background-color: #09b44d;
         min-height: 400px;
         height: 100%;
     }
 }
 
-.text-link{
+.text-link {
     text-decoration: none;
     color: #09b44d;
     font-weight: bold;
     cursor: pointer;
 }
 
-.text-link:hover{
+.text-link:hover {
     color: #FBC233;
     text-decoration: none;
 }
 
-#calculate{
+#calculate {
     padding-top: 8rem;
     background-image: url("/resources/images/bg-calculate.svg");
     background-repeat: no-repeat;
@@ -405,7 +409,7 @@ textarea{
     margin: 0;
 }
 
-.about-us-animated-img{
+.about-us-animated-img {
     left: 15%;
     position: absolute;
     height: auto;
@@ -413,7 +417,8 @@ textarea{
     z-index: 2;
     bottom: 0;
 }
-.about-us-back-img{
+
+.about-us-back-img {
     height: auto;
     width: 100%;
     position: relative;
@@ -423,19 +428,78 @@ textarea{
     z-index: 1;
 }
 
-.about-us-animated-img-block{
+.about-us-animated-img-block {
     opacity: 0;
     bottom: -50%;
     transition: bottom 0.5s ease-in;
 }
 
-.about-us-animated-img-animate{
+.about-us-animated-img-animate {
     bottom: 0;
     opacity: 1;
     transition: bottom 1s ease-out;
 }
 
-.job-info p{
+.job-info p {
     padding: 5px;
     color: #808080;
+}
+
+#job-Details {
+    background-image: url("/resources/images/bg-job-details.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#about-us-details {
+    background-image: url("/resources/images/bg-about-us-details.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.img-container {
+    background: #73bfd6;
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+}
+
+.profile-card {
+    margin: 2.5rem;
+    box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    background-color: #f4f4f4;
+    padding: 0;
+    border: 0;
+}
+
+.card-img-top {
+    padding: 1rem;
+    max-width: 200px;
+}
+
+.custom-card-title {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -30px;
+    text-align: center;
+    background: #FFFFFF;
+    min-width: 8rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.3);
+}
+
+.profile-card-button {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
 }
