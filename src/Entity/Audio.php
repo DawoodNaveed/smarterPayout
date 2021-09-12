@@ -25,8 +25,7 @@ class Audio extends AbstractEntity
     private $fileName;
     
     /**
-     * @var Customer
-     * @ORM\OneToOne(targetEntity="App\Entity\Customer", mappedBy="audio")
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="audio")
      */
     private $customer;
     
@@ -36,22 +35,6 @@ class Audio extends AbstractEntity
      * @ORM\JoinColumn(name="insurance_company_id", referencedColumnName="id", nullable=true)
      */
     private $insuranceCompany;
-    
-    /**
-     * @return Customer
-     */
-    public function getCustomer(): Customer
-    {
-        return $this->customer;
-    }
-    
-    /**
-     * @param Customer $customer
-     */
-    public function setCustomer(Customer $customer): void
-    {
-        $this->customer = $customer;
-    }
     
     /**
      * @return string
@@ -122,5 +105,21 @@ class Audio extends AbstractEntity
     public function setInsuranceCompany(InsuranceCompany $insuranceCompany): void
     {
         $this->insuranceCompany = $insuranceCompany;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+    
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer): void
+    {
+        $this->customer = $customer;
     }
 }

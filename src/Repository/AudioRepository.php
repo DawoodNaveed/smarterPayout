@@ -26,17 +26,11 @@ class AudioRepository extends AbstractRepository
     /**
      * @param string $tagId
      * @param User $user
+     * @return Audio|null
      */
     public function getAudio(string $tagId, User $user)
     {
-        $qb = $this->createQueryBuilder('audio');
-    
-        $qb->where('audio.tagId = :tagId')
-            ->andWhere('audio.user = :user')
-            ->setParameter('tagId' , $tagId)
-            ->setParameter('user', $user);
-        
-        return $qb->getQuery()->getResult();
+        return $this->findOneBy(['tagId' => $tagId, 'user' => $user]);
     }
     
     /**

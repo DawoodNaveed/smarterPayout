@@ -75,8 +75,8 @@
                 <div class="d-flex justify-content-around flex-md-wrap">
                     <a title="Text Message" data-toggle="modal" data-target="#messageConfirmationModel"> <i
                                 class="fa fa-comment bg-outline-large-theme"></i></a>
-                    <a href="" title="Call"><i class="fa fa-phone bg-outline-large-theme"></i></a>
-                    <a href="" title="Voice mail"><i class="fa fa-microphone bg-outline-large-theme"></i></a>
+                    <a href="javascript:void(0)" id = "call" title="Call"><i class="fa fa-phone bg-outline-large-theme"></i></a>
+                    <a href="javascript:void(0)" id = "voicemail" title="Voice mail" data-url = {{ path('send_voicemail') }}><i class="fa fa-microphone bg-outline-large-theme"></i></a>
                     <a href="" title="Letter"><i class="fa fa-envelope bg-outline-large-theme"></i></a>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                         <td>584512</td>
                         <td>{{ customer.firstName }}</td>
                         <td>
-                            <p>{{ customer.customerMeta.phoneNumber1 }}</p>
+                            <p>{{ customer.phoneNumber1 }}</p>
                             <div class="d-flex justify-content-center">
                                 <div class="custom-control-inline">
                                     <div class="radio icheck-success">
@@ -135,7 +135,7 @@
                             </div>
                         </td>
                         <td>
-                            <p>{{ customer.customerMeta.phoneNumber2 }}</p>
+                            <p>{{ customer.phoneNumber2 }}</p>
                             <div class="d-flex justify-content-center">
                                 <div class="custom-control-inline">
                                     <div class="radio icheck-success">
@@ -154,7 +154,7 @@
                             </div>
                         </td>
                         <td>
-                            <p>{{ customer.customerMeta.phoneNumber3 }}</p>
+                            <p>{{ customer.phoneNumber3 }}</p>
                             <div class="d-flex justify-content-center">
                                 <div class="custom-control-inline">
                                     <div class="radio icheck-success">
@@ -173,7 +173,7 @@
                             </div>
                         </td>
                         <td><a href="{{ path('get_audio', {'customerId' : customer.id}) }}" title="Verify Voice Tags"><i
-                                        class="fa fa-file-audio m-1 bg-outline-theme"></i></a></td>
+                                        class="fa fa-file-audio m-1 {% if customer.audioTagCompleted %}bg-outline-theme{% else %}bg-outline-dark{% endif %}"></i></a></td>
                         <td>Client is at work, will call at 5 pm</td>
                         <td>10:15 am
                             <br> 10/15/2021
@@ -187,8 +187,11 @@
             </table>
         </div>
     </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('resources/js/google-speedo-meter.js') }}"></script>
+    <script src="{{ asset('resources/js/quickStart.js') }}"></script>
+    <script src="{{ asset('resources/js/twilio.min.js') }}"></script>
 {% endblock %}

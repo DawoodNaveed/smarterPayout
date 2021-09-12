@@ -10,6 +10,7 @@ use App\Service\AwsS3Service;
 use App\Service\CustomerService;
 use App\Service\InsuranceCompanyService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +38,7 @@ class AudioController extends AbstractController
         CustomerService $customerService,
         InsuranceCompanyService $insuranceCompanyService
     ):  Response {
-        $customers = $customerService->getCustomersByUser($this->getUser());
+        $customers = $customerService->getCustomersByUser($this->getUser(), true);
         $insuranceCompanies = $insuranceCompanyService->getInsuranceCompanies($this->getUser());
         
         $genericAudioForm1 = $this->createForm(genericAudioForm::class);
@@ -136,8 +137,29 @@ class AudioController extends AbstractController
             $params['customerAudio'] = $awsS3Service->getPreSignedUrl($customer->getAudio()->getFileName());
         }
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
-        $params = $audioService->getInsuranceCompanyAudio($params, $customer);
+        $params = $audioService->getInsuranceCompanyAudio($params, $customer, $this->getUser());
 
         return $this->render('admin/voiceTags/voiceMailRecordings.html.twig', $params);
+    }
+    
+    /**
+     * @Route("/audio/{customerId}/{callDay}", name="get_all_audio")
+     * @param Request $request
+     * @param CustomerService $customerService
+     * @return Response
+     */
+    public function getAllAudiosAction(Request $request, CustomerService $customerService)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $customerId = $request->get('customerId');
+            $callDay = $request->get('callDay');
+            $voiceMailAudio = $customerService->getAllAudios($this->getUser(), $customerId, $callDay);
+            if (!$voiceMailAudio) {
+                return new JsonResponse($voiceMailAudio, 500);
+            }
+            return new JsonResponse($voiceMailAudio);
+        }
+    
+        throw new \BadMethodCallException('method not allowed');
     }
 }

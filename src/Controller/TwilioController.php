@@ -34,12 +34,21 @@ class TwilioController extends CustomerController
      * @Route("/voicemail", name="send_voicemail")
      * @param Request $request
      * @param TwilioService $twilioService
+     * @return JsonResponse|void
      */
     public function voicemailAction(Request $request, TwilioService $twilioService)
     {
-        #TODO
-        $parentCallSid = $request->get('callSid');
-        $twilioService->sendVoicemail($parentCallSid);
+        try {
+            $parentCallSid = $request->get('callSid');
+            $voicemailAudio = $request->get('voicemailAudio');
+            $voicemailAudio = $voicemailAudio . "</Response>";
+            $twilioService->sendVoicemail($parentCallSid, $voicemailAudio);
+            
+            return new JsonResponse(array('message' => 'Voice Mail Has been send' ));
+        } catch (\Exception $exception) {
+            return new JsonResponse($exception->getMessage(), 500);
+        }
+        
     }
     
     /**
