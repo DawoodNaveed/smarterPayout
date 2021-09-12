@@ -30,4 +30,28 @@ class HomeController extends AbstractController
     {
         return $this->render('client/mainContent.html.twig');
     }
+
+    /**
+     * @Route("/admin/warmList", name="warm_list")
+     */
+    public function warmListAction()
+    {
+        return $this->render('admin/lists/warmList.html.twig');
+    }
+
+    /**
+     * @Route("/admin/activeList", name="active_list")
+     */
+    public function activeListAction()
+    {
+        return $this->render('admin/lists/activeList.html.twig');
+    }
+
+    /**
+     * @Route("/admin/prospectsList", name="prospects_list")
+     */
+    public function prospectsListAction()
+    {
+        return $this->render('admin/lists/prospectsList.html.twig');
+    }
 }

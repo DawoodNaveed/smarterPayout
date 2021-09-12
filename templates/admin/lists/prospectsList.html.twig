@@ -1,0 +1,58 @@
+{% extends 'admin/dashboardMenu.html.twig' %}
+
+{% block title %}Prospects List - Smarter Payouts{% endblock %}
+
+{% block content %}
+    <div class="card custom-card">
+        <div class="card-header bg-theme m-0">
+            <h4>Prospects List</h4>
+        </div>
+        <div class="card-body">
+            <table id="data_table" class="display table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Col 01</th>
+                    <th>Col 02</th>
+                    <th>Col 03</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>C1R1</td>
+                    <td>C2R1</td>
+                    <td>C3R1</td>
+                    <td class="d-flex align-items-center justify-content-center">
+                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>C1R2</td>
+                    <td>C2R2</td>
+                    <td>C3R2</td>
+                    <td class="d-flex align-items-center justify-content-center">
+                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                        <a href="" title="Delete"
+                           data-toggle="modal"
+                           data-target="#deleteModel">
+                            <i class="fa fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>C1R3</td>
+                    <td>C2R3</td>
+                    <td>C3R3</td>
+                    <td class="d-flex align-items-center justify-content-center">
+                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
+                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
