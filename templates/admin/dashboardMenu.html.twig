@@ -27,311 +27,306 @@
         </div>
     </div>
 
-    <div class="page-wrapper chiller-theme toggled">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light">
-            <div class="navbar-brand">
-                <a href="{{ path('dashboard_menu') }}" class="text-center">Smarter Payouts</a>
-                <a id="close-sidebar" class="btn-sm pl-4 pb-0" href="#">
-                    <i class="fas fa-bars"></i>
-                </a>
-            </div>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#">
-                        <i class="fas fa-user-circle"></i>
-                        <span>User-001</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-menu pt-3 pb-2">
-                    <ul>
-                        <li class="active-li">
-                            <a href="{{ path('admin_overview') }}">
-                                <i class="fas fa-clipboard-list"></i>
-                                <span>Overview</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-user-circle"></i>
-                                <span>Personal Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-address-book"></i>
-                                <span>Client Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-users"></i>
-                                <span>Client Management</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('get_customers') }}">
-                            <i class="fas fa-user-cog faa-horizontal animated-hover"></i>
-                                <span>Leads Management</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-file-alt"></i>
-                                <span>Documents</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-clipboard-list"></i>
-                                <span>Prospects List</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-clipboard-list"></i>
-                                <span>Warm List</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-clipboard-list"></i>
-                                <span>Active List</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-gem"></i>
-                                <span>Awards</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_list') }}">
-                                <i class="fas fa-user"></i>
-                                <span>Users</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('create_audio') }}">
-                                <i class="fa fa-file-audio"></i>
-                                <span>Voice Tags</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('letter_list') }}">
-                                <i class="fas fa-envelope"></i>
-                                <span>Letters</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_messages') }}">
-                                <i class="fas fa-envelope-open-text"></i>
-                                <span>Messages</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('app_logout') }}">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <span>Logout</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- sidebar-menu  -->
-            </div>
-            <!-- sidebar-content  -->
-        </nav>
-        <!-- sidebar-wrapper  -->
-
-        <div class="ml-auto sidebar-wrapper-right collapsed col-lg-2">
-            <a id="close-right-sidebar" class="d-lg-none d-xl-none animate-open" href="#">
-                <i class="fas fa-angle-double-left"></i>
+<div class="page-wrapper chiller-theme toggled">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+        <div class="navbar-brand">
+            <a href="{{ path('dashboard_menu') }}" class="text-center">Smarter Payouts</a>
+            <a id="close-sidebar" class="btn-sm pl-4 pb-0" href="#">
+                <i class="fas fa-bars"></i>
             </a>
-            <h5 class="text-center pt-2">Dream Board</h5>
-            <img class="img-fluid rounded" height="300" width="350" alt="Image"
-                 src="{{ asset ('resources/images/dreamboard.jpg') }}">
-            <!-- Sidebar -->
-            <nav>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#">Sales Resources</a>
-                    </li>
-                    <li>
-                        <a href="#">Manager Assistance </a>
-                    </li>
-                    <li>
-                        <a href="#">Call Interactions</a>
-                    </li>
-                    <li>
-                        <a href="#">Text messages</a>
-                    </li>
-                    <li>
-                        <a href="#">Marketing Letters</a>
-                    </li>
-                    <li>
-                        <a href="#">Voicemail Recordings</a>
-                    </li>
-                    <li>
-                        <a href="#">Help Desk </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="#">
+                    <i class="fas fa-user-circle"></i>
+                    <span>User-001</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <main class="page-content col-lg-10 mx-auto">
-            <div class="container-fluid">
-                {% block content %}
-                    <div class="row">
-                        <div class="col-md-4 m-3">
-                            <button class="btn btn-outline-custom-default btn-success-custom">Some text here</button>
-                        </div>
-                        <div class="col-md-4 m-3">
-                            <button class="btn btn-outline-custom-default btn-danger-custom">Some text here</button>
-                        </div>
-                        <div class="col-md-4 m-3">
-                            <button class="btn btn-outline-custom-default btn-warning-custom">Some text here</button>
-                        </div>
-                        <div class="col-md-4 m-3">
-                            <button class="btn btn-outline-custom-default btn-light-custom">Some text here</button>
-                        </div>
-                    </div>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-menu pt-3 pb-2">
+                <ul>
+                    <li class="active-li">
+                        <a href="{{ path('admin_overview') }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Personal Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-address-book"></i>
+                            <span>Client Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Client Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('get_customers') }}">
+                            <i class="fas fa-user-cog faa-horizontal animated-hover"></i>
+                            <span>Leads Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Documents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('prospects_list') }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Prospects List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('warm_list') }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Warm List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('active_list') }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Active List</span>
+                        </a>
+                    </li>
 
-                    <div class="card custom-card">
-                        <div class="card-header bg-theme m-0">
-                            <h4>Data Table</h4>
-                        </div>
-                        <div class="card-body">
-                            <table id="data_table" class="display table-hover table-striped table-responsive-lg">
-                                <thead>
-                                <tr>
-                                    <th>Col 01</th>
-                                    <th>Col 02</th>
-                                    <th>Col 03</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>C1R1</td>
-                                    <td>C2R1</td>
-                                    <td>C3R1</td>
-                                    <td class="d-flex align-items-center justify-content-center">
-                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
-                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
-                                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>C1R2</td>
-                                    <td>C2R2</td>
-                                    <td>C3R2</td>
-                                    <td class="d-flex align-items-center justify-content-center">
-                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
-                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
-                                        <a href="" title="Delete"
-                                           data-toggle="modal"
-                                           data-target="#deleteModel">
-                                            <i class="fa fa-trash text-danger"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>C1R3</td>
-                                    <td>C2R3</td>
-                                    <td>C3R3</td>
-                                    <td class="d-flex align-items-center justify-content-center">
-                                        <a href="" title="Details"><i class="fa fa-info text-info"></i></a>
-                                        <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>
-                                        <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-gem"></i>
+                            <span>Awards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_list') }}">
+                            <i class="fas fa-user"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('create_audio') }}">
+                            <i class="fa fa-file-audio"></i>
+                            <span>Voice Tags</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('letter_list') }}">
+                            <i class="fas fa-envelope"></i>
+                            <span>Letters</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_messages') }}">
+                            <i class="fas fa-envelope-open-text"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_logout') }}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
 
-                    <div class="card custom-card">
-                        <div class="card-header bg-theme m-0">
-                            <h4>Add User</h4>
-                        </div>
-                        <div class="card-body">
-                            <form method="post">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="form-row col-lg-6 mb-3">
-                                            <label for="username">Username:</label>
-                                            <input class="form-control" type="text"
-                                                   placeholder="Enter Username here...">
-                                        </div>
-                                        <div class="form-row col-lg-6 mb-3">
-                                            <label for="firstname">First Name:</label>
-                                            <input class="form-control" type="text"
-                                                   placeholder="Enter first name here...">
-                                        </div>
-                                        <div class="form-row col-lg-6 mb-3">
-                                            <label for="lastname">Last Name:</label>
-                                            <input class="form-control" type="text"
-                                                   placeholder="Enter last name here...">
-                                        </div>
-                                        <div class="form-row col-lg-12 mb-3">
-                                            <label for="description">Description:</label>
-                                            <textarea class="form-control" type="text" rows="4"
-                                                      placeholder="Enter description here..."></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 mb-3">
-                                        <button class="btn btn-outline-custom-default btn-success-custom float-right">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">
-                                <div class="card-header bg-theme">
-                                    <div class="row">
-                                        <div class="col-lg-4 border-right-custom">
-                                            <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <h4 class="card-title text-center">Today's Tasks</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <p>Some elements here...</p>
-                                </div>
-                            </div>
-                            <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">
-                                <div class="card-header bg-theme">
-                                    <div class="row">
-                                        <div class="col-lg-4 border-right-custom">
-                                            <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <h4 class="card-title text-center">Notifications</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <p>Some elements here...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                {% endblock %}
+                </ul>
             </div>
-        </main>
-    </div>
+            <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-content  -->
+    </nav>
+    <!-- sidebar-wrapper  -->
+    {# <div class="ml-auto sidebar-wrapper-right collapsed col-lg-2"> #}
+    {# <a id="close-right-sidebar" class="d-lg-none d-xl-none animate-open" href="#"> #}
+    {# <i class="fas fa-angle-double-left"></i> #}
+    {# </a> #}
+    {# <h5 class="text-center pt-2">Dream Board</h5> #}
+    {# <img class="img-fluid rounded" height="300" width="350" alt="Image" #}
+    {# src="{{ asset ('resources/images/dreamboard.jpg') }}"> #}
+    {# <!-- Sidebar --> #}
+    {# <nav> #}
+    {# <ul class="list-unstyled"> #}
+    {# <li> #}
+    {# <a href="#">Sales Resources</a> #}
+    {# </li> #}
+    {# <li> #}
+    {# <a href="#">Manager Assistance </a> #}
+    {# </li> #}
+    {# <li> #}
+    {# <a href="#">Call Interactions</a> #}
+    {# </li> #}
+    {# <li> #}
+    {# <a href="#">Help Desk </a> #}
+    {# </li> #}
+    {# </ul> #}
+    {# </nav> #}
+    {# </div> #}
+
+    <main class="page-content col-lg-12 mx-auto">
+        <div class="container-fluid pt-0 mt-0">
+            {% block content %}
+                <div class="col-lg-2 float-right pr-0 pb-0 pt-0 mt-0">
+                    <h5 class="text-center pt-0 mt-0">Dream Board</h5>
+                    <img class="img-fluid rounded" height="300" width="350" alt="Image"
+                         src="{{ asset ('resources/images/dreamboard.jpg') }}">
+                </div>
+{#                <div class="row">#}
+{#                    <div class="col-md-4 m-3">#}
+{#                        <button class="btn btn-outline-custom-default btn-success-custom">Some text here</button>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 m-3">#}
+{#                        <button class="btn btn-outline-custom-default btn-danger-custom">Some text here</button>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 m-3">#}
+{#                        <button class="btn btn-outline-custom-default btn-warning-custom">Some text here</button>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 m-3">#}
+{#                        <button class="btn btn-outline-custom-default btn-light-custom">Some text here</button>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <div class="card custom-card">#}
+{#                    <div class="card-header bg-theme m-0">#}
+{#                        <h4>Data Table</h4>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <table id="data_table" class="display table-hover table-striped table-responsive-lg">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th>Col 01</th>#}
+{#                                <th>Col 02</th>#}
+{#                                <th>Col 03</th>#}
+{#                                <th>Actions</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <td>C1R1</td>#}
+{#                                <td>C2R1</td>#}
+{#                                <td>C3R1</td>#}
+{#                                <td class="d-flex align-items-center justify-content-center">#}
+{#                                    <a href="" title="Details"><i class="fa fa-info text-info"></i></a>#}
+{#                                    <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>#}
+{#                                    <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>C1R2</td>#}
+{#                                <td>C2R2</td>#}
+{#                                <td>C3R2</td>#}
+{#                                <td class="d-flex align-items-center justify-content-center">#}
+{#                                    <a href="" title="Details"><i class="fa fa-info text-info"></i></a>#}
+{#                                    <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>#}
+{#                                    <a href="" title="Delete"#}
+{#                                       data-toggle="modal"#}
+{#                                       data-target="#deleteModel">#}
+{#                                        <i class="fa fa-trash text-danger"></i></a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>C1R3</td>#}
+{#                                <td>C2R3</td>#}
+{#                                <td>C3R3</td>#}
+{#                                <td class="d-flex align-items-center justify-content-center">#}
+{#                                    <a href="" title="Details"><i class="fa fa-info text-info"></i></a>#}
+{#                                    <a href="" title="Edit"><i class="fa fa-edit text-primary"></i></a>#}
+{#                                    <a href="" title="Delete"><i class="fa fa-trash text-danger"></i></a>#}
+{#                                </td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <div class="card custom-card">#}
+{#                    <div class="card-header bg-theme m-0">#}
+{#                        <h4>Add User</h4>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <form method="post">#}
+{#                            <div class="container-fluid">#}
+{#                                <div class="row">#}
+{#                                    <div class="form-row col-lg-6 mb-3">#}
+{#                                        <label for="username">Username:</label>#}
+{#                                        <input class="form-control" type="text"#}
+{#                                               placeholder="Enter Username here...">#}
+{#                                    </div>#}
+{#                                    <div class="form-row col-lg-6 mb-3">#}
+{#                                        <label for="firstname">First Name:</label>#}
+{#                                        <input class="form-control" type="text"#}
+{#                                               placeholder="Enter first name here...">#}
+{#                                    </div>#}
+{#                                    <div class="form-row col-lg-6 mb-3">#}
+{#                                        <label for="lastname">Last Name:</label>#}
+{#                                        <input class="form-control" type="text"#}
+{#                                               placeholder="Enter last name here...">#}
+{#                                    </div>#}
+{#                                    <div class="form-row col-lg-12 mb-3">#}
+{#                                        <label for="description">Description:</label>#}
+{#                                        <textarea class="form-control" type="text" rows="4"#}
+{#                                                  placeholder="Enter description here..."></textarea>#}
+{#                                    </div>#}
+{#                                </div>#}
+
+{#                                <div class="col-lg-12 mb-3">#}
+{#                                    <button class="btn btn-outline-custom-default btn-success-custom float-right">#}
+{#                                        Submit#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">#}
+{#                            <div class="card-header bg-theme">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-lg-4 border-right-custom">#}
+{#                                        <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>#}
+{#                                    </div>#}
+{#                                    <div class="col-lg-8">#}
+{#                                        <h4 class="card-title text-center">Today's Tasks</h4>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-body">#}
+{#                                <p>Some elements here...</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="card custom-dashboard-card col-md-5 mr-md-3 mr-lg-3">#}
+{#                            <div class="card-header bg-theme">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-lg-4 border-right-custom">#}
+{#                                        <h3 class="text-center"><i class="fas fa-clipboard-list"></i></h3>#}
+{#                                    </div>#}
+{#                                    <div class="col-lg-8">#}
+{#                                        <h4 class="card-title text-center">Notifications</h4>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-body">#}
+{#                                <p>Some elements here...</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+
+            {% endblock %}
+        </div>
+    </main>
+</div>
 {% endblock %}

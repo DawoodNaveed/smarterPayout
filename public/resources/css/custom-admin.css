@@ -268,6 +268,28 @@ body {
     }
 }
 
+
+.active-i{
+    font-size: 27px;
+    background: #09b44d;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    font-size 0.15s ease-in-out;
+    -webkit-animation: horizontal 2s ease infinite;
+    animation: horizontal 2s ease infinite;
+}
+
+.active-a{
+    background-color: #f6f6f6;
+    -webkit-transition: background 1s;
+    transition: background 1s;
+    font-weight: bold;
+    color: black;
+    opacity: 1;
+    transform: scale(1.1);
+    border-right: 18px #09b44d solid;
+}
+
 @media only screen and (max-width: 992px) {
     .collapsed {
         transition: margin 500ms ease-in-out;
@@ -285,6 +307,16 @@ body {
         right: 0px;
         z-index: 999;
         background-color: #f6f6f6;
+    }
+    .active-a{
+        background-color: #f6f6f6;
+        -webkit-transition: background 1s;
+        transition: background 1s;
+        font-weight: bold;
+        color: black;
+        opacity: 1;
+        transform: scale(1.1);
+        border-right: 10px #09b44d solid;
     }
 }
 
@@ -360,7 +392,7 @@ body {
     display: inline-block;
     width: 100%;
     padding-left: 0;
-    padding-top: 100px;
+    padding-top: 70px;
     margin-left: 0;
 }
 
@@ -400,27 +432,6 @@ body {
 
 .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
     color: #ffffff;
-}
-
-.active-i{
-    font-size: 27px;
-    background: #09b44d;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
-    font-size 0.15s ease-in-out;
-    -webkit-animation: horizontal 2s ease infinite;
-    animation: horizontal 2s ease infinite;
-}
-
-.active-a{
-    background-color: #f6f6f6;
-    -webkit-transition: background 1s;
-    transition: background 1s;
-    font-weight: bold;
-    color: black;
-    opacity: 1;
-    transform: scale(1.1);
-    border-right: 18px #09b44d solid;
 }
 
 .fa:hover::before,
@@ -628,6 +639,7 @@ td a:hover > i {
 .custom-card {
     margin: 2rem 0 2rem 0;
     border-radius: 10px;
+    border: 0;
     box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.3);
 }
 
