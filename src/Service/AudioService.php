@@ -46,9 +46,9 @@ class AudioService
     /**
      * @param string $tagId
      * @param User $user
-     * @return array
+     * @return null|Audio
      */
-    public function getAudio(string $tagId, User $user): array
+    public function getAudio(string $tagId, User $user)
     {
         return $this->audioRepository->getAudio($tagId, $user);
     }
@@ -101,7 +101,7 @@ class AudioService
         {
             $audio = $this->audioRepository->getAudio($GENERIC_TAG, $user);
             if ($audio) {
-                $params[$GENERIC_TAG] = $this->awsS3Service->getPreSignedUrl($audio[0]->getFileName());
+                $params[$GENERIC_TAG] = $this->awsS3Service->getPreSignedUrl($audio->getFileName());
             }
         }
         
@@ -111,17 +111,46 @@ class AudioService
     /**
      * @param null|array $params
      * @param Customer $customer
+     * @param User $user
      * @return null|array
      */
-    public function getInsuranceCompanyAudio(array $params, Customer $customer): ?array
+    public function getInsuranceCompanyAudio(array $params, Customer $customer, User $user): ?array
     {
         if ($customer->getInsuranceCompany()) {
             $insuranceCompany = $customer->getInsuranceCompany();
-            if ($insuranceCompany->getAudio()) {
-                $params['insuranceCompanyAudio'] = $this->awsS3Service->getPreSignedUrl($insuranceCompany->getAudio()->getFileName());
+            $insuranceCompanyAudio = $this->audioRepository->getAudioByCompanyAndUser($insuranceCompany, $user);
+            if ($insuranceCompanyAudio) {
+                $params['insuranceCompanyAudio'] = $this->awsS3Service->getPreSignedUrl($insuranceCompanyAudio->getFileName());
             }
         }
         
         return $params;
+    }
+    
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isGenericAudiosCompleted(User $user): bool
+    {
+        foreach (CustomHelper::GENERIC_TAGS as $GENERIC_TAG)
+        {
+            $audio = $this->audioRepository->getAudio($GENERIC_TAG, $user);
+            if (!$audio) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * @param User $user
+     * @param InsuranceCompany $insuranceCompany
+     * @return Audio|null
+     */
+    public function getCompanyAudio(User $user, InsuranceCompany $insuranceCompany)
+    {
+        return $this->audioRepository->findOneBy(['user' => $user, 'insuranceCompany' => $insuranceCompany]);
     }
 }

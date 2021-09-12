@@ -62,8 +62,9 @@ class TwilioService
     
     /**
      * @param string $parentCallSid
+     * @param string $voicemailAudio
      */
-    public function sendVoicemail(string $parentCallSid)
+    public function sendVoicemail(string $parentCallSid, string $voicemailAudio)
     {
         $twilio = new Client($this->twilioAccountSid, $this->twilioAuthToken);
         $call = $twilio->calls->read([
@@ -72,9 +73,7 @@ class TwilioService
         $childCall = reset($call);
         $call = $twilio->calls($childCall->sid)
             ->update([
-                    "twiml" => "<Response>
-                                    <Play>https://s21.aconvert.com/convert/p3r68-cdx67/pr947-6ndvw.mp3</Play>
-                                </Response>"
+                    "twiml" => $voicemailAudio
                 ]
             );
     }

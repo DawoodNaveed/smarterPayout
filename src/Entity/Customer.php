@@ -58,7 +58,7 @@ class Customer extends AbstractEntity
     
     /**
      * @var Audio
-     * @ORM\OneToOne(targetEntity="App\Entity\Audio", inversedBy="customer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Audio", inversedBy="customer")
      * @ORM\JoinColumn(name="audio_id", referencedColumnName="id", nullable=true)
      */
     private $audio;
@@ -90,25 +90,9 @@ class Customer extends AbstractEntity
     /**
      * @var CustomerMeta
      * @ORM\OneToOne(targetEntity="CustomerMeta", fetch="LAZY")
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      */
     private $customerMeta;
-    
-    /**
-     * @return Audio
-     */
-    public function getAudio()
-    {
-        return $this->audio;
-    }
-    
-    /**
-     * @param Audio $audio
-     */
-    public function setAudio(Audio $audio): void
-    {
-        $this->audio = $audio;
-    }
     
     /**
      * @return string
@@ -241,7 +225,7 @@ class Customer extends AbstractEntity
     /**
      * @return InsuranceCompany
      */
-    public function getInsuranceCompany(): InsuranceCompany
+    public function getInsuranceCompany()
     {
         return $this->insuranceCompany;
     }
@@ -261,6 +245,7 @@ class Customer extends AbstractEntity
     public function toArray(bool $isAudioTagCompleted = false)
     {
         $data =  [
+            'id' => $this->id,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'height' => $this->height,
@@ -311,5 +296,21 @@ class Customer extends AbstractEntity
     public function setEmail($email): void
     {
         $this->email = $email;
+    }
+    
+    /**
+     * @return Audio
+     */
+    public function getAudio(): Audio
+    {
+        return $this->audio;
+    }
+    
+    /**
+     * @param Audio $audio
+     */
+    public function setAudio(Audio $audio): void
+    {
+        $this->audio = $audio;
     }
 }

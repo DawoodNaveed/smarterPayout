@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Customer;
 use App\Repository\InsuranceCompanyRepository;
 use App\Service\CustomerMetaService;
 use App\Service\CustomerService;
@@ -20,9 +21,10 @@ class CustomerController extends AbstractController
 {
     /**
      * @Route("/customers", name="get_customers", methods={"GET"})
+     * @param CustomerService $customerService
      * @return Response
      */
-    public function getCustomersAction(CustomerService $customerService, InsuranceCompanyRepository $companyRepository)
+    public function getCustomersAction(CustomerService $customerService)
     {
         return $this->render('admin/leads/leadsInteraction.html.twig', ['customers' => $customerService->getCustomersByUser($this->getUser())]);
     }
