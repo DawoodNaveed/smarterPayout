@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container-fluid p-0">
         <nav class="navbar smart-scroll navbar-expand-lg d-flex align-items-start mt-0 pt-0 pb-0 pr-0 pl-0">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ path("index") }}">
                 <img class="logo" src="{{ asset ('resources/images/logo.png') }}">
             </a>
             <button class="navbar-toggler navbar-toggler-first" type="button">
@@ -12,19 +12,19 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item nav-item-separator">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" data-url="home" href="#">Home</a>
                     </li>
                     <li class="nav-item nav-item-separator">
-                        <a class="nav-link" href="#calculate">Calculate</a>
+                        <a class="nav-link" data-url="calculate" href="#calculate">Calculate</a>
                     </li>
-                    <li class="nav-item nav-item-separator">
-                        <a class="nav-link" href="#about-us">About Us</a>
+                    <li class="nav-item nav-item-separator" id="about-us-nav-item">
+                        <a class="nav-link" data-url="about-us" href="#about-us">About Us</a>
                     </li>
-                    <li class="nav-item nav-item-separator">
-                        <a class="nav-link" href="#career">Career</a>
+                    <li class="nav-item nav-item-separator" id="career-nav-item">
+                        <a class="nav-link" data-url="career" href="#career">Career</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" data-url="contact" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
