@@ -232,7 +232,8 @@ body {
     transform: translateY(-125%);
     font-size: 0.75em;
     font-weight: bold;
-    /*color: #262626;*/;
+    /*color: #262626;*/
+;
 }
 
 .form-input {
@@ -355,6 +356,11 @@ textarea {
     color: #09b44d;
     font-weight: bold;
     cursor: pointer;
+}
+
+.career-card a:hover {
+    text-decoration: none;
+    color: #FBC233;
 }
 
 #about-us {
