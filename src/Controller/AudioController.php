@@ -9,7 +9,9 @@ use App\Service\AudioService;
 use App\Service\AwsS3Service;
 use App\Service\CustomerService;
 use App\Service\InsuranceCompanyService;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,8 +73,14 @@ class AudioController extends AbstractController
         }
         
         if ($data) {
-            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['tagId'], 'tagType');
-            $awsS3Service->uploadFile($data['audioFile'],$fileName);
+            /** @var UploadedFile $file */
+            $file = $data['audioFile'];
+            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['tagId'], 'tagType') . '.' . $file->guessExtension();
+            $file->move($this->getParameter('audio_directory'), $fileName);
+            $filePath = $this->getParameter('audio_directory') . '/' . $fileName;
+            $filePathOnS3 = 'audio/' . $fileName;
+            $awsS3Service->uploadFile($filePath, $filePathOnS3);
+            unlink($filePath);
             $audioService->saveAudio($data, $fileName, $this->getUser());
 
             $this->addFlash('success', 'Uploaded Successfully');

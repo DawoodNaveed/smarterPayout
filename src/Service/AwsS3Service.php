@@ -27,14 +27,17 @@ class AwsS3Service
      * @param $awsRegion
      * @param $awsSdkVersion
      * @param $awsS3bucket
+     * @param LoggerInterface $logger
      */
     public function __construct(
         $awsKey,
         $awsSecret,
         $awsRegion,
         $awsSdkVersion,
-        $awsS3bucket
+        $awsS3bucket,
+        LoggerInterface $logger
     ) {
+        $this->logger = $logger;
         $this->setBucket($awsS3bucket);
         $this->client = new S3Client([
             'credentials' => [
@@ -60,9 +63,9 @@ class AwsS3Service
         string $privacy = self::AWS_S3_FILE_PRIVACY_PRIVATE
     ) {
         try {
-            return $this->getClient()->upload($this->getBucket(), $fileName, $content, $privacy)->toArray();
+            $this->getClient()->upload($this->getBucket(), $fileName, $content, $privacy, $meta)->toArray();
         } catch (\Exception $exception) {
-//            $this->logger->error('S3 file upload failed: ', [$exception]);
+            $this->logger->error('S3 file upload failed: ', [$exception]);
             return false;
         }
     }
@@ -100,22 +103,22 @@ class AwsS3Service
      * @return bool
      */
     public function uploadFile(
-        $fileName,
+        $file,
         $newFilename = null,
         array $meta = [],
         string $privacy = self::AWS_S3_FILE_PRIVACY_PRIVATE
     )
     {
         if (!$newFilename) {
-            $newFilename = basename($fileName);
+            $newFilename = basename($file);
         }
-        if (!isset($meta['contentType'])) {
+        if (!isset($meta['params']['ContentType'])) {
             // Detect Mime Type
             $mimeTypeHandler = finfo_open(FILEINFO_MIME_TYPE);
-            $meta['contentType'] = finfo_file($mimeTypeHandler, $fileName);
+            $meta['params']['ContentType'] = finfo_file($mimeTypeHandler, $file);
             finfo_close($mimeTypeHandler);
         }
-        return $this->upload($newFilename, file_get_contents($fileName), $meta, $privacy);
+        return $this->upload($newFilename, file_get_contents($file), $meta, $privacy);
     }
 
     /**
