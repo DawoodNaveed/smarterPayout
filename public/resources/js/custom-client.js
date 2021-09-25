@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
 
     $("input, textarea, select").on('keyup blur focusout change', function () {
-        if ($(this).val()) {
+        if (!$(this).val()) {
             $(this).removeClass("filled");
             $(this).parents(".form-group").removeClass("focused");
         } else {

@@ -32,11 +32,8 @@ $(document).ready(function () {
         $('#endDate-alert .alert').remove();
         if (productType === gp) {
             $('.gp-hide').css('display', 'none');
-            paymentEndDate.css('pointer-events', 'none');
-            paymentEndDate.next('span').css('pointer-events', 'none');
         } else {
             $('.gp-hide').css('display', 'block');
-            paymentEndDate.css('pointer-events', 'all');
         }
         append_calculate_submit_button();
     });
@@ -139,12 +136,10 @@ $(document).ready(function () {
             nextDate.setFullYear(nextDate.getFullYear() + 10);
             var paymentEndDate = $('#calculator_form_paymentEndDate');
             paymentEndDate.datepicker({
-                format: 'mm-dd-yyyy'
+                format: 'mm/dd/yyyy'
             }).datepicker('update', nextDate);
-            paymentEndDate.attr('disabled', true);
             paymentEndDate.addClass("filled");
             paymentEndDate.parents(".form-group").addClass("focused");
-            paymentEndDate.next('span').css('pointer-events', 'none');
         } else {
             var gender = $('#calculator_form_gender').find(":selected").text();
             if (!gender) {
@@ -157,7 +152,6 @@ $(document).ready(function () {
                     paymentEndDate.datepicker({
                         dateFormat: 'mm/dd/yyyy'
                     }).datepicker('update', data['cutOffData']);
-                    paymentEndDate.attr('disabled', true);
                     paymentEndDate.addClass("filled");
                     paymentEndDate.parents(".form-group").addClass("focused");
                     var alertData = '<div class="alert alert-info alert-dismissible fade show col-12" role="alert">' + 'You can select any date before ' + data['cutOffData'] + ' as End date ' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
