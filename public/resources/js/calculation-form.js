@@ -11,10 +11,54 @@ $(document).ready(function () {
     $(document).on('click', '#termsAndConditions', function () {
         if ($('#termsAndConditions').is(':checked')) {
             $('#submitCalculation').attr('disabled', false);
-
         } else {
             $('#submitCalculation').attr('disabled', true);
         }
+    });
+
+    $.fn.serializeObject = function()
+    {
+        var formObject = {};
+        var array = this.serializeArray();
+        $.each(array, function() {
+            if (formObject[this.name] !== undefined) {
+                if (!formObject[this.name].push) {
+                    formObject[this.name] = [formObject[this.name]];
+                }
+                formObject[this.name].push(this.value || '');
+            } else {
+                formObject[this.name] = this.value || '';
+            }
+        });
+        return formObject;
+    };
+
+    $(document).on('click', '#submitCalculation', function (e) {
+        e.preventDefault();
+        var form = $('form[name="calculator_form"]');
+        if(!form[0].checkValidity()){
+            $("#hiddenSubmitButton").click();
+            return false;
+        }
+        var form_data = form.serializeObject();
+        console.log(form_data);
+
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            dataType: 'json',
+            data: form_data,
+            success:function(data){
+                console.log(data);
+                if(Number(data['status']) === 200){
+                    console.log(data['data']);
+                } else {
+                    alert(data['message']);
+                }
+
+                // signal to user the action is done
+            }
+        });
     });
 
     // submit button on the base of product type
@@ -75,7 +119,7 @@ $(document).ready(function () {
                                                                 class="btn btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
-                                                        <button id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                        <button type="button" id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
                                                                 disabled="disabled">
                                                             Submit
                                                         </button>

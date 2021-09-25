@@ -60,7 +60,7 @@ class CalculatorForm extends AbstractType
             ->add('creditRating', ChoiceType::class, [
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'placeholder' => '',
-                'required' => false,
+                'required' => true,
                 'choices' => CalculatorEnum::creditRating
             ])
             ->add('paymentStartDate', TextType::class, [

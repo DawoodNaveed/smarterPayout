@@ -95,9 +95,9 @@ class CalculatorService
      */
     public function calculateDateDifference(string $startDate, string $endDate)
     {
-        $paymentStartDate = DateTime::createFromFormat('d/m/Y', $startDate);
+        $paymentStartDate = DateTime::createFromFormat('m/d/Y', $startDate);
         $paymentStartDate = $paymentStartDate->format('Y-m-d');
-        $paymentEndDate = DateTime::createFromFormat('d/m/Y', $endDate);
+        $paymentEndDate = DateTime::createFromFormat('m/d/Y', $endDate);
         $paymentEndDate = $paymentEndDate->format('Y-m-d');
         $paymentStartDate = new DateTime($paymentStartDate);
         $paymentEndDate = new DateTime($paymentEndDate);
@@ -314,6 +314,7 @@ class CalculatorService
      * @param array $data
      * @param array $discountRate
      * @return array
+     * @throws \Exception
      */
     public function calculatePresentValueByCurrentDay(array $pv, array $data, array $discountRate)
     {

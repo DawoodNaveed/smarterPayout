@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Enum\CalculatorEnum;
 use App\Form\CalculatorForm;
 use App\Form\ContactUsForm;
+use App\Service\CalculatorService;
 use App\Service\CustomerService;
 use App\Service\EmailService;
+use App\Service\UtilService;
+use phpDocumentor\Reflection\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,21 +25,33 @@ class ClientSideController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function indexAction(Request $request, EmailService $emailService)
-    {
+    public function indexAction(
+        Request $request,
+        EmailService $emailService,
+        CalculatorService $calculatorService,
+        CustomerService $customerService,
+        UtilService $utilService
+    ) {
         $form = $this->createForm(CalculatorForm::class);
         $contactForm = $this->createForm(ContactUsForm::class);
         $form->handleRequest($request);
         $contactForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            dd($data);
-            if (!($data['age'] >= CalculatorEnum::minAge && $data['age'] <= CalculatorEnum::maxAge)) {
-                $this->addFlash('error', 'Age is not valid');
-                return $this->redirectToRoute('calculator_action');
+        if ($form->isSubmitted()) {
+            if (!$form->isValid()) {
+                return $utilService->getJsonResponse(500, null, 'Invalid Form Data');
             }
-//            $calculatorService->calculatePresentValue($data);
+            $data = $form->getData();
+            if (!($data['age'] >= CalculatorEnum::minAge && $data['age'] <= CalculatorEnum::maxAge)) {
+                return $utilService->getJsonResponse(500, null, 'Age is not Valid');
+            }
+            try {
+                $presentValue = $calculatorService->calculatePresentValue($data);
+                $customerService->saveCustomerData($data);
+                return $utilService->getJsonResponse(200, $presentValue);
+            } catch (\Exception $exception) {
+                return $utilService->getJsonResponse(500, null, 'Internal Server Error or Email Already Exists');
+            }
         }
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             $data = $contactForm->getData();
@@ -123,15 +138,5 @@ class ClientSideController extends AbstractController
         }
 
         return new JsonResponse(['message' => "Authentication Failed"]);
-    }
-    
-    /**
-     * @Route("/calculate-present-value", name="calculate_present_value")
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function calculatePresentValueAction(Request $request)
-    {
-    
     }
 }
