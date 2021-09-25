@@ -27,7 +27,7 @@ class CalculatorForm extends AbstractType
             'choices' => CalculatorEnum::productType,
             'required' => false,
         ])
-            ->add('age', NumberType::class, [
+            ->add('age', TextType::class, [
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'required' => true,
             ])

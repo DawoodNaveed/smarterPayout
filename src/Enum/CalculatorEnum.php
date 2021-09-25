@@ -11,7 +11,7 @@ class CalculatorEnum
     const productType = [
         'LCP' => 'lcp',
         'GP' => 'gp',
-        'I Don’t Know' => '-999'
+        'I Don’t Know' => 'lcp'
     ];
     const heightValues = [
         "3'0\"" => 3,
@@ -70,7 +70,7 @@ class CalculatorEnum
         "7'5\"" => 7.5,
         "7'6\"" => 7.6,
         "7'7\"" => 7.7,
-        "Prefer not to answer" => -999
+        "Prefer not to answer" => 6
     ];
 
     const creditRating = [
@@ -78,7 +78,7 @@ class CalculatorEnum
         'Colonial' => 'Rating B',
         'Monarch' => 'Rating C',
         'Pacific Life' => 'Rating D',
-        'Other' => '-999',
+        'Other' => 'Rating A',
     ];
 
     #Gender Values
@@ -94,7 +94,7 @@ class CalculatorEnum
         'averageWeight' => 0,
         'overWeight' => 0.15,
         'obese' => 0.25,
-        'Prefer Not To Answer' => -999,
+        'Prefer Not To Answer' => 0.15,
         'Prefer To Put Manually' => 0
     ];
     #Frequency Value

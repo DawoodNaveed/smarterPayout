@@ -95,7 +95,7 @@
                                                     <div class="form-group mt-sm-0">
                                                         <label class="form-label" for="age">Age<span
                                                                     class="text-danger">*</span></label>
-                                                        {{ form_widget(form.age) }}{{ form_errors(form.age) }}
+                                                        {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -183,7 +183,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
                                                         <div class="input-group date form-inline datepicker"
-                                                             data-date-format="mm-dd-yyyy">
+                                                             data-date-format="mm/dd/yyyy">
                                                             <label class="form-label" for="paymentStartDate">Payment
                                                                 Start
                                                                 Date<span class="text-danger">*</span></label>
@@ -196,7 +196,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
                                                         <div class="input-group date form-inline datepicker"
-                                                             data-date-format="mm-dd-yyyy">
+                                                             data-date-format="mm/dd/yyyy">
                                                             <label class="form-label" for="paymentEndDate">Payment End
                                                                 Date<span class="text-danger">*</span></label>
                                                             {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }}
@@ -451,22 +451,9 @@
                 <div class="row">
                     <div class="col-lg-6 d-flex justify-content-sm-center">
                         <div class="about-us-section-one pl-lg-5">
-                            <h6 class="pt-lg-5 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                It has survived not only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                It has survived not only five centuries, but also the leap into electronic
-                                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                                Ipsum. <span><a href="{{ path('about_us') }}" class="text-link">Read more...</a></span>
+                            <h6 class="pt-lg-5 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left">Our “self-quoting” platform provides an upfront cash offer in exchange for a portion of your future structured settlement, annuity, or lottery payments. Our patent pending software gives you a 100% guarantee for upfront quotes , no obligation deal and no sales pressure online experience.</h6>
+                                <h6 class="pt-3 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left"> Our mission is to give all our clients the confidence and flexibility to make their own financial decisions, on their own terms and at their own pace. We stand behind each of our offers with a 30-day free-to-view guarantee.
+                                <span><a href="{{ path('about_us') }}" class="text-link">Learn more...</a></span>
                             </h6>
                         </div>
                     </div>
@@ -561,29 +548,30 @@
                                 soon
                                 as
                                 we can.</h6>
-                            <form action="" class="form pt-2">
+                            {{ form_start(contactUsForm) }}
                                 <div class="form-group mt-sm-0">
                                     <label class="form-label" for="first">Name</label>
-                                    <input id="first" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="last">Email</label>
-                                    <input id="last" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="color">Contact</label>
-                                    <input id="color" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="color">Message</label>
-                                    <textarea id="color" class="form-input" rows="2" type="text"></textarea>
+                                    {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
                                 </div>
 
-                                <button class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
+                                <button type="submit" class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
                                     Send
                                     Message
                                 </button>
-                            </form>
+                            {{ form_errors(contactUsForm) }}
+                            {{ form_end(contactUsForm) }}
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex align-items-end pr-0">
@@ -608,15 +596,5 @@
             </div>
         </section>
     </div>
-
-    <script type="text/javascript">
-        $(function () {
-            $(".datepicker").datepicker({
-                autoclose: true,
-                todayHighlight: true,
-            }).datepicker('update', null);
-        });
-
-    </script>
 
 {% endblock %}
