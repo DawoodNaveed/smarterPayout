@@ -52,13 +52,397 @@
                 </a>
             </div>
         </section>
-        <section id="calculate" class="page-section" >
+        <section id="calculate" class="page-section">
             <h1 class="text-center primary-heading p-5 p-md-0 p-lg-0 p-xl-0">Calculate</h1>
             <h6 class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-6 text-center heading-primary-tagline">Lorem Ipsum is
                 simply dummy text of the printing and typesetting industry. Lorem
                 Ipsum has been the industry's standard dummy text ever since the 1500s,</h6>
-            <div class="col-12 d-flex justify-content-center">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-6 d-flex justify-content-end pt-3 pr-0">
+                        <div class="accordion col-lg-10 pr-0" id="accordionExample">
+                            {{ form_start(form) }}
+                            <div class="card accordion-card">
+                                <button class="btn btn-link btn-block text-center card-header"
+                                        type="button"
+                                        data-toggle="collapse" data-target="#collapseAccountInfo"
+                                        aria-expanded="true"
+                                        aria-controls="collapseAccountInfo">
+                                    <span class="heading-primary-calculation fa fa-user"></span>
+                                    <span class="heading-primary-calculation">Account Information</span>
+                                    <span class="heading-secondary-tagline">Enter your account information</span>
+                                </button>
+                                <div id="collapseAccountInfo" class="collapse accordion-body show"
+                                     aria-labelledby="headingAccountInfo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="col-lg-12 p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="firstName">First Name<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.firstName) }}{{ form_errors(form.firstName) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="lastName">Last Name</label>
+                                                        {{ form_widget(form.lastName) }}{{ form_errors(form.lastName) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="age">Age<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.age) }}{{ form_errors(form.age) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="gender">Gender</label>
+                                                        {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="weight">Weight</label>
+                                                        {{ form_widget(form.weight) }}{{ form_errors(form.weight) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 manualWeight-hide">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="manualWeight">Manual
+                                                            Weight<span class="text-danger">*</span></label>
+                                                        <input id="manualWeight" type="number"
+                                                               class="form-input" min="0">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="height">Height</label>
+                                                        {{ form_widget(form.height) }}{{ form_errors(form.height) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="phoneNo">Phone Number
+                                                            (Optional)</label>
+                                                        {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
+                                                    </div>
+                                                </div>
 
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="emailAddress">Email
+                                                            (Optional)</label>
+                                                        {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="productType">Product Type</label>
+                                                        {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="creditRating">Insurance
+                                                            Company</label>
+                                                        {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="accountInfoNext" type="button"
+                                                data-toggle="collapse" data-target="#collapsePaymentInfo"
+                                                aria-expanded="true"
+                                                aria-controls="collapsePaymentInfo"
+                                                class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card accordion-card">
+                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                        type="button"
+                                        data-toggle="collapse" data-target="#collapsePaymentInfo"
+                                        aria-expanded="true"
+                                        aria-controls="collapsePaymentInfo">
+                                    <span class="heading-primary-calculation fa fa-hand-holding-usd"></span>
+                                    <span class="heading-primary-calculation">Payment Information</span>
+                                    <span class="heading-secondary-tagline">Enter your payment information</span>
+                                </button>
+                                <div id="collapsePaymentInfo" class="accordion-body collapse"
+                                     aria-labelledby="headingPaymentInfo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="col-lg-12 p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <div class="input-group date form-inline datepicker"
+                                                             data-date-format="mm-dd-yyyy">
+                                                            <label class="form-label" for="paymentStartDate">Payment
+                                                                Start
+                                                                Date<span class="text-danger">*</span></label>
+                                                            {{ form_widget(form.paymentStartDate) }}{{ form_errors(form.paymentStartDate) }}
+                                                            <span class="input-group-addon float-right calendar-container"><i
+                                                                        class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <div class="input-group date form-inline datepicker"
+                                                             data-date-format="mm-dd-yyyy">
+                                                            <label class="form-label" for="paymentEndDate">Payment End
+                                                                Date<span class="text-danger">*</span></label>
+                                                            {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }}
+                                                            <span class="input-group-addon float-right calendar-container"><i
+                                                                        class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="endDate-alert" class="col-12"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="paymentAmount">Payment
+                                                            Amount<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.paymentAmount) }}{{ form_errors(form.paymentAmount) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="frequency">Frequency<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="percentStep">Percent step % or
+                                                            Annual %</label>
+                                                        {{ form_widget(form.percentStep) }}{{ form_errors(form.percentStep) }}
+                                                    </div>
+                                                </div>
+                                                <div id="calculate_submit_top">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="paymentInfoNext">
+                                            <button id="paymentInfoPrev"
+                                                    data-toggle="collapse" data-target="#collapseAccountInfo"
+                                                    aria-expanded="true"
+                                                    aria-controls="collapseAccountInfo"
+                                                    type="button"
+                                                    class="btn btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                Prev
+                                            </button>
+                                            <button id="paymentInfoNext"
+                                                    data-toggle="collapse" data-target="#collapseBasicInfo"
+                                                    aria-expanded="true"
+                                                    aria-controls="collapseBasicInfo"
+                                                    type="button"
+                                                    class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                Next
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card accordion-card gp-hide">
+                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        data-target="#collapseBasicInfo"
+                                        aria-expanded="true"
+                                        aria-controls="collapseBasicInfo">
+                                    <span class="heading-primary-calculation fa fa-barcode"></span>
+                                    <span class="heading-primary-calculation">Basic Information</span>
+                                    <span class="heading-secondary-tagline">Enter your basic information</span>
+                                </button>
+                                <div id="collapseBasicInfo" class="collapse accordion-body"
+                                     aria-labelledby="headingBasicInfo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="col-lg-12 p-0">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="smoker">Do You Smoke? Including
+                                                            Marijuana. Or smoked within the last 2 years?<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.smoker) }}{{ form_errors(form.smoker) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="healthStatus">What is the status
+                                                            of your Health?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.healthStatus) }}{{ form_errors(form.healthStatus) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="legalIssues">Do you Legal Issues?<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.legalIssues) }}{{ form_errors(form.legalIssues) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="DUI">In the last five years of
+                                                            DUI/DWI?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.DUI) }}{{ form_errors(form.DUI) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="licenseSuspended">License
+                                                            Suspended in the last 5 years?<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.licenseSuspended) }}{{ form_errors(form.licenseSuspended) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="misdemeanor">Major Criminal
+                                                            offence in the last 10 years?<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.misdemeanor) }}{{ form_errors(form.misdemeanor) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="basicInfoNext"
+                                                type="button"
+                                                data-toggle="collapse"
+                                                data-target="#collapsePaymentInfo"
+                                                aria-expanded="true"
+                                                aria-controls="collapsePaymentInfo"
+                                                class="btn btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                            Prev
+                                        </button>
+                                        <button id="basicInfoNext"
+                                                type="button"
+                                                data-toggle="collapse" data-target="#collapseCustomInfo"
+                                                aria-expanded="true"
+                                                aria-controls="collapseCustomInfo"
+                                                class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card accordion-card gp-hide">
+                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        data-target="#collapseCustomInfo"
+                                        aria-expanded="true"
+                                        aria-controls="collapseCustomInfo">
+                                    <span class="heading-primary-calculation fas fa-magic"></span>
+                                    <span class="heading-primary-calculation">Customize Information</span>
+                                    <span class="heading-secondary-tagline">Enter your customize information</span>
+                                </button>
+                                <div id="collapseCustomInfo" class="collapse accordion-body"
+                                     aria-labelledby="headingCustomInfo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="col-lg-12 p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="annualCheckup">Annual
+                                                            Check-up?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="physicalExercise">How often do
+                                                            you do physical Exercise?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.physicalExercise) }}{{ form_errors(form.physicalExercise) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="bloodPressure">Do you suffer from
+                                                            Blood Pressure?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.bloodPressure) }}{{ form_errors(form.bloodPressure) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="highCholesterol">Do you have High
+                                                            Cholesterol?<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.highCholesterol) }}{{ form_errors(form.highCholesterol) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="drivingInfraction">Driving
+                                                            Infractions (Last 3 Years)?<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }}
+                                                    </div>
+                                                </div>
+                                                <div id="calculate_submit_bottom">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ form_errors(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pl-0">
+                        <div class="row">
+                            <div class="col-xl-5 pl-0 d-none d-xl-block" style="margin-top: 20%">
+                                <img class="img-fluid" src="{{ asset ('/resources/images/calculate-arrows.svg') }}">
+                            </div>
+                            <div class="offset-xl-1 col-xl-5 col-lg-9 offset-sm-3 col-sm-6 offset-2 col-8 d-flex justify-content-center" id="calculate_mobile">
+                                <img class="img-fluid mobile-img" src="{{ asset ('/resources/images/calculate-mobile.png') }}">
+                                <div class="position-absolute calculate_mobile_content">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="col-xl-7 col-lg-6 col-sm-7 col-8 calculate_content">
+                                            <img width="60" class="pt-3 pb-0 mt-0 mb-0" src="{{ asset ('/resources/images/logo-tower.png') }}">
+                                            <div class="form-group focused">
+                                                <label class="form-label" for="result_name">Name:</label>
+                                                <input id="result_name" type="text" value="John" class="form-input ml-2 filled">
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-label" for="result_age">Age:</label>
+                                                <input id="result_age" type="text" value="45" class="form-input ml-2 filled">
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-label" for="result_startDate">Start Date:</label>
+                                                <input id="result_startDate" type="text" value="09-23-2021" class="form-input ml-2 filled">
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-label" for="result_endDate">End Date:</label>
+                                                <input id="result_endDate" type="text" value="09-23-2031" class="form-input ml-2 filled">
+                                            </div>
+                                            <div class="form-group focused">
+                                                <label class="form-label" for="result_health">Health Status:</label>
+                                                <input id="result_health" type="text" value="Normal" class="form-input ml-2 filled">
+                                            </div>
+                                            <div class="progress mt-4">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="about-us" class="d-flex align-items-center page-section">
@@ -88,8 +472,10 @@
                     </div>
                     <div class="col-lg-6 d-flex justify-content-center">
                         <div class="col-md-10">
-                            <img class="about-us-back-img" src="{{ asset ('resources/images/animations/bg-about-us-animation.svg') }}">
-                            <img class="img-fluid about-us-animated-img about-us-animated-img-block animation-element" src="{{ asset ('resources/images/animations/about-us-animation.svg') }}">
+                            <img class="about-us-back-img"
+                                 src="{{ asset ('resources/images/animations/bg-about-us-animation.svg') }}">
+                            <img class="img-fluid about-us-animated-img about-us-animated-img-block animation-element"
+                                 src="{{ asset ('resources/images/animations/about-us-animation.svg') }}">
                         </div>
                     </div>
                 </div>
@@ -222,4 +608,15 @@
             </div>
         </section>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker({
+                autoclose: true,
+                todayHighlight: true,
+            }).datepicker('update', null);
+        });
+
+    </script>
+
 {% endblock %}

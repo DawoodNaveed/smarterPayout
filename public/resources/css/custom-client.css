@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
+    font-family: 'Poppins';
 }
 
 .primary-heading {
@@ -27,7 +28,7 @@ body {
 
 .heading-secondary-tagline {
     color: #808080;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: normal;
 }
 
@@ -55,6 +56,17 @@ body {
 .btn-success-custom:hover {
     background-color: #09b44d;
     border-color: #09b44d;
+}
+
+
+.btn-default-custom {
+    color: #808080;
+    border-color: #808080;
+}
+
+.btn-default-custom:hover {
+    background-color: #808080;
+    border-color: #808080;
 }
 
 #home {
@@ -212,10 +224,22 @@ body {
 .form-group {
     position: relative;
     margin-top: 50px;
+    background-color: transparent;
 }
+
 
 .form-group + .form-group {
     margin-top: 30px;
+    background-color: transparent;
+}
+
+.calculate_content .form-group{
+    margin-top: 10px;
+}
+
+.calculate_content .form-group + .form-group {
+    margin-top: 20px;
+    background-color: transparent;
 }
 
 .form-label {
@@ -223,22 +247,22 @@ body {
     left: 0;
     top: 10px;
     color: #999;
+    font-size: 0.75em;
     background-color: transparent;
     z-index: 10;
     transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
 .focused .form-label {
-    transform: translateY(-125%);
+    transform: translateY(-90%);
     font-size: 0.75em;
     font-weight: bold;
-    /*color: #262626;*/
-;
+    background-color: transparent;
 }
 
 .form-input {
     position: relative;
-    padding: 12px 0px 5px 0;
+    padding: 12px 0 5px 0;
     width: 100%;
     outline: 0;
     border: 0;
@@ -249,10 +273,20 @@ body {
 
 .form-input:focus {
     box-shadow: 0 2px 0 0 #FBC233;
+    background-color: transparent;
 }
 
 .form-input.filled {
     box-shadow: 0 2px 0 0 #09b44d;
+    background-color: transparent;
+}
+.calculate_content .form-input.filled {
+    box-shadow: 0 1px 0 0 lightgrey;
+    background-color: transparent;
+}
+
+.calculate_content{
+    pointer-events: none;
 }
 
 textarea {
@@ -411,6 +445,7 @@ textarea {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
+    background-attachment: fixed;
     height: 100%;
     margin: 0;
 }
@@ -508,4 +543,75 @@ textarea {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
+}
+
+.accordion-card {
+    background-color: #FFFFFF;
+    margin: 1rem;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.accordion-card .card-header {
+    height: 8rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    color: #FBC233;
+}
+
+.accordion-card .card-header.collapsed {
+    color: #09b44d;
+}
+
+.accordion-card .card-header:hover > .heading-primary-calculation{
+    color: #FBC233;
+}
+
+.accordion-card .card-header span{
+    display: block;
+    text-decoration: none;
+}
+
+.heading-primary-calculation {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.manualWeight-hide{
+    display: none;
+}
+.calendar-container{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+.calendar-container i{
+    cursor: pointer;
+    color: #808080;
+}
+
+.has-error .form-input{
+    box-shadow: 0 1px 0 0 red;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+#calculate_mobile{
+   position: relative;
+}
+
+#calculate_mobile .mobile-img{
+    min-width: 350px;
+    min-height: 600px;
+}
+
+.calculate_mobile_content{
+    top: 10%;
+    width: 100%;
+    text-align: center;
 }

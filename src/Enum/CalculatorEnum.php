@@ -10,7 +10,8 @@ class CalculatorEnum
     const daysInYear = 365;
     const productType = [
         'LCP' => 'lcp',
-        'GP' => 'gp'
+        'GP' => 'gp',
+        'I Don’t Know' => '-999'
     ];
     const heightValues = [
         "3'0\"" => 3,
@@ -69,15 +70,17 @@ class CalculatorEnum
         "7'5\"" => 7.5,
         "7'6\"" => 7.6,
         "7'7\"" => 7.7,
+        "Prefer not to answer" => -999
     ];
-    
+
     const creditRating = [
         'AIG AMERICA' => 'Rating A',
         'Colonial' => 'Rating B',
         'Monarch' => 'Rating C',
-        'Pacific Life' => 'Rating D'
+        'Pacific Life' => 'Rating D',
+        'Other' => '-999',
     ];
-    
+
     #Gender Values
     const genderValues = [
         'Male' => 0.75,
@@ -91,6 +94,7 @@ class CalculatorEnum
         'averageWeight' => 0,
         'overWeight' => 0.15,
         'obese' => 0.25,
+        'Prefer Not To Answer' => -999,
         'Prefer To Put Manually' => 0
     ];
     #Frequency Value
@@ -173,5 +177,10 @@ class CalculatorEnum
         '4 Infraction In A Year' => 0.65,
         '5 Infraction In A Year' => 1,
         'Prefer Not To Answer' => 0
+    ];
+
+    const cutOffDate = [
+        'Male' => 75,
+        'Female' => 80
     ];
 }
