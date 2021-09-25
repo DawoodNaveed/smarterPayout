@@ -1,5 +1,29 @@
 let gp = 'GP';
 $(document).ready(function () {
+    $('#calculate_result_modal').on('show.bs.modal', function () {
+        setTimeout(function () {
+            var resultSection = $('#calculation-result');
+            var otpPhoneSection = $('#otp-phone-number');
+            var otpCodeSection = $('#otp-code');
+            if (resultSection.length > 0) {
+                resultSection.remove();
+                otpPhoneSection.attr('hidden', false);
+            }
+        }, 3000)
+
+        $('.calculate_result_mobile_container').addClass('calculate_result_mobile_center');
+    }).on('hide.bs.modal', function () {
+        $('.calculate_result_mobile_container').addClass('calculate_result_mobile_right');
+
+    });
+
+    $('#calculate_result_modal_btn').click(function () {
+        $('#calculate_result_modal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+
     // init datepicker
     $(function () {
         $(".datepicker").datepicker({
@@ -16,11 +40,10 @@ $(document).ready(function () {
         }
     });
 
-    $.fn.serializeObject = function()
-    {
+    $.fn.serializeObject = function () {
         var formObject = {};
         var array = this.serializeArray();
-        $.each(array, function() {
+        $.each(array, function () {
             if (formObject[this.name] !== undefined) {
                 if (!formObject[this.name].push) {
                     formObject[this.name] = [formObject[this.name]];
@@ -36,7 +59,7 @@ $(document).ready(function () {
     $(document).on('click', '#submitCalculation', function (e) {
         e.preventDefault();
         var form = $('form[name="calculator_form"]');
-        if(!form[0].checkValidity()){
+        if (!form[0].checkValidity()) {
             $("#hiddenSubmitButton").click();
             return false;
         }
@@ -48,10 +71,13 @@ $(document).ready(function () {
             type: 'POST',
             dataType: 'json',
             data: form_data,
-            success:function(data){
-                console.log(data);
-                if(Number(data['status']) === 200){
-                    console.log(data['data']);
+            success: function (data) {
+                if (Number(data['status']) === 200) {
+                    $('#min-amount').text(data['data']['min']);
+                    $('#max-amount').text(data['data']['max']);
+                    $('#beneficiary-amount').text(data['data']['beneficiaryProtection']);
+                    $('#client-name').text($('#calculator_form_firstName').val());
+                    $("#calculate_result_modal").modal('show');
                 } else {
                     alert(data['message']);
                 }
@@ -77,7 +103,7 @@ $(document).ready(function () {
         if (productType === gp) {
             $('.gp-hide').css('display', 'none');
         } else {
-            $('.gp-hide').css('display', 'block');
+            $('.gp-hide').css('display', 'flex');
         }
         append_calculate_submit_button();
     });
@@ -88,27 +114,7 @@ $(document).ready(function () {
                                                         <div class="form-group mt-sm-0 d-flex d-inline">
                                                             <input type="checkbox" class="mt-1 mr-2"
                                                                    id="termsAndConditions">
-                                                            <p><small> By clicking the button I Agree and Submit, you
-                                                                    authorize us to contact you(including using
-                                                                    autodialers,
-                                                                    automated text and pre recorded messages) via your
-                                                                    telephone, cellphone, mobile device (including SMS
-                                                                    and
-                                                                    MMS) and email, even if your telephone number is
-                                                                    currently listed on any state, federal or company's
-                                                                    Do
-                                                                    Not Call list. Standard phone and data charges will
-                                                                    apply. Your consent to the above terms is not
-                                                                    required
-                                                                    as a condition of purchasing or receiving our
-                                                                    services.
-                                                                    You also consent to the recording and monitoring of
-                                                                    all
-                                                                    calls to and from us, and you acknowledge and agree
-                                                                    to
-                                                                    the terms of our <a href="">Privacy Policy</a> and
-                                                                    our
-                                                                    Terms of Use.</small></p>
+                                                            <p><small>I have read and agree to the <a href="">Terms and conditions</a>.</small></p>
                                                         </div>
                                                         <button id="paymentInfoPrev"
                                                                 data-toggle="collapse"
@@ -132,11 +138,11 @@ $(document).ready(function () {
         if (productType === gp) {
             $('.dynamic-buttons').remove();
             $('#calculate_submit_top').append(element);
-            $('#paymentInfoNext').attr('hidden', true);
+            $('#paymentInfobtns').attr('hidden', true);
         } else {
             $('.dynamic-buttons').remove();
             $('#calculate_submit_bottom').append(element);
-            $('#paymentInfoNext').attr('hidden', false);
+            $('#paymentInfobtns').attr('hidden', false);
         }
     }
 
@@ -174,35 +180,72 @@ $(document).ready(function () {
 
     // set End date on the basis of product type and start date
     $('#calculator_form_paymentStartDate').on('focusout blur keyup change', function () {
-        var productType = $('#calculator_form_productType').find(":selected").text();
-        if (productType && $(this).val()) {
-            var nextDate = new Date($(this).val());
-            nextDate.setFullYear(nextDate.getFullYear() + 10);
-            var paymentEndDate = $('#calculator_form_paymentEndDate');
-            paymentEndDate.datepicker({
+        if ($(this).val()) {
+            var productType = $('#calculator_form_productType').find(":selected").text();
+            if (productType && productType === gp) {
+                var nextDate = new Date($(this).val());
+                nextDate.setFullYear(nextDate.getFullYear() + 10);
+                var paymentEndDate = $('#calculator_form_paymentEndDate');
+                paymentEndDate.datepicker({
+                    format: 'mm/dd/yyyy'
+                }).datepicker('update', nextDate);
+                paymentEndDate.addClass("filled");
+                paymentEndDate.parents(".form-group").addClass("focused");
+            } else {
+                var gender = $('#calculator_form_gender').find(":selected").text();
+                if (!gender && gender !== 'Female') {
+                    gender = "Male";
+                }
+                var age = $('#calculator_form_age').val();
+                if (age && gender) {
+                    $.get(`/user/endDate/${gender}/${age}`, function (data) {
+                        var paymentEndDate = $('#calculator_form_paymentEndDate');
+                        paymentEndDate.datepicker({
+                            dateFormat: 'mm/dd/yyyy'
+                        }).datepicker('update', data['beneficiaryBenefit']);
+                        paymentEndDate.addClass("filled");
+                        paymentEndDate.parents(".form-group").addClass("focused");
+                        var alertData = '<div class="alert alert-info alert-dismissible fade show col-12" role="alert">' + 'You can select any date before ' + data['cutOffData'] + ' as End date ' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
+                        $('#endDate-alert .alert').remove();
+                        $('#endDate-alert').append(alertData);
+                    });
+                }
+            }
+        }
+    });
+
+    //  replace mobile content with user's data
+    $('#calculator_form_firstName').on('focusout', function () {
+        if ($(this).val()) {
+            $('#result_name').val($(this).val());
+        }
+    });
+
+    $('#calculator_form_age').on('focusout', function () {
+        if ($(this).val()) {
+            $('#result_age').val($(this).val());
+        }
+    });
+
+    $('#calculator_form_paymentStartDate').on('change', function () {
+        if ($(this).val()) {
+            $('#result_startDate').datepicker({
                 format: 'mm/dd/yyyy'
-            }).datepicker('update', nextDate);
-            paymentEndDate.addClass("filled");
-            paymentEndDate.parents(".form-group").addClass("focused");
-        } else {
-            var gender = $('#calculator_form_gender').find(":selected").text();
-            if (!gender) {
-                gender = "Male";
-            }
-            var age = $('#calculator_form_age').val();
-            if (age && gender) {
-                $.get(`/user/endDate/${gender}/${age}`, function (data) {
-                    var paymentEndDate = $('#calculator_form_paymentEndDate');
-                    paymentEndDate.datepicker({
-                        dateFormat: 'mm/dd/yyyy'
-                    }).datepicker('update', data['cutOffData']);
-                    paymentEndDate.addClass("filled");
-                    paymentEndDate.parents(".form-group").addClass("focused");
-                    var alertData = '<div class="alert alert-info alert-dismissible fade show col-12" role="alert">' + 'You can select any date before ' + data['cutOffData'] + ' as End date ' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
-                    $('#endDate-alert .alert').remove();
-                    $('#endDate-alert').append(alertData);
-                });
-            }
+            }).datepicker('update', $(this).val());
+        }
+    });
+
+    $('#calculator_form_paymentEndDate').on('change', function () {
+        if ($(this).val()) {
+            $('#result_endDate').datepicker({
+                format: 'mm/dd/yyyy'
+            }).datepicker('update', $(this).val());
+        }
+    });
+
+    $('#calculator_form_healthStatus').on('change', function () {
+        if ($(this).find(":selected").text()) {
+            $('#result_health').val($(this).find(":selected").text());
         }
     });
 
@@ -226,6 +269,4 @@ $(document).ready(function () {
             e.returnValue = true;
         }
     });
-
-
 });

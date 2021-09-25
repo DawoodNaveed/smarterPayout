@@ -28,7 +28,7 @@ class CalculatorForm extends AbstractType
             'required' => false,
         ])
             ->add('age', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input', 'autocomplete' => 'off', 'min'=>0],
                 'required' => true,
             ])
             ->add('gender', ChoiceType::class, [
@@ -49,12 +49,6 @@ class CalculatorForm extends AbstractType
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'placeholder' => '',
                 'choices' => CalculatorEnum::weightValuesKeys,
-                'required' => false,
-            ])
-            ->add('height', ChoiceType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
-                'placeholder' => '',
-                'choices' => CalculatorEnum::heightValues,
                 'required' => false,
             ])
             ->add('creditRating', ChoiceType::class, [

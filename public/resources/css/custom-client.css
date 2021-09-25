@@ -617,3 +617,61 @@ textarea {
     width: 100%;
     text-align: center;
 }
+
+.calculate_mobile_content {
+    top: 10%;
+    width: 100%;
+    text-align: center;
+}
+
+.calculate_result_modal {
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(9, 180, 77, 0.85);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.calculate_result_modal .modal-dialog {
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+}
+
+.calculate_result_modal_content {
+    background-color: transparent;
+    border: 0;
+}
+
+.calculate_result_mobile {
+    min-width: 308px;
+    min-height: 563px;
+}
+
+.calculate_result_mobile_right{
+    position: absolute;
+    left: 100%;
+    transform: translate(-100%, 0%);
+}
+
+.calculate_result_mobile_center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: all 10s ease;
+}
+
+.centered-result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
