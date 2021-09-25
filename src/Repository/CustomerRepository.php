@@ -38,6 +38,7 @@ class CustomerRepository extends AbstractRepository
     
     /**
      * @param array $data
+     * @return Customer
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
@@ -75,5 +76,7 @@ class CustomerRepository extends AbstractRepository
         $this->persist($customerMeta, true);
         $customer->setCustomerMeta($customerMeta);
         $this->persist($customer, true);
+        
+        return $customer;
     }
 }

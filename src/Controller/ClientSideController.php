@@ -47,7 +47,8 @@ class ClientSideController extends AbstractController
             }
             try {
                 $presentValue = $calculatorService->calculatePresentValue($data);
-                $customerService->saveCustomerData($data);
+                $customer = $customerService->saveCustomerData($data);
+                $presentValue['customerId'] = $customer->getId();
                 return $utilService->getJsonResponse(200, $presentValue);
             } catch (\Exception $exception) {
                 return $utilService->getJsonResponse(500, null, 'Internal Server Error or Email Already Exists');
