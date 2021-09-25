@@ -7,6 +7,7 @@ $(document).ready(function () {
             todayHighlight: true,
         }).datepicker('update', null);
     });
+
     $(document).on('click', '#termsAndConditions', function () {
         if ($('#termsAndConditions').is(':checked')) {
             $('#submitCalculation').attr('disabled', false);
