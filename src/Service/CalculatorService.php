@@ -40,6 +40,10 @@ class CalculatorService
         $ageBaseRate = $this->ageBaseRateRepository->getAgeBaseRate($data['age']);
         $minAgeBaseRate = $ageBaseRate[0]->getflooringBaseRate();
         $maxAgeBaseRate = $ageBaseRate[0]->getceilingBaseRate();
+        if ($data['gender'] === CalculatorEnum::genderValues['Female']) {
+            $minAgeBaseRate = $minAgeBaseRate - CalculatorEnum::ageBaseRateDifferenceOfFemale;
+            $maxAgeBaseRate = $maxAgeBaseRate - CalculatorEnum::ageBaseRateDifferenceOfFemale;
+        }
         $creditRating = $this->creditRatingRepository->findOneBy(['rating' => $data['creditRating']]);
         $minCreditRatingBaseRate = $minAgeBaseRate * $creditRating->getFlooringBaseRate();
         $maxCreditRatingBaseRate = $maxAgeBaseRate * $creditRating->getCeilingBaseRate();
@@ -81,10 +85,10 @@ class CalculatorService
     }
     
     /**
-     * @param $startDate
+     * @param string $startDate
      * @param string $endDate
      */
-    public function calculateDateDifference($startDate, string $endDate)
+    public function calculateDateDifference(string $startDate, string $endDate)
     {
         $paymentStartDate = DateTime::createFromFormat('d/m/Y', $startDate);
         $paymentStartDate = $paymentStartDate->format('Y-m-d');
@@ -106,7 +110,6 @@ class CalculatorService
         $pv = [];
         $dateDifference = $this->calculateDateDifference($data['paymentStartDate'], $data['paymentEndDate']);
         $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
-    
         $minFrequencyDiscountRate = $discountRate['min'] / $data['frequency'];
         $maxFrequencyDiscountRate = $discountRate['max'] / $data['frequency'];
         $pv['min'] = $data['paymentAmount'] + ($data['paymentAmount'] *
@@ -116,6 +119,49 @@ class CalculatorService
             (((1 - (pow(1 / (1 + ($maxFrequencyDiscountRate)), $dateDifference * $data['frequency']))))
                 / $maxFrequencyDiscountRate));
         
+        return $pv;
+    }
+    
+    /**
+     * @param array $discountRate
+     * @param int $frequency
+     * @return array
+     */
+    public function calculateEffectiveAnnualInterestRate(array $discountRate, int $frequency)
+    {
+        $discountRate['min'] = (pow(1 + ($discountRate['min'] / $frequency), $frequency)) - 1;
+        $discountRate['max'] = (pow(1 + ($discountRate['max'] / $frequency), $frequency)) - 1;
+        
+        return $discountRate;
+    }
+    
+    /**
+     * @param array $minPaymentsValues
+     * @param array $maxPaymentsValues
+     * @param array $discountRate
+     * @param string $paymentStartDate
+     * @return array
+     */
+    public function calculatePresentValueForTodayWithPercentStep(
+        array $minPaymentsValues,
+        array $maxPaymentsValues,
+        array $discountRate,
+        string $paymentStartDate
+    ) {
+        $pv['min'] = 0;
+        $pv['max'] = 0;
+        for ($index = 0; $index < count($minPaymentsValues); $index++) {
+            $pv['min'] = $pv['min'] +
+                ($minPaymentsValues[$index] / (pow(1+ $discountRate['min'], $index)));
+            $pv['max'] = $pv['max'] +
+                ($maxPaymentsValues[$index] / (pow(1+ $discountRate['max'], $index)));
+        }
+        $dateDifference = $this
+            ->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $paymentStartDate);
+        $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
+        $pv['min'] = ($pv['min']) / (pow((1 + $discountRate['min']), $dateDifference));
+        $pv['max'] = ($pv['max']) / (pow((1 + $discountRate['max']), $dateDifference));
+    
         return $pv;
     }
     
@@ -140,32 +186,25 @@ class CalculatorService
             array_push($paymentsValueWithPercentStep, $value);
         }
         array_pop($paymentsValueWithPercentStep);
-        
         if ($data['frequency'] === 2) {
+            $effectiveAnnualRate = $this->calculateEffectiveAnnualInterestRate($discountRate, $data['frequency']);
+            $discountRate = $effectiveAnnualRate;
             $value = [];
-            for ($index = 0; $index <= count($paymentsValueWithPercentStep); $index++) {
+            for ($index = 0; $index < count($paymentsValueWithPercentStep); $index++) {
                 if ($index % 2 !== 0) {
                     $value['min'] = $paymentsValueWithPercentStep[$index] +
-                        ($paymentsValueWithPercentStep[$index] / pow(1 + ($discountRate['min'] / $data['percentStep']), 1));
+                        ($paymentsValueWithPercentStep[$index] / pow(1 + ($effectiveAnnualRate['min'] / $data['frequency']), 1));
                     $value['max'] = $paymentsValueWithPercentStep[$index] +
-                        ($paymentsValueWithPercentStep[$index] / pow(1 + ($discountRate['max'] / $data['percentStep']), 1));
-                    array_push($minPaymentsValues, $value['min'] + $paymentsValueWithPercentStep[$index - 1]);
-                    array_push($maxPaymentsValues, $value['max'] + $paymentsValueWithPercentStep[$index - 1]);
+                        ($paymentsValueWithPercentStep[$index] / pow(1 + ($effectiveAnnualRate['max'] / $data['frequency']), 1));
+                    array_push($minPaymentsValues, $value['min']);
+                    array_push($maxPaymentsValues, $value['max']);
                 }
             }
         } else {
             $minPaymentsValues = $maxPaymentsValues = $paymentsValueWithPercentStep;
         }
-        $maxPresentValue = 0;
-        $minPresentValue = 0;
-        for ($index = 0; $index < count($minPaymentsValues); $index++) {
-            $pv['max'] = $minPresentValue +
-                                    ($minPaymentsValues[$index] / (pow(1+ $discountRate['min'], $index)));
-            $pv['min'] = $maxPresentValue +
-                                    ($maxPaymentsValues[$index] / (pow(1+ $discountRate['max'], $index)));
-        }
         
-        return $pv;
+        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues, $discountRate, $data['paymentStartDate']);
     }
     
     /**
@@ -197,15 +236,15 @@ class CalculatorService
             $annuityFormulaPower = $data['frequency'];
         }
         $paymentsYear = floor($totalPayments / $data['frequency']);
-        $discountRate['min'] = 0.0525;
+        $effectiveAnnualRate = $this->calculateEffectiveAnnualInterestRate($discountRate, $data['frequency']);
         for ($index = 0; $index < $paymentsYear; $index ++) {
             $value = end($paymentsValueWithPercentStep);
             $minValue = $value +
-                $value * ((1- pow(1 + ($discountRate['min'] / $data['frequency']), -$annuityFormulaPower))
-                                        / ($discountRate['min']/ $data['frequency']));
+                ($value * ((1- pow(1 + ($effectiveAnnualRate['min'] / $data['frequency']), -$annuityFormulaPower))
+                                        / ($effectiveAnnualRate['min']/ $data['frequency'])));
             $maxValue = $value +
-                $value * ((1- pow(1+ ($discountRate['max'] / $data['frequency']), -$annuityFormulaPower))
-                                        / ($discountRate['max']/ $data['frequency']));
+                $value * ((1- pow(1+ ($effectiveAnnualRate['max'] / $data['frequency']), -$annuityFormulaPower))
+                                        / ($effectiveAnnualRate['max']/ $data['frequency']));
             array_push($minPaymentsValues, $minValue);
             array_push($maxPaymentsValues, $maxValue);
             $value = $value + ($value * ($data['percentStep'] / 100));
@@ -215,30 +254,16 @@ class CalculatorService
         if ($remainingPayments) {
             $value = end($paymentsValueWithPercentStep);
             $minValue = $value +
-                $value * ((1- pow(1 + ($discountRate['min'] / $data['frequency']), -($remainingPayments - 1)))
-                    / ($discountRate['min']/ $data['frequency']));
+                $value * ((1- pow(1 + ($effectiveAnnualRate['min'] / $data['frequency']), -($remainingPayments)))
+                    / ($effectiveAnnualRate['min']/ $data['frequency']));
             $maxValue = $value +
-                $value * ((1- pow(1+ ($discountRate['max'] / $data['frequency']), -($remainingPayments - 1)))
-                    / ($discountRate['max']/ $data['frequency']));
+                $value * ((1- pow(1+ ($effectiveAnnualRate['max'] / $data['frequency']), -($remainingPayments)))
+                    / ($effectiveAnnualRate['max']/ $data['frequency']));
             array_push($minPaymentsValues, $minValue);
             array_push($maxPaymentsValues, $maxValue);
         }
-        
-        $pv['min'] = $pv['max'] = 0;
-        for ($index = 0; $index < count($minPaymentsValues); $index++) {
-            dump($minPaymentsValues[$index]);
-            $pv['min'] = $pv['min'] +
-                ($minPaymentsValues[$index] / (pow(1+ 0.0525, $index)));
-            $pv['max'] = $pv['max'] +
-                ($maxPaymentsValues[$index] / (pow(1+ $discountRate['max'] / $data['frequency'], $index)));
-        }
-        $dateDifference = $this
-                            ->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $data['paymentStartDate']);
-        $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
-        $pv['min'] = ($pv['min']) / (pow((1 + $discountRate['min']), $dateDifference));
-        $pv['max'] = ($pv['max']) / (pow((1 + $discountRate['max']), $dateDifference));
-        
-        return $pv;
+    
+        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues, $effectiveAnnualRate, $data['paymentStartDate']);
     }
     
     /**
@@ -249,6 +274,9 @@ class CalculatorService
     public function calculatePresentValueWithPercentStep(array $data, array $discountRate)
     {
         $dateDifference = $this->calculateDateDifference($data['paymentStartDate'], $data['paymentEndDate']);
+        if ($dateDifference->m > 0) {
+            $dateDifference->y = $dateDifference->y + 1;
+        }
         if ($data['frequency'] === 1 || $data['frequency'] === 2) {
             return $this->calculateWithAnnualAndSemiAnnualFrequency($dateDifference->y, $data, $discountRate);
         } else {
@@ -264,8 +292,7 @@ class CalculatorService
      */
     public function calculatePresentValueByCurrentDay(array $pv, array $data, array $discountRate)
     {
-        $todayDate = new DateTime();
-        $dateDifference = $this->calculateDateDifference($todayDate, $data['paymentStartDate']);
+        $dateDifference = $this->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $data['paymentStartDate']);
         $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
         
         $minDiscountRate = (pow(1 + ($discountRate['min'] / $data['frequency']), $data['frequency'])) - 1;

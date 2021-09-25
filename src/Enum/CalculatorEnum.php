@@ -12,6 +12,7 @@ class CalculatorEnum
         'GP' => 'gp',
         'I Don’t Know' => 'lcp'
     ];
+    const ageBaseRateDifferenceOfFemale = 0.005;
     const heightValues = [
         "3'0\"" => 3,
         "3'1\"" => 3.1,

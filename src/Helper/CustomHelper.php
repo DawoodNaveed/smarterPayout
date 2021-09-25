@@ -11,5 +11,5 @@ class CustomHelper
     const AUDIO = ['firstDayAudio' => ['firstGenericTag', 'secondGenericTag', 'thirdGenericTag'],
         'secondDayAudio' => ['firstGenericTag' , 'insuranceCompanyAudio', 'fourthGenericTag', 'thirdGenericTag'],
         'thirdDayAudio' => ['firstGenericTag' , 'insuranceCompanyAudio', 'fifthGenericTag', 'thirdGenericTag']
-        ];
+    ];
 }
