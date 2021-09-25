@@ -16,6 +16,51 @@ $(document).ready(function () {
         }
     });
 
+    $.fn.serializeObject = function()
+    {
+        var formObject = {};
+        var array = this.serializeArray();
+        $.each(array, function() {
+            if (formObject[this.name] !== undefined) {
+                if (!formObject[this.name].push) {
+                    formObject[this.name] = [formObject[this.name]];
+                }
+                formObject[this.name].push(this.value || '');
+            } else {
+                formObject[this.name] = this.value || '';
+            }
+        });
+        return formObject;
+    };
+
+    $(document).on('click', '#submitCalculation', function (e) {
+        e.preventDefault();
+        var form = $('form[name="calculator_form"]');
+        if(!form[0].checkValidity()){
+            $("#hiddenSubmitButton").click();
+            return false;
+        }
+        var form_data = form.serializeObject();
+        console.log(form_data);
+
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            dataType: 'json',
+            data: form_data,
+            success:function(data){
+                console.log(data);
+                if(Number(data['status']) === 200){
+                    console.log(data['data']);
+                } else {
+                    alert(data['message']);
+                }
+
+                // signal to user the action is done
+            }
+        });
+    });
+
     // submit button on the base of product type
     append_calculate_submit_button();
     $("#calculator_form_productType").on('change', function () {
@@ -31,11 +76,8 @@ $(document).ready(function () {
         $('#endDate-alert .alert').remove();
         if (productType === gp) {
             $('.gp-hide').css('display', 'none');
-            paymentEndDate.css('pointer-events', 'none');
-            paymentEndDate.next('span').css('pointer-events', 'none');
         } else {
             $('.gp-hide').css('display', 'block');
-            paymentEndDate.css('pointer-events', 'all');
         }
         append_calculate_submit_button();
     });
@@ -77,8 +119,12 @@ $(document).ready(function () {
                                                                 class="btn btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
-                                                        <button id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
-                                                                type="submit" disabled="disabled">
+                                                        <button type="button" id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                                disabled="disabled">
+                                                            Submit
+                                                        </button>
+                                                        <button id="hiddenSubmitButton" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                                disabled="disabled" type="submit" hidden>
                                                             Submit
                                                         </button>
                                                     </div>`;
@@ -134,12 +180,10 @@ $(document).ready(function () {
             nextDate.setFullYear(nextDate.getFullYear() + 10);
             var paymentEndDate = $('#calculator_form_paymentEndDate');
             paymentEndDate.datepicker({
-                format: 'mm-dd-yyyy'
+                format: 'mm/dd/yyyy'
             }).datepicker('update', nextDate);
-            paymentEndDate.attr('disabled', true);
             paymentEndDate.addClass("filled");
             paymentEndDate.parents(".form-group").addClass("focused");
-            paymentEndDate.next('span').css('pointer-events', 'none');
         } else {
             var gender = $('#calculator_form_gender').find(":selected").text();
             if (!gender) {
@@ -152,7 +196,6 @@ $(document).ready(function () {
                     paymentEndDate.datepicker({
                         dateFormat: 'mm/dd/yyyy'
                     }).datepicker('update', data['cutOffData']);
-                    paymentEndDate.attr('disabled', true);
                     paymentEndDate.addClass("filled");
                     paymentEndDate.parents(".form-group").addClass("focused");
                     var alertData = '<div class="alert alert-info alert-dismissible fade show col-12" role="alert">' + 'You can select any date before ' + data['cutOffData'] + ' as End date ' + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' + '<span aria-hidden="true">&times;</span>' + '</button>' + '</div>';
@@ -183,4 +226,6 @@ $(document).ready(function () {
             e.returnValue = true;
         }
     });
+
+
 });

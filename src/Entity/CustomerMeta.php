@@ -32,79 +32,79 @@ class CustomerMeta extends AbstractEntity
     
     /**
      * @var float
-     * @ORM\Column(name="percent_step", type="float")
+     * @ORM\Column(name="percent_step", type="float", nullable=true)
      */
     private $percentStep;
     
     /**
      * @var string
-     * @ORM\Column(name="payment_type", type="string")
+     * @ORM\Column(name="payment_type", type="string", nullable=true)
      */
-    private $paymentType;
+    private $productType;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="smoker", type="boolean")
+     * @var string
+     * @ORM\Column(name="smoker", type="string", nullable=true)
      */
     private $smoker;
     
     /**
      * @var string
-     * @ORM\Column(name="health_status", type="string")
+     * @ORM\Column(name="health_status", type="string", nullable=true)
      */
     private $healthStatus;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="legal_issues_status", type="boolean")
+     * @var string
+     * @ORM\Column(name="legal_issues_status", type="string", nullable=true)
      */
     private $legalIssueStatus;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="dui_status", type="boolean", nullable=true)
+     * @var string
+     * @ORM\Column(name="dui_status", type="string", nullable=true, nullable=true)
      */
     private $duiStatus;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="license_suspended", type="boolean", nullable=true)
+     * @var string
+     * @ORM\Column(name="license_suspended", type="string", nullable=true)
      */
     private $licenseSuspended;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="misdemeanor_status", type="boolean", nullable=true)
+     * @var string
+     * @ORM\Column(name="misdemeanor_status", type="string", nullable=true)
      */
     private $misdemeanorStatus;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="annual_checkup_status", type="boolean")
+     * @var string
+     * @ORM\Column(name="annual_checkup_status", type="string", nullable=true)
      */
     private $annualCheckupStatus;
     
     /**
-     * @var integer
-     * @ORM\Column(name="physical_exercise_status", type="integer")
+     * @var string
+     * @ORM\Column(name="physical_exercise_status", type="string", nullable=true)
      */
     private $physicalExerciseStatus;
     
     /**
-     * @var integer
-     * @ORM\Column(name="blood_pressure_status", type="integer")
+     * @var string
+     * @ORM\Column(name="blood_pressure_status", type="string", nullable=true)
      */
     private $bloodPressureStatus;
     
     /**
-     * @var boolean
-     * @ORM\Column(name="high_cholesterol", type="boolean")
+     * @var string
+     * @ORM\Column(name="high_cholesterol", type="string", nullable=true)
      */
     private $highCholesterol;
     
     /**
-     * @var integer
-     * @ORM\Column(name="driving_infraction", type="integer")
+     * @var string
+     * @ORM\Column(name="driving_infraction", type="string", nullable=true)
      */
     private $drivingInfraction;
     
@@ -220,33 +220,17 @@ class CustomerMeta extends AbstractEntity
     }
     
     /**
-     * @return string
-     */
-    public function getPaymentType(): string
-    {
-        return $this->paymentType;
-    }
-    
-    /**
-     * @param string $paymentType
-     */
-    public function setPaymentType(string $paymentType): void
-    {
-        $this->paymentType = $paymentType;
-    }
-    
-    /**
      * @return bool
      */
-    public function isSmoker(): bool
+    public function isSmoker()
     {
         return $this->smoker;
     }
     
     /**
-     * @param bool $smoker
+     * @param $smoker
      */
-    public function setSmoker(bool $smoker): void
+    public function setSmoker($smoker)
     {
         $this->smoker = $smoker;
     }
@@ -254,15 +238,15 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return string
      */
-    public function getHealthStatus(): string
+    public function getHealthStatus()
     {
         return $this->healthStatus;
     }
     
     /**
-     * @param string $healthStatus
+     * @param $healthStatus
      */
-    public function setHealthStatus(string $healthStatus): void
+    public function setHealthStatus($healthStatus): void
     {
         $this->healthStatus = $healthStatus;
     }
@@ -270,15 +254,15 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return bool
      */
-    public function isLegalIssueStatus(): bool
+    public function isLegalIssueStatus()
     {
         return $this->legalIssueStatus;
     }
     
     /**
-     * @param bool $legalIssueStatus
+     * @param $legalIssueStatus
      */
-    public function setLegalIssueStatus(bool $legalIssueStatus): void
+    public function setLegalIssueStatus($legalIssueStatus): void
     {
         $this->legalIssueStatus = $legalIssueStatus;
     }
@@ -286,15 +270,15 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return bool
      */
-    public function isDuiStatus(): bool
+    public function isDuiStatus()
     {
         return $this->duiStatus;
     }
     
     /**
-     * @param bool $duiStatus
+     * @param $duiStatus
      */
-    public function setDuiStatus(bool $duiStatus): void
+    public function setDuiStatus($duiStatus): void
     {
         $this->duiStatus = $duiStatus;
     }
@@ -302,15 +286,15 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return bool
      */
-    public function isLicenseSuspended(): bool
+    public function isLicenseSuspended()
     {
         return $this->licenseSuspended;
     }
     
     /**
-     * @param bool $licenseSuspended
+     * @param $licenseSuspended
      */
-    public function setLicenseSuspended(bool $licenseSuspended): void
+    public function setLicenseSuspended($licenseSuspended): void
     {
         $this->licenseSuspended = $licenseSuspended;
     }
@@ -318,15 +302,15 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return bool
      */
-    public function isMisdemeanorStatus(): bool
+    public function isMisdemeanorStatus()
     {
         return $this->misdemeanorStatus;
     }
     
     /**
-     * @param bool $misdemeanorStatus
+     * @param $misdemeanorStatus
      */
-    public function setMisdemeanorStatus(bool $misdemeanorStatus): void
+    public function setMisdemeanorStatus($misdemeanorStatus): void
     {
         $this->misdemeanorStatus = $misdemeanorStatus;
     }
@@ -334,79 +318,79 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return bool
      */
-    public function isAnnualCheckupStatus(): bool
+    public function isAnnualCheckupStatus()
     {
         return $this->annualCheckupStatus;
     }
     
     /**
-     * @param bool $annualCheckupStatus
+     * @param $annualCheckupStatus
      */
-    public function setAnnualCheckupStatus(bool $annualCheckupStatus): void
+    public function setAnnualCheckupStatus($annualCheckupStatus): void
     {
         $this->annualCheckupStatus = $annualCheckupStatus;
     }
     
     /**
-     * @return int
+     * @return string
      */
-    public function getPhysicalExerciseStatus(): int
+    public function getPhysicalExerciseStatus()
     {
         return $this->physicalExerciseStatus;
     }
     
     /**
-     * @param int $physicalExerciseStatus
+     * @param $physicalExerciseStatus
      */
-    public function setPhysicalExerciseStatus(int $physicalExerciseStatus): void
+    public function setPhysicalExerciseStatus($physicalExerciseStatus): void
     {
         $this->physicalExerciseStatus = $physicalExerciseStatus;
     }
     
     /**
-     * @return int
+     * @return string
      */
-    public function getBloodPressureStatus(): int
+    public function getBloodPressureStatus()
     {
         return $this->bloodPressureStatus;
     }
     
     /**
-     * @param int $bloodPressureStatus
+     * @param $bloodPressureStatus
      */
-    public function setBloodPressureStatus(int $bloodPressureStatus): void
+    public function setBloodPressureStatus($bloodPressureStatus): void
     {
         $this->bloodPressureStatus = $bloodPressureStatus;
     }
     
     /**
-     * @return bool
+     * @return string
      */
-    public function isHighCholesterol(): bool
+    public function isHighCholesterol()
     {
         return $this->highCholesterol;
     }
     
     /**
-     * @param bool $highCholesterol
+     * @param $highCholesterol
      */
-    public function setHighCholesterol(bool $highCholesterol): void
+    public function setHighCholesterol($highCholesterol): void
     {
         $this->highCholesterol = $highCholesterol;
     }
     
     /**
-     * @return int
+     * @return string
      */
-    public function getDrivingInfraction(): int
+    public function getDrivingInfraction()
     {
         return $this->drivingInfraction;
     }
     
     /**
-     * @param int $drivingInfraction
+     * @param $drivingInfraction
      */
-    public function setDrivingInfraction(int $drivingInfraction): void
+    public function setDrivingInfraction($drivingInfraction): void
     {
         $this->drivingInfraction = $drivingInfraction;
     }
@@ -414,16 +398,32 @@ class CustomerMeta extends AbstractEntity
     /**
      * @return float
      */
-    public function getPercentStep(): float
+    public function getPercentStep()
     {
         return $this->percentStep;
     }
     
     /**
-     * @param float $percentStep
+     * @param $percentStep
      */
-    public function setPercentStep(float $percentStep): void
+    public function setPercentStep($percentStep): void
     {
         $this->percentStep = $percentStep;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getProductType()
+    {
+        return $this->productType;
+    }
+    
+    /**
+     * @param $productType
+     */
+    public function setProductType($productType): void
+    {
+        $this->productType = $productType;
     }
 }

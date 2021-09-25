@@ -22,13 +22,13 @@ class Customer extends AbstractEntity
     
     /**
      * @var string Last name
-     * @ORM\Column(name="last_name", type="string")
+     * @ORM\Column(name="last_name", type="string", nullable=true)
      */
     private $lastName;
     
     /**
      * @var \DateTime
-     * @ORM\Column(name="date_of_birth", type="datetime")
+     * @ORM\Column(name="date_of_birth", type="datetime", nullable=true)
      */
     private $dateOfBirth;
     
@@ -45,26 +45,26 @@ class Customer extends AbstractEntity
     private $age;
     
     /**
-     * @var float
-     * @ORM\Column(name="height", type="float")
+     * @var string
+     * @ORM\Column(name="height", type="string", nullable=true)
      */
     private $height;
     
     /**
-     * @var float
-     * @ORM\Column(name="weight", type="float")
+     * @var string
+     * @ORM\Column(name="weight", type="string")
      */
     private $weight;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $contactNumber;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $authToken;
 
@@ -82,11 +82,10 @@ class Customer extends AbstractEntity
     private $audio;
     
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=true, nullable=true)
      * @Assert\Regex(
      *     pattern="/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",
      *     message="not_valid_email")
-     * @Assert\NotBlank(message="email can't be blanked")
      * @Assert\Unique(message="This email has already exist")
      */
     private $email;
@@ -131,15 +130,15 @@ class Customer extends AbstractEntity
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName()
     {
         return $this->lastName;
     }
     
     /**
-     * @param string $lastName
+     * @param $lastName
      */
-    public function setLastName(string $lastName): void
+    public function setLastName($lastName): void
     {
         $this->lastName = $lastName;
     }
@@ -193,23 +192,23 @@ class Customer extends AbstractEntity
     }
     
     /**
-     * @return float
+     * @return string
      */
-    public function getHeight(): float
+    public function getHeight()
     {
         return $this->height;
     }
     
     /**
-     * @param float $height
+     * @param $height
      */
-    public function setHeight(float $height): void
+    public function setHeight($height): void
     {
         $this->height = $height;
     }
     
     /**
-     * @return float
+     * @return string
      */
     public function getWeight(): float
     {
@@ -217,9 +216,9 @@ class Customer extends AbstractEntity
     }
     
     /**
-     * @param float $weight
+     * @param string $weight
      */
-    public function setWeight(float $weight): void
+    public function setWeight(string $weight): void
     {
         $this->weight = $weight;
     }
@@ -336,15 +335,15 @@ class Customer extends AbstractEntity
     /**
      * @return string
      */
-    public function getContactNumber(): string
+    public function getContactNumber()
     {
         return $this->contactNumber;
     }
 
     /**
-     * @param string $contactNumber
+     * @param $contactNumber
      */
-    public function setContactNumber(string $contactNumber): void
+    public function setContactNumber($contactNumber): void
     {
         $this->contactNumber = $contactNumber;
     }
