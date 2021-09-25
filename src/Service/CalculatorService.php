@@ -6,6 +6,7 @@ use App\Enum\CalculatorEnum;
 use App\Helper\CustomHelper;
 use App\Repository\AgeBaseRateRepository;
 use App\Repository\CreditRatingRepository;
+use App\Repository\GpBeneficiaryProtectionRepository;
 use DateTime;
 
 /**
@@ -13,6 +14,7 @@ use DateTime;
  * @package App\Service
  * @property AgeBaseRateRepository ageBaseRateRepository
  * @property CreditRatingRepository creditRatingRepository
+ * @property GpBeneficiaryProtectionRepository gpBeneficiaryProtectionRepository
  */
 class CalculatorService
 {
@@ -20,13 +22,16 @@ class CalculatorService
      * CustomerMetaService constructor.
      * @param AgeBaseRateRepository $ageBaseRateRepository
      * @param CreditRatingRepository $creditRatingRepository
+     * @param GpBeneficiaryProtectionRepository $gpBeneficiaryProtectionRepository
      */
     public function __construct(
         AgeBaseRateRepository $ageBaseRateRepository,
-        CreditRatingRepository $creditRatingRepository
+        CreditRatingRepository $creditRatingRepository,
+        GpBeneficiaryProtectionRepository $gpBeneficiaryProtectionRepository
     ) {
         $this->ageBaseRateRepository = $ageBaseRateRepository;
         $this->creditRatingRepository = $creditRatingRepository;
+        $this->gpBeneficiaryProtectionRepository = $gpBeneficiaryProtectionRepository;
     }
     
     
@@ -47,30 +52,30 @@ class CalculatorService
         $creditRating = $this->creditRatingRepository->findOneBy(['rating' => $data['creditRating']]);
         $minCreditRatingBaseRate = $minAgeBaseRate * $creditRating->getFlooringBaseRate();
         $maxCreditRatingBaseRate = $maxAgeBaseRate * $creditRating->getCeilingBaseRate();
-        $minSmokerDiscountRate = $minAgeBaseRate * $data['smoker'];
-        $maxSmokerDiscountRate = $maxAgeBaseRate * $data['smoker'];
-        $minWeightDiscountRate = $minAgeBaseRate * $data['weight'];
-        $maxWeightDiscountRate = $maxAgeBaseRate * $data['weight'];
-        $minHealthDiscountRate = $minAgeBaseRate * $data['healthStatus'];
-        $maxHealthDiscountRate = $maxAgeBaseRate * $data['healthStatus'];
-        $minLegalIssueDiscountRate = $minAgeBaseRate * $data['legalIssues'];
-        $maxLegalIssueDiscountRate = $maxAgeBaseRate * $data['legalIssues'];
-        $minDuiDiscountRate = $minAgeBaseRate * $data['DUI'];
-        $maxDuiDiscountRate = $maxAgeBaseRate * $data['DUI'];
-        $minLicenseSuspendDiscountRate = $minAgeBaseRate * $data['licenseSuspended'];
-        $maxLicenseSuspendDiscountRate = $maxAgeBaseRate * $data['licenseSuspended'];
-        $minMisdemeanorDiscountRate = $minAgeBaseRate * $data['misdemeanor'];
-        $maxMisdemeanorDiscountRate = $maxAgeBaseRate * $data['misdemeanor'];
-        $minAnnualCheckupDiscountRate = $minAgeBaseRate * $data['annualCheckup'];
-        $maxAnnualCheckupDiscountRate = $maxAgeBaseRate * $data['annualCheckup'];
-        $minPhysicalExerciseDiscountRate = $minAgeBaseRate * $data['physicalExercise'];
-        $maxPhysicalExerciseDiscountRate = $maxAgeBaseRate * $data['physicalExercise'];
-        $minBloodPressureDiscountRate = $minAgeBaseRate * $data['bloodPressure'];
-        $maxBloodPressureDiscountRate = $maxAgeBaseRate * $data['bloodPressure'];
-        $minHighCholesterolDiscountRate = $minAgeBaseRate * $data['highCholesterol'];
-        $maxHighCholesterolDiscountRate = $maxAgeBaseRate * $data['highCholesterol'];
-        $minDrivingInfractionDiscountRate = $minAgeBaseRate * $data['drivingInfraction'];
-        $maxDrivingInfractionDiscountRate = $maxAgeBaseRate * $data['drivingInfraction'];
+        $minSmokerDiscountRate = $minAgeBaseRate * CalculatorEnum::smokerValues[$data['smoker']];
+        $maxSmokerDiscountRate = $maxAgeBaseRate * CalculatorEnum::smokerValues[$data['smoker']];
+        $minWeightDiscountRate = $minAgeBaseRate * CalculatorEnum::weightValues[$data['weight']];
+        $maxWeightDiscountRate = $maxAgeBaseRate * CalculatorEnum::weightValues[$data['weight']];
+        $minHealthDiscountRate = $minAgeBaseRate * CalculatorEnum::healthStatus[$data['healthStatus']];
+        $maxHealthDiscountRate = $maxAgeBaseRate * CalculatorEnum::healthStatus[$data['healthStatus']];
+        $minLegalIssueDiscountRate = $minAgeBaseRate * CalculatorEnum::legalIssues[$data['legalIssues']];
+        $maxLegalIssueDiscountRate = $maxAgeBaseRate * CalculatorEnum::legalIssues[$data['legalIssues']];
+        $minDuiDiscountRate = $minAgeBaseRate * CalculatorEnum::DUIValues[$data['DUI']];
+        $maxDuiDiscountRate = $maxAgeBaseRate * CalculatorEnum::DUIValues[$data['DUI']];
+        $minLicenseSuspendDiscountRate = $minAgeBaseRate * CalculatorEnum::licenseSuspended[$data['licenseSuspended']];
+        $maxLicenseSuspendDiscountRate = $maxAgeBaseRate * CalculatorEnum::licenseSuspended[$data['licenseSuspended']];
+        $minMisdemeanorDiscountRate = $minAgeBaseRate * CalculatorEnum::misdemeanorValues[$data['misdemeanor']];
+        $maxMisdemeanorDiscountRate = $maxAgeBaseRate * CalculatorEnum::misdemeanorValues[$data['misdemeanor']];
+        $minAnnualCheckupDiscountRate = $minAgeBaseRate * CalculatorEnum::annualCheckUpStatus[$data['annualCheckup']];
+        $maxAnnualCheckupDiscountRate = $maxAgeBaseRate * CalculatorEnum::annualCheckUpStatus[$data['annualCheckup']];
+        $minPhysicalExerciseDiscountRate = $minAgeBaseRate * CalculatorEnum::physicalExerciseStatus[$data['physicalExercise']];
+        $maxPhysicalExerciseDiscountRate = $maxAgeBaseRate * CalculatorEnum::physicalExerciseStatus[$data['physicalExercise']];
+        $minBloodPressureDiscountRate = $minAgeBaseRate * CalculatorEnum::bloodPressureStatus[$data['bloodPressure']];
+        $maxBloodPressureDiscountRate = $maxAgeBaseRate * CalculatorEnum::bloodPressureStatus[$data['bloodPressure']];
+        $minHighCholesterolDiscountRate = $minAgeBaseRate * CalculatorEnum::cholesterolStatus[$data['highCholesterol']];
+        $maxHighCholesterolDiscountRate = $maxAgeBaseRate * CalculatorEnum::cholesterolStatus[$data['highCholesterol']];
+        $minDrivingInfractionDiscountRate = $minAgeBaseRate * CalculatorEnum::drivingInfractionsStatus[$data['drivingInfraction']];
+        $maxDrivingInfractionDiscountRate = $maxAgeBaseRate * CalculatorEnum::drivingInfractionsStatus[$data['drivingInfraction']];
     
         $discountRate['min'] = $minSmokerDiscountRate + $minWeightDiscountRate + $minHealthDiscountRate + $minLegalIssueDiscountRate +
             $minDuiDiscountRate + $minLicenseSuspendDiscountRate + $minMisdemeanorDiscountRate + $minAnnualCheckupDiscountRate
@@ -140,13 +145,15 @@ class CalculatorService
      * @param array $maxPaymentsValues
      * @param array $discountRate
      * @param string $paymentStartDate
+     * @param bool $isBeneficiaryProtectionCase
      * @return array
      */
     public function calculatePresentValueForTodayWithPercentStep(
         array $minPaymentsValues,
         array $maxPaymentsValues,
         array $discountRate,
-        string $paymentStartDate
+        string $paymentStartDate,
+        bool $isBeneficiaryProtectionCase = false
     ) {
         $pv['min'] = 0;
         $pv['max'] = 0;
@@ -156,11 +163,14 @@ class CalculatorService
             $pv['max'] = $pv['max'] +
                 ($maxPaymentsValues[$index] / (pow(1+ $discountRate['max'], $index)));
         }
-        $dateDifference = $this
-            ->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $paymentStartDate);
-        $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
-        $pv['min'] = ($pv['min']) / (pow((1 + $discountRate['min']), $dateDifference));
-        $pv['max'] = ($pv['max']) / (pow((1 + $discountRate['max']), $dateDifference));
+        
+        if (!$isBeneficiaryProtectionCase) {
+            $dateDifference = $this
+                ->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $paymentStartDate);
+            $dateDifference = ($dateDifference->days) / CalculatorEnum::daysInYear;
+            $pv['min'] = ($pv['min']) / (pow((1 + $discountRate['min']), $dateDifference));
+            $pv['max'] = ($pv['max']) / (pow((1 + $discountRate['max']), $dateDifference));
+        }
     
         return $pv;
     }
@@ -169,9 +179,15 @@ class CalculatorService
      * @param int $year
      * @param array $data
      * @param array $discountRate
+     * @param bool $isBeneficiaryProtectionCase
      * @return array
      */
-    public function calculateWithAnnualAndSemiAnnualFrequency(int $year, array $data, array $discountRate): array
+    public function calculateWithAnnualAndSemiAnnualFrequency(
+        int $year,
+        array $data,
+        array $discountRate,
+        bool $isBeneficiaryProtectionCase = false
+    ): array
     {
         $paymentsValueWithPercentStep = [];
         $minPaymentsValues = [];
@@ -204,19 +220,22 @@ class CalculatorService
             $minPaymentsValues = $maxPaymentsValues = $paymentsValueWithPercentStep;
         }
         
-        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues, $discountRate, $data['paymentStartDate']);
+        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues,
+            $discountRate, $data['paymentStartDate'], $isBeneficiaryProtectionCase);
     }
     
     /**
      * @param $dateDifference
      * @param array $data
      * @param array $discountRate
+     * @param bool $isBeneficiaryProtectionCase
      * @return array
      */
     public function calculateValueWithQuarterlyMonthlyWeeklyFrequency(
         $dateDifference,
         array $data,
-        array $discountRate
+        array $discountRate,
+        bool $isBeneficiaryProtectionCase = false
     ) {
         $totalPayments = $annuityFormulaPower = 0;
         $paymentsValueWithPercentStep = [];
@@ -263,24 +282,30 @@ class CalculatorService
             array_push($maxPaymentsValues, $maxValue);
         }
     
-        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues, $effectiveAnnualRate, $data['paymentStartDate']);
+        return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues,
+            $effectiveAnnualRate, $data['paymentStartDate'], $isBeneficiaryProtectionCase);
     }
     
     /**
      * @param array $data
      * @param array $discountRate
+     * @param bool $isBeneficiaryProtectionCase
      * @return array
      */
-    public function calculatePresentValueWithPercentStep(array $data, array $discountRate)
+    public function calculatePresentValueWithPercentStep(
+        array $data,
+        array $discountRate,
+        bool $isBeneficiaryProtectionCase = false
+    )
     {
         $dateDifference = $this->calculateDateDifference($data['paymentStartDate'], $data['paymentEndDate']);
         if ($dateDifference->m > 0) {
             $dateDifference->y = $dateDifference->y + 1;
         }
         if ($data['frequency'] === 1 || $data['frequency'] === 2) {
-            return $this->calculateWithAnnualAndSemiAnnualFrequency($dateDifference->y, $data, $discountRate);
+            return $this->calculateWithAnnualAndSemiAnnualFrequency($dateDifference->y, $data, $discountRate, $isBeneficiaryProtectionCase);
         } else {
-            return $this->calculateValueWithQuarterlyMonthlyWeeklyFrequency($dateDifference, $data, $discountRate);
+            return $this->calculateValueWithQuarterlyMonthlyWeeklyFrequency($dateDifference, $data, $discountRate, $isBeneficiaryProtectionCase);
         }
     }
     
@@ -318,6 +343,7 @@ class CalculatorService
     
     /**
      * @param array $data
+     * @return array
      * @throws \Exception
      */
     public function calculatePresentValue(array $data)
@@ -330,8 +356,40 @@ class CalculatorService
         if (!($data['percentStep'])) {
             $pv = $this->calculatePresentValueByStartDate($data, $discountRate);
             $pv = $this->calculatePresentValueByCurrentDay($pv, $data, $discountRate);
+            $pv['beneficiaryProtection'] = $this->calculatePresentValueByStartDate($data, CalculatorEnum::beneficiaryDiscountRate)['min'];
         } else {
             $pv = $this->calculatePresentValueWithPercentStep($data, $discountRate);
+            $pv['beneficiaryProtection'] = $this->calculatePresentValueWithPercentStep($data,
+                CalculatorEnum::beneficiaryDiscountRate, true)['min'];
+        }
+        if ($data['productType'] === CalculatorEnum::productType['GP']) {
+            $beneficiaryProtection = $this->gpBeneficiaryProtectionRepository->getBeneficiaryProtection($data['age']);
+            if ($pv['max'] > CalculatorEnum::leastBeneficiaryProtectionValue) {
+                if ($beneficiaryProtection) {
+                    $pv['beneficiaryProtection'] = $pv['max'] * $beneficiaryProtection[0]->getUpperBeneficiaryProtection();
+                    $pv['beneficiaryProtection'] = $pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
+                }
+            } else {
+                $pv['beneficiaryProtection'] = $beneficiaryProtection[0]->getLowerBeneficiaryProtection();
+            }
+        } else {
+            if ($data['gender'] === CalculatorEnum::genderValues['Female']) {
+                $sumOfAllQuestions = CalculatorEnum::maleWeightValues[$data['weight']] +CalculatorEnum::femaleSmokerValues[$data['smoker']] + CalculatorEnum::femaleHealthStatus[$data['healthStatus']]
+                    + CalculatorEnum::femaleLegalIssues[$data['legalIssues']] + CalculatorEnum::femaleDUIValues[$data['DUI']] +
+                    CalculatorEnum::femaleLicenseSuspended[$data['licenseSuspended']] + CalculatorEnum::femaleMisdemeanorValues[$data['misdemeanor']]
+                    + CalculatorEnum::femaleAnnualCheckUpStatus[$data['annualCheckup']] + CalculatorEnum::femalePhysicalExerciseStatus[$data['physicalExercise']]
+                    + CalculatorEnum::femaleBloodPressureStatus[$data['bloodPressure']] + CalculatorEnum::femaleCholesterolStatus[$data['highCholesterol']]
+                    + CalculatorEnum::femaleDrivingInfractionsStatus[$data['drivingInfraction']];
+            } else {
+                $sumOfAllQuestions = CalculatorEnum::maleWeightValues[$data['weight']] + CalculatorEnum::maleSmokerValues[$data['smoker']] + CalculatorEnum::maleHealthStatus[$data['healthStatus']]
+                    + CalculatorEnum::maleLegalIssues[$data['legalIssues']] + CalculatorEnum::maleDUIValues[$data['DUI']] +
+                    CalculatorEnum::maleLicenseSuspended[$data['licenseSuspended']] + CalculatorEnum::maleMisdemeanorValues[$data['misdemeanor']]
+                    + CalculatorEnum::maleAnnualCheckUpStatus[$data['annualCheckup']] + CalculatorEnum::malePhysicalExerciseStatus[$data['physicalExercise']]
+                    + CalculatorEnum::maleBloodPressureStatus[$data['bloodPressure']] + CalculatorEnum::maleCholesterolStatus[$data['highCholesterol']]
+                    + CalculatorEnum::maleDrivingInfractionsStatus[$data['drivingInfraction']];
+            }
+            $ageLifeExpectancy = CalculatorEnum::maleLifeExpectancy[$data['age']];
+            $pv['yourLifeExpectancy'] = (int)(($ageLifeExpectancy * (1 + $sumOfAllQuestions)) * 12);
         }
         
         return $pv;
