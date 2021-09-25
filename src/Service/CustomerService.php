@@ -171,11 +171,12 @@ class CustomerService
     
     /**
      * @param array $data
+     * @return Customer
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function saveCustomerData(array $data)
     {
-        $this->customerRepository->saveCustomerData($data);
+        return $this->customerRepository->saveCustomerData($data);
     }
 }
