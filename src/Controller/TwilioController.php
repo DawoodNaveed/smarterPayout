@@ -27,7 +27,7 @@ class TwilioController extends CustomerController
         #TODO
         $messageDay = $request->get('messageDay');
         $customerNumber = $request->get('customerNumber');
-        $twilioService->sendSms($messageDay, $customerNumber);
+        $twilioService->sendMessage($messageDay, $customerNumber);
     }
     
     /**
