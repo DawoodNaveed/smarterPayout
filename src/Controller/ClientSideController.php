@@ -20,7 +20,7 @@ class ClientSideController extends AbstractController
      */
     public function aboutUsDetailAction(Request $request)
     {
-        return $this->render('client/aboutUsDetails.html.twig');
+        return $this->render('client/learnMore.html.twig');
     }
 
     /**
