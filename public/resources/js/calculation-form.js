@@ -11,6 +11,7 @@ $(document).ready(function () {
     $(document).on('click', '#termsAndConditions', function () {
         if ($('#termsAndConditions').is(':checked')) {
             $('#submitCalculation').attr('disabled', false);
+
         } else {
             $('#submitCalculation').attr('disabled', true);
         }
@@ -78,7 +79,11 @@ $(document).ready(function () {
                                                             Prev
                                                         </button>
                                                         <button id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
-                                                                type="submit" disabled="disabled">
+                                                                disabled="disabled">
+                                                            Submit
+                                                        </button>
+                                                        <button id="hiddenSubmitButton" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                                disabled="disabled" type="submit" hidden>
                                                             Submit
                                                         </button>
                                                     </div>`;
@@ -183,4 +188,6 @@ $(document).ready(function () {
             e.returnValue = true;
         }
     });
+
+
 });

@@ -22,13 +22,13 @@ class Customer extends AbstractEntity
     
     /**
      * @var string Last name
-     * @ORM\Column(name="last_name", type="string")
+     * @ORM\Column(name="last_name", type="string", nullable=true)
      */
     private $lastName;
     
     /**
      * @var \DateTime
-     * @ORM\Column(name="date_of_birth", type="datetime")
+     * @ORM\Column(name="date_of_birth", type="datetime", nullable=true)
      */
     private $dateOfBirth;
     
@@ -46,7 +46,7 @@ class Customer extends AbstractEntity
     
     /**
      * @var float
-     * @ORM\Column(name="height", type="float")
+     * @ORM\Column(name="height", type="float", nullable=true)
      */
     private $height;
     
@@ -58,13 +58,13 @@ class Customer extends AbstractEntity
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $contactNumber;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $authToken;
 

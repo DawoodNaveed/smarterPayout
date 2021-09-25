@@ -32,37 +32,37 @@ class CustomerMeta extends AbstractEntity
     
     /**
      * @var float
-     * @ORM\Column(name="percent_step", type="float")
+     * @ORM\Column(name="percent_step", type="float", nullable=true)
      */
     private $percentStep;
     
     /**
      * @var string
-     * @ORM\Column(name="payment_type", type="string")
+     * @ORM\Column(name="payment_type", type="string", nullable=true)
      */
     private $paymentType;
     
     /**
      * @var boolean
-     * @ORM\Column(name="smoker", type="boolean")
+     * @ORM\Column(name="smoker", type="boolean", nullable=true)
      */
     private $smoker;
     
     /**
      * @var string
-     * @ORM\Column(name="health_status", type="string")
+     * @ORM\Column(name="health_status", type="string", nullable=true)
      */
     private $healthStatus;
     
     /**
      * @var boolean
-     * @ORM\Column(name="legal_issues_status", type="boolean")
+     * @ORM\Column(name="legal_issues_status", type="boolean", nullable=true)
      */
     private $legalIssueStatus;
     
     /**
      * @var boolean
-     * @ORM\Column(name="dui_status", type="boolean", nullable=true)
+     * @ORM\Column(name="dui_status", type="boolean", nullable=true, nullable=true)
      */
     private $duiStatus;
     
@@ -80,31 +80,31 @@ class CustomerMeta extends AbstractEntity
     
     /**
      * @var boolean
-     * @ORM\Column(name="annual_checkup_status", type="boolean")
+     * @ORM\Column(name="annual_checkup_status", type="boolean", nullable=true)
      */
     private $annualCheckupStatus;
     
     /**
      * @var integer
-     * @ORM\Column(name="physical_exercise_status", type="integer")
+     * @ORM\Column(name="physical_exercise_status", type="integer", nullable=true)
      */
     private $physicalExerciseStatus;
     
     /**
      * @var integer
-     * @ORM\Column(name="blood_pressure_status", type="integer")
+     * @ORM\Column(name="blood_pressure_status", type="integer", nullable=true)
      */
     private $bloodPressureStatus;
     
     /**
      * @var boolean
-     * @ORM\Column(name="high_cholesterol", type="boolean")
+     * @ORM\Column(name="high_cholesterol", type="boolean", nullable=true)
      */
     private $highCholesterol;
     
     /**
      * @var integer
-     * @ORM\Column(name="driving_infraction", type="integer")
+     * @ORM\Column(name="driving_infraction", type="integer", nullable=true)
      */
     private $drivingInfraction;
     

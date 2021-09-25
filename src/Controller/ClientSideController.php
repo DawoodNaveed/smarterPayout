@@ -26,27 +26,27 @@ class ClientSideController extends AbstractController
     {
         $form = $this->createForm(CalculatorForm::class);
         $contactForm = $this->createForm(ContactUsForm::class);
-//        $form->handleRequest($request);
-//        $contactForm->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $data = $form->getData();
-//            dd($data);
-//            if (!($data['age'] >= CalculatorEnum::minAge && $data['age'] <= CalculatorEnum::maxAge)) {
-//                $this->addFlash('error', 'Age is not valid');
-//                return $this->redirectToRoute('calculator_action');
-//            }
-////            $calculatorService->calculatePresentValue($data);
-//        }
-//        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-//            $data = $contactForm->getData();
-//            $emailService->send(
-//                'Contact Us',
-//                'meharabdullah899@gmail.com',
-//                'admin/email/contactUs.html.twig',
-//                $data
-//            );
-//        }
+        $form->handleRequest($request);
+        $contactForm->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            dd($data);
+            if (!($data['age'] >= CalculatorEnum::minAge && $data['age'] <= CalculatorEnum::maxAge)) {
+                $this->addFlash('error', 'Age is not valid');
+                return $this->redirectToRoute('calculator_action');
+            }
+//            $calculatorService->calculatePresentValue($data);
+        }
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $data = $contactForm->getData();
+            $emailService->send(
+                'Contact Us',
+                'meharabdullah899@gmail.com',
+                'admin/email/contactUs.html.twig',
+                $data
+            );
+        }
         return $this->render('client/mainContent.html.twig', [
             'form' => $form->createView(),
             'contactUsForm' => $contactForm->createView()
@@ -123,5 +123,15 @@ class ClientSideController extends AbstractController
         }
 
         return new JsonResponse(['message' => "Authentication Failed"]);
+    }
+    
+    /**
+     * @Route("/calculate-present-value", name="calculate_present_value")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function calculatePresentValueAction(Request $request)
+    {
+    
     }
 }
