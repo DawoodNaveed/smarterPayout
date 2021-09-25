@@ -1,15 +1,15 @@
-$(document).ready(function() {
+$(document).ready(function () {
     resize_carousel();
 
     // Set height of page sections according to screen size
     $('#about-us, #calculate').css('min-height', $(window).height());
 
     // Smart scroll for navigation bar
-    if($('.smart-scroll').length > 0 && $(window).width() >= 992) {
+    if ($('.smart-scroll').length > 0 && $(window).width() >= 992) {
         var last_scroll_top = 0;
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             scroll_top = $(this).scrollTop();
-            if(scroll_top < last_scroll_top || scroll_top > last_scroll_top) {
+            if (scroll_top < last_scroll_top || scroll_top > last_scroll_top) {
                 $('.smart-scroll').removeClass('scrolled-down').addClass('scrolled-up');
             } else {
                 $('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
@@ -19,10 +19,10 @@ $(document).ready(function() {
     }
 
     //  handling navbar for mobile/tab screens
-    $('.navbar-toggler').click(function() {
+    $('.navbar-toggler').click(function () {
         var navbarTogglerIcon = $('.navbar-toggler span');
         var navbarCollapse = $('.navbar-collapse');
-        if(navbarCollapse.hasClass('show')) {
+        if (navbarCollapse.hasClass('show')) {
             navbarCollapse.toggleClass('show');
             navbarTogglerIcon.removeClass('fa fa-times');
             navbarTogglerIcon.addClass('fa fa-bars');
@@ -37,16 +37,18 @@ $(document).ready(function() {
     });
 
     //  custom animated input fields
-    $("input, textarea").focus(function() {
+    $("input, textarea, select").focus(function () {
         $(this).parents(".form-group").addClass("focused");
+        $(this).parents(".form-group").removeClass("has-error");
     });
-    $("input, textarea").blur(function() {
-        var inputValue = $(this).val();
-        if(inputValue == "") {
+
+    $("input, textarea, select").on('keyup blur focusout change', function () {
+        if ($(this).val()) {
             $(this).removeClass("filled");
             $(this).parents(".form-group").removeClass("focused");
         } else {
             $(this).addClass("filled");
+            $(this).parents(".form-group").addClass("focused");
         }
     });
 
@@ -58,12 +60,12 @@ $(document).ready(function() {
         var window_height = $window.height();
         var window_top_position = $window.scrollTop();
         var window_bottom_position = (window_top_position + window_height);
-        $.each($animation_elements, function() {
+        $.each($animation_elements, function () {
             var $element = $('.animation-element');
             var element_height = $element.outerHeight();
             var element_top_position = $element.offset().top;
             var element_bottom_position = (element_top_position + element_height);
-            if((element_bottom_position >= window_top_position) && (element_top_position <= window_bottom_position)) {
+            if ((element_bottom_position >= window_top_position) && (element_top_position <= window_bottom_position)) {
                 $element.removeClass('about-us-animated-img-block');
                 $element.addClass('about-us-animated-img-animate');
             } else {
@@ -77,6 +79,7 @@ $(document).ready(function() {
         // Set height of carousel image according to screen size
         $('.carousel-item img').css('height', $(window).height() - $('.navbar').outerHeight());
     }
+
     $window.on('scroll resize', check_if_in_view);
     $window.trigger('scroll');
     $window.on('resize', resize_carousel)
