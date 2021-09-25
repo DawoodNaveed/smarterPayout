@@ -558,29 +558,30 @@
                                 soon
                                 as
                                 we can.</h6>
-                            <form action="" class="form pt-2">
+                            {{ form_start(contactUsForm) }}
                                 <div class="form-group mt-sm-0">
                                     <label class="form-label" for="first">Name</label>
-                                    <input id="first" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="last">Email</label>
-                                    <input id="last" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="color">Contact</label>
-                                    <input id="color" class="form-input" type="text"/>
+                                    {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="color">Message</label>
-                                    <textarea id="color" class="form-input" rows="2" type="text"></textarea>
+                                    {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
                                 </div>
 
-                                <button class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
+                                <button type="submit" class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
                                     Send
                                     Message
                                 </button>
-                            </form>
+                            {{ form_errors(contactUsForm) }}
+                            {{ form_end(contactUsForm) }}
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex align-items-end pr-0">

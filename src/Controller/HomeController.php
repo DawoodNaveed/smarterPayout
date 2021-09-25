@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Enum\CalculatorEnum;
 use App\Form\CalculatorForm;
+use App\Form\ContactUsForm;
+use App\Service\EmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,11 +32,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, EmailService $emailService)
     {
-
         $form = $this->createForm(CalculatorForm::class);
+        $contactForm = $this->createForm(ContactUsForm::class);
         $form->handleRequest($request);
+        $contactForm->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
@@ -45,7 +49,19 @@ class HomeController extends AbstractController
             }
 //            $calculatorService->calculatePresentValue($data);
         }
-        return $this->render('client/mainContent.html.twig', ['form' => $form->createView()]);
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $data = $contactForm->getData();
+            $emailService->send(
+                'Contact Us',
+                'meharabdullah899@gmail.com',
+                'admin/email/contactUs.html.twig',
+                $data
+            );
+        }
+        return $this->render('client/mainContent.html.twig', [
+            'form' => $form->createView(),
+            'contactUsForm' => $contactForm->createView()
+        ]);
     }
 
     /**
