@@ -8,6 +8,7 @@ use Twilio\Rest\Client;
 /**
  * Class TwilioService
  * @package App\Service
+ * @property $twilioContact
  */
 class TwilioService
 {
@@ -35,31 +36,25 @@ class TwilioService
     public function __construct(
         $twilioAccountSid,
         $twilioAuthToken,
-        Environment $twig
+        Environment $twig,
+        string $twilioContact
     ) {
         $this->twilioAccountSid = $twilioAccountSid;
         $this->twilioAuthToken = $twilioAuthToken;
         $this->twig = $twig;
+        $this->twilioContact = $twilioContact;
     }
-    
+
     /**
-     * @param string $messageDay
+     * @param string $messageTemplate
      * @param string $customerNumber
      */
-    public function sendSms(string $messageDay, string $customerNumber)
+    public function sendMessage(string $messageTemplate, string $customerNumber, array $options = [])
     {
-        $twilioNumber = '+12812135734';
-        $client = new Client($this->twilioAccountSid, $this->twilioAuthToken);
-        $html = $this->twig->render('message/' . $messageDay .'.html.twig', []);
-        $client->messages->create(
-            $customerNumber,
-            [
-                'from' => $twilioNumber,
-                'body' => $html
-            ]
-        );
+        $html = $this->twig->render('message/' . $messageTemplate .'.html.twig', $options);
+        $this->send($html, $customerNumber);
     }
-    
+
     /**
      * @param string $parentCallSid
      * @param string $voicemailAudio
@@ -76,5 +71,21 @@ class TwilioService
                     "twiml" => $voicemailAudio
                 ]
             );
+    }
+
+    /**
+     * @param string $message
+     * @param string $to
+     */
+    private function send(string $message, string $to)
+    {
+        $client = new Client($this->twilioAccountSid, $this->twilioAuthToken);
+        $client->messages->create(
+            $to,
+            [
+                'from' => $this->twilioContact,
+                'body' => $message
+            ]
+        );
     }
 }

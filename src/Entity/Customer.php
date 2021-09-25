@@ -55,7 +55,25 @@ class Customer extends AbstractEntity
      * @ORM\Column(name="weight", type="float")
      */
     private $weight;
-    
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=100)
+     */
+    private $contactNumber;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=100)
+     */
+    private $authToken;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
+    private $isAuthenticated = 0;
+
     /**
      * @var Audio
      * @ORM\ManyToOne(targetEntity="App\Entity\Audio", inversedBy="customer")
@@ -252,7 +270,8 @@ class Customer extends AbstractEntity
             'audio' => $this->audio,
             'email' => $this->email,
             'dateOfBirth' => $this->dateOfBirth,
-            'audioTagCompleted' => $isAudioTagCompleted
+            'audioTagCompleted' => $isAudioTagCompleted,
+            'contactNumber' => $this->contactNumber
         ];
         if ($this->customerMeta) {
             $data['phoneNumber1'] = $this->customerMeta->getPhoneNumber1();
@@ -312,5 +331,53 @@ class Customer extends AbstractEntity
     public function setAudio(Audio $audio): void
     {
         $this->audio = $audio;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContactNumber(): string
+    {
+        return $this->contactNumber;
+    }
+
+    /**
+     * @param string $contactNumber
+     */
+    public function setContactNumber(string $contactNumber): void
+    {
+        $this->contactNumber = $contactNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthToken(): string
+    {
+        return $this->authToken;
+    }
+
+    /**
+     * @param string $authToken
+     */
+    public function setAuthToken(string $authToken): void
+    {
+        $this->authToken = $authToken;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsAuthenticated()
+    {
+        return $this->isAuthenticated;
+    }
+
+    /**
+     * @param bool|null $isAuthenticated
+     */
+    public function setIsAuthenticated($isAuthenticated): void
+    {
+        $this->isAuthenticated = $isAuthenticated;
     }
 }

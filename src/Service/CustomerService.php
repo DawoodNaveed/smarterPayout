@@ -6,6 +6,7 @@ use App\Entity\Customer;
 use App\Entity\User;
 use App\Helper\CustomHelper;
 use App\Repository\CustomerRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class CustomerService
@@ -13,6 +14,8 @@ use App\Repository\CustomerRepository;
  * @property CustomerRepository customerRepository
  * @property AudioService $audioService
  * @property AwsS3Service $awsS3Service
+ * @property UtilService utilService
+ * @property TwilioService twilioService
  */
 class CustomerService
 {
@@ -21,15 +24,20 @@ class CustomerService
      * @param CustomerRepository $customerRepository
      * @param AudioService $audioService
      * @param AwsS3Service $awsS3Service
+     * @param UtilService $utilService
      */
     public function __construct(
         CustomerRepository $customerRepository,
         AudioService $audioService,
-        AwsS3Service $awsS3Service
+        AwsS3Service $awsS3Service,
+        UtilService $utilService,
+        TwilioService $twilioService
     ) {
         $this->customerRepository = $customerRepository;
         $this->audioService = $audioService;
         $this->awsS3Service = $awsS3Service;
+        $this->utilService = $utilService;
+        $this->twilioService = $twilioService;
     }
     
     /**
@@ -100,5 +108,64 @@ class CustomerService
         } catch (\Exception $exception) {
             return false;
         }
+    }
+
+    /**
+     * @param array $criteria
+     * @param bool $isDeleted
+     * @return Customer|null
+     */
+    public function findOneBy(array $criteria, bool $isDeleted = false): ?Customer
+    {
+        return $this->customerRepository->findOneBy(array_merge([$criteria, ['isDeleted' => $isDeleted]]));
+    }
+
+    /**
+     * @param string $customerId
+     * @param string $contactNumber
+     * @return false|void
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function sendOTP(string $customerId, string $contactNumber)
+    {
+        /** @var Customer $customer */
+        $customer = $this->findOneBy(['id' => $customerId]);
+
+        if (!$customer instanceof Customer) {
+            return false;
+        }
+
+        $authCode = $this->utilService->generateOTP();
+        $customer->setContactNumber($contactNumber);
+        $customer->setAuthToken($authCode);
+        $this->customerRepository->flush();
+        $this->twilioService->sendMessage('verificationCode', $contactNumber, ['code' => $authCode]);
+    }
+
+    /**
+     * @param string $code
+     * @param string $customerId
+     * @return bool|JsonResponse
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function verifyOTP(string $code, string $customerId)
+    {
+        /** @var Customer $customer */
+        $customer = $this->findOneBy(['id' => $customerId]);
+
+        if (!$customer instanceof Customer) {
+            return false;
+        }
+
+        if ($customer->getAuthToken() !== $code) {
+            return false;
+        }
+
+        $customer->setIsAuthenticated(true);
+        $this->customerRepository->flush();
+
+        return true;
     }
 }

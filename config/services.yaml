@@ -22,6 +22,7 @@ services:
             $awsRegion: '%env(AWS_REGION)%'
             $awsSdkVersion: '%env(AWS_SDK_VERSION)%'
             $awsS3bucket: '%env(AWS_S3_BUCKET)%'
+            $twilioContact: '%env(TWILIO_NUMBER)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
