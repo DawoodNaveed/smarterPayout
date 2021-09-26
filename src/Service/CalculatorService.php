@@ -419,6 +419,7 @@ class CalculatorService
                     + CalculatorEnum::maleDrivingInfractionsStatus[$data['drivingInfraction']];
             }
             $ageLifeExpectancy = CalculatorEnum::maleLifeExpectancy[$data['age']];
+            $pv['averageLifeExpectancy'] = (int)(($ageLifeExpectancy * 12));
             $pv['yourLifeExpectancy'] = (int)(($ageLifeExpectancy * (1 + $sumOfAllQuestions)) * 12);
         }
         

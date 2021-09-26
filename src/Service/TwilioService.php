@@ -51,7 +51,7 @@ class TwilioService
      */
     public function sendMessage(string $messageTemplate, string $customerNumber, array $options = [])
     {
-        $html = $this->twig->render('message/' . $messageTemplate .'.html.twig', $options);
+        $html = $this->twig->render('admin/message/' . $messageTemplate .'.html.twig', $options);
         $this->send($html, $customerNumber);
     }
 
