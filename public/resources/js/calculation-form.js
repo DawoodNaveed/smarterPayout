@@ -1,4 +1,5 @@
 let gp = 'GP';
+let customerId= 28;
 $(document).ready(function () {
     $('#calculate_result_modal').on('show.bs.modal', function () {
         setTimeout(function () {
@@ -86,6 +87,54 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#otp-phone-submit').click(function () {
+        var contact = $('#inp-otp-phone').val();
+        if (contact) {
+            $.ajax({
+                url: '/verify-otp',
+                type: 'POST',
+                data: {'id': customerId, 'code' : contact},
+                success: function (data) {
+                    console.log(data);
+                    alert(data['status']);
+                    if (Number(data['status']) === 200) {
+                        alert(data['message']);
+                    } else {
+                        alert(data['message']);
+                    }
+
+                    // signal to user the action is done
+                }
+            });
+        } else {
+            alert('Please Enter a Phone Number');
+        }
+    });
+
+    // $('#otp-phone-submit').click(function () {
+    //     var contact = $('#inp-otp-phone').val();
+    //     if (contact) {
+    //         $.ajax({
+    //             url: '/send-otp',
+    //             type: 'POST',
+    //             data: {'id': customerId, 'contact' : contact},
+    //             success: function (data) {
+    //                 console.log(data);
+    //                 alert(data['status']);
+    //                 if (Number(data['status']) === 200) {
+    //                     alert(data['message']);
+    //                 } else {
+    //                     alert(data['message']);
+    //                 }
+    //
+    //                 // signal to user the action is done
+    //             }
+    //         });
+    //     } else {
+    //         alert('Please Enter a Phone Number');
+    //     }
+    // });
 
     // submit button on the base of product type
     append_calculate_submit_button();

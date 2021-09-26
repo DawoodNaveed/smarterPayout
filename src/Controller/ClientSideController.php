@@ -112,32 +112,39 @@ class ClientSideController extends AbstractController
     /**
      * @Route("/send-otp", name="send_otp")
      * @param Request $request
+     * @param CustomerService $customerService
+     * @param UtilService $utilService
      * @return JsonResponse
      */
-    public function sendOTPAction(Request $request, CustomerService $customerService)
+    public function sendOTPAction(Request $request, CustomerService $customerService, UtilService $utilService)
     {
         $customerId = $request->get('id');
         $contactNumber = $request->get('contact');
-        $customerService->sendOTP($customerId, $contactNumber);
-
-        return new JsonResponse();
+        $response = $customerService->sendOTP($customerId, $contactNumber);
+        if (!$response) {
+            return $utilService->getJsonResponse(500,null, 'User Not Found');
+        } else {
+            return $utilService->getJsonResponse(200,null, 'Send Successfully');
+        }
     }
 
     /**
      * @Route("/verify-otp", name="verify_otp")
      * @param Request $request
+     * @param CustomerService $customerService
+     * @param UtilService $utilService
      * @return JsonResponse
      */
-    public function verifyOTPAction(Request $request, CustomerService $customerService)
+    public function verifyOTPAction(Request $request, CustomerService $customerService, UtilService $utilService)
     {
         $customerId = $request->get('id');
         $code = $request->get('code');
         $authentication = $customerService->verifyOTP($code, $customerId);
 
         if (!$authentication) {
-            return new JsonResponse(['message' => "Authentication Failed"], Response::HTTP_BAD_REQUEST);
+            return $utilService->getJsonResponse(500,null, "Authentication Failed");
+        } else {
+            return $utilService->getJsonResponse(200,null, "Authentication Success");
         }
-
-        return new JsonResponse(['message' => "Authentication Failed"]);
     }
 }

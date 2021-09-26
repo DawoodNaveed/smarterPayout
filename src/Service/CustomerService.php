@@ -117,7 +117,7 @@ class CustomerService
      */
     public function findOneBy(array $criteria, bool $isDeleted = false): ?Customer
     {
-        return $this->customerRepository->findOneBy(array_merge([$criteria, ['isDeleted' => $isDeleted]]));
+        return $this->customerRepository->findOneBy(array_merge($criteria, ['isDeleted' => $isDeleted]));
     }
 
     /**
@@ -141,6 +141,7 @@ class CustomerService
         $customer->setAuthToken($authCode);
         $this->customerRepository->flush();
         $this->twilioService->sendMessage('verificationCode', $contactNumber, ['code' => $authCode]);
+        return true;
     }
 
     /**
