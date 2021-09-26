@@ -270,16 +270,18 @@ class CalculatorService
             array_push($paymentsValueWithPercentStep, $value);
         }
         $remainingPayments = $totalPayments % $data['frequency'];
-        if ($remainingPayments) {
-            $value = end($paymentsValueWithPercentStep);
-            $minValue = $value +
-                $value * ((1- pow(1 + ($effectiveAnnualRate['min'] / $data['frequency']), -($remainingPayments)))
-                    / ($effectiveAnnualRate['min']/ $data['frequency']));
-            $maxValue = $value +
-                $value * ((1- pow(1+ ($effectiveAnnualRate['max'] / $data['frequency']), -($remainingPayments)))
-                    / ($effectiveAnnualRate['max']/ $data['frequency']));
-            array_push($minPaymentsValues, $minValue);
-            array_push($maxPaymentsValues, $maxValue);
+        if (!$isBeneficiaryProtectionCase) {
+            if ($remainingPayments) {
+                $value = end($paymentsValueWithPercentStep);
+                $minValue = $value +
+                    $value * ((1- pow(1 + ($effectiveAnnualRate['min'] / $data['frequency']), -($remainingPayments)))
+                        / ($effectiveAnnualRate['min']/ $data['frequency']));
+                $maxValue = $value +
+                    $value * ((1- pow(1+ ($effectiveAnnualRate['max'] / $data['frequency']), -($remainingPayments)))
+                        / ($effectiveAnnualRate['max']/ $data['frequency']));
+                array_push($minPaymentsValues, $minValue);
+                array_push($maxPaymentsValues, $maxValue);
+            }
         }
     
         return $this->calculatePresentValueForTodayWithPercentStep($minPaymentsValues, $maxPaymentsValues,
@@ -343,6 +345,31 @@ class CalculatorService
     }
     
     /**
+     * @param array $discountRate
+     * @param string $paymentStartDate
+     * @return array
+     */
+    public function addAddOnInDiscountRate(array $discountRate, string $paymentStartDate)
+    {
+        $dateDifference = $this->calculateDateDifference(date(CustomHelper::DATE_FORMAT), $paymentStartDate);
+        if ($dateDifference->y > 10) {
+            $lastIndex = array_key_first(CalculatorEnum::discountRateAddon);
+            foreach (CalculatorEnum::discountRateAddon as $key => $item) {
+                if ($dateDifference->y < $key) {
+                    $addon = CalculatorEnum::discountRateAddon['' . $lastIndex . ''];
+                    $discountRate['min'] = $discountRate['min'] + $addon;
+                    $discountRate['max'] = $discountRate['max'] + $addon;
+                    
+                    return $discountRate;
+                }
+                $lastIndex = $key;
+            }
+        }
+        
+        return $discountRate;
+    }
+    
+    /**
      * @param array $data
      * @return array
      * @throws \Exception
@@ -354,6 +381,7 @@ class CalculatorService
         } else {
             $discountRate = $this->getGpDiscountRate($data);
         }
+        $discountRate = $this->addAddOnInDiscountRate($discountRate, $data['paymentStartDate']);
         if (!($data['percentStep'])) {
             $pv = $this->calculatePresentValueByStartDate($data, $discountRate);
             $pv = $this->calculatePresentValueByCurrentDay($pv, $data, $discountRate);
@@ -362,6 +390,7 @@ class CalculatorService
             $pv = $this->calculatePresentValueWithPercentStep($data, $discountRate);
             $pv['beneficiaryProtection'] = $this->calculatePresentValueWithPercentStep($data,
                 CalculatorEnum::beneficiaryDiscountRate, true)['min'];
+            $pv['beneficiaryProtection'] = $pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
         }
         if ($data['productType'] === CalculatorEnum::productType['GP']) {
             $beneficiaryProtection = $this->gpBeneficiaryProtectionRepository->getBeneficiaryProtection($data['age']);
@@ -394,5 +423,32 @@ class CalculatorService
         }
         
         return $pv;
+    }
+    
+    /**
+     * @param string $gender
+     * @param string $age
+     * @return int|void
+     */
+    public function getInsuranceTerm(string $gender, string $age)
+    {
+        $beneficiaryBenefit = CalculatorEnum::beneficiaryBenefit[$gender];
+        $lastIndex = array_key_first($beneficiaryBenefit);
+        foreach($beneficiaryBenefit as $key => $item) {
+            if ((int)$age < $key) {
+                return $beneficiaryBenefit['' . $lastIndex . ''];
+            }
+            $lastIndex = $key;
+        }
+    }
+    
+    /**
+     * @param int $endDateTerm
+     * @return false|string
+     */
+    public function getEndDate(int $endDateTerm)
+    {
+        $date = date('m/d/Y', strtotime('+90 days'));
+        return date('m/d/Y', strtotime('+' . $endDateTerm . ' year', strtotime($date)));
     }
 }

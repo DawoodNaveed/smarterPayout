@@ -92,19 +92,19 @@ class ClientSideController extends AbstractController
     /**
      * @Route("/user/endDate/{gender}/{age}", name="get_end_date")
      * @param Request $request
+     * @param CalculatorService $calculatorService
      * @return JsonResponse
      */
-    public function getEndDateAction(Request $request)
+    public function getEndDateAction(Request $request, CalculatorService $calculatorService)
     {
         $gender = $request->get('gender');
         $age = $request->get('age');
         $maxAge = CalculatorEnum::cutOffDate[$gender];
 
-        $age = $maxAge - $age;
-        $date = date('m/d/Y', strtotime('+90 days'));
-        $endDate['cutOffData'] = date('m/d/Y', strtotime('+' . $age . ' year', strtotime($date)));
-        #TODO Need to do work of beneficiary date
-        $endDate['beneficiaryDate'] = '12/25/2021';
+        $maxAge = $maxAge - $age;
+        $endDate['cutOffData'] = $calculatorService->getEndDate($maxAge);
+        $insuranceTerm = $calculatorService->getInsuranceTerm($gender, $age);
+        $endDate['beneficiaryBenefit'] = $calculatorService->getEndDate($insuranceTerm);
 
         return new JsonResponse($endDate);
     }
