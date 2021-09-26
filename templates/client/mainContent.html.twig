@@ -4,7 +4,6 @@
 
 {% block content %}
     <div id="overlay"></div>
-    <!-- Page Content -->
     <div class="container-fluid mt-5 p-0">
         <section id="home" class="page-section">
             <div id="carouselSmarterPayouts" class="carousel slide" data-ride="carousel">
@@ -93,6 +92,20 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="productType">Product Type<span
+                                                                    class="text-danger">*</span></label>
+                                                        {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
+                                                        <label class="form-label" for="creditRating">Insurance
+                                                            Company<span class="text-danger">*</span></label>
+                                                        {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group mt-sm-0">
                                                         <label class="form-label" for="age">Age<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }}
@@ -110,18 +123,71 @@
                                                         {{ form_widget(form.weight) }}{{ form_errors(form.weight) }}
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 manualWeight-hide">
-                                                    <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="manualWeight">Manual
-                                                            Weight<span class="text-danger">*</span></label>
-                                                        <input id="manualWeight" type="number"
-                                                               class="form-input" min="0">
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="height">Height</label>
-                                                        {{ form_widget(form.height) }}{{ form_errors(form.height) }}
+                                                        <label class="form-label" for="calculator_form_height">Height</label>
+                                                        <select id="calculator_form_height" class="form-input">
+                                                            <option></option>
+                                                            <option value="3.0">"3'0"</option>
+                                                            <option value="3.1">"3'1"</option>
+                                                            <option value="3.2">"3'2"</option>
+                                                            <option value="3.3">"3'3"</option>
+                                                            <option value="3.4">"3'4"</option>
+                                                            <option value="3.5">"3'5"</option>
+                                                            <option value="3.6">"3'6"</option>
+                                                            <option value="3.7">"3'7"</option>
+                                                            <option value="3.8">"3'8"</option>
+                                                            <option value="3.9">"3'9"</option>
+                                                            <option value="4.0">"4'0"</option>
+                                                            <option value="4.1">"4'1"</option>
+                                                            <option value="4.2">"4'2"</option>
+                                                            <option value="4.3">"4'3"</option>
+                                                            <option value="4.4">"4'4"</option>
+                                                            <option value="4.5">"4'5"</option>
+                                                            <option value="4.6">"4'6"</option>
+                                                            <option value="4.7">"4'7"</option>
+                                                            <option value="4.8">"4'8"</option>
+                                                            <option value="4.9">"4'9"</option>
+                                                            <option value="5.0">"5'0"</option>
+                                                            <option value="5.1">"5'1"</option>
+                                                            <option value="5.2">"5'2"</option>
+                                                            <option value="5.3">"5'3"</option>
+                                                            <option value="5.4">"5'4"</option>
+                                                            <option value="5.5">"5'5"</option>
+                                                            <option value="5.6">"5'6"</option>
+                                                            <option value="5.7">"5'7"</option>
+                                                            <option value="5.8">"5'8"</option>
+                                                            <option value="5.9">"5'9"</option>
+                                                            <option value="6.0">"6'0"</option>
+                                                            <option value="5.1">"6'1"</option>
+                                                            <option value="6.2">"6'2"</option>
+                                                            <option value="6.3">"6'3"</option>
+                                                            <option value="6.4">"6'4"</option>
+                                                            <option value="6.5">"6'5"</option>
+                                                            <option value="6.6">"6'6"</option>
+                                                            <option value="6.7">"6'7"</option>
+                                                            <option value="6.8">"6'8"</option>
+                                                            <option value="6.9">"6'9"</option>
+                                                            <option value="7.0">"7'0"</option>
+                                                            <option value="7.1">"7'1"</option>
+                                                            <option value="7.2">"7'2"</option>
+                                                            <option value="7.3">"7'3"</option>
+                                                            <option value="7.4">"7'4"</option>
+                                                            <option value="7.5">"7'5"</option>
+                                                            <option value="7.6">"7'6"</option>
+                                                            <option value="7.7">"7'7"</option>
+                                                            <option value="6.0">"Prefer not to answer"</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 p-0">
+                                                    <div class="col-lg-6 manualWeight-hide">
+                                                        <div class="form-group mt-sm-0">
+                                                            <label class="form-label" for="manualWeight">Manual
+                                                                Weight<span class="text-danger">*</span></label>
+                                                            <input id="manualWeight" type="number"
+                                                                   class="form-input" min="0">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -137,19 +203,6 @@
                                                         <label class="form-label" for="emailAddress">Email
                                                             (Optional)</label>
                                                         {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="productType">Product Type</label>
-                                                        {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="creditRating">Insurance
-                                                            Company</label>
-                                                        {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,12 +280,14 @@
                                                         {{ form_widget(form.percentStep) }}{{ form_errors(form.percentStep) }}
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-12 p-0">
                                                 <div id="calculate_submit_top">
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="paymentInfoNext">
+                                        <div class="col-12 pb-2" id="paymentInfobtns">
                                             <button id="paymentInfoPrev"
                                                     data-toggle="collapse" data-target="#collapseAccountInfo"
                                                     aria-expanded="true"
@@ -316,24 +371,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-12 pb-2">
+                                                <button id="basicInfoPrev"
+                                                        type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapsePaymentInfo"
+                                                        aria-expanded="true"
+                                                        aria-controls="collapsePaymentInfo"
+                                                        class="btn btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                    Prev
+                                                </button>
+                                                <button id="basicInfoNext"
+                                                        type="button"
+                                                        data-toggle="collapse" data-target="#collapseCustomInfo"
+                                                        aria-expanded="true"
+                                                        aria-controls="collapseCustomInfo"
+                                                        class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                    Next
+                                                </button>
+                                            </div>
                                         </div>
-                                        <button id="basicInfoNext"
-                                                type="button"
-                                                data-toggle="collapse"
-                                                data-target="#collapsePaymentInfo"
-                                                aria-expanded="true"
-                                                aria-controls="collapsePaymentInfo"
-                                                class="btn btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                            Prev
-                                        </button>
-                                        <button id="basicInfoNext"
-                                                type="button"
-                                                data-toggle="collapse" data-target="#collapseCustomInfo"
-                                                aria-expanded="true"
-                                                aria-controls="collapseCustomInfo"
-                                                class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                            Next
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +405,7 @@
                                     <span class="heading-primary-calculation">Customize Information</span>
                                     <span class="heading-secondary-tagline">Enter your customize information</span>
                                 </button>
-                                <div id="collapseCustomInfo" class="collapse accordion-body"
+                                <div id="collapseCustomInfo" class="accordion-body collapse"
                                      aria-labelledby="headingCustomInfo"
                                      data-parent="#accordionExample">
                                     <div class="card-body">
@@ -390,6 +447,8 @@
                                                         {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }}
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-12 p-0">
                                                 <div id="calculate_submit_bottom">
 
                                                 </div>
@@ -407,34 +466,45 @@
                             <div class="col-xl-5 pl-0 d-none d-xl-block" style="margin-top: 20%">
                                 <img class="img-fluid" src="{{ asset ('/resources/images/calculate-arrows.svg') }}">
                             </div>
-                            <div class="offset-xl-1 col-xl-5 col-lg-9 offset-sm-3 col-sm-6 offset-2 col-8 d-flex justify-content-center" id="calculate_mobile">
-                                <img class="img-fluid mobile-img" src="{{ asset ('/resources/images/calculate-mobile.png') }}">
+                            <div class="offset-xl-1 col-xl-5 col-lg-9 offset-sm-3 col-sm-6 offset-2 col-8 d-flex justify-content-center"
+                                 id="calculate_mobile">
+                                <img class="img-fluid mobile-img"
+                                     src="{{ asset ('/resources/images/calculate-mobile.svg') }}">
                                 <div class="position-absolute calculate_mobile_content">
                                     <div class="d-flex justify-content-center">
                                         <div class="col-xl-7 col-lg-6 col-sm-7 col-8 calculate_content">
-                                            <img width="60" class="pt-3 pb-0 mt-0 mb-0" src="{{ asset ('/resources/images/logo-tower.png') }}">
+                                            <img width="100" class="pt-3 pb-0 mt-0 mb-0"
+                                                 src="{{ asset ('/resources/images/logo-tower.png') }}">
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_name">Name:</label>
-                                                <input id="result_name" type="text" value="John" class="form-input ml-2 filled">
+                                                <input id="result_name" type="text" value="John"
+                                                       class="form-input ml-2 filled">
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_age">Age:</label>
-                                                <input id="result_age" type="text" value="45" class="form-input ml-2 filled">
+                                                <input id="result_age" type="text" value="45"
+                                                       class="form-input ml-2 filled">
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_startDate">Start Date:</label>
-                                                <input id="result_startDate" type="text" value="09-23-2021" class="form-input ml-2 filled">
+                                                <input id="result_startDate" type="text" value="09-23-2021"
+                                                       class="form-input ml-2 filled">
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_endDate">End Date:</label>
-                                                <input id="result_endDate" type="text" value="09-23-2031" class="form-input ml-2 filled">
+                                                <input id="result_endDate" type="text" value="09-23-2031"
+                                                       class="form-input ml-2 filled">
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_health">Health Status:</label>
-                                                <input id="result_health" type="text" value="Normal" class="form-input ml-2 filled">
+                                                <input id="result_health" type="text" value="Normal"
+                                                       class="form-input ml-2 filled">
                                             </div>
                                             <div class="progress mt-4">
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                                     role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                                                     aria-valuemax="100" style="width: 75%">75%
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -445,15 +515,97 @@
                 </div>
             </div>
         </section>
+
+        <button type="button" id="calculate_result_modal_btn" class="btn btn-primary">Open Modal</button>
+        <!-- .modal -->
+        <div class="modal calculate_result_modal border-0" id="calculate_result_modal">
+            <div class="modal-dialog border-0">
+                <div class="modal-content calculate_result_modal_content border-0">
+                    <div class="modal-header border-0">
+                        <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body col-12 d-flex justify-content-center">
+
+                        <div class="col-lg-6 d-flex justify-content-center">
+                            <div class="col-xl-5 col-lg-9 col-sm-6 col-8 d-flex justify-content-center"
+                                 id="calculate_mobile">
+                                <img class="img-fluid mobile-img"
+                                     src="{{ asset ('/resources/images/calculate-mobile.svg') }}">
+                                <div class="position-absolute calculate_mobile_content">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="col-xl-7 col-lg-6 col-sm-7 col-8">
+                                            <img width="100" class="pt-2 pb-0 mt-0 mb-0"
+                                                 src="{{ asset ('/resources/images/logo-tower.png') }}">
+
+                                            <div class="d-flex align-items-center h-75 w-100">
+                                                <div id="calculation-result">
+                                                    <h4 class="text-center">Hello <span id="client-name">Veronika</span>
+                                                    </h4>
+                                                    <p><b>Min: </b><span id="min-amount">1255</span>$</p>
+                                                    <p><b>Max: </b><span id="max-amount">1955</span>$</p>
+                                                    <p><b>Beneficiary Protection:</b><span
+                                                                id="beneficiary-amount">1255</span>$</p>
+                                                </div>
+                                                <div id="otp-phone-number" hidden>
+                                                    <p class="heading-secondary-tagline pb-3">If you want to see the <b>Quote</b>
+                                                        verify your phone number</p>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group mt-sm-0">
+                                                            <label class="form-label" for="inp-otp-phone">Phone
+                                                                Number<span
+                                                                        class="text-danger">*</span></label>
+                                                            <input id="inp-otp-phone" type="text"
+                                                                   class="form-input">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" id="otp-phone-submit"
+                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                                <div id="otp-code" hidden>
+                                                    <p class="heading-secondary-tagline pb-3">Enter OTP Code here</p>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group mt-sm-0">
+                                                            <label class="form-label" for="inp-otp-code">Code<span
+                                                                        class="text-danger">*</span></label>
+                                                            <input id="inp-otp-code" type="text"
+                                                                   class="form-input">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" id="otp-code-submit"
+                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <section id="about-us" class="d-flex align-items-center page-section">
             <div class="col-12 pt-5">
                 <h1 class="primary-heading text-center text-lg-left pt-5 pl-lg-5">Who we are?</h1>
                 <div class="row">
                     <div class="col-lg-6 d-flex justify-content-sm-center">
                         <div class="about-us-section-one pl-lg-5">
-                            <h6 class="pt-lg-5 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left">Our “self-quoting” platform provides an upfront cash offer in exchange for a portion of your future structured settlement, annuity, or lottery payments. Our patent pending software gives you a 100% guarantee for upfront quotes , no obligation deal and no sales pressure online experience.</h6>
-                                <h6 class="pt-3 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left"> Our mission is to give all our clients the confidence and flexibility to make their own financial decisions, on their own terms and at their own pace. We stand behind each of our offers with a 30-day free-to-view guarantee.
-                                <span><a href="{{ path('about_us') }}" class="text-link" target="_blank">Learn more...</a></span>
+                            <h6 class="pt-lg-5 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left">
+                                Our “self-quoting” platform provides an upfront cash offer in exchange for a portion of
+                                your future structured settlement, annuity, or lottery payments. Our patent pending
+                                software gives you a 100% guarantee for upfront quotes , no obligation deal and no sales
+                                pressure online experience.</h6>
+                            <h6 class="pt-3 heading-secondary-tagline text-center text-md-left text-lg-left text-xl-left">
+                                Our mission is to give all our clients the confidence and flexibility to make their own
+                                financial decisions, on their own terms and at their own pace. We stand behind each of
+                                our offers with a 30-day free-to-view guarantee.
+                                <span><a href="{{ path('about_us') }}" class="text-link"
+                                         target="_blank">Learn more...</a></span>
                             </h6>
                         </div>
                     </div>
@@ -478,59 +630,8 @@
                 <div class="col-lg-8 pt-lg-5">
                     <div class="d-flex pt-lg-3 justify-content-around flex-wrap flex-lg-nowrap">
                         <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="{{ path('job_detail') }}">View & Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="{{ path('job_detail') }}">View & Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="">View & Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex pt-lg-3  justify-content-around flex-wrap flex-lg-nowrap">
-                        <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="{{ path('job_detail') }}">View & Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="{{ path('job_detail') }}">View & Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="career-card">
-                                <h4>Content Writer</h4>
-                                <h6 class="heading-secondary-tagline">Lahore, Pakistan</h6>
-                                <div class="card-body custom-card-body">
-                                    <a href="{{ path('job_detail') }}">View & Apply</a>
-                                </div>
+                            <div class="career-card text-center d-flex align-items-center justify-content-center">
+                                <h4>No Job Available</h4>
                             </div>
                         </div>
                     </div>
@@ -549,27 +650,28 @@
                                 as
                                 we can.</h6>
                             {{ form_start(contactUsForm) }}
-                                <div class="form-group mt-sm-0">
-                                    <label class="form-label" for="first">Name</label>
-                                    {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="last">Email</label>
-                                    {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="color">Contact</label>
-                                    {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="color">Message</label>
-                                    {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
-                                </div>
+                            <div class="form-group mt-sm-0">
+                                <label class="form-label" for="first">Name</label>
+                                {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="last">Email</label>
+                                {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="color">Contact</label>
+                                {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="color">Message</label>
+                                {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
+                            </div>
 
-                                <button type="submit" class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
-                                    Send
-                                    Message
-                                </button>
+                            <button type="submit"
+                                    class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
+                                Send
+                                Message
+                            </button>
                             {{ form_errors(contactUsForm) }}
                             {{ form_end(contactUsForm) }}
                         </div>
@@ -596,5 +698,4 @@
             </div>
         </section>
     </div>
-
 {% endblock %}
