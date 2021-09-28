@@ -79,10 +79,76 @@ class CalculatorEnum
     ];
 
     const creditRating = [
-        'AIG AMERICA' => 'Rating A',
+        'AEGON (see Transamerica)' => 'Rating A',
+        'AIG American General (Amarillo Branch)' => 'Rating A',
+        'AIG American General (Wilmington Branch)' => 'Rating A',
+        'AIG American General - Self Owned Annuities' => 'Rating A',
+        'American Family Life Insurance Company' => 'Rating A',
+        'American International Life Assurance Company of New York (See AIG American General - Amarillo Branch)' => 'Rating A',
+        'Allianz Life Insurance Company of North America' => 'Rating A',
+        'Amica Life Insurance Company' => 'Rating A',
+        'Allstate Life Insurance Company' => 'Rating A',
+        'Americo' => 'Rating A',
+        'Athene Annuity Life Assurance of New York/Took over Presidential' => 'Rating A',
+        'Auto-Owners' => 'Rating A',
+        'Aurora' => 'Rating A',
+        'Aviva Life and Annuity Company (and of New York)/ Athene' => 'Rating A',
+        'AXA Equitable' => 'Rating A',
+        'Berkshire Hathaway Life Insurance (or First Berkshire Hathaway Life Insurance Company)' => 'Rating A',
+        'Canada Life' => 'Rating A',
+        'Capitol Life Insurance Company' => 'Rating A',
+        'Cigna/ Life Insurance Comp. of North America/ Connecticut General Life' => 'Rating A',
+        'Cincinnati Life Insurance Company' => 'Rating A',
+        'C.N.A/Continental Assurance Co/Some CNA/Continental polices are issued by Wilton(they will give you a different policy # if it is Wilton: See Wiltons contact info)' => 'Rating A',
+        'Commonwealth Life Insurance Company (see Aegon)' => 'Rating B',
         'Colonial' => 'Rating B',
+        'Conseco: Washington National' => 'Rating B',
+        'Employers Life Ins. Comp. of Wausau (See Nationwide)' => 'Rating B',
+        'Erie Family Life Insurance Company' => 'Rating B',
+        'Equitable Life Assurance Society of The United States see AXA Equitable' => 'Rating B',
+        'Farm Bureau Life Insurance Company: Attn. Payment Option Department' => 'Rating B',
+        'Farmers New World Life Insurance Company' => 'Rating B',
+        'Fairmont Specialty Insurance Company AKA Swiss-AM Reassurance Company AKA Insurance Services' => 'Rating B',
+        'Fidelity Life And Guaranty Life Insurance Company aka  F&G' => 'Rating B',
+        'Fidelity Life' => 'Rating B',
+        'Fireman Fund Insurance Company' => 'Rating B',
+        'GABC (Guaranty Ass. Benefits Comp.) Or ELNY (executive life of new york) Or First Executive Corp' => 'Rating B',
+        'Genworth Financial/Jamestown Life Insurance/GE Capital Life Assurance Co/First Colony Life Ins Co/Union Fidelity Life' => 'Rating B',
+        'Great Southern Life (See Americo)' => 'Rating B',
+        'Great West Financial' => 'Rating B',
+        'Talcott Resolution a/k/aThe Hartford (aka Centennial Life Insurance Company/ Confederation Life)' => 'Rating B',
+        'Voya Financial; AKA Aetna Life Ins/Security Life and No longer ING' => 'Rating B',
+        'Integrity AKA: Western & Southern Life' => 'Rating B',
+        'John Hancock (Also: Manufactures Life aka ManuLife)' => 'Rating B',
+        'Life Insurance Company of North America (See: Cigna)' => 'Rating B',
+        'Lincoln Financial' => 'Rating B',
+        'Liberty Mutual Life Assurance Company of Boston / Protective' => 'Rating B',
+        'Liberty Mutual (See: LMACoB)' => 'Rating B',
+        'MassMutual Life Insurance Company Attn: ASC Hub' => 'Rating C',
+        'MetLife Insurance Company /Brighthouse Insurance Company AKA(Charter Security Life & Travelers)' => 'Rating C',
+        'Midland National Life Insurance Company' => 'Rating C',
         'Monarch' => 'Rating C',
+        'Monumental (See: Transamerica)' => 'Rating C',
+        'Mutual of Omaha' => 'Rating C',
+        'National Life Insurance Company' => 'Rating C',
+        'Nationwide Life Insurance Company (Employers Life Ins. Comp. of Wausau merged into Nationwide)' => 'Rating D',
+        'New York Life Insurance Company / Annuity Service Self Owned' => 'Rating D',
+        'New York Life Insurance Company' => 'Rating D',
+        'OM Financial (See: Fidelity)' => 'Rating D',
         'Pacific Life' => 'Rating D',
+        'Presidential (SEE: Athene Annuity Life Assurance of New York)' => 'Rating D',
+        'Prudential Life Insurance Company' => 'Rating D',
+        'Safeco Life is Symetra Life aka Symetra' => 'Rating D',
+        'Security Benefit Life Insurance Company' => 'Rating D',
+        'Sentry Life / Annuities' => 'Rating D',
+        'State Farm' => 'Rating D',
+        'Symetra ***Requests may need passcodes***' => 'Rating D',
+        'Tennessee Farmers Insurance Companies Aka Farm Bureau Insurance' => 'Rating D',
+        'Transamerica/ AEGON/ Commonwealth Life Insurance' => 'Rating D',
+        'United States Life Insurance Company in the City of New York (See: AIG)' => 'Rating D',
+        'USAA Life Insurance Company' => 'Rating D',
+        'Wilton' => 'Rating D',
+        'Wilcac Life Insurance Company' => 'Rating D',
         'Other' => 'Rating A',
     ];
 
@@ -230,11 +296,13 @@ class CalculatorEnum
     #Cholesterol Values
     const cholesterolStatus = [
         'Yes' => 0.3,
-        'No' => 0
+        'No' => 0,
+        'Prefer Not To Answer' => 0
     ];
     const cholesterolStatusKeys = [
         'Yes' => 'Yes',
-        'No' => 'No'
+        'No' => 'No',
+        'Prefer Not To Answer' => 'Prefer Not To Answer'
     ];
     #Driving Infractions Impact
     const drivingInfractionsStatus = [
