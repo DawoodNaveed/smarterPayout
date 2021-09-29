@@ -78,6 +78,16 @@ class ClientSideController extends AbstractController
     }
 
     /**
+     * @Route("/termsAndConditions", name="terms_and_conditions", methods={"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function termsAndConditions(Request $request)
+    {
+        return $this->render('client/termsAndConditions.html.twig');
+    }
+
+    /**
      * @Route("/jobDetail", name="job_detail", methods={"GET"})
      * @param Request $request
      * @return Response
