@@ -1,5 +1,10 @@
 let gp = 'GP';
-let customerId= 28;
+let customerId = '';
+let customerName = '';
+let minValue = '';
+let maxValue = '';
+let beneficiaryProtection = '';
+
 $(document).ready(function () {
     $('#calculate_result_modal').on('show.bs.modal', function () {
         setTimeout(function () {
@@ -18,11 +23,8 @@ $(document).ready(function () {
 
     });
 
-    $('#calculate_result_modal_btn').click(function () {
-        $('#calculate_result_modal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
+    $('#calculate_result_modal').on('hidden.bs.modal', function () {
+        location.reload();
     });
 
     // init datepicker
@@ -59,47 +61,74 @@ $(document).ready(function () {
 
     $(document).on('click', '#submitCalculation', function (e) {
         e.preventDefault();
-        var form = $('form[name="calculator_form"]');
-        if (!form[0].checkValidity()) {
-            $("#hiddenSubmitButton").click();
-            return false;
-        }
-        var form_data = form.serializeObject();
-        console.log(form_data);
+        var curStep = $(this).closest(".accordion-card"),
+            curInputs = curStep.find("input.form-input, select.form-input"),
+            isValid = true;
 
-        $.ajax({
-            url: '/',
-            type: 'POST',
-            dataType: 'json',
-            data: form_data,
-            success: function (data) {
-                if (Number(data['status']) === 200) {
-                    $('#min-amount').text(data['data']['min']);
-                    $('#max-amount').text(data['data']['max']);
-                    $('#beneficiary-amount').text(data['data']['beneficiaryProtection']);
-                    $('#client-name').text($('#calculator_form_firstName').val());
-                    $("#calculate_result_modal").modal('show');
-                } else {
-                    alert(data['message']);
-                }
-
-                // signal to user the action is done
+        for (var i = 0; i < curInputs.length; i++) {
+            if ($(curInputs[i]).hasClass('inp-required') && !$(curInputs[i]).val()) {
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            } else if (!curInputs[i].validity.valid && curInputs[i].required) {
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
             }
-        });
+        }
+
+        if (isValid) {
+            var form = $('form[name="calculator_form"]');
+            if (!form[0].checkValidity()) {
+                $("#hiddenSubmitButton").click();
+                return false;
+            }
+            var form_data = form.serializeObject();
+
+            $.ajax({
+                url: '/',
+                type: 'POST',
+                dataType: 'json',
+                data: form_data,
+                success: function (data) {
+                    if (Number(data['status']) === 200) {
+                        customerId = data['data']['customerId'];
+                        $('#min-amount').text(data['data']['min'].toFixed(2));
+                        $('#max-amount').text(data['data']['max'].toFixed(2));
+                        $('#beneficiary-amount').text(data['data']['beneficiaryProtection'].toFixed(2));
+                        $('#client-name').text($('#calculator_form_firstName').val());
+                        minValue = data['data']['min'].toFixed(2);
+                        maxValue = data['data']['max'].toFixed(2);
+                        beneficiaryProtection = data['data']['beneficiaryProtection'].toFixed(2);
+                        customerName = $('#calculator_form_firstName').val();
+                        $("#calculate_result_modal").modal('show');
+                    } else {
+                        alert(data['message']);
+                    }
+
+                    // signal to user the action is done
+                }
+            });
+        }
     });
 
-    $('#otp-phone-submit').click(function () {
-        var contact = $('#inp-otp-phone').val();
+    $('#otp-code-submit').click(function () {
+        var contact = $('#inp-otp-code').val();
         if (contact) {
             $.ajax({
                 url: '/verify-otp',
                 type: 'POST',
-                data: {'id': customerId, 'code' : contact},
+                data: {'id': customerId, 'code': contact},
                 success: function (data) {
-                    console.log(data);
-                    alert(data['status']);
                     if (Number(data['status']) === 200) {
-                        alert(data['message']);
+                        $('#otp-code').attr('hidden', true);
+
+                        $('#calculation-result-container').append(` <div id="calculation-result">
+                                                    <h4 class="text-center">Hello <span id="client-name">` + customerName + `</span>
+                                                    </h4>
+                                                    <p><b>Min: </b><span id="min-amount"> ` + minValue + `</span>$</p>
+                                                    <p><b>Max: </b><span id="max-amount">` + maxValue + `</span>$</p>
+                                                    <p><b>Beneficiary Protection:</b><span
+                                                                id="beneficiary-amount">` + beneficiaryProtection + `</span>$</p>
+                                                </div>`);
                     } else {
                         alert(data['message']);
                     }
@@ -112,34 +141,33 @@ $(document).ready(function () {
         }
     });
 
-    // $('#otp-phone-submit').click(function () {
-    //     var contact = $('#inp-otp-phone').val();
-    //     if (contact) {
-    //         $.ajax({
-    //             url: '/send-otp',
-    //             type: 'POST',
-    //             data: {'id': customerId, 'contact' : contact},
-    //             success: function (data) {
-    //                 console.log(data);
-    //                 alert(data['status']);
-    //                 if (Number(data['status']) === 200) {
-    //                     alert(data['message']);
-    //                 } else {
-    //                     alert(data['message']);
-    //                 }
-    //
-    //                 // signal to user the action is done
-    //             }
-    //         });
-    //     } else {
-    //         alert('Please Enter a Phone Number');
-    //     }
-    // });
+    $('#otp-phone-submit').click(function () {
+        var contact = $('#inp-otp-phone').val();
+        if (contact) {
+            $.ajax({
+                url: '/send-otp',
+                type: 'POST',
+                data: {'id': customerId, 'contact': contact},
+                success: function (data) {
+                    if (Number(data['status']) === 200) {
+                        $('#otp-phone-number').attr('hidden', true);
+                        $('#otp-code').attr('hidden', false);
+                    } else {
+                        alert(data['message']);
+                    }
+
+                    // signal to user the action is done
+                }
+            });
+        } else {
+            alert('Please Enter a Phone Number');
+        }
+    });
 
     // submit button on the base of product type
     append_calculate_submit_button();
-    $("#calculator_form_productType").on('change', function () {
-        var productType = $(this).find(":selected").text();
+    $("#calculator_form_productType, #calculator_form_age,  #calculator_form_gender").on('change', function () {
+        var productType = $('#calculator_form_productType').find(":selected").text();
         var paymentEndDate = $('#calculator_form_paymentEndDate');
         var paymentStartDate = $('#calculator_form_paymentStartDate');
         paymentEndDate.val(null);
@@ -174,7 +202,7 @@ $(document).ready(function () {
                                                                 class="btn btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
-                                                        <button type="button" id="submitCalculation" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                        <button type="button" id="submitCalculation" class="btn btn-next btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
                                                                 disabled="disabled">
                                                             Submit
                                                         </button>
@@ -304,17 +332,42 @@ $(document).ready(function () {
         var curStep = $(this).closest(".accordion-card"),
             curInputs = curStep.find("input.form-input, select.form-input"),
             isValid = true;
+
         $(".form-group").removeClass("has-error");
         for (var i = 0; i < curInputs.length; i++) {
             if (!curInputs[i].validity.valid && curInputs[i].required) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
+            } else if ($(curInputs[i]).hasClass('inp-required') && !$(curInputs[i]).val()) {
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
             }
         }
+
+        var ageField = curStep.find('#calculator_form_age');
+        if (ageField.length) {
+            var gender = $('#calculator_form_gender').find(":selected").text();
+            if (gender !== 'Female') {
+                gender = 'Male';
+            }
+            $('.invalid-age').remove();
+            if (gender && ageField.val()) {
+                var ageElement = $('#calculator_form_age');
+                if (gender === 'Female' && (ageField.val() < 20 || ageField.val() >= 80)) {
+                    ageElement.parent().append(`<p class="text-danger invalid-age"><small>Age must be between 20 and 80</small> </p>`);
+                    ageElement.parent().addClass('has-error');
+                    isValid = false;
+                } else if (gender !== 'Female' && (ageField.val() < 20 || ageField.val() >= 75)) {
+                    ageElement.parent().append(`<p class="text-danger invalid-age"><small>Age must be between 20 and 75</small> </p>`);
+                    ageElement.parent().addClass('has-error');
+                    isValid = false;
+                }
+            }
+        }
+
         if (!isValid) {
             e.stopPropagation();
         } else {
-            curStep.find('.card-header').removeClass('disabled');
             e.returnValue = true;
         }
     });

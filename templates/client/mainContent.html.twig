@@ -100,7 +100,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
                                                         <label class="form-label" for="creditRating">Insurance
-                                                            Company<span class="text-danger">*</span></label>
+                                                            Company</label>
                                                         {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
                                                     </div>
                                                 </div>
@@ -112,7 +112,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group mt-sm-0">
+                                                    <div class="form-group mt-sm-0 inp-required">
                                                         <label class="form-label" for="gender">Gender</label>
                                                         {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
                                                     </div>
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                             <div class="card accordion-card">
-                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse" data-target="#collapsePaymentInfo"
                                         aria-expanded="true"
@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             <div class="card accordion-card gp-hide">
-                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse"
                                         data-target="#collapseBasicInfo"
@@ -395,7 +395,7 @@
                                 </div>
                             </div>
                             <div class="card accordion-card gp-hide">
-                                <button class="btn btn-link btn-block text-center card-header collapsed disabled"
+                                <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse"
                                         data-target="#collapseCustomInfo"
@@ -516,7 +516,6 @@
             </div>
         </section>
 
-        <button type="button" id="calculate_result_modal_btn" class="btn btn-primary">Open Modal</button>
         <!-- .modal -->
         <div class="modal calculate_result_modal border-0" id="calculate_result_modal">
             <div class="modal-dialog border-0">
@@ -536,8 +535,7 @@
                                         <div class="col-xl-7 col-lg-6 col-sm-7 col-8">
                                             <img width="100" class="pt-2 pb-0 mt-0 mb-0"
                                                  src="{{ asset ('/resources/images/logo-tower.png') }}">
-
-                                            <div class="d-flex align-items-center h-75 w-100">
+                                            <div id="calculation-result-container" class="d-flex align-items-center h-75 w-100">
                                                 <div id="calculation-result">
                                                     <h4 class="text-center">Hello <span id="client-name">Veronika</span>
                                                     </h4>
@@ -555,7 +553,7 @@
                                                                 Number<span
                                                                         class="text-danger">*</span></label>
                                                             <input id="inp-otp-phone" type="text"
-                                                                   class="form-input">
+                                                                   class="form-input" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <button type="submit" id="otp-phone-submit"
@@ -570,7 +568,7 @@
                                                             <label class="form-label" for="inp-otp-code">Code<span
                                                                         class="text-danger">*</span></label>
                                                             <input id="inp-otp-code" type="text"
-                                                                   class="form-input">
+                                                                   class="form-input" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <button type="submit" id="otp-code-submit"

@@ -50,7 +50,8 @@ class CustomerRepository extends AbstractRepository
         $customer->setAge($data['age']);
         $paymentStartDate = DateTime::createFromFormat('m/d/Y', $data['paymentStartDate']);
         $paymentEndDate = DateTime::createFromFormat('m/d/Y', $data['paymentEndDate']);
-        $customer->setHeight($data['height']);
+        #TODO height work needs to be done
+//        $customer->setHeight($data['height']);
         $customer->setWeight($data['weight']);
         $customer->setContactNumber($data['phoneNo']);
         $customer->setGender($data['gender']);
