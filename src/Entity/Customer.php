@@ -33,7 +33,7 @@ class Customer extends AbstractEntity
     private $dateOfBirth;
     
     /**
-     * @var integer
+     * @var string
      * @ORM\Column(name="gender", type="integer")
      */
     private $gender;
@@ -160,17 +160,17 @@ class Customer extends AbstractEntity
     }
     
     /**
-     * @return int
+     * @return string
      */
-    public function getGender(): int
+    public function getGender(): string
     {
         return $this->gender;
     }
     
     /**
-     * @param int $gender
+     * @param string $gender
      */
-    public function setGender(int $gender): void
+    public function setGender(string $gender): void
     {
         $this->gender = $gender;
     }

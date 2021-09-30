@@ -34,6 +34,29 @@ class CalculatorService
         $this->gpBeneficiaryProtectionRepository = $gpBeneficiaryProtectionRepository;
     }
     
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function setDefaultValuesInCaseOfEmpty(array $data)
+    {
+        $data['gender'] = $data['gender'] ?? CalculatorEnum::genderValuesKeys['Male'];
+        $data['weight'] = $data['weight'] ?? CalculatorEnum::weightValuesKeys['obese'];
+        $data['creditRating'] = $data['creditRating'] ?? CalculatorEnum::creditRating['Other'];
+        $data['smoker'] = $data['smoker'] ?? CalculatorEnum::smokerValuesKeys['No'];
+        $data['healthStatus'] = $data['healthStatus'] ?? CalculatorEnum::healthStatusKeys['Normal'];
+        $data['legalIssues'] = $data['legalIssues'] ?? CalculatorEnum::legalIssuesKeys['Prefer Not To Answer'];
+        $data['DUI'] = $data['DUI'] ?? CalculatorEnum::DUIValuesKeys['Prefer Not To Answer'];
+        $data['licenseSuspended'] = $data['licenseSuspended'] ?? CalculatorEnum::licenseSuspendedKeys['Prefer Not To Answer'];
+        $data['misdemeanor'] = $data['misdemeanor'] ?? CalculatorEnum::misdemeanorValuesKeys['Prefer Not To Answer'];
+        $data['annualCheckup'] = $data['annualCheckup'] ?? CalculatorEnum::annualCheckUpStatusKeys['Prefer Not To Answer'];
+        $data['physicalExercise'] = $data['physicalExercise'] ?? CalculatorEnum::physicalExerciseStatusKeys['Prefer Not To Answer'];
+        $data['bloodPressure'] = $data['bloodPressure'] ?? CalculatorEnum::bloodPressureStatusKeys['Prefer Not To Answer'];
+        $data['highCholesterol'] = $data['highCholesterol'] ?? CalculatorEnum::cholesterolStatusKeys['Prefer Not To Answer'];
+        $data['drivingInfraction'] = $data['drivingInfraction'] ?? CalculatorEnum::drivingInfractionsStatusKeys['Prefer Not To Answer'];
+        
+        return $data;
+    }
     
     /**
      * @param array $data
@@ -45,7 +68,7 @@ class CalculatorService
         $ageBaseRate = $this->ageBaseRateRepository->getAgeBaseRate($data['age']);
         $minAgeBaseRate = $ageBaseRate[0]->getflooringBaseRate();
         $maxAgeBaseRate = $ageBaseRate[0]->getceilingBaseRate();
-        if ($data['gender'] === CalculatorEnum::genderValues['Female']) {
+        if ($data['gender'] === CalculatorEnum::genderValuesKeys['Female']) {
             $minAgeBaseRate = $minAgeBaseRate - CalculatorEnum::ageBaseRateDifferenceOfFemale;
             $maxAgeBaseRate = $maxAgeBaseRate - CalculatorEnum::ageBaseRateDifferenceOfFemale;
         }
@@ -403,7 +426,7 @@ class CalculatorService
                 $pv['beneficiaryProtection'] = $beneficiaryProtection[0]->getLowerBeneficiaryProtection();
             }
         } else {
-            if ($data['gender'] === CalculatorEnum::genderValues['Female']) {
+            if ($data['gender'] === CalculatorEnum::genderValuesKeys['Female']) {
                 $sumOfAllQuestions = CalculatorEnum::maleWeightValues[$data['weight']] +CalculatorEnum::femaleSmokerValues[$data['smoker']] + CalculatorEnum::femaleHealthStatus[$data['healthStatus']]
                     + CalculatorEnum::femaleLegalIssues[$data['legalIssues']] + CalculatorEnum::femaleDUIValues[$data['DUI']] +
                     CalculatorEnum::femaleLicenseSuspended[$data['licenseSuspended']] + CalculatorEnum::femaleMisdemeanorValues[$data['misdemeanor']]
