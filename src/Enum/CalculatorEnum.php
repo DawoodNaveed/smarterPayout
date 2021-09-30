@@ -151,6 +151,12 @@ class CalculatorEnum
         'Wilcac Life Insurance Company' => 'Rating D',
         'Other' => 'Rating A',
     ];
+    
+    const genderValuesKeys = [
+        'Male' => 'Male',
+        'Female' => 'Female',
+        'Prefer Not To Answer' => 'Prefer Not To Answer'
+    ];
 
     #Gender Values
     const genderValues = [
@@ -158,6 +164,7 @@ class CalculatorEnum
         'Female' => 0.8,
         'Prefer Not To Answer' => 0.75
     ];
+    
     #Weight Values
     const weightValues = [
         'idealWeight' => -0.15,

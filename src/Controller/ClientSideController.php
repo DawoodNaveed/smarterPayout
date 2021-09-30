@@ -42,9 +42,7 @@ class ClientSideController extends AbstractController
                 return $utilService->getJsonResponse(500, null, 'Invalid Form Data');
             }
             $data = $form->getData();
-            if (!($data['age'] >= CalculatorEnum::minAge && $data['age'] <= CalculatorEnum::maxAge)) {
-                return $utilService->getJsonResponse(500, null, 'Age is not Valid');
-            }
+            $data = $calculatorService->setDefaultValuesInCaseOfEmpty($data);
             try {
                 $presentValue = $calculatorService->calculatePresentValue($data);
                 $customer = $customerService->saveCustomerData($data);
