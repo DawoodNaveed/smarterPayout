@@ -35,7 +35,7 @@ class CalculatorForm extends AbstractType
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'placeholder' => '',
                 'required' => false,
-                'choices' => CalculatorEnum::genderValues
+                'choices' => CalculatorEnum::genderValuesKeys
             ])
             ->add('firstName', TextType::class, [
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],

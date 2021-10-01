@@ -423,7 +423,9 @@ class CalculatorService
                     $pv['beneficiaryProtection'] = $pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
                 }
             } else {
-                $pv['beneficiaryProtection'] = $beneficiaryProtection[0]->getLowerBeneficiaryProtection();
+                if ($beneficiaryProtection) {
+                    $pv['beneficiaryProtection'] = $beneficiaryProtection[0]->getLowerBeneficiaryProtection();
+                }
             }
         } else {
             if ($data['gender'] === CalculatorEnum::genderValuesKeys['Female']) {
