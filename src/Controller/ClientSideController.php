@@ -44,12 +44,21 @@ class ClientSideController extends AbstractController
             $data = $form->getData();
             $data = $calculatorService->setDefaultValuesInCaseOfEmpty($data);
             try {
+                if ($data['emailAddress']) {
+                    $isExist = $customerService->checkEmailExistOrNot($data['emailAddress']);
+                    if ($isExist) {
+                        return $utilService->getJsonResponse(500, null, 'Email Already Exists');
+                    }
+                }
+                if (!$data['paymentStartDate'] || !$data['paymentEndDate']) {
+                    return $utilService->getJsonResponse(500, null, "Payment Start Date And End Date can't be empty");
+                }
                 $presentValue = $calculatorService->calculatePresentValue($data);
                 $customer = $customerService->saveCustomerData($data);
                 $presentValue['customerId'] = $customer->getId();
                 return $utilService->getJsonResponse(200, $presentValue);
             } catch (\Exception $exception) {
-                return $utilService->getJsonResponse(500, null, 'Internal Server Error or Email Already Exists');
+                return $utilService->getJsonResponse(500, null, 'Internal Server Error');
             }
         }
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
@@ -116,13 +125,17 @@ class ClientSideController extends AbstractController
      */
     public function sendOTPAction(Request $request, CustomerService $customerService, UtilService $utilService)
     {
-        $customerId = $request->get('id');
-        $contactNumber = $request->get('contact');
-        $response = $customerService->sendOTP($customerId, $contactNumber);
-        if (!$response) {
-            return $utilService->getJsonResponse(500,null, 'User Not Found');
-        } else {
-            return $utilService->getJsonResponse(200,null, 'Send Successfully');
+        try {
+            $customerId = $request->get('id');
+            $contactNumber = $request->get('contact');
+            $response = $customerService->sendOTP($customerId, $contactNumber);
+            if (!$response) {
+                return $utilService->getJsonResponse(500,null, 'User Not Found');
+            } else {
+                return $utilService->getJsonResponse(200,null, 'Send Successfully');
+            }
+        } catch (\Exception $exception) {
+            return $utilService->getJsonResponse(500, null, $exception->getMessage());
         }
     }
 

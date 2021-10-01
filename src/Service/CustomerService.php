@@ -180,4 +180,12 @@ class CustomerService
     {
         return $this->customerRepository->saveCustomerData($data);
     }
+    
+    /**
+     * @param string $emailAddress
+     * @return bool
+     */
+    public function checkEmailExistOrNot(string $emailAddress) {
+        return (bool)$this->customerRepository->findOneBy(['email' => $emailAddress]);
+    }
 }

@@ -4,6 +4,8 @@ let customerName = '';
 let minValue = '';
 let maxValue = '';
 let beneficiaryProtection = '';
+let averageLifeExpectancy = '';
+let yourLifeExpectancy = '';
 
 $(document).ready(function () {
     $('#calculate_result_modal').on('show.bs.modal', function () {
@@ -97,7 +99,16 @@ $(document).ready(function () {
                         $('#client-name').text($('#calculator_form_firstName').val());
                         minValue = data['data']['min'].toFixed(2);
                         maxValue = data['data']['max'].toFixed(2);
-                        beneficiaryProtection = data['data']['beneficiaryProtection'].toFixed(2);
+                        beneficiaryProtection = data['data']['beneficiaryProtection'].toFixed(0);
+                        if ('averageLifeExpectancy' in data['data'] && 'yourLifeExpectancy' in data['data']) {
+                            $('#averageLifeExpectancy').text(data['data']['averageLifeExpectancy']);
+                            $('#yourLifeExpectancy').text(data['data']['yourLifeExpectancy']);
+                            averageLifeExpectancy = data['data']['averageLifeExpectancy'];
+                            yourLifeExpectancy = data['data']['yourLifeExpectancy'];
+                            $('.lifeExpectancy').show();
+                        } else {
+                            $('.lifeExpectancy').hide();
+                        }
                         customerName = $('#calculator_form_firstName').val();
                         $("#calculate_result_modal").modal('show');
                     } else {
@@ -128,6 +139,10 @@ $(document).ready(function () {
                                                     <p><b>Max: </b><span id="max-amount">` + maxValue + `</span>$</p>
                                                     <p><b>Beneficiary Protection:</b><span
                                                                 id="beneficiary-amount">` + beneficiaryProtection + `</span>$</p>
+                                                    <div class="lifeExpectancy">
+                                                        <p><b>Average LifeExpectancy:</b><span id="averageLifeExpectancy">` + averageLifeExpectancy + `</span></p>
+                                                        <p><b>Your LifeExpectancy:</b><span id="yourLifeExpectancy">` + yourLifeExpectancy + `</span></p>
+                                                    </div>
                                                 </div>`);
                     } else {
                         alert(data['message']);
