@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
+    background-attachment: fixed;
     font-family: 'Poppins';
 }
 
@@ -657,7 +658,7 @@ textarea {
     min-height: 563px;
 }
 
-.calculate_result_mobile_right{
+.calculate_result_mobile_right {
     position: absolute;
     left: 100%;
     transform: translate(-100%, 0%);
@@ -675,4 +676,8 @@ textarea {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.main-content {
+    margin-top: -3.5rem;
 }
