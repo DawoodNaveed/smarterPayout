@@ -7,6 +7,9 @@ let beneficiaryProtection = '';
 let averageLifeExpectancy = '';
 let yourLifeExpectancy = '';
 
+let currAccordionName = 'AccountInfo';
+let prevAccordionName = 'paymentInfo';
+
 $(document).ready(function () {
     $('#calculate_result_modal').on('show.bs.modal', function () {
         setTimeout(function () {
@@ -193,8 +196,12 @@ $(document).ready(function () {
         paymentStartDate.parents(".form-group").removeClass("focused");
         $('#endDate-alert .alert').remove();
         if (productType === gp) {
+            prevAccordionName = 'collapseAccountInfo';
+            currAccordionName = 'paymentInfoPrev';
             $('.gp-hide').css('display', 'none');
         } else {
+            prevAccordionName = 'collapseBasicInfo';
+            currAccordionName = 'customInfoPrev';
             $('.gp-hide').css('display', 'flex');
         }
         append_calculate_submit_button();
@@ -206,15 +213,15 @@ $(document).ready(function () {
                                                         <div class="form-group mt-sm-0 d-flex d-inline">
                                                             <input type="checkbox" class="mt-1 mr-2"
                                                                    id="termsAndConditions">
-                                                            <p><small>I have read and agree to the <a href="">Terms and conditions</a>.</small></p>
+                                                            <p><small>I have read and agree to the <a href="` + $('#termsAndConditionsUrl').data('url') + `" target="_blank">Terms and conditions</a>.</small></p>
                                                         </div>
-                                                        <button id="paymentInfoPrev"
+                                                        <button id="` + currAccordionName + `"
                                                                 data-toggle="collapse"
-                                                                data-target="#collapseAccountInfo"
+                                                                data-target="#` + prevAccordionName + `"
                                                                 aria-expanded="true"
-                                                                aria-controls="collapseAccountInfo"
+                                                                aria-controls="` + prevAccordionName + `"
                                                                 type="button"
-                                                                class="btn btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                class="btn btn-prev btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
                                                         <button type="button" id="submitCalculation" class="btn btn-next btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
@@ -229,10 +236,14 @@ $(document).ready(function () {
         var productType = $('#calculator_form_productType').find(":selected").text();
         if (productType === gp) {
             $('.dynamic-buttons').remove();
+            prevAccordionName = 'collapseAccountInfo';
+            currAccordionName = 'paymentInfoPrev';
             $('#calculate_submit_top').append(element);
             $('#paymentInfobtns').attr('hidden', true);
         } else {
             $('.dynamic-buttons').remove();
+            prevAccordionName = 'collapseBasicInfo';
+            currAccordionName = 'customInfoPrev';
             $('#calculate_submit_bottom').append(element);
             $('#paymentInfobtns').attr('hidden', false);
         }
@@ -384,6 +395,41 @@ $(document).ready(function () {
             e.stopPropagation();
         } else {
             e.returnValue = true;
+            increase_progress_bar(curStep);
         }
     });
+
+    var allPrevBtn = $('.btn-prev');
+    allPrevBtn.click(function () {
+        decrease_progress_bar($(this));
+    });
+
+    $(document).on('click', '.btn-prev', function () {
+        decrease_progress_bar($(this));
+    });
+
+    function increase_progress_bar(curStep) {
+        var productType = $('#calculator_form_productType').find(":selected").text();
+        var progressBar = $('#calculator-progress-bar');
+        if (productType === gp) {
+            progressBar.css('width', (Number(curStep.data('progress')) + Number(curStep.data('progress'))) + '%');
+            progressBar.text((Number(curStep.data('progress')) + Number(curStep.data('progress'))) + '%');
+        } else {
+            progressBar.css('width', curStep.data('progress') + '%');
+            progressBar.text(curStep.data('progress') + '%');
+        }
+    }
+
+    function decrease_progress_bar(element) {
+        var curStep = element.closest(".accordion-card");
+        var productType = $('#calculator_form_productType').find(":selected").text();
+        var progressBar = $('#calculator-progress-bar');
+        if (productType === gp) {
+            progressBar.css('width', ((Number(curStep.data('progress')) + (Number(curStep.data('progress')))) - 100) + '%');
+            progressBar.text(((Number(curStep.data('progress')) + (Number(curStep.data('progress')))) - 100) + '%');
+        } else {
+            progressBar.css('width', (Number(curStep.data('progress')) - 50) + '%');
+            progressBar.text((Number(curStep.data('progress')) - 50) + '%');
+        }
+    }
 });
