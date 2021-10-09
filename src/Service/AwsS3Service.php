@@ -2,6 +2,8 @@
 namespace App\Service;
 use Aws\S3\S3Client;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * This service should be used instead of AmazonS3Service.
  *

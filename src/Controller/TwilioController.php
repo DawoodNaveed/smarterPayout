@@ -41,7 +41,6 @@ class TwilioController extends CustomerController
         try {
             $parentCallSid = $request->get('callSid');
             $voicemailAudio = $request->get('voicemailAudio');
-            $voicemailAudio = $voicemailAudio . "</Response>";
             $twilioService->sendVoicemail($parentCallSid, $voicemailAudio);
             
             return new JsonResponse(array('message' => 'Voice Mail Has been send' ));

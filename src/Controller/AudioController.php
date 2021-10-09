@@ -76,11 +76,7 @@ class AudioController extends AbstractController
             /** @var UploadedFile $file */
             $file = $data['audioFile'];
             $fileName = $audioService->createFileName($this->getUser()->getId(), $data['tagId'], 'tagType') . '.' . $file->guessExtension();
-            $file->move($this->getParameter('audio_directory'), $fileName);
-            $filePath = $this->getParameter('audio_directory') . '/' . $fileName;
-            $filePathOnS3 = 'audio/' . $fileName;
-            $awsS3Service->uploadFile($filePath, $filePathOnS3);
-            unlink($filePath);
+            $this->uploadAudioFile($file,$fileName, $awsS3Service);
             $audioService->saveAudio($data, $fileName, $this->getUser());
 
             $this->addFlash('success', 'Uploaded Successfully');
@@ -89,8 +85,10 @@ class AudioController extends AbstractController
         
         if ($userAudioForm->isSubmitted() && $userAudioForm->isValid()) {
             $data = $userAudioForm->getData();
-            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['userId'], 'userType');
-            $awsS3Service->uploadFile($data['audioFile'],$fileName);
+            /** @var UploadedFile $file */
+            $file = $data['audioFile'];
+            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['userId'], 'userType') . '.' . $file->guessExtension();
+            $this->uploadAudioFile($file,$fileName, $awsS3Service);
             $customer = $customerService->getCustomer($data['userId']);
             $audioService->saveCustomerAudio($customer, $this->getUser(), $fileName);
 
@@ -98,8 +96,9 @@ class AudioController extends AbstractController
             return $this->redirectToRoute('create_audio');
         } elseif ($insuranceAudioForm->isSubmitted() && $insuranceAudioForm->isValid()) {
             $data = $insuranceAudioForm->getData();
-            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['companyId'], 'insuranceType');
-            $awsS3Service->uploadFile($data['audioFile'], $fileName);
+            $file = $data['audioFile'];
+            $fileName = $audioService->createFileName($this->getUser()->getId(), $data['companyId'], 'insuranceType')  . '.' . $file->guessExtension();
+            $this->uploadAudioFile($file,$fileName, $awsS3Service);
             $insuranceCompany = $insuranceCompanyService->getInsuranceCompany($data['companyId']);
             $audioService->saveInsuranceAudio($insuranceCompany, $this->getUser(), $fileName);
 
@@ -121,6 +120,20 @@ class AudioController extends AbstractController
         $params = $audioService->getGenericTagAudios($params, $this->getUser());
 
         return $this->render('admin/voiceTags/voiceLibraryRecording.html.twig', $params);
+    }
+    
+    /**
+     * @param UploadedFile $file
+     * @param string $fileName
+     * @param AwsS3Service $awsS3Service
+     */
+    public function uploadAudioFile(UploadedFile $file, string $fileName, AwsS3Service $awsS3Service)
+    {
+        $file->move($this->getParameter('audio_directory'), $fileName);
+        $filePath = $this->getParameter('audio_directory') . '/' . $fileName;
+        $filePathOnS3 = 'audio/' . $fileName;
+        $awsS3Service->uploadFile($filePath, $filePathOnS3);
+        unlink($filePath);
     }
     
     /**

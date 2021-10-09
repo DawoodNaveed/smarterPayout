@@ -1,7 +1,7 @@
 let callSid = '';
 let voicemailAudio = '';
 $(function () {
-    $.getJSON('https://bazaar-mastiff-5430.twil.io/capability-token')
+    $.getJSON('https://periwinkle-guppy-7174.twil.io/capability-token')
         //Paste URL HERE
         .done(function (data) {
             console.log('Token: ' + data.token);
@@ -62,13 +62,13 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             // Need to update this url.
-            url: 'http://127.0.0.1:8000/admin/audio/7/secondDayAudio',
+            url: '/admin/audio/7/secondDayAudio',
             success: function (data, status) {
                 voicemailAudio = data;
                 // Need to update param dynamically
                 var params = {
                     To: '+923034049689',
-                    From: '+19048440410'
+                    From: '+1 231 729 6887'
                 };
                 Twilio.Device.connect(params);
             },
