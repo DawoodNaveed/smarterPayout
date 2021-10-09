@@ -79,47 +79,55 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="firstName">First Name<span
+                                                        <label class="form-label" for="calculator_form_firstName">First
+                                                            Name<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.firstName) }}{{ form_errors(form.firstName) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="lastName">Last Name</label>
+                                                        <label class="form-label" for="calculator_form_lastName">Last
+                                                            Name</label>
                                                         {{ form_widget(form.lastName) }}{{ form_errors(form.lastName) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="productType">Product Type<span
+                                                        <label class="form-label" for="calculator_form_productType">Product
+                                                            Type<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
                                                     </div>
                                                 </div>
+
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="creditRating">Insurance
+                                                        <label class="form-label" for="calculator_form_creditRating">Insurance
                                                             Company</label>
-                                                        {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                        <div class="select-wrapper">
+                                                            {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="age">Age<span
+                                                        <label class="form-label" for="calculator_form_age">Age<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0 inp-required">
-                                                        <label class="form-label" for="gender">Gender</label>
+                                                        <label class="form-label"
+                                                               for="calculator_form_gender">Gender</label>
                                                         {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="weight">Weight</label>
+                                                        <label class="form-label"
+                                                               for="calculator_form_weight">Weight</label>
                                                         {{ form_widget(form.weight) }}{{ form_errors(form.weight) }}
                                                     </div>
                                                 </div>
@@ -187,13 +195,14 @@
                                                             <label class="form-label" for="manualWeight">Manual
                                                                 Weight<span class="text-danger">*</span></label>
                                                             <input id="manualWeight" type="number"
-                                                                   class="form-input" min="50">
+                                                                   class="form-input number-input" min="50">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="phoneNo">Phone Number
+                                                        <label class="form-label" for="calculator_form_phoneNo">Phone
+                                                            Number
                                                             (Optional)</label>
                                                         {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
                                                     </div>
@@ -201,7 +210,7 @@
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="emailAddress">Email
+                                                        <label class="form-label" for="calculator_form_emailAddress">Email
                                                             (Optional)</label>
                                                         {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }}
                                                     </div>
@@ -239,7 +248,8 @@
                                                     <div class="form-group mt-sm-0">
                                                         <div class="input-group date form-inline datepicker"
                                                              data-date-format="mm/dd/yyyy">
-                                                            <label class="form-label" for="paymentStartDate">Payment
+                                                            <label class="form-label"
+                                                                   for="calculator_form_paymentStartDate">Payment
                                                                 Start
                                                                 Date<span class="text-danger">*</span></label>
                                                             {{ form_widget(form.paymentStartDate) }}{{ form_errors(form.paymentStartDate) }}
@@ -252,7 +262,8 @@
                                                     <div class="form-group mt-sm-0">
                                                         <div class="input-group date form-inline datepicker"
                                                              data-date-format="mm/dd/yyyy">
-                                                            <label class="form-label" for="paymentEndDate">Payment End
+                                                            <label class="form-label"
+                                                                   for="calculator_form_paymentEndDate">Payment End
                                                                 Date<span class="text-danger">*</span></label>
                                                             {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }}
                                                             <span class="input-group-addon float-right calendar-container"><i
@@ -263,21 +274,22 @@
                                                 <div id="endDate-alert" class="col-12"></div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="paymentAmount">Payment
+                                                        <label class="form-label" for="calculator_form_paymentAmount">Payment
                                                             Amount<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.paymentAmount, {'type':'number'}) }}{{ form_errors(form.paymentAmount) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="frequency">Frequency<span
+                                                        <label class="form-label" for="calculator_form_frequency">Frequency<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="percentStep">Percent step % or
+                                                        <label class="form-label" for="calculator_form_percentStep">Percent
+                                                            step % or
                                                             Annual %</label>
                                                         {{ form_widget(form.percentStep) }}{{ form_errors(form.percentStep) }}
                                                     </div>
@@ -330,7 +342,8 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="smoker">Do You Smoke? Including
+                                                        <label class="form-label" for="calculator_form_smoker">Do You
+                                                            Smoke? Including
                                                             Marijuana. Or smoked within the last 2 years?<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.smoker) }}{{ form_errors(form.smoker) }}
@@ -338,28 +351,32 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="healthStatus">What is the status
+                                                        <label class="form-label" for="calculator_form_healthStatus">What
+                                                            is the status
                                                             of your Health?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.healthStatus) }}{{ form_errors(form.healthStatus) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="legalIssues">Do you Legal Issues?<span
+                                                        <label class="form-label" for="calculator_form_legalIssues">Do
+                                                            you Legal Issues?<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.legalIssues) }}{{ form_errors(form.legalIssues) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="DUI">In the last five years of
+                                                        <label class="form-label" for="calculator_form_DUI">In the last
+                                                            five years of
                                                             DUI/DWI?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.DUI) }}{{ form_errors(form.DUI) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="licenseSuspended">License
+                                                        <label class="form-label"
+                                                               for="calculator_form_licenseSuspended">License
                                                             Suspended in the last 5 years?<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.licenseSuspended) }}{{ form_errors(form.licenseSuspended) }}
@@ -367,7 +384,8 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="misdemeanor">Major Criminal
+                                                        <label class="form-label" for="calculator_form_misdemeanor">Major
+                                                            Criminal
                                                             offence in the last 10 years?<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.misdemeanor) }}{{ form_errors(form.misdemeanor) }}
@@ -417,35 +435,39 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="annualCheckup">Annual
+                                                        <label class="form-label" for="calculator_form_annualCheckup">Annual
                                                             Check-up?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="physicalExercise">How often do
+                                                        <label class="form-label"
+                                                               for="calculator_form_physicalExercise">How often do
                                                             you do physical Exercise?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.physicalExercise) }}{{ form_errors(form.physicalExercise) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="bloodPressure">Do you suffer from
+                                                        <label class="form-label" for="calculator_form_bloodPressure">Do
+                                                            you suffer from
                                                             Blood Pressure?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.bloodPressure) }}{{ form_errors(form.bloodPressure) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="highCholesterol">Do you have High
+                                                        <label class="form-label" for="calculator_form_highCholesterol">Do
+                                                            you have High
                                                             Cholesterol?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.highCholesterol) }}{{ form_errors(form.highCholesterol) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-sm-0">
-                                                        <label class="form-label" for="drivingInfraction">Driving
+                                                        <label class="form-label"
+                                                               for="calculator_form_drivingInfraction">Driving
                                                             Infractions (Last 3 Years)?<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }}
@@ -453,7 +475,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 p-0">
-                                                <input id="termsAndConditionsUrl" data-url="{{ path('terms_and_conditions') }}" hidden>
+                                                <input id="termsAndConditionsUrl"
+                                                       data-url="{{ path('terms_and_conditions') }}" hidden>
                                                 <div id="calculate_submit_bottom">
 
                                                 </div>
@@ -529,9 +552,8 @@
                     <div class="modal-header border-0">
                         <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="modal-body col-12 d-flex justify-content-center">
-
-                        <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="modal-body col-12 d-flex justify-content-end mobile-animation">
+                        <div class="col-lg-6 d-flex justify-content-end">
                             <div class="col-xl-5 col-lg-9 col-sm-6 col-8 d-flex justify-content-center"
                                  id="calculate_mobile">
                                 <img class="img-fluid mobile-img"
@@ -540,16 +562,23 @@
                                     <div class="d-flex justify-content-center">
                                         <div class="col-xl-7 col-lg-6 col-sm-7 col-8">
                                             <img width="100" class="pt-2 pb-0 mt-0 mb-0"
-                                                 src="{{ asset ('/resources/images/logo-tower.png') }}">
-                                            <div id="calculation-result-container" class="d-flex align-items-center h-75 w-100">
-
-                                                <div id="calculation-result">
-                                                    <h4 class="text-center">Hello <span id="client-name">Veronika</span>
+                                                 src="{{ asset ('/resources/images/logo-tower(2).png') }}">
+                                            <div id="calculation-result-container"
+                                                 class="d-flex align-items-center pt-0 mt-0 w-100">
+                                                <div id="calculation-result" class="pt-0 mt-0">
+                                                    <h4 class="text-center pt-0 mt-0">Hello <span id="client-name">Veronika</span>
                                                     </h4>
                                                     <p><b>Min: </b><span id="min-amount">1255</span>$</p>
                                                     <p><b>Max: </b><span id="max-amount">1955</span>$</p>
                                                     <p><b>Beneficiary Protection:</b><span
                                                                 id="beneficiary-amount">1255</span>$</p>
+                                                    <div class="lifeExpectancy">
+                                                        <p>Average Life Expectancy:<span
+                                                                    id="averageLifeExpectancy"></span></p>
+                                                        <p>Your Life Expectancy:<span id="yourLifeExpectancy"></span>
+                                                        </p>
+                                                    </div>
+
                                                 </div>
                                                 <div id="otp-phone-number" hidden>
                                                     <p class="heading-secondary-tagline pb-3">If you want to see the <b>Quote</b>
@@ -563,8 +592,8 @@
                                                                    class="form-input" autocomplete="off">
                                                         </div>
                                                     </div>
-                                                    <button type="submit" id="otp-phone-submit"
-                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1">
+                                                    <button type="submit" data-spinner="true" id="otp-phone-submit"
+                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1 btn-spinner">
                                                         Submit
                                                     </button>
                                                 </div>
@@ -578,10 +607,39 @@
                                                                    class="form-input" autocomplete="off">
                                                         </div>
                                                     </div>
-                                                    <button type="submit" id="otp-code-submit"
-                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1">
+                                                    <button type="submit" data-spinner="true" id="otp-code-submit"
+                                                            class="btn btn-outline-custom-default btn-success-custom mt-3 p-1 btn-spinner">
                                                         Submit
                                                     </button>
+                                                </div>
+                                                <div id="given-details" class="pt-0 mt-0" hidden>
+                                                    <div class="form-group focused pt-0 mt-0">
+                                                        <label class="form-label" for="result_name">Name:</label>
+                                                        <input id="details_name" type="text" value="John"
+                                                               class="form-input ml-2 filled" readonly>
+                                                    </div>
+                                                    <div class="form-group focused">
+                                                        <label class="form-label" for="result_age">Age:</label>
+                                                        <input id="details_age" type="text" value="45"
+                                                               class="form-input ml-2 filled" readonly>
+                                                    </div>
+                                                    <div class="form-group focused">
+                                                        <label class="form-label" for="result_startDate">Start
+                                                            Date:</label>
+                                                        <input id="details_startDate" type="text" value="09-23-2021"
+                                                               class="form-input ml-2 filled" readonly>
+                                                    </div>
+                                                    <div class="form-group focused">
+                                                        <label class="form-label" for="result_endDate">End Date:</label>
+                                                        <input id="details_endDate" type="text" value="09-23-2031"
+                                                               class="form-input ml-2 filled" readonly>
+                                                    </div>
+                                                    <div class="form-group focused">
+                                                        <label class="form-label" for="result_health">Health
+                                                            Status:</label>
+                                                        <input id="details_health" type="text" value="Normal"
+                                                               class="form-input ml-2 filled" readonly>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -672,11 +730,12 @@
                                 {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
                             </div>
 
-                            <button type="submit"
-                                    class="btn btn-outline-custom-default btn-success-custom float-right mt-3">
+                            <button type="submit" data-spinner="true"
+                                    class="btn btn-outline-custom-default btn-success-custom float-right mt-3 btn-spinner">
                                 Send
                                 Message
                             </button>
+
                             {{ form_errors(contactUsForm) }}
                             {{ form_end(contactUsForm) }}
                         </div>

@@ -28,7 +28,7 @@ class CalculatorForm extends AbstractType
             'required' => true,
         ])
             ->add('age', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off', 'min'=>0],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0],
                 'required' => true,
             ])
             ->add('gender', ChoiceType::class, [
@@ -58,15 +58,15 @@ class CalculatorForm extends AbstractType
                 'choices' => CalculatorEnum::creditRating
             ])
             ->add('paymentStartDate', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off', 'readonly'=>true],
+                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off', 'readonly' => true],
                 'required' => true,
             ])
             ->add('paymentEndDate', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off', 'readonly'=>true],
+                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off', 'readonly' => true],
                 'required' => true,
             ])
             ->add('paymentAmount', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off'],
                 'required' => true,
             ])
             ->add('frequency', ChoiceType::class, [
@@ -76,7 +76,7 @@ class CalculatorForm extends AbstractType
                 'choices' => CalculatorEnum::frequencyValues
             ])
             ->add('percentStep', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off'],
                 'required' => false,
             ])
             ->add('phoneNo', TextType::class, [

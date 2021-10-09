@@ -1,6 +1,15 @@
 $(document).ready(function () {
-    resize_carousel();
+    $(document).on('click', '.btn-spinner', function () {
+        var spinner = $(this).find('.fa-spinner');
+        if (spinner) {
+            spinner.remove();
+        }
+        if ($(this).data('spinner') === true) {
+            $(this).append(`<i class="fas fa-spinner fa-spin"></i>`);
+        }
+    });
 
+    resize_carousel();
     // Set height of page sections according to screen size
     $('#about-us, #calculate').css('min-height', $(window).height());
 
@@ -42,10 +51,12 @@ $(document).ready(function () {
         $(this).parents(".form-group").removeClass("has-error");
     });
 
-    $("input, textarea, select").on('keyup blur focusout change', function () {
+    $("input, textarea, select").on('blur keyup focusout change', function () {
         if (!$(this).val()) {
             $(this).removeClass("filled");
-            $(this).parents(".form-group").removeClass("focused");
+            if (!$(this).is(":focus")) {
+                $(this).parents(".form-group").removeClass("focused");
+            }
         } else {
             $(this).addClass("filled");
             $(this).parents(".form-group").addClass("focused");
