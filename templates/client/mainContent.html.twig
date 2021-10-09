@@ -62,6 +62,9 @@
                         <div class="accordion col-lg-10 pr-0" id="accordionExample">
 
                             {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
+                            <div hidden>
+                                {{ form_widget(form.height) }}{{ form_errors(form.height) }}
+                            </div>
                             <div class="card accordion-card" data-progress="25">
                                 <button class="btn btn-link btn-block text-center card-header"
                                         type="button"

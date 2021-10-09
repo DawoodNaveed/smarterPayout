@@ -119,7 +119,10 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: form_data,
                 success: function(data) {
-                    $(this).find('fa-spinner').remove();
+                    var spinner = $(this).find('.fa-spinner');
+                    if(spinner) {
+                        spinner.remove();
+                    }
                     if(Number(data['status']) === 200) {
                         customerId = data['data']['customerId'];
                         $('#min-amount').text(data['data']['min'].toFixed(2));
@@ -146,6 +149,10 @@ $(document).ready(function() {
                     // signal to user the action is done
                 }
             });
+            var spinner = $(this).find('.fa-spinner');
+            if(spinner) {
+                spinner.remove();
+            }
         }
     });
     $('#otp-code-submit').click(function() {
@@ -322,15 +329,15 @@ $(document).ready(function() {
             var decimal = heightArray[1];
             var value = ((703 * Number(weight)) / Math.pow((Number(feet * 12) + Number(decimal)), 2)).toFixed(2);
             if(value <= 17.50) {
-                $('#calculator_form_weight').val(1);
-            } else if(value >= 17.60 && value <= 21.00) {
-                $('#calculator_form_weight').val(0);
-            } else if(value >= 21.10 && value <= 26.00) {
-                $('#calculator_form_weight').val(2);
-            } else if(value >= 26.10 && value <= 31.00) {
-                $('#calculator_form_weight').val(3);
-            } else if(value >= 31.10) {
-                $('#calculator_form_weight').val(4);
+                $('#calculator_form_weight').val('underWeight');
+            } else if(value > 17.50 && value <= 21.00) {
+                $('#calculator_form_weight').val('idealWeight');
+            } else if(value > 21.00 && value <= 26.00) {
+                $('#calculator_form_weight').val('averageWeight');
+            } else if(value > 26.00 && value <= 31.00) {
+                $('#calculator_form_weight').val('overWeight');
+            } else if(value > 31.00) {
+                $('#calculator_form_weight').val('obese');
             }
         }
     });
@@ -369,7 +376,7 @@ $(document).ready(function() {
                 paymentEndDate.parents(".form-group").addClass("focused");
             } else {
                 var gender = $('#calculator_form_gender').find(":selected").text();
-                if(!gender && gender !== 'Female') {
+                if(gender !== 'Female') {
                     gender = "Male";
                 }
                 var age = $('#calculator_form_age').val();

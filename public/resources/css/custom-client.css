@@ -254,7 +254,43 @@ body {
     transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 1024px) {
+    .form-label {
+        top: -5px;
+    }
+}
+
+@media (max-width: 973px ) {
+
+    .form-label {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        color: #999;
+        font-size: 0.85em;
+        background-color: transparent;
+        z-index: 10;
+        transition: transform 150ms ease-out, font-size 150ms ease-out;
+    }
+}
+
+@media (max-width: 425px ) {
+
+    .form-label {
+        position: absolute;
+        left: 0;
+        top: 0px;
+        color: #999;
+        font-size: 0.85em;
+        background-color: transparent;
+        z-index: 10;
+        transition: transform 150ms ease-out, font-size 150ms ease-out;
+    }
+}
+
+
+@media (max-width: 320px ) {
+
     .smoker-form-label {
         top: -20px;
     }
@@ -269,7 +305,7 @@ body {
 }
 
 .focused .form-label {
-    transform: translateY(-80%);
+    transform: translateY(-90%);
     font-size: 0.75em;
     font-weight: bold;
     background-color: transparent;
