@@ -69,6 +69,8 @@ class ClientSideController extends AbstractController
                 'admin/email/contactUs.html.twig',
                 $data
             );
+    
+            return $this->redirect($request->getUri());
         }
         return $this->render('client/mainContent.html.twig', [
             'form' => $form->createView(),
