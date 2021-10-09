@@ -87,6 +87,9 @@ $(document).ready(function () {
             } else {
                 formObject[this.name] = this.value || '';
             }
+            if (this.name === 'calculator_form[height]') {
+                formObject[this.name] = $('.height').val();
+            }
         });
         return formObject;
     };
@@ -122,7 +125,6 @@ $(document).ready(function () {
                 return false;
             }
             var form_data = form.serializeObject();
-
             $.ajax({
                 url: '/',
                 type: 'POST',

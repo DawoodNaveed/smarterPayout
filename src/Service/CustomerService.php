@@ -2,10 +2,13 @@
 
 namespace App\Service;
 
+use App\Controller\TwilioController;
 use App\Entity\Customer;
+use App\Entity\ListDetail;
 use App\Entity\User;
 use App\Helper\CustomHelper;
 use App\Repository\CustomerRepository;
+use App\Repository\ListDetailRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -16,6 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @property AwsS3Service $awsS3Service
  * @property UtilService utilService
  * @property TwilioService twilioService
+ * @property ListDetailRepository listDetailRepository
  */
 class CustomerService
 {
@@ -25,19 +29,23 @@ class CustomerService
      * @param AudioService $audioService
      * @param AwsS3Service $awsS3Service
      * @param UtilService $utilService
+     * @param TwilioService $twilioService
+     * @param ListDetailRepository $listDetailRepository
      */
     public function __construct(
         CustomerRepository $customerRepository,
         AudioService $audioService,
         AwsS3Service $awsS3Service,
         UtilService $utilService,
-        TwilioService $twilioService
+        TwilioService $twilioService,
+        ListDetailRepository $listDetailRepository
     ) {
         $this->customerRepository = $customerRepository;
         $this->audioService = $audioService;
         $this->awsS3Service = $awsS3Service;
         $this->utilService = $utilService;
         $this->twilioService = $twilioService;
+        $this->listDetailRepository = $listDetailRepository;
     }
     
     /**
@@ -178,7 +186,9 @@ class CustomerService
      */
     public function saveCustomerData(array $data)
     {
-        return $this->customerRepository->saveCustomerData($data);
+        /** @var ListDetail $listDetail */
+        $listDetail = $this->listDetailRepository->find(5);
+        return $this->customerRepository->saveCustomerData($data, $listDetail);
     }
     
     /**

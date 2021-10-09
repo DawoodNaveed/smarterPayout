@@ -91,13 +91,6 @@ class Customer extends AbstractEntity
     private $email;
     
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customer")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
-     */
-    private $user;
-    
-    /**
      * @var InsuranceCompany
      * @ORM\ManyToOne(targetEntity="App\Entity\InsuranceCompany", inversedBy="customer")
      * @ORM\JoinColumn(name="insurance_company_id", referencedColumnName="id", nullable=true)
@@ -110,6 +103,82 @@ class Customer extends AbstractEntity
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      */
     private $customerMeta;
+    
+    /**
+     * @var ListDetail
+     * @ORM\ManyToOne(targetEntity="App\Entity\ListDetail", inversedBy="customer")
+     * @ORM\JoinColumn(name="list_id", referencedColumnName="id", nullable=true)
+     */
+    private $listDetail;
+    
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="companyAdminCustomer")
+     * @ORM\JoinColumn(name="company_admin_id", referencedColumnName="id", nullable=true)
+     */
+    private $assignedCompanyAdmin;
+    
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="managerCustomer")
+     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id", nullable=true)
+     */
+    private $assignedManager;
+    
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="employeeCustomer")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=true)
+     */
+    private $assignedEmployee;
+    
+    /**
+     * @return User
+     */
+    public function getAssignedCompanyAdmin(): User
+    {
+        return $this->assignedCompanyAdmin;
+    }
+    
+    /**
+     * @param User $assignedCompanyAdmin
+     */
+    public function setAssignedCompanyAdmin(User $assignedCompanyAdmin): void
+    {
+        $this->assignedCompanyAdmin = $assignedCompanyAdmin;
+    }
+    
+    /**
+     * @return User
+     */
+    public function getAssignedManager(): User
+    {
+        return $this->assignedManager;
+    }
+    
+    /**
+     * @param User $assignedManager
+     */
+    public function setAssignedManager(User $assignedManager): void
+    {
+        $this->assignedManager = $assignedManager;
+    }
+    
+    /**
+     * @return User
+     */
+    public function getAssignedEmployee(): User
+    {
+        return $this->assignedEmployee;
+    }
+    
+    /**
+     * @param User $assignedEmployee
+     */
+    public function setAssignedEmployee(User $assignedEmployee): void
+    {
+        $this->assignedEmployee = $assignedEmployee;
+    }
     
     /**
      * @return string
@@ -221,22 +290,6 @@ class Customer extends AbstractEntity
     public function setWeight(string $weight): void
     {
         $this->weight = $weight;
-    }
-    
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-    
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
     }
     
     /**
@@ -378,5 +431,21 @@ class Customer extends AbstractEntity
     public function setIsAuthenticated($isAuthenticated): void
     {
         $this->isAuthenticated = $isAuthenticated;
+    }
+    
+    /**
+     * @return ListDetail
+     */
+    public function getListDetail(): ListDetail
+    {
+        return $this->listDetail;
+    }
+    
+    /**
+     * @param ListDetail $listDetail
+     */
+    public function setListDetail(ListDetail $listDetail): void
+    {
+        $this->listDetail = $listDetail;
     }
 }
