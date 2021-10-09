@@ -67,9 +67,67 @@ class User implements UserInterface
     private $audio;
     
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="assignedCompanyAdmin")
      */
-    private $customer;
+    private $companyAdminCustomer;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="assignedManager")
+     */
+    private $managerCustomer;
+    
+    /**
+     * @return mixed
+     */
+    public function getCompanyAdminCustomer()
+    {
+        return $this->companyAdminCustomer;
+    }
+    
+    /**
+     * @param mixed $companyAdminCustomer
+     */
+    public function setCompanyAdminCustomer($companyAdminCustomer): void
+    {
+        $this->companyAdminCustomer = $companyAdminCustomer;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getManagerCustomer()
+    {
+        return $this->managerCustomer;
+    }
+    
+    /**
+     * @param mixed $managerCustomer
+     */
+    public function setManagerCustomer($managerCustomer): void
+    {
+        $this->managerCustomer = $managerCustomer;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getEmployeeCustomer()
+    {
+        return $this->employeeCustomer;
+    }
+    
+    /**
+     * @param mixed $employeeCustomer
+     */
+    public function setEmployeeCustomer($employeeCustomer): void
+    {
+        $this->employeeCustomer = $employeeCustomer;
+    }
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Customer", mappedBy="assignedEmployee")
+     */
+    private $employeeCustomer;
     
     /**
      * @return mixed
@@ -321,21 +379,5 @@ class User implements UserInterface
     public function setResetPasswordToken(string $resetPasswordToken)
     {
         $this->resetPasswordToken = $resetPasswordToken;
-    }
-    
-    /**
-     * @return mixed
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-    
-    /**
-     * @param mixed $customer
-     */
-    public function setCustomer($customer): void
-    {
-        $this->customer = $customer;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Customer;
 use App\Entity\CustomerMeta;
+use App\Entity\ListDetail;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,11 +39,12 @@ class CustomerRepository extends AbstractRepository
     
     /**
      * @param array $data
+     * @param ListDetail $listDetail
      * @return Customer
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function saveCustomerData(array $data)
+    public function saveCustomerData(array $data, ListDetail $listDetail)
     {
         $customer = new Customer();
         $customer->setFirstName($data['firstName']);
@@ -50,12 +52,12 @@ class CustomerRepository extends AbstractRepository
         $customer->setAge($data['age']);
         $paymentStartDate = DateTime::createFromFormat('m/d/Y', $data['paymentStartDate']);
         $paymentEndDate = DateTime::createFromFormat('m/d/Y', $data['paymentEndDate']);
-        #TODO height work needs to be done
-//        $customer->setHeight($data['height']);
+        $customer->setHeight($data['height']);
         $customer->setWeight($data['weight']);
         $customer->setContactNumber($data['phoneNo']);
         $customer->setGender($data['gender']);
         $customer->setEmail($data['emailAddress']);
+        $customer->setListDetail($listDetail);
         $customerMeta = new CustomerMeta();
         $customerMeta->setPaymentStartDate($paymentStartDate);
         $customerMeta->setPaymentEndDate($paymentEndDate);
