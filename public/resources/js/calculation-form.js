@@ -11,7 +11,17 @@ let currAccordionName = 'AccountInfo';
 let prevAccordionName = 'paymentInfo';
 
 $(document).ready(function () {
+    font_size_responsive();
+    $(window).resize(function () {
+        animate_mobile();
+        font_size_responsive();
+    });
+
     $('#calculate_result_modal').on('show.bs.modal', function () {
+        setTimeout(function () {
+            animate_mobile();
+        }, 100);
+
         setTimeout(function () {
             var resultSection = $('#calculation-result');
             var otpPhoneSection = $('#otp-phone-number');
@@ -19,14 +29,31 @@ $(document).ready(function () {
             if (resultSection.length > 0) {
                 resultSection.remove();
                 otpPhoneSection.attr('hidden', false);
+                $('#inp-otp-phone').focus();
             }
-        }, 3000)
-
-        $('.calculate_result_mobile_container').addClass('calculate_result_mobile_center');
+        }, 3000);
     }).on('hide.bs.modal', function () {
         $('.calculate_result_mobile_container').addClass('calculate_result_mobile_right');
 
     });
+
+    function animate_mobile() {
+        $(".mobile-animation")
+            .animate({"right": ($(window).width() - $('.mobile-img').width()) / 2 + 'px'}, "slow");
+    }
+
+    function font_size_responsive() {
+
+        if ($(window).width() < 768) {
+            $('.primary-heading').css('font-size', '2rem');
+            $('.heading-primary-calculation').css('font-size', '1.2rem');
+            $('.heading-secondary-tagline').css('font-size', '0.7rem');
+        } else {
+            $('.primary-heading').css('font-size', '3rem');
+            $('.heading-primary-calculation').css('font-size', '1.5rem');
+            $('.heading-secondary-tagline').css('font-size', '1rem');
+        }
+    }
 
     $('#calculate_result_modal').on('hidden.bs.modal', function () {
         location.reload();
@@ -74,9 +101,17 @@ $(document).ready(function () {
             if ($(curInputs[i]).hasClass('inp-required') && !$(curInputs[i]).val()) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
+                var spinner = $(this).find('.fa-spinner');
+                if (spinner) {
+                    spinner.remove();
+                }
             } else if (!curInputs[i].validity.valid && curInputs[i].required) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
+                var spinner = $(this).find('.fa-spinner');
+                if (spinner) {
+                    spinner.remove();
+                }
             }
         }
 
@@ -94,6 +129,7 @@ $(document).ready(function () {
                 dataType: 'json',
                 data: form_data,
                 success: function (data) {
+                    $(this).find('fa-spinner').remove();
                     if (Number(data['status']) === 200) {
                         customerId = data['data']['customerId'];
                         $('#min-amount').text(data['data']['min'].toFixed(2));
@@ -132,10 +168,30 @@ $(document).ready(function () {
                 type: 'POST',
                 data: {'id': customerId, 'code': contact},
                 success: function (data) {
+                    $(this).find('fa-spinner').remove();
                     if (Number(data['status']) === 200) {
                         $('#otp-code').attr('hidden', true);
-
-                        $('#calculation-result-container').append(` <div id="calculation-result">
+                        var calculationResult = '';
+                        var productType = $('#calculator_form_productType').find(":selected").text();
+                        if (productType === gp) {
+                            calculationResult = `<div id="calculation-result">
+                                                    <button id="view-given-details"
+                                                            class="btn btn-outline-custom-small mt-1 mb-1">
+                                                        Given Information
+                                                    </button>
+                                                    <h4 class="text-center">Hello <span id="client-name">` + customerName + `</span>
+                                                    </h4>
+                                                    <p><b>Min: </b><span id="min-amount"> ` + minValue + `</span>$</p>
+                                                    <p><b>Max: </b><span id="max-amount">` + maxValue + `</span>$</p>
+                                                    <p><b>Beneficiary Protection:</b><span
+                                                                id="beneficiary-amount">` + beneficiaryProtection + `</span>$</p>                                                   
+                                                </div>`;
+                        } else {
+                            calculationResult = `<div id="calculation-result">
+                                                    <button id="view-given-details"
+                                                            class="btn btn-outline-custom-small mt-1 mb-1">
+                                                        Given Information
+                                                    </button>
                                                     <h4 class="text-center">Hello <span id="client-name">` + customerName + `</span>
                                                     </h4>
                                                     <p><b>Min: </b><span id="min-amount"> ` + minValue + `</span>$</p>
@@ -143,10 +199,14 @@ $(document).ready(function () {
                                                     <p><b>Beneficiary Protection:</b><span
                                                                 id="beneficiary-amount">` + beneficiaryProtection + `</span>$</p>
                                                     <div class="lifeExpectancy">
-                                                        <p><b>Average LifeExpectancy:</b><span id="averageLifeExpectancy">` + averageLifeExpectancy + `</span></p>
-                                                        <p><b>Your LifeExpectancy:</b><span id="yourLifeExpectancy">` + yourLifeExpectancy + `</span></p>
+                                                        <p>Average Life Expectancy:<span id="averageLifeExpectancy">` + averageLifeExpectancy + `</span></p>
+                                                        <p>Your Life Expectancy:<span id="yourLifeExpectancy">` + yourLifeExpectancy + `</span></p>
                                                     </div>
-                                                </div>`);
+                                                    
+                                                </div>`;
+                        }
+
+                        $('#calculation-result-container').append(calculationResult);
                     } else {
                         alert(data['message']);
                     }
@@ -155,7 +215,12 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert('Please Enter a Phone Number');
+            var spinner = $(this).find('.fa-spinner');
+            if (spinner) {
+                spinner.remove();
+                alert('Please Enter a Phone Number');
+                $(this).data('spinner', false);
+            }
         }
     });
 
@@ -167,9 +232,11 @@ $(document).ready(function () {
                 type: 'POST',
                 data: {'id': customerId, 'contact': contact},
                 success: function (data) {
+                    $(this).find('fa-spinner').remove();
                     if (Number(data['status']) === 200) {
                         $('#otp-phone-number').attr('hidden', true);
                         $('#otp-code').attr('hidden', false);
+                        $('#inp-otp-code').focus();
                     } else {
                         alert(data['message']);
                     }
@@ -178,8 +245,18 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert('Please Enter a Phone Number');
+            var spinner = $(this).find('.fa-spinner');
+            if (spinner) {
+                spinner.remove();
+                alert('Please Enter a Phone Number');
+                $(this).data('spinner', 'false');
+            }
         }
+    });
+
+    $(document).on('click', '#view-given-details', function (e) {
+        $('#calculation-result').attr('hidden', true);
+        $('#given-details').attr('hidden', false);
     });
 
     // submit button on the base of product type
@@ -224,7 +301,7 @@ $(document).ready(function () {
                                                                 class="btn btn-prev btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
-                                                        <button type="button" id="submitCalculation" class="btn btn-next btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
+                                                        <button type="button" id="submitCalculation" data-spinner="true" class="btn btn-next btn-outline-custom-default btn-spinner btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
                                                                 disabled="disabled">
                                                             Submit
                                                         </button>
@@ -321,18 +398,23 @@ $(document).ready(function () {
     $('#calculator_form_firstName').on('focusout', function () {
         if ($(this).val()) {
             $('#result_name').val($(this).val());
+            $('#details_name').val($(this).val());
         }
     });
 
     $('#calculator_form_age').on('focusout', function () {
         if ($(this).val()) {
             $('#result_age').val($(this).val());
+            $('#details_age').val($(this).val());
         }
     });
 
     $('#calculator_form_paymentStartDate').on('change', function () {
         if ($(this).val()) {
             $('#result_startDate').datepicker({
+                format: 'mm/dd/yyyy'
+            }).datepicker('update', $(this).val());
+            $('#details_startDate').datepicker({
                 format: 'mm/dd/yyyy'
             }).datepicker('update', $(this).val());
         }
@@ -343,12 +425,16 @@ $(document).ready(function () {
             $('#result_endDate').datepicker({
                 format: 'mm/dd/yyyy'
             }).datepicker('update', $(this).val());
+            $('#details_endDate').datepicker({
+                format: 'mm/dd/yyyy'
+            }).datepicker('update', $(this).val());
         }
     });
 
     $('#calculator_form_healthStatus').on('change', function () {
         if ($(this).find(":selected").text()) {
             $('#result_health').val($(this).find(":selected").text());
+            $('#details_health').val($(this).find(":selected").text());
         }
     });
 
@@ -432,4 +518,39 @@ $(document).ready(function () {
             progressBar.text((Number(curStep.data('progress')) - 50) + '%');
         }
     }
+
+    $('.number-input').bind('keyup mouseup', function () {
+        var inpValue = $(this).val();
+        if (inpValue !== "" && inpValue !== "0") {
+            if (inpValue < 0) {
+                $(this).val("");
+            }
+        } else {
+            $(this).val("");
+        }
+    });
+
+    $('#calculator_form_age').bind('focusout', function () {
+        var gender = $('#calculator_form_gender').find(":selected").text();
+        if (gender !== 'Female') {
+            gender = 'Male';
+        }
+
+        if (gender) {
+            var ageElement = $('#calculator_form_age');
+            if ($(this).val()) {
+                if (gender === 'Female' && ($(this).val() < 20 || $(this).val() >= 80)) {
+                    ageElement.parent().append(`<p class="text-danger invalid-age"><small>Age must be between 19 and 80</small> </p>`);
+                    ageElement.parent().addClass('has-error');
+                } else if (gender !== 'Female' && ($(this).val() < 20 || $(this).val() >= 75)) {
+                    ageElement.parent().append(`<p class="text-danger invalid-age"><small>Age must be between 19 and 75</small> </p>`);
+                    ageElement.parent().addClass('has-error');
+                }
+            }
+        }
+    });
+
+    $('#calculator_form_age').focus(function () {
+        $('.invalid-age').remove();
+    });
 });
