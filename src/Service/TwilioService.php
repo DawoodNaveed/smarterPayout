@@ -61,6 +61,9 @@ class TwilioService
      */
     public function sendVoicemail(string $parentCallSid, string $voicemailAudio)
     {
+        $voicemailAudio = $voicemailAudio . "</Response>";
+        $voicemailAudio = str_replace('&', '&amp;', $voicemailAudio);
+        
         $twilio = new Client($this->twilioAccountSid, $this->twilioAuthToken);
         $call = $twilio->calls->read([
             "parentCallSid" => $parentCallSid
