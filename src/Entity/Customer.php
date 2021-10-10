@@ -370,9 +370,9 @@ class Customer extends AbstractEntity
     }
     
     /**
-     * @return Audio
+     * @return null|Audio
      */
-    public function getAudio(): Audio
+    public function getAudio()
     {
         return $this->audio;
     }

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Customer;
 use App\Entity\CustomerMeta;
+use App\Entity\InsuranceCompany;
 use App\Entity\ListDetail;
 use App\Entity\User;
 use DateTime;
@@ -31,7 +32,7 @@ class CustomerRepository extends AbstractRepository
     public function getCustomersByUser(User $user): ?array
     {
         $qb = $this->createQueryBuilder('customer')
-            ->where('customer.user = :user')
+            ->where('customer.assignedEmployee = :user')
             ->setParameter('user', $user);
         
         return $qb->getQuery()->getResult();
@@ -40,11 +41,12 @@ class CustomerRepository extends AbstractRepository
     /**
      * @param array $data
      * @param ListDetail $listDetail
+     * @param InsuranceCompany $insuranceCompany
      * @return Customer
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function saveCustomerData(array $data, ListDetail $listDetail)
+    public function saveCustomerData(array $data, ListDetail $listDetail, InsuranceCompany $insuranceCompany)
     {
         $customer = new Customer();
         $customer->setFirstName($data['firstName']);
@@ -58,6 +60,7 @@ class CustomerRepository extends AbstractRepository
         $customer->setGender($data['gender']);
         $customer->setEmail($data['emailAddress']);
         $customer->setListDetail($listDetail);
+        $customer->setInsuranceCompany($insuranceCompany);
         $customerMeta = new CustomerMeta();
         $customerMeta->setPaymentStartDate($paymentStartDate);
         $customerMeta->setPaymentEndDate($paymentEndDate);

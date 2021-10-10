@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Controller\TwilioController;
 use App\Entity\Customer;
+use App\Entity\InsuranceCompany;
 use App\Entity\ListDetail;
 use App\Entity\User;
 use App\Helper\CustomHelper;
@@ -180,15 +181,16 @@ class CustomerService
     
     /**
      * @param array $data
+     * @param InsuranceCompany $insuranceCompany
      * @return Customer
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function saveCustomerData(array $data)
+    public function saveCustomerData(array $data, InsuranceCompany $insuranceCompany)
     {
         /** @var ListDetail $listDetail */
         $listDetail = $this->listDetailRepository->find(5);
-        return $this->customerRepository->saveCustomerData($data, $listDetail);
+        return $this->customerRepository->saveCustomerData($data, $listDetail, $insuranceCompany);
     }
     
     /**
@@ -197,5 +199,21 @@ class CustomerService
      */
     public function checkEmailExistOrNot(string $emailAddress) {
         return (bool)$this->customerRepository->findOneBy(['email' => $emailAddress]);
+    }
+    
+    /**
+     * @return null|array
+     */
+    public function getWebCustomers()
+    {
+        $customersData = [];
+        $customers = $this->customerRepository->findBy(['listDetail' => 5, 'isAuthenticated' => 1, 'isDeleted' => 0]);
+        
+        foreach ($customers as $customer)
+        {
+            array_push($customersData, $customer->toArray());
+        }
+        
+        return $customersData;
     }
 }

@@ -46,4 +46,14 @@ class CustomerController extends AbstractController
 
         return new JsonResponse($customer->toArray());
     }
+    
+    /**
+     * @Route("/webCustomers", name="web_customers", methods={"GET"})
+     * @param CustomerService $customerService
+     * @return Response
+     */
+    public function getWebCustomersAction(CustomerService $customerService)
+    {
+        return $this->render('admin/leads/webUser.html.twig', ['customers' => $customerService->getWebCustomers()]);
+    }
 }

@@ -54,4 +54,29 @@ class InsuranceCompanyService
     {
         return $this->insuranceCompanyRepository->find($companyId);
     }
+    
+    /**
+     * @return array
+     */
+    public function getInsuranceCompaniesName()
+    {
+        $insuranceCompaniesName = [];
+        $companiesName = $this->insuranceCompanyRepository->getInsuranceCompaniesName();
+        
+        foreach ($companiesName as $name)
+        {
+            $insuranceCompaniesName[$name['name']] = $name['name'];
+        }
+        
+        return $insuranceCompaniesName;
+    }
+    
+    /**
+     * @param array $criteria
+     * @return InsuranceCompany|null
+     */
+    public function getInsuranceCompanyByCriteria(array $criteria)
+    {
+        return $this->insuranceCompanyRepository->findOneBy($criteria);
+    }
 }

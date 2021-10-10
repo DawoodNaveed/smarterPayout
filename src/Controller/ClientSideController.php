@@ -8,6 +8,7 @@ use App\Form\ContactUsForm;
 use App\Service\CalculatorService;
 use App\Service\CustomerService;
 use App\Service\EmailService;
+use App\Service\InsuranceCompanyService;
 use App\Service\UtilService;
 use phpDocumentor\Reflection\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,15 +25,24 @@ class ClientSideController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param Request $request,
+     * @param EmailService $emailService,
+     * @param CalculatorService $calculatorService,
+     * @param UtilService $utilService,
+     * @param InsuranceCompanyService $insuranceCompanyService
      */
     public function indexAction(
         Request $request,
         EmailService $emailService,
         CalculatorService $calculatorService,
         CustomerService $customerService,
-        UtilService $utilService
+        UtilService $utilService,
+        InsuranceCompanyService $insuranceCompanyService
     ) {
-        $form = $this->createForm(CalculatorForm::class);
+        $insuranceCompanies = $insuranceCompanyService->getInsuranceCompaniesName();
+        $form = $this->createForm(CalculatorForm::class, null, [
+            'insuranceCompanies' => $insuranceCompanies
+        ]);
         $contactForm = $this->createForm(ContactUsForm::class);
         $form->handleRequest($request);
         $contactForm->handleRequest($request);
@@ -43,6 +53,10 @@ class ClientSideController extends AbstractController
             }
             $data = $form->getData();
             $data = $calculatorService->setDefaultValuesInCaseOfEmpty($data);
+            $insuranceCompany = $insuranceCompanyService->getInsuranceCompanyByCriteria(['name' => $data['creditRating']]);
+            if ($insuranceCompany) {
+                $data['creditRating'] = $insuranceCompany->getCreditRating()->getRating();
+            }
             try {
                 if ($data['emailAddress']) {
                     $isExist = $customerService->checkEmailExistOrNot($data['emailAddress']);
@@ -54,7 +68,7 @@ class ClientSideController extends AbstractController
                     return $utilService->getJsonResponse(500, null, "Payment Start Date And End Date can't be empty");
                 }
                 $presentValue = $calculatorService->calculatePresentValue($data);
-                $customer = $customerService->saveCustomerData($data);
+                $customer = $customerService->saveCustomerData($data, $insuranceCompany);
                 $presentValue['customerId'] = $customer->getId();
                 return $utilService->getJsonResponse(200, $presentValue);
             } catch (\Exception $exception) {

@@ -19,4 +19,17 @@ class InsuranceCompanyRepository extends AbstractRepository
     {
         parent::__construct($registry, InsuranceCompany::class);
     }
+    
+    /**
+     * @return int|mixed|string
+     */
+    public function getInsuranceCompaniesName()
+    {
+        return $this->createQueryBuilder('ic')
+            ->select('ic.name')
+            ->where('ic.isDeleted = :isDeleted')
+            ->setParameter('isDeleted', false)
+            ->getQuery()
+            ->getResult();
+    }
 }
