@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class CalculatorForm
@@ -56,7 +57,7 @@ class CalculatorForm extends AbstractType
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'placeholder' => '',
                 'required' => false,
-                'choices' => CalculatorEnum::creditRating
+                'choices' => $options['insuranceCompanies']
             ])
             ->add('paymentStartDate', TextType::class, [
                 'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off', 'readonly' => true],
@@ -154,5 +155,12 @@ class CalculatorForm extends AbstractType
                 'required' => false,
                 'choices' => CalculatorEnum::drivingInfractionsStatusKeys
             ]);
+    }
+    
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'insuranceCompanies' => null,
+        ]);
     }
 }

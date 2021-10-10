@@ -42,7 +42,7 @@ class CalculatorService
     {
         $data['gender'] = $data['gender'] ?? CalculatorEnum::genderValuesKeys['Male'];
         $data['weight'] = $data['weight'] ?? CalculatorEnum::weightValuesKeys['obese'];
-        $data['creditRating'] = $data['creditRating'] ?? CalculatorEnum::creditRating['Other'];
+        $data['creditRating'] = $data['creditRating'] ?? 'Other';
         $data['smoker'] = $data['smoker'] ?? CalculatorEnum::smokerValuesKeys['No'];
         $data['healthStatus'] = $data['healthStatus'] ?? CalculatorEnum::healthStatusKeys['Normal'];
         $data['legalIssues'] = $data['legalIssues'] ?? CalculatorEnum::legalIssuesKeys['Prefer Not To Answer'];
