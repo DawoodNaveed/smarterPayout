@@ -58,14 +58,14 @@
                 Ipsum has been the industry's standard dummy text ever since the 1500s,</h6>
             <div class="col-12">
                 <div class="row">
-                    <div class="col-lg-6 d-flex justify-content-end pt-3 pr-0">
-                        <div class="accordion col-lg-10 pr-0" id="accordionExample">
+                    <div class="col-lg-6 d-flex justify-content-end pt-3 pr-0 pl-0">
+                        <div class="accordion col-lg-10 pr-0 pl-0" id="accordionExample">
 
                             {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
                             <div hidden>
                                 {{ form_widget(form.height) }}{{ form_errors(form.height) }}
                             </div>
-                            <div class="card accordion-card" data-progress="25">
+                            <div class="card accordion-card" tabindex='1' data-progress="25">
                                 <button class="btn btn-link btn-block text-center card-header"
                                         type="button"
                                         data-toggle="collapse" data-target="#collapseAccountInfo"
@@ -205,7 +205,7 @@
                                                     <div class="col-lg-6 manualWeight-hide">
                                                         <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                             <label class="form-label" for="manualWeight">Manual
-                                                                Weight<span class="text-danger">*</span></label>
+                                                                Weight(lbs)<span class="text-danger">*</span></label>
                                                             <input id="manualWeight" type="number"
                                                                    class="form-input number-input" min="121" max="1550">
                                                         </div>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
 
-                            <div class="card accordion-card" data-progress="50">
+                            <div class="card accordion-card" tabindex='2' data-progress="50">
                                 <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse" data-target="#collapsePaymentInfo"
@@ -287,7 +287,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_paymentAmount">Payment
-                                                            Amount<span class="text-danger">*</span></label>
+                                                            Amount($)<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.paymentAmount, {'type':'number'}) }}{{ form_errors(form.paymentAmount) }}
                                                     </div>
                                                 </div>
@@ -303,7 +303,7 @@
                                                         <label class="form-label" for="calculator_form_percentStep">Percent
                                                             step % or
                                                             Annual %</label>
-                                                        {{ form_widget(form.percentStep) }}{{ form_errors(form.percentStep) }}
+                                                        {{ form_widget(form.percentStep, {'type':'number'}) }}{{ form_errors(form.percentStep) }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,7 +335,7 @@
                                 </div>
                             </div>
 
-                            <div class="card accordion-card gp-hide" data-progress="75">
+                            <div class="card accordion-card gp-hide" tabindex='3' data-progress="75">
                                 <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse"
@@ -429,7 +429,7 @@
                                 </div>
                             </div>
 
-                            <div class="card accordion-card gp-hide" data-progress="100">
+                            <div class="card accordion-card gp-hide" tabindex='4' data-progress="100">
                                 <button class="btn btn-link btn-block text-center card-header collapsed"
                                         type="button"
                                         data-toggle="collapse"
@@ -507,7 +507,7 @@
                             <div class="col-xl-5 pl-0 d-none d-xl-block" style="margin-top: 20%">
                                 <img class="img-fluid" src="{{ asset ('/resources/images/calculate-arrows.svg') }}">
                             </div>
-                            <div class="offset-xl-1 col-xl-5 col-lg-9 offset-sm-3 col-sm-6 offset-2 col-8 d-flex justify-content-center"
+                            <div class="offset-xl-1 col-xl-5 col-lg-9 offset-sm-3 col-sm-6 offset-2 col-8 d-flex justify-content-center pr-0"
                                  id="calculate_mobile">
                                 <img class="img-fluid mobile-img"
                                      src="{{ asset ('/resources/images/calculate-mobile.svg') }}">
@@ -601,7 +601,9 @@
                                                                 Number<span
                                                                         class="text-danger">*</span></label>
                                                             <input id="inp-otp-phone" type="text"
-                                                                   class="form-input" autocomplete="off">
+                                                                   class="form-input"
+                                                                   pattern="^[+]?\d{1,2}([\s]?)\(?[0-9]{3}[)]([\s]?)[0-9]{3}-[0-9]{4}$"
+                                                                   autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <button type="submit" data-spinner="true" id="otp-phone-submit"
@@ -723,30 +725,33 @@
                                 soon
                                 as
                                 we can.</h6>
-                            {{ form_start(contactUsForm) }}
-                            <div class="form-group mt-sm-0">
-                                <label class="form-label" for="first">Name</label>
-                                {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="last">Email</label>
-                                {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="color">Contact</label>
-                                {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="color">Message</label>
-                                {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
-                            </div>
+                            {{ form_start(contactUsForm, { 'attr': {'autocomplete': 'off'} }) }}
+                            <div class="pt-5">
+                                <div class="form-group mt-sm-0">
+                                    <label class="form-label" for="first">Name<span class="text-danger">*</span></label>
+                                    {{ form_widget(contactUsForm.name) }}{{ form_errors(contactUsForm.name) }}
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="last">Email<span class="text-danger">*</span></label>
+                                    {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="color">Contact<span
+                                                class="text-danger">*</span></label>
+                                    {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="color">Message<span
+                                                class="text-danger">*</span></label>
+                                    {{ form_widget(contactUsForm.message) }}{{ form_errors(contactUsForm.message) }}
+                                </div>
 
-                            <button type="submit" data-spinner="true"
-                                    class="btn btn-outline-custom-default btn-success-custom float-right mt-3 btn-spinner">
-                                Send
-                                Message
-                            </button>
-
+                                <button type="submit" data-spinner="true"
+                                        class="btn btn-outline-custom-default btn-success-custom float-right mt-3 btn-spinner">
+                                    Send
+                                    Message
+                                </button>
+                            </div>
                             {{ form_errors(contactUsForm) }}
                             {{ form_end(contactUsForm) }}
                         </div>

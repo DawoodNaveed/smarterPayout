@@ -24,24 +24,28 @@ class ContactUsForm extends AbstractType
         $builder
             ->add('message', TextareaType::class, [
                 'attr' => [
-                    'class' => 'form-input'
+                    'class' => 'form-input',
+                    'autocomplete' => 'off'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-input'
+                    'class' => 'form-input',
+                    'autocomplete' => 'off'
                 ]
             ])
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-input'
+                    'class' => 'form-input',
+                    'autocomplete' => 'off'
                 ]
             ])
             ->add('contact', TelType::class, [
                 'attr' => [
-                    'class' => 'form-input'
+                    'class' => 'form-input',
+                    'autocomplete' => 'off',
+                    'pattern' => '^[+]?\d{1,2}([\s]?)\(?[0-9]{3}[)]([\s]?)[0-9]{3}-[0-9]{4}$'
                 ]
-            ])
-        ;
+            ]);
     }
 }
