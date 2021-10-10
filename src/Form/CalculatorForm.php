@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Enum\CalculatorEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +31,7 @@ class CalculatorForm extends AbstractType
             'required' => true,
         ])
             ->add('age', TextType::class, [
-                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 20],
                 'required' => true,
             ])
             ->add('gender', ChoiceType::class, [
@@ -68,7 +70,7 @@ class CalculatorForm extends AbstractType
                 'required' => true,
             ])
             ->add('paymentAmount', TextType::class, [
-                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0],
                 'required' => true,
             ])
             ->add('frequency', ChoiceType::class, [
@@ -78,14 +80,16 @@ class CalculatorForm extends AbstractType
                 'choices' => CalculatorEnum::frequencyValues
             ])
             ->add('percentStep', TextType::class, [
-                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0],
                 'required' => false,
             ])
-            ->add('phoneNo', TextType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
+            ->add('phoneNo', TelType::class, [
+                'attr' => ['class' => 'form-input',
+                    'autocomplete' => 'off',
+                    'pattern' => '^[+]?\d{1,2}([\s]?)\(?[0-9]{3}[)]([\s]?)[0-9]{3}-[0-9]{4}$'],
                 'required' => false,
             ])
-            ->add('emailAddress', TextType::class, [
+            ->add('emailAddress', EmailType::class, [
                 'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'required' => false,
             ])
