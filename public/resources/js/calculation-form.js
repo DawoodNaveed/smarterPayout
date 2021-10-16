@@ -367,11 +367,9 @@ $(document).ready(function () {
     })
     $('#manualWeight').on('focusout', function () {
         var manualWeight = $('#manualWeight');
-        if (manualWeight.val()) {
-            if (manualWeight.val() && (manualWeight.val() < 121 || manualWeight.val() > 1550)) {
-                manualWeight.parent().append(`<p class="text-danger invalid-manual-weight"><small>Weight must be between 121 and 1550 lbs</small> </p>`);
-                manualWeight.parent().addClass('has-error');
-            }
+        if (manualWeight.val() && (manualWeight.val() < 121 || manualWeight.val() > 1550)) {
+            manualWeight.parent().append(`<p class="text-danger invalid-manual-weight"><small>Weight must be between 121 and 1550 lbs</small> </p>`);
+            manualWeight.parent().addClass('has-error');
         }
     });
     //  manual weight input field, if user select "Prefer To Put Manually"
@@ -479,7 +477,7 @@ $(document).ready(function () {
             } else if ($(curInputs[i]).hasClass('inp-required') && !$(curInputs[i]).val()) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
-            }else if(!curInputs[i].validity.valid){
+            } else if (!curInputs[i].validity.valid) {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
             }

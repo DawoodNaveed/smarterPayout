@@ -27,15 +27,8 @@ $(document).ready(function () {
     $('#about-us, #calculate, #career').css('min-height', $(window).height());
     // Smart scroll for navigation bar
     if ($('.smart-scroll').length > 0 && $(window).width() >= 992) {
-        var last_scroll_top = 0;
         $(window).on('scroll', function () {
             scroll_top = $(this).scrollTop();
-            if (scroll_top < last_scroll_top || scroll_top > last_scroll_top) {
-                $('.smart-scroll').removeClass('scrolled-down').addClass('scrolled-up');
-            } else {
-                $('.smart-scroll').removeClass('scrolled-up').addClass('scrolled-down');
-            }
-            last_scroll_top = scroll_top;
         });
     }
     //  handling navbar for mobile/tab screens
