@@ -48,6 +48,12 @@ class ClientSideController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($form->isSubmitted()) {
+//            dd($form->getData(), $request);
+            foreach ($form->getErrors() as $error)
+            {
+                dump($error->getMessage());
+            }
+//            die();
             if (!$form->isValid()) {
                 return $utilService->getJsonResponse(500, null, 'Invalid Form Data');
             }

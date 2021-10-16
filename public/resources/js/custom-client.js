@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#contact_us_form_contact, #calculator_form_phoneNo, #inp-otp-phone").inputmask({"mask": "+1 (999) 999-9999"});
+    // $("#contact_us_form_contact, #calculator_form_phoneNo, #inp-otp-phone").inputmask({"mask": "+1 (999) 999-9999"});
 
     $(document).on('click', '.btn-spinner', function () {
         var spinner = $(this).find('.fa-spinner');
@@ -54,7 +54,7 @@ $(document).ready(function () {
         $(this).parents(".form-group").removeClass("has-error");
     });
     $("input, textarea, select").on('blur keyup focusout change', function () {
-        if (!$(this).val()) {
+        if (!$(this).val() && !$(this).hasClass('static')) {
             $(this).removeClass("filled");
             if (!$(this).is(":focus")) {
                 $(this).parents(".form-group").removeClass("focused");
@@ -65,15 +65,15 @@ $(document).ready(function () {
         }
     });
 
-    //  custom animated input fields
-    $("#calculator_form_phoneNo, #contact_us_form_contact, #inp-otp-phone").hover(function () {
-        $(this).parents(".form-group").addClass("focused");
-        $(this).parents(".form-group").removeClass("has-error");
-    }, function () {
-        if (!$(this).focus()) {
-            $(this).parents(".form-group").removeClass("focused");
-        }
-    });
+    // //  custom animated input fields
+    // $("#calculator_form_phoneNo, #contact_us_form_contact, #inp-otp-phone").hover(function () {
+    //     $(this).parents(".form-group").addClass("focused");
+    //     $(this).parents(".form-group").removeClass("has-error");
+    // }, function () {
+    //     if (!$(this).focus()) {
+    //         $(this).parents(".form-group").removeClass("focused");
+    //     }
+    // });
 
     // about us image animation
     var $animation_elements = $('.animation-element');
