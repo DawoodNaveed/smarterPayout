@@ -63,9 +63,9 @@ $(document).ready(function () {
     });
     $(document).on('click', '#termsAndConditions', function () {
         if ($('#termsAndConditions').is(':checked')) {
-            $('#submitCalculation').attr('disabled', false);
+            // $('#submitCalculation').attr('disabled', false);
         } else {
-            $('#submitCalculation').attr('disabled', true);
+            // $('#submitCalculation').attr('disabled', true);
         }
     });
     $.fn.serializeObject = function () {
@@ -88,6 +88,7 @@ $(document).ready(function () {
     };
     $(document).on('click', '#submitCalculation', function (e) {
         e.preventDefault();
+
         var curStep = $(this).closest(".accordion-card"),
             curInputs = curStep.find("input.form-input, select.form-input"),
             isValid = true;
@@ -126,51 +127,55 @@ $(document).ready(function () {
         }
 
         if (isValid) {
-            var form = $('form[name="calculator_form"]');
-            if (!form[0].checkValidity()) {
-                $("#hiddenSubmitButton").click();
-                return false;
-            }
-            var form_data = form.serializeObject();
-            $.ajax({
-                url: '/',
-                type: 'POST',
-                dataType: 'json',
-                data: form_data,
-                success: function (data) {
-                    var spinner = spinnerBtn.find('.fa-spinner');
-                    if (spinner) {
-                        spinner.remove();
-                    }
-                    if (Number(data['status']) === 200) {
-                        customerId = data['data']['customerId'];
-                        $('#min-amount').text(data['data']['min'].toFixed(2));
-                        $('#max-amount').text(data['data']['max'].toFixed(2));
-                        $('#beneficiary-amount').text(data['data']['beneficiaryProtection'].toFixed(2));
-                        $('#client-name').text($('#calculator_form_firstName').val());
-                        minValue = data['data']['min'].toFixed(2);
-                        maxValue = data['data']['max'].toFixed(2);
-                        beneficiaryProtection = data['data']['beneficiaryProtection'].toFixed(0);
-                        if ('averageLifeExpectancy' in data['data'] && 'yourLifeExpectancy' in data['data']) {
-                            $('#averageLifeExpectancy').text(data['data']['averageLifeExpectancy']);
-                            $('#yourLifeExpectancy').text(data['data']['yourLifeExpectancy']);
-                            averageLifeExpectancy = data['data']['averageLifeExpectancy'];
-                            yourLifeExpectancy = data['data']['yourLifeExpectancy'];
-                            $('.lifeExpectancy').show();
-                        } else {
-                            $('.lifeExpectancy').hide();
-                        }
-                        customerName = $('#calculator_form_firstName').val();
-                        $("#calculate_result_modal").modal('show');
-                    } else {
-                        alert(data['message']);
-                    }
-                    // signal to user the action is done
+            if (!$('#termsAndConditions').is(':checked')) {
+                alert("In order to move forward, kindly check the terms & conditions checkbox");
+            } else {
+                var form = $('form[name="calculator_form"]');
+                if (!form[0].checkValidity()) {
+                    $("#hiddenSubmitButton").click();
+                    return false;
                 }
-            });
-            var spinner = spinnerBtn.find('.fa-spinner');
-            if (spinner) {
-                spinner.remove();
+                var form_data = form.serializeObject();
+                $.ajax({
+                    url: '/',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: form_data,
+                    success: function (data) {
+                        var spinner = spinnerBtn.find('.fa-spinner');
+                        if (spinner) {
+                            spinner.remove();
+                        }
+                        if (Number(data['status']) === 200) {
+                            customerId = data['data']['customerId'];
+                            $('#min-amount').text(data['data']['min'].toFixed(2));
+                            $('#max-amount').text(data['data']['max'].toFixed(2));
+                            $('#beneficiary-amount').text(data['data']['beneficiaryProtection'].toFixed(2));
+                            $('#client-name').text($('#calculator_form_firstName').val());
+                            minValue = data['data']['min'].toFixed(2);
+                            maxValue = data['data']['max'].toFixed(2);
+                            beneficiaryProtection = data['data']['beneficiaryProtection'].toFixed(0);
+                            if ('averageLifeExpectancy' in data['data'] && 'yourLifeExpectancy' in data['data']) {
+                                $('#averageLifeExpectancy').text(data['data']['averageLifeExpectancy']);
+                                $('#yourLifeExpectancy').text(data['data']['yourLifeExpectancy']);
+                                averageLifeExpectancy = data['data']['averageLifeExpectancy'];
+                                yourLifeExpectancy = data['data']['yourLifeExpectancy'];
+                                $('.lifeExpectancy').show();
+                            } else {
+                                $('.lifeExpectancy').hide();
+                            }
+                            customerName = $('#calculator_form_firstName').val();
+                            $("#calculate_result_modal").modal('show');
+                        } else {
+                            alert(data['message']);
+                        }
+                        // signal to user the action is done
+                    }
+                });
+                var spinner = spinnerBtn.find('.fa-spinner');
+                if (spinner) {
+                    spinner.remove();
+                }
             }
         }
     });
@@ -276,6 +281,7 @@ $(document).ready(function () {
     // submit button on the base of product type
     append_calculate_submit_button();
     $("#calculator_form_productType, #calculator_form_age,  #calculator_form_gender").on('change', function () {
+        validate_manual_weight();
         var productType = $('#calculator_form_productType').find(":selected").text();
         var paymentEndDate = $('#calculator_form_paymentEndDate');
         var paymentStartDate = $('#calculator_form_paymentStartDate');
@@ -315,8 +321,7 @@ $(document).ready(function () {
                                                                 class="btn btn-prev btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
                                                             Prev
                                                         </button>
-                                                        <button type="button" id="submitCalculation" data-spinner="true" class="btn btn-next btn-outline-custom-default btn-spinner btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
-                                                                disabled="disabled">
+                                                        <button type="button" id="submitCalculation" data-spinner="true" class="btn btn-next btn-outline-custom-default btn-spinner btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2">
                                                             Submit
                                                         </button>
                                                         <button id="hiddenSubmitButton" class="btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-1 mb-2"
@@ -366,12 +371,28 @@ $(document).ready(function () {
         $('.invalid-manual-weight').remove();
     })
     $('#manualWeight').on('focusout', function () {
-        var manualWeight = $('#manualWeight');
-        if (manualWeight.val() && (manualWeight.val() < 121 || manualWeight.val() > 1550)) {
-            manualWeight.parent().append(`<p class="text-danger invalid-manual-weight"><small>Weight must be between 121 and 1550 lbs</small> </p>`);
-            manualWeight.parent().addClass('has-error');
-        }
+        validate_manual_weight();
     });
+
+    function validate_manual_weight() {
+        $('.invalid-manual-weight').remove();
+
+        var gender = $('#calculator_form_gender').find(":selected").text();
+        if (gender !== 'Female') {
+            gender = "Male";
+        }
+        var manualWeight = $('#manualWeight');
+        if (manualWeight.val() && gender === "Female" && (manualWeight.val() < 121 || manualWeight.val() > 330)) {
+            manualWeight.parent().append(`<p class="text-danger invalid-manual-weight"><small>Weight must be between 121 and 330 lbs</small> </p>`);
+            manualWeight.parent().addClass('has-error');
+        } else if (manualWeight.val() && (manualWeight.val() < 121 || manualWeight.val() > 400)) {
+            manualWeight.parent().append(`<p class="text-danger invalid-manual-weight"><small>Weight must be between 121 and 400 lbs</small> </p>`);
+            manualWeight.parent().addClass('has-error');
+        } else if (manualWeight.val()) {
+            $('#manualWeight').parent().removeClass('has-error').addClass('focused');
+        }
+    }
+
     //  manual weight input field, if user select "Prefer To Put Manually"
     $('#calculator_form_weight').on('change', function () {
         if ($(this).find(':selected').text() === 'Prefer To Put Manually') {
@@ -421,16 +442,22 @@ $(document).ready(function () {
         }
     });
     //  replace mobile content with user's data
-    $('#calculator_form_firstName').on('focusout', function () {
+    $('#calculator_form_firstName').on('keyup', function () {
         if ($(this).val()) {
             $('#result_name').val($(this).val());
             $('#details_name').val($(this).val());
+        } else {
+            $('#result_name').val('');
+            $('#details_name').val('');
         }
     });
-    $('#calculator_form_age').on('focusout', function () {
+    $('#calculator_form_age').on('keyup', function () {
         if ($(this).val()) {
             $('#result_age').val($(this).val());
             $('#details_age').val($(this).val());
+        } else {
+            $('#result_age').val('');
+            $('#details_age').val('');
         }
     });
     $('#calculator_form_paymentStartDate').on('change', function () {
@@ -461,6 +488,9 @@ $(document).ready(function () {
         if ($(this).find(":selected").text()) {
             $('#result_health').val($(this).find(":selected").text());
             $('#details_health').val($(this).find(":selected").text());
+        } else {
+            $('#result_health').val('');
+            $('#details_health').val('');
         }
     });
     //  accordion cards validations
@@ -567,7 +597,6 @@ $(document).ready(function () {
 
     $('.number-input').bind('keyup mouseup', function () {
         var inpValue = $(this).val();
-        console.log(inpValue);
         if (inpValue !== "" && inpValue !== "0") {
             if (inpValue < 0) {
                 $(this).val("");

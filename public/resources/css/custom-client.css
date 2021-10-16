@@ -120,6 +120,11 @@ body {
         text-decoration: none;
         color: #808080;
     }
+
+    #calculate-offer{
+        padding-top: 36px;
+    }
+
 }
 
 @media (max-width: 992px) {
@@ -266,7 +271,7 @@ body {
         position: absolute;
         left: 0;
         top: 10px;
-        color: #999;
+        color: #808080;
         font-size: 0.85em;
         background-color: transparent;
         z-index: 10;
@@ -280,7 +285,7 @@ body {
         position: absolute;
         left: 0;
         top: 0px;
-        color: #999;
+        color: #808080;
         font-size: 0.85em;
         background-color: transparent;
         z-index: 10;
@@ -640,7 +645,7 @@ textarea {
     position: absolute;
     right: 0;
     bottom: 0;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .calendar-container i {
@@ -748,4 +753,8 @@ textarea {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.32), 0 4px 8px rgba(0, 0, 0, 0.26);
     transform: translate(0px, 0px) scale(1);
     transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.iti--allow-dropdown{
+    width: 100%;
 }
