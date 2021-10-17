@@ -92,8 +92,6 @@ $(document).ready(function() {
     });
     $(".phone-input").on("countrychange", function(e, countryData) {
         $(this).val('');
-
-        console.log($(this).attr('placeholder'));
         var mask = $(this).attr('placeholder').replace(/[0-9]/g, 0);
         $(this).mask(mask);
     });

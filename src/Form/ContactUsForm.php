@@ -42,7 +42,7 @@ class ContactUsForm extends AbstractType
             ])
             ->add('contact', TelType::class, [
                 'attr' => ['class' => 'form-input filled static phone-input', 'autocomplete' => 'off'],
-                'required' => true,
+                'required' => false,
             ]);
     }
 }

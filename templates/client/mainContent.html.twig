@@ -514,27 +514,27 @@
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_name">Name:</label>
                                                 <input id="result_name" type="text" placeholder="John"
-                                                       class="form-input ml-2 filled">
+                                                       class="form-input ml-2 filled" readonly>
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_age">Age:</label>
                                                 <input id="result_age" type="text" placeholder="45"
-                                                       class="form-input ml-2 filled">
+                                                       class="form-input ml-2 filled" readonly>
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_startDate">Start Date:</label>
                                                 <input id="result_startDate" type="text" placeholder="09-23-2021"
-                                                       class="form-input ml-2 filled">
+                                                       class="form-input ml-2 filled" readonly>
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_endDate">End Date:</label>
                                                 <input id="result_endDate" type="text" placeholder="09-23-2031"
-                                                       class="form-input ml-2 filled">
+                                                       class="form-input ml-2 filled" readonly>
                                             </div>
                                             <div class="form-group focused">
                                                 <label class="form-label" for="result_health">Health Status:</label>
                                                 <input id="result_health" type="text" placeholder="Normal"
-                                                       class="form-input ml-2 filled">
+                                                       class="form-input ml-2 filled" readonly>
                                             </div>
                                             <div class="progress mt-4">
                                                 <div id="calculator-progress-bar"
@@ -598,7 +598,7 @@
 
                                                             <input id="inp-otp-phone-manual" type="text"
                                                                    class="form-input filled static phone-input"
-                                                                   autocomplete="off">
+                                                                   autocomplete="off" required>
 
                                                             <input id="inp-otp-phone" type="text"
                                                                    class="form-input filled static phone-input"
@@ -634,25 +634,25 @@
                                                     <div class="form-group focused">
                                                         <label class="form-label" for="details_age">Age:</label>
                                                         <input id="details_age" type="text" value="45"
-                                                               class="form-input ml-2 filled" disabled>
+                                                               class="form-input ml-2 filled" readonly>
                                                     </div>
                                                     <div class="form-group focused">
                                                         <label class="form-label" for="details_startDate">Start
                                                             Date:</label>
                                                         <input id="details_startDate" type="text" value="09-23-2021"
-                                                               class="form-input ml-2 filled" disabled>
+                                                               class="form-input ml-2 filled" readonly>
                                                     </div>
                                                     <div class="form-group focused">
                                                         <label class="form-label" for="details_endDate">End
                                                             Date:</label>
                                                         <input id="details_endDate" type="text" value="09-23-2031"
-                                                               class="form-input ml-2 filled" disabled>
+                                                               class="form-input ml-2 filled" readonly>
                                                     </div>
                                                     <div class="form-group focused">
                                                         <label class="form-label" for="details_health">Health
                                                             Status:</label>
                                                         <input id="details_health" type="text" value="Normal"
-                                                               class="form-input ml-2 filled" disabled>
+                                                               class="form-input ml-2 filled" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -736,8 +736,7 @@
                                     {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
                                 </div>
                                 <div class="form-group focused">
-                                    <label class="form-label" for="contact_us_form_contact_manual">Contact<span
-                                                class="text-danger">*</span></label>
+                                    <label class="form-label" for="contact_us_form_contact_manual">Contact (Optional)</label>
                                     <input id="contact_us_form_contact_manual" type="tel" class="form-input filled static phone-input">
                                     <div hidden>
                                         {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}

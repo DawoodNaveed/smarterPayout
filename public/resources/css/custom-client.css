@@ -760,3 +760,14 @@ textarea {
 .iti--allow-dropdown {
     display: block !important;
 }
+.calculate_content .form-group ::placeholder {
+    color: lightgrey;
+}
+
+.calculate_content .form-group :-ms-input-placeholder {
+    color: lightgrey;
+}
+
+.calculate_content .form-group ::-ms-input-placeholder {
+    color: lightgrey;
+}
