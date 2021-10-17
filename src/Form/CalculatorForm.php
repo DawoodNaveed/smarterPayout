@@ -67,11 +67,11 @@ class CalculatorForm extends AbstractType
                 'data' => 'others'
             ])
             ->add('paymentStartDate', TextType::class, [
-                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off', 'readonly' => true],
+                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off'],
                 'required' => true,
             ])
             ->add('paymentEndDate', TextType::class, [
-                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off', 'readonly' => true],
+                'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off'],
                 'required' => true,
             ])
             ->add('paymentAmount', TextType::class, [
@@ -83,7 +83,7 @@ class CalculatorForm extends AbstractType
                 'placeholder' => false,
                 'required' => true,
                 'choices' => CalculatorEnum::frequencyValues,
-                'data' =>'Weekly'
+                'data' => 'Weekly'
             ])
             ->add('percentStep', TextType::class, [
                 'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0, 'max' => 10],

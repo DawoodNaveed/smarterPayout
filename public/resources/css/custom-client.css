@@ -112,7 +112,7 @@ body {
 
     .navbar-collapse .navbar-nav .nav-item a {
         height: 5rem;
-        padding-top: 50px;
+        padding-top: 30px;
         padding-left: 0;
         padding-right: 0;
         border-radius: 0 0 5px 5px;
@@ -121,10 +121,9 @@ body {
         color: #808080;
     }
 
-    #calculate-offer{
-        padding-top: 36px;
+    #calculate-offer {
+        padding-top: 20px;
     }
-
 }
 
 @media (max-width: 992px) {
@@ -292,7 +291,6 @@ body {
         transition: transform 150ms ease-out, font-size 150ms ease-out;
     }
 }
-
 
 @media (max-width: 320px ) {
 
@@ -755,6 +753,10 @@ textarea {
     transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.iti--allow-dropdown{
-    width: 100%;
+.iti__country-list {
+    z-index: 15 !important;
+}
+
+.iti--allow-dropdown {
+    display: block !important;
 }
