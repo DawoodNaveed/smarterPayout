@@ -12,4 +12,10 @@ class CustomHelper
         'secondDayAudio' => ['firstGenericTag' , 'insuranceCompanyAudio', 'fourthGenericTag', 'thirdGenericTag'],
         'thirdDayAudio' => ['firstGenericTag' , 'insuranceCompanyAudio', 'fifthGenericTag', 'thirdGenericTag']
     ];
+    const ROLES = [
+        'ROLE EMPLOYEE' => 'ROLE_EMPLOYEE',
+        'ROLE COMPANY ADMIN' => 'ROLE_COMPANY_ADMIN',
+        'ROLE MANAGER ADMIN' => 'ROLE_MANAGER_ADMIN',
+        'ROLE SUPER ADMIN' => 'ROLE_SUPER_ADMIN'
+    ];
 }

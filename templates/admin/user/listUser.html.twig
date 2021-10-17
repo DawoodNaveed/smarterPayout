@@ -18,6 +18,7 @@
                     <th>Business Phone</th>
                     <th>Email</th>
                     <th>Job title</th>
+                    <th>Role</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -30,6 +31,11 @@
                         <td>{{ user.businessPhone }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.jobTitle }}</td>
+                        <td>
+                            {% for role in user.roles %}
+                                <p> {{ role }}</p><br>
+                            {% endfor %}
+                        </td>
                         <td>
                             <a class="fas fa-edit text-primary p-1 ml-4" title="Edit User"
                                href="{{ path('edit_user', {'userId' : user.id}) }}"></a>
