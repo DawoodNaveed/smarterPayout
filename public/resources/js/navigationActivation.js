@@ -1,13 +1,18 @@
+let href = '';
 $(document).ready(function () {
 //  in case of page scroll
     $(window).scroll(function () {
         var distance = $(window).scrollTop();
         $('.page-section').each(function (i) {
             if ($(this).position().top <= distance + 150) {
+                var navBarItem = $('.navbar-nav .nav-item');
                 $('.navbar-nav .nav-item.active').removeClass('active');
-                $('.navbar-nav .nav-item').eq(i).addClass('active');
+                navBarItem.eq(i).addClass('active');
+                href = navBarItem.eq(i).children().attr('href');
             }
         });
+        var origin = window.location.origin;
+        window.location = origin + '/#main' + href;
     }).scroll();
 
     //  in case of navigation link click
