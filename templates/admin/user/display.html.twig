@@ -15,6 +15,10 @@
             <p><b>Phone Number:</b> {{ user.phoneNumber }}</p>
             <p><b>Business Phone:</b> {{ user.businessPhone }}</p>
             <p><b>Job Title:</b> {{ user.jobTitle }}</p>
+            <p><b>Role:</b></p>
+            {% for role in user.roles %}
+                <p> {{ role }}</p><br>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

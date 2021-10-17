@@ -36,14 +36,19 @@
                     {{ form_widget(form.jobTitle) }}{{ form_errors(form.jobTitle) }}
                 </div>
 
+                <div class="form-row col-lg-6 mb-3">
+                    <label for="username">Roles:</label>
+                    {{ form_widget(form.roles) }}{{ form_errors(form.roles) }}
+                </div>
+
                 {% if app.request.attributes.get('_route') is same as("add_user") %}
                     <div class="form-row col-lg-6 mb-3">
                         <label for="password.first">Password:</label>
-                        {{ form_widget(form.password.first) }}{{ form_errors(form.password) }}
+                        {{ form_widget(form.password.first) }}{{ form_errors(form.password.first) }}
                     </div>
                     <div class="form-row col-lg-6 mb-3">
                         <label for="password.second">Confirm Password:</label>
-                        {{ form_widget(form.password.second) }}{{ form_errors(form.password) }}
+                        {{ form_widget(form.password.second) }}{{ form_errors(form.password.second) }}
                     </div>
                 {% endif %}
 
