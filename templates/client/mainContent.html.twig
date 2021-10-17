@@ -139,7 +139,8 @@
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
                                                         <label class="form-label"
                                                                for="calculator_form_height">Height</label>
-                                                        <select id="calculator_form_height" class="height form-input filled">
+                                                        <select id="calculator_form_height"
+                                                                class="height form-input filled">
                                                             <option></option>
                                                             <option value="4.0">4'0</option>
                                                             <option value="4.1">4'1</option>
@@ -201,10 +202,15 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label" for="calculator_form_phoneNo">Phone
+                                                        <label class="form-label" for="calculator_form_phoneNo_manual">Phone
                                                             Number
                                                             (Optional)</label>
-                                                        {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
+                                                        <input type="tel" id="calculator_form_phoneNo_manual"
+                                                               class="form-input filled static phone-input"
+                                                               autocomplete="off">
+                                                        <div hidden>
+                                                            {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -246,7 +252,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <div class="input-group date form-inline datepicker"
+                                                        <div class="input-group date form-inline datepicker focused"
                                                              data-date-format="mm/dd/yyyy">
                                                             <label class="form-label"
                                                                    for="calculator_form_paymentStartDate">Payment
@@ -260,7 +266,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <div class="input-group date form-inline datepicker"
+                                                        <div class="input-group date form-inline datepicker focused"
                                                              data-date-format="mm/dd/yyyy">
                                                             <label class="form-label"
                                                                    for="calculator_form_paymentEndDate">Payment End
@@ -281,7 +287,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label" for="calculator_form_frequency">Frequency<span
+                                                        <label class="form-label" for="calculator_form_frequency">Payment
+                                                            Mode<span
                                                                     class="text-danger">*</span></label>
                                                         {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }}
                                                     </div>
@@ -290,7 +297,7 @@
                                                     <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_percentStep">Percent
                                                             step % or
-                                                            Annual %</label>
+                                                            Annual % (0-10)</label>
                                                         {{ form_widget(form.percentStep, {'type':'number'}) }}{{ form_errors(form.percentStep) }}
                                                     </div>
                                                 </div>
@@ -585,12 +592,17 @@
                                                         verify your phone number</p>
                                                     <div class="col-lg-12">
                                                         <div class="form-group mt-sm-0 focused">
-                                                            <label class="form-label" for="inp-otp-phone">Phone
+                                                            <label class="form-label" for="inp-otp-phone-manual">Phone
                                                                 Number<span
                                                                         class="text-danger">*</span></label>
-                                                            <input id="inp-otp-phone" type="text"
+
+                                                            <input id="inp-otp-phone-manual" type="text"
                                                                    class="form-input filled static phone-input"
                                                                    autocomplete="off">
+
+                                                            <input id="inp-otp-phone" type="text"
+                                                                   class="form-input filled static phone-input"
+                                                                   autocomplete="off" hidden>
                                                         </div>
                                                     </div>
                                                     <button type="submit" data-spinner="true" id="otp-phone-submit"
@@ -631,7 +643,8 @@
                                                                class="form-input ml-2 filled" disabled>
                                                     </div>
                                                     <div class="form-group focused">
-                                                        <label class="form-label" for="details_endDate">End Date:</label>
+                                                        <label class="form-label" for="details_endDate">End
+                                                            Date:</label>
                                                         <input id="details_endDate" type="text" value="09-23-2031"
                                                                class="form-input ml-2 filled" disabled>
                                                     </div>
@@ -723,9 +736,12 @@
                                     {{ form_widget(contactUsForm.email) }}{{ form_errors(contactUsForm.email) }}
                                 </div>
                                 <div class="form-group focused">
-                                    <label class="form-label" for="color">Contact<span
+                                    <label class="form-label" for="contact_us_form_contact_manual">Contact<span
                                                 class="text-danger">*</span></label>
-                                    {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
+                                    <input id="contact_us_form_contact_manual" type="tel" class="form-input filled static phone-input">
+                                    <div hidden>
+                                        {{ form_widget(contactUsForm.contact) }}{{ form_errors(contactUsForm.contact) }}
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="color">Message<span
