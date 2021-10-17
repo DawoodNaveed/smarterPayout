@@ -413,14 +413,12 @@ class CalculatorService
             $pv = $this->calculatePresentValueWithPercentStep($data, $discountRate);
             $pv['beneficiaryProtection'] = $this->calculatePresentValueWithPercentStep($data,
                 CalculatorEnum::beneficiaryDiscountRate, true)['min'];
-            $pv['beneficiaryProtection'] = $pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
         }
         if ($data['productType'] === CalculatorEnum::productType['GP']) {
             $beneficiaryProtection = $this->gpBeneficiaryProtectionRepository->getBeneficiaryProtection($data['age']);
             if ($pv['max'] > CalculatorEnum::leastBeneficiaryProtectionValue) {
                 if ($beneficiaryProtection) {
                     $pv['beneficiaryProtection'] = $pv['max'] * $beneficiaryProtection[0]->getUpperBeneficiaryProtection();
-                    $pv['beneficiaryProtection'] = $pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
                 }
             } else {
                 if ($beneficiaryProtection) {
@@ -446,6 +444,9 @@ class CalculatorService
             $ageLifeExpectancy = CalculatorEnum::maleLifeExpectancy[$data['age']];
             $pv['averageLifeExpectancy'] = (int)(($ageLifeExpectancy * 12));
             $pv['yourLifeExpectancy'] = (int)(($ageLifeExpectancy * (1 + $sumOfAllQuestions)) * 12);
+        }
+        if ($pv['beneficiaryProtection']) {
+            $pv['beneficiaryProtection'] = (int)$pv['beneficiaryProtection'] - ($pv['beneficiaryProtection'] % 10000);
         }
         
         return $pv;
