@@ -26,10 +26,9 @@ class CalculatorForm extends AbstractType
     {
         $builder->add('productType', ChoiceType::class, [
             'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off'],
-            'placeholder' => false,
+            'placeholder' => '',
             'choices' => CalculatorEnum::productType,
-            'required' => true,
-            'data' => 'lcp'
+            'required' => true
         ])
             ->add('age', TextType::class, [
                 'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 20],
@@ -39,8 +38,7 @@ class CalculatorForm extends AbstractType
                 'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off',],
                 'required' => false,
                 'choices' => CalculatorEnum::genderValuesKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
 
             ])
             ->add('firstName', TextType::class, [
@@ -64,7 +62,7 @@ class CalculatorForm extends AbstractType
                 'placeholder' => '',
                 'required' => false,
                 'choices' => $options['insuranceCompanies'],
-                'data' => 'others'
+                'data' => 'Others'
             ])
             ->add('paymentStartDate', TextType::class, [
                 'attr' => ['class' => 'form-input inp-required', 'autocomplete' => 'off'],
@@ -80,10 +78,9 @@ class CalculatorForm extends AbstractType
             ])
             ->add('frequency', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off'],
-                'placeholder' => false,
+                'placeholder' => '',
                 'required' => true,
-                'choices' => CalculatorEnum::frequencyValues,
-                'data' => 'Weekly'
+                'choices' => CalculatorEnum::frequencyValues
             ])
             ->add('percentStep', TextType::class, [
                 'attr' => ['class' => 'form-input number-input', 'autocomplete' => 'off', 'min' => 0, 'max' => 10],
@@ -99,81 +96,70 @@ class CalculatorForm extends AbstractType
             ])
             ->add('smoker', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
-                'placeholder' => false,
+                'placeholder' => '',
                 'required' => false,
                 'choices' => CalculatorEnum::smokerValuesKeys,
-                'data' => 'Yes'
             ])
             ->add('healthStatus', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
-                'placeholder' => false,
+                'placeholder' => '',
                 'required' => false,
                 'choices' => CalculatorEnum::healthStatusKeys,
-                'data' => 'Normal'
             ])
             ->add('legalIssues', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::legalIssuesKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('DUI', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::DUIValuesKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
 
             ])
             ->add('licenseSuspended', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::licenseSuspendedKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('misdemeanor', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::misdemeanorValuesKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('annualCheckup', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::annualCheckUpStatusKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('physicalExercise', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::physicalExerciseStatusKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('bloodPressure', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::bloodPressureStatusKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('highCholesterol', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::cholesterolStatusKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ])
             ->add('drivingInfraction', ChoiceType::class, [
                 'attr' => ['class' => 'form-input filled inp-required', 'autocomplete' => 'off'],
                 'required' => false,
                 'choices' => CalculatorEnum::drivingInfractionsStatusKeys,
-                'data' => 'Prefer Not To Answer',
-                'placeholder' => false
+                'placeholder' => ''
             ]);
     }
 

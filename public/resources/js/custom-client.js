@@ -16,6 +16,10 @@ $(document).ready(function () {
             }
         }
     });
+
+    $('select').focus(function () {
+        $("" + '#' + $(this).attr("id") + " option[value='']").remove();
+    })
     // Set height of page sections according to screen size
     $('#home, #about-us, #calculate, #career').css('min-height', $(window).height());
     // Smart scroll for navigation bar
