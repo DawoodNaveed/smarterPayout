@@ -58,12 +58,6 @@ class ClientSideController extends AbstractController
                 $data['creditRating'] = $insuranceCompany->getCreditRating()->getRating();
             }
             try {
-                if ($data['emailAddress']) {
-                    $isExist = $customerService->checkEmailExistOrNot($data['emailAddress']);
-                    if ($isExist) {
-                        return $utilService->getJsonResponse(500, null, 'Email Already Exists');
-                    }
-                }
                 if (!$data['paymentStartDate'] || !$data['paymentEndDate']) {
                     return $utilService->getJsonResponse(500, null, "Payment Start Date And End Date can't be empty");
                 }

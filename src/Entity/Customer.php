@@ -82,11 +82,10 @@ class Customer extends AbstractEntity
     private $audio;
     
     /**
-     * @ORM\Column(type="string", length=180, unique=true, nullable=true)
+     * @ORM\Column(type="string", length=180, nullable=true)
      * @Assert\Regex(
      *     pattern="/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",
      *     message="not_valid_email")
-     * @Assert\Unique(message="This email has already exist")
      */
     private $email;
     
