@@ -92,7 +92,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_productType">Product
                                                             Type<span
                                                                     class="text-danger">*</span></label>
@@ -117,7 +117,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                         <label class="form-label"
                                                                for="calculator_form_gender">Gender</label>
                                                         {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
@@ -136,7 +136,7 @@
                                                                for="calculator_form_height">Height</label>
                                                         <select id="calculator_form_height"
                                                                 class="height form-input filled">
-                                                            <option></option>
+                                                            <option value=""></option>
                                                             <option value="4.0">4'0</option>
                                                             <option value="4.1">4'1</option>
                                                             <option value="4.2">4'2</option>
@@ -281,7 +281,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_frequency">Payment
                                                             Mode<span
                                                                     class="text-danger">*</span></label>
@@ -343,7 +343,7 @@
                                         <div class="col-lg-12 p-0">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-4 mt-md-3 mt-xl-0 focused">
+                                                    <div class="form-group mt-3 mt-sm-4 mt-md-3 mt-xl-0">
                                                         <label class="form-label smoker-form-label"
                                                                for="calculator_form_smoker">Do You
                                                             Smoke? Including
@@ -353,7 +353,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0 focused">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_healthStatus">What
                                                             is the status
                                                             of your Health?<span class="text-danger">*</span></label>
@@ -361,7 +361,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_legalIssues">Do
                                                             you Legal Issues?<span
                                                                     class="text-danger">*</span></label>
@@ -369,7 +369,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_DUI">In the last
                                                             five years of
                                                             DUI/DWI?<span class="text-danger">*</span></label>
@@ -377,7 +377,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label"
                                                                for="calculator_form_licenseSuspended">License
                                                             Suspended in the last 5 years?<span
@@ -386,7 +386,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_misdemeanor">Major
                                                             Criminal
                                                             offence in the last 10 years?<span
@@ -437,14 +437,14 @@
                                         <div class="col-lg-12 p-0">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_annualCheckup">Annual
                                                             Check-up?<span class="text-danger">*</span></label>
                                                         {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label"
                                                                for="calculator_form_physicalExercise">How often do
                                                             you do physical Exercise?<span class="text-danger">*</span></label>
@@ -452,7 +452,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_bloodPressure">Do
                                                             you suffer from
                                                             Blood Pressure?<span class="text-danger">*</span></label>
@@ -460,7 +460,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label" for="calculator_form_highCholesterol">Do
                                                             you have High
                                                             Cholesterol?<span class="text-danger">*</span></label>
@@ -468,7 +468,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group focused mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
                                                         <label class="form-label"
                                                                for="calculator_form_drivingInfraction">Driving
                                                             Infractions (Last 3 Years)?<span

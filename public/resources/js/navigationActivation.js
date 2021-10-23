@@ -1,5 +1,6 @@
 let href = '';
 $(document).ready(function() {
+    let url = window.location.href;
     //  in case of page scroll
     $(window).scroll(function() {
         var distance = $(window).scrollTop();
@@ -11,8 +12,11 @@ $(document).ready(function() {
                 href = navBarItem.eq(i).children().attr('href');
             }
         });
-        var origin = window.location.origin;
-        window.location = origin + '/#main' + href;
+        var dividedUrl =  url.substring(url.lastIndexOf('/')) + "";
+        if (dividedUrl !== "/aboutUs") {
+            var origin = window.location.origin;
+            window.location = origin + '/#main' + href;
+        }
     }).scroll();
     //  in case of navigation link click
     var navigationLinks = $(".navbar .navbar-collapse .navbar-nav .nav-item");
