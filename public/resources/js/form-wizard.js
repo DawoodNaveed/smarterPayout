@@ -1,58 +1,35 @@
-
 $(document).ready(function () {
-    function setClasses(index, steps) {
-        if (index < 0 || index > steps) return;
-        if (index == 0) {
-            $("#prev").prop("disabled", true);
-        } else {
-            $("#prev").prop("disabled", false);
-        }
-        if (index == steps) {
-            $("#next").text("done");
-        } else {
-            $("#next").text("next");
-        }
-        $(".step-wizard ul li").each(function () {
-            $(this).removeClass();
-        });
-        $(".step-wizard ul li:lt(" + index + ")").each(function () {
-            $(this).addClass("done");
-        });
-        $(".step-wizard ul li:eq(" + index + ")").addClass("active");
-        var p = index * (100 / steps);
-        $('#done').attr('aria-valuenow', p);
-        $('#done').css({'width': p + '%'});
+    $(".nav-tabs > li a[title]").tooltip();
 
-        $('#active').attr('aria-valuenow', '25');
-        $('#active').css({'width': '25%'});
+    //Wizard
+    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+        var target = $(e.target);
 
-        $('#active').attr('aria-valuenow', '25');
-        $('#active').css({'width': '25%'});
-
-        $('#empty').attr('aria-valuenow', 100 - (p + 25));
-        $('#empty').css({'width': 100 - (p + 25) + '%'});
-    }
-
-    $(".step-wizard ul button").click(function () {
-        var step = $(this).find("span.step")[0].innerText;
-        var steps = $(".step-wizard ul li").length;
-        setClasses(step - 1, steps);
-    });
-    $("#prev").click(function () {
-        var step = $(".step-wizard ul li.active span.step")[0].innerText;
-        var steps = $(".step-wizard ul li").length;
-        setClasses(step - 2, steps);
-    });
-    $("#next").click(function () {
-        if ($(this).text() == "done") {
-            alert("submit the form?!?");
-        } else {
-            var step = $(".step-wizard ul li.active span.step")[0].innerText;
-            var steps = $(".step-wizard ul li").length;
-            setClasses(step, steps);
+        if (target.parent().hasClass("disabled")) {
+            return false;
         }
     });
 
-    // initial state setup
-    setClasses(0, $(".step-wizard ul li").length);
+    $(".skip-btn").click(function (e) {
+        var active = $(".wizard .nav-tabs li.active");
+        nextTab(active);
+    });
+    $(document).on('click', '.prev-step', function () {
+        var active = $(".wizard .nav-tabs li.active");
+        prevTab(active);
+    });
 });
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+    var active = $(".wizard .nav-tabs li.active");
+    active.removeClass('active').addClass('done');
+    active.next().addClass('active');
+}
+
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+    var active = $(".wizard .nav-tabs li.active");
+    active.removeClass('active');
+    active.prev().addClass('active');
+}

@@ -53,444 +53,1035 @@
                 Ipsum has been the industry's standard dummy text ever since the 1500s,</h6>
             <div class="col-12">
                 <div class="row">
-                    <div class="col-lg-6 d-flex justify-content-end pt-3 pr-0 pl-0">
-                        <div class="accordion col-lg-10 pr-0 pl-0" id="accordionExample">
+                    <div class="col-lg-6 pt-3 pr-0 pl-0">
+                        <section class="signup-step-container">
+                            <div class="container">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-lg-12">
+                                        <div class="wizard">
+                                            <div class="accordion offset-lg-1 col-lg-10 pr-0 pl-0 pb-5"
+                                                 id="accordionExample">
 
-                            {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
-                            <div hidden>
-                                {{ form_widget(form.height) }}{{ form_errors(form.height) }}
-                            </div>
-                            <div class="card accordion-card" tabindex='1' data-progress="25">
-                                <button class="btn btn-link btn-block text-center card-header"
-                                        type="button"
-                                        data-toggle="collapse" data-target="#collapseAccountInfo"
-                                        aria-expanded="true"
-                                        aria-controls="collapseAccountInfo">
-                                    <span class="heading-primary-calculation fa fa-user"></span>
-                                    <span class="heading-primary-calculation">Info</span>
-                                    <span class="heading-secondary-tagline">Enter your info</span>
-                                </button>
-                                <div id="collapseAccountInfo" class="collapse accordion-body show"
-                                     aria-labelledby="headingAccountInfo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="col-lg-12 p-0">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_firstName">First
-                                                            Name<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.firstName) }}{{ form_errors(form.firstName) }}
-                                                    </div>
+                                                {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
+                                                <div hidden>
+                                                    {{ form_widget(form.height) }}{{ form_errors(form.height) }}
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_lastName">Last
-                                                            Name (Optional)</label>
-                                                        {{ form_widget(form.lastName) }}{{ form_errors(form.lastName) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_productType">Product
-                                                            Type<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label" for="calculator_form_creditRating">Insurance
-                                                            Company</label>
-                                                        <div class="select-wrapper">
-                                                            {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                <div class="tab-content" id="main_form">
+                                                    <div class="tab-pane active" role="tabpanel" id="step1">
+                                                        <div class="card accordion-card" tabindex='1'
+                                                             data-progress="25">
+                                                            <button class="btn btn-link btn-block text-center card-header"
+                                                                    type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapseAccountInfo"
+                                                                    aria-expanded="true"
+                                                                    aria-controls="collapseAccountInfo">
+                                                                <span class="heading-primary-calculation fa fa-user"></span>
+                                                                <span class="heading-primary-calculation">Info</span>
+                                                                <span class="heading-secondary-tagline">Enter your info</span>
+                                                            </button>
+                                                            <div id="collapseAccountInfo"
+                                                                 class="collapse accordion-body show"
+                                                                 aria-labelledby="headingAccountInfo"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12 p-0">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_firstName">First
+                                                                                        Name<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.firstName) }}{{ form_errors(form.firstName) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_lastName">Last
+                                                                                        Name (Optional)</label>
+                                                                                    {{ form_widget(form.lastName) }}{{ form_errors(form.lastName) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_productType">Product
+                                                                                        Type<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.productType) }}{{ form_errors(form.productType) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_creditRating">Insurance
+                                                                                        Company</label>
+                                                                                    <div class="select-wrapper">
+                                                                                        {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_age">Age<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_gender">Gender</label>
+                                                                                    {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_weight">Weight</label>
+                                                                                    {{ form_widget(form.weight) }}{{ form_errors(form.weight) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_height">Height</label>
+                                                                                    <select id="calculator_form_height"
+                                                                                            class="height form-input filled">
+                                                                                        <option value=""></option>
+                                                                                        <option value="4.0">4'0
+                                                                                        </option>
+                                                                                        <option value="4.1">4'1
+                                                                                        </option>
+                                                                                        <option value="4.2">4'2
+                                                                                        </option>
+                                                                                        <option value="4.3">4'3
+                                                                                        </option>
+                                                                                        <option value="4.4">4'4
+                                                                                        </option>
+                                                                                        <option value="4.5">4'5
+                                                                                        </option>
+                                                                                        <option value="4.6">4'6
+                                                                                        </option>
+                                                                                        <option value="4.7">4'7
+                                                                                        </option>
+                                                                                        <option value="4.8">4'8
+                                                                                        </option>
+                                                                                        <option value="4.9">4'9
+                                                                                        </option>
+                                                                                        <option value="4.10">4'10
+                                                                                        </option>
+                                                                                        <option value="4.11">4'11
+                                                                                        </option>
+                                                                                        <option value="5.0"
+                                                                                                selected>5'0
+                                                                                        </option>
+                                                                                        <option value="5.1">5'1
+                                                                                        </option>
+                                                                                        <option value="5.2">5'2
+                                                                                        </option>
+                                                                                        <option value="5.3">5'3
+                                                                                        </option>
+                                                                                        <option value="5.4">5'4
+                                                                                        </option>
+                                                                                        <option value="5.5">5'5
+                                                                                        </option>
+                                                                                        <option value="5.6">5'6
+                                                                                        </option>
+                                                                                        <option value="5.7">5'7
+                                                                                        </option>
+                                                                                        <option value="5.8">5'8
+                                                                                        </option>
+                                                                                        <option value="5.9">5'9
+                                                                                        </option>
+                                                                                        <option value="5.10">5'10
+                                                                                        </option>
+                                                                                        <option value="5.11">5'11
+                                                                                        </option>
+                                                                                        <option value="6.0">6'0
+                                                                                        </option>
+                                                                                        <option value="5.1">6'1
+                                                                                        </option>
+                                                                                        <option value="6.2">6'2
+                                                                                        </option>
+                                                                                        <option value="6.3">6'3
+                                                                                        </option>
+                                                                                        <option value="6.4">6'4
+                                                                                        </option>
+                                                                                        <option value="6.5">6'5
+                                                                                        </option>
+                                                                                        <option value="6.6">6'6
+                                                                                        </option>
+                                                                                        <option value="6.7">6'7
+                                                                                        </option>
+                                                                                        <option value="6.8">6'8
+                                                                                        </option>
+                                                                                        <option value="6.9">6'9
+                                                                                        </option>
+                                                                                        <option value="6.10">6'10
+                                                                                        </option>
+                                                                                        <option value="6.11">6'11
+                                                                                        </option>
+                                                                                        <option value="7.0">7'0
+                                                                                        </option>
+                                                                                        <option value="7.1">7'1
+                                                                                        </option>
+                                                                                        <option value="7.2">7'2
+                                                                                        </option>
+                                                                                        <option value="7.3">7'3
+                                                                                        </option>
+                                                                                        <option value="7.4">7'4
+                                                                                        </option>
+                                                                                        <option value="7.5">7'5
+                                                                                        </option>
+                                                                                        <option value="7.6">7'6
+                                                                                        </option>
+                                                                                        <option value="7.7">7'7
+                                                                                        </option>
+                                                                                        <option value="6.0">Prefer
+                                                                                            not to answer
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 mt-lg-1 p-0">
+                                                                                <div class="col-lg-6 manualWeight-hide">
+                                                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                        <label class="form-label"
+                                                                                               for="manualWeight">Manual
+                                                                                            Weight(lbs)<span
+                                                                                                    class="text-danger">*</span></label>
+                                                                                        <input id="manualWeight"
+                                                                                               type="number"
+                                                                                               class="form-input number-input"
+                                                                                               min="121" max="1550">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_phoneNo_manual">Phone
+                                                                                        Number
+                                                                                        (Optional)</label>
+                                                                                    <input type="tel"
+                                                                                           id="calculator_form_phoneNo_manual"
+                                                                                           class="form-input filled static phone-input"
+                                                                                           autocomplete="off">
+                                                                                    <div hidden>
+                                                                                        {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-lg-1">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_emailAddress">Email
+                                                                                        (Optional)</label>
+                                                                                    {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ul class="list-inline pull-right">
+                                                                        <li>
+                                                                            <button id="accountInfoNext" type="button"
+                                                                                    class="next-step btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                                Next
+                                                                            </button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_age">Age<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label"
-                                                               for="calculator_form_gender">Gender</label>
-                                                        {{ form_widget(form.gender) }}{{ form_errors(form.gender) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label"
-                                                               for="calculator_form_weight">Weight</label>
-                                                        {{ form_widget(form.weight) }}{{ form_errors(form.weight) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label"
-                                                               for="calculator_form_height">Height</label>
-                                                        <select id="calculator_form_height"
-                                                                class="height form-input filled">
-                                                            <option value=""></option>
-                                                            <option value="4.0">4'0</option>
-                                                            <option value="4.1">4'1</option>
-                                                            <option value="4.2">4'2</option>
-                                                            <option value="4.3">4'3</option>
-                                                            <option value="4.4">4'4</option>
-                                                            <option value="4.5">4'5</option>
-                                                            <option value="4.6">4'6</option>
-                                                            <option value="4.7">4'7</option>
-                                                            <option value="4.8">4'8</option>
-                                                            <option value="4.9">4'9</option>
-                                                            <option value="4.10">4'10</option>
-                                                            <option value="4.11">4'11</option>
-                                                            <option value="5.0" selected>5'0</option>
-                                                            <option value="5.1">5'1</option>
-                                                            <option value="5.2">5'2</option>
-                                                            <option value="5.3">5'3</option>
-                                                            <option value="5.4">5'4</option>
-                                                            <option value="5.5">5'5</option>
-                                                            <option value="5.6">5'6</option>
-                                                            <option value="5.7">5'7</option>
-                                                            <option value="5.8">5'8</option>
-                                                            <option value="5.9">5'9</option>
-                                                            <option value="5.10">5'10</option>
-                                                            <option value="5.11">5'11</option>
-                                                            <option value="6.0">6'0</option>
-                                                            <option value="5.1">6'1</option>
-                                                            <option value="6.2">6'2</option>
-                                                            <option value="6.3">6'3</option>
-                                                            <option value="6.4">6'4</option>
-                                                            <option value="6.5">6'5</option>
-                                                            <option value="6.6">6'6</option>
-                                                            <option value="6.7">6'7</option>
-                                                            <option value="6.8">6'8</option>
-                                                            <option value="6.9">6'9</option>
-                                                            <option value="6.10">6'10</option>
-                                                            <option value="6.11">6'11</option>
-                                                            <option value="7.0">7'0</option>
-                                                            <option value="7.1">7'1</option>
-                                                            <option value="7.2">7'2</option>
-                                                            <option value="7.3">7'3</option>
-                                                            <option value="7.4">7'4</option>
-                                                            <option value="7.5">7'5</option>
-                                                            <option value="7.6">7'6</option>
-                                                            <option value="7.7">7'7</option>
-                                                            <option value="6.0">Prefer not to answer</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 p-0">
-                                                    <div class="col-lg-6 manualWeight-hide">
-                                                        <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                            <label class="form-label" for="manualWeight">Manual
-                                                                Weight(lbs)<span class="text-danger">*</span></label>
-                                                            <input id="manualWeight" type="number"
-                                                                   class="form-input number-input" min="121" max="1550">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused">
-                                                        <label class="form-label" for="calculator_form_phoneNo_manual">Phone
-                                                            Number
-                                                            (Optional)</label>
-                                                        <input type="tel" id="calculator_form_phoneNo_manual"
-                                                               class="form-input filled static phone-input"
-                                                               autocomplete="off">
-                                                        <div hidden>
-                                                            {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }}
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    <div class="tab-pane" role="tabpanel" id="step2">
+                                                        <div class="card accordion-card" tabindex='2'
+                                                             data-progress="50">
+                                                            <button class="btn btn-link btn-block text-center card-header"
+                                                                    type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapsePaymentInfo"
+                                                                    aria-expanded="true"
+                                                                    aria-controls="collapsePaymentInfo">
+                                                                <span class="heading-primary-calculation fa fa-hand-holding-usd"></span>
+                                                                <span class="heading-primary-calculation">Payment Information</span>
+                                                                <span class="heading-secondary-tagline">Enter your payment information</span>
+                                                            </button>
+                                                            <div id="collapsePaymentInfo"
+                                                                 class="accordion-body collapse show"
+                                                                 aria-labelledby="headingPaymentInfo"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12 p-0">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <div class="input-group date form-inline datepicker focused"
+                                                                                         data-date-format="mm/dd/yyyy">
+                                                                                        <label class="form-label"
+                                                                                               for="calculator_form_paymentStartDate">Payment
+                                                                                            Start
+                                                                                            Date<span
+                                                                                                    class="text-danger">*</span></label>
+                                                                                        {{ form_widget(form.paymentStartDate) }}{{ form_errors(form.paymentStartDate) }}
+                                                                                        <span class="input-group-addon float-right calendar-container"><i
+                                                                                                    class="fa fa-calendar"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <div class="input-group date form-inline datepicker focused"
+                                                                                         data-date-format="mm/dd/yyyy">
+                                                                                        <label class="form-label"
+                                                                                               for="calculator_form_paymentEndDate">Payment
+                                                                                            End
+                                                                                            Date<span
+                                                                                                    class="text-danger">*</span></label>
+                                                                                        {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }}
+                                                                                        <span class="input-group-addon float-right calendar-container"><i
+                                                                                                    class="fa fa-calendar"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="endDate-alert"
+                                                                                 class="col-12"></div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_paymentAmount">Payment
+                                                                                        Amount($)<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.paymentAmount, {'type':'number'}) }}{{ form_errors(form.paymentAmount) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_frequency">Payment
+                                                                                        Mode<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_percentStep">Percent
+                                                                                        step % or
+                                                                                        Annual % (0-10)</label>
+                                                                                    {{ form_widget(form.percentStep, {'type':'number'}) }}{{ form_errors(form.percentStep) }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 p-0">
+                                                                            <div id="calculate_submit_top">
 
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_emailAddress">Email
-                                                            (Optional)</label>
-                                                        {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }}
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 p-0" id="paymentInfobtns">
+                                                                        <ul class="list-inline w-100 form-inline p-0 mb-0">
+                                                                            <li class="w-50 p-0">
+                                                                                <button id="paymentInfoPrev"
+                                                                                        type="button"
+                                                                                        class="prev-step btn btn-prev btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                                    Prev
+                                                                                </button>
+                                                                            </li>
+                                                                            <li class="w-50">
+                                                                                <button id="paymentInfoNext"
+                                                                                        type="button"
+                                                                                        class="next-step btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                                    Next
+                                                                                </button>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <div class="tab-pane" role="tabpanel" id="step3">
+                                                        <div class="card accordion-card gp-hide" tabindex='3'
+                                                             data-progress="75">
+                                                            <button class="btn btn-link btn-block text-center card-header"
+                                                                    type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapseBasicInfo"
+                                                                    aria-expanded="true"
+                                                                    aria-controls="collapseBasicInfo">
+                                                                <span class="heading-primary-calculation fa fa-barcode"></span>
+                                                                <span class="heading-primary-calculation">Basic Information(Optional)</span>
+                                                                <span class="heading-secondary-tagline">Enter your basic information</span>
+                                                                <button type="button"
+                                                                        class="position-absolute next-step btn btn-outline-custom-default btn-success-custom pl-3 pr-3 pt-1 pb-1 skip-btn">
+                                                                    Skip
+                                                                </button>
+                                                            </button>
+                                                            <div id="collapseBasicInfo"
+                                                                 class="collapse accordion-body show"
+                                                                 aria-labelledby="headingBasicInfo"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12 p-0">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group mt-3 mt-sm-4 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label smoker-form-label"
+                                                                                           for="calculator_form_smoker">Do
+                                                                                        You
+                                                                                        Smoke? Including
+                                                                                        Marijuana. Or smoked within
+                                                                                        the last 2 years?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.smoker) }}{{ form_errors(form.smoker) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_healthStatus">What
+                                                                                        is the status
+                                                                                        of your Health?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.healthStatus) }}{{ form_errors(form.healthStatus) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_legalIssues">Do
+                                                                                        you Legal Issues?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.legalIssues) }}{{ form_errors(form.legalIssues) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_DUI">In
+                                                                                        the last
+                                                                                        five years of
+                                                                                        DUI/DWI?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.DUI) }}{{ form_errors(form.DUI) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_licenseSuspended">License
+                                                                                        Suspended in the last 5
+                                                                                        years?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.licenseSuspended) }}{{ form_errors(form.licenseSuspended) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_misdemeanor">Major
+                                                                                        Criminal
+                                                                                        offence in the last 10
+                                                                                        years?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.misdemeanor) }}{{ form_errors(form.misdemeanor) }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 p-0">
+                                                                            <ul class="list-inline form-inline w-100 p-0 mb-0">
+                                                                                <li class="w-50">
+                                                                                    <button id="basicInfoPrev"
+                                                                                            type="button"
+                                                                                            class="prev-step btn btn-prev btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                                        Prev
+                                                                                    </button>
+                                                                                </li>
+                                                                                <li class="w-50">
+                                                                                    <button id="basicInfoNext"
+                                                                                            type="button"
+                                                                                            class="next-step btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
+                                                                                        Next
+                                                                                    </button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" role="tabpanel" id="step4">
+                                                        <div class="card accordion-card gp-hide" tabindex='4'
+                                                             data-progress="100">
+                                                            <button class="btn btn-link btn-block text-center card-header"
+                                                                    type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapseCustomInfo"
+                                                                    aria-expanded="true"
+                                                                    aria-controls="collapseCustomInfo">
+                                                                <span class="heading-primary-calculation fas fa-magic"></span>
+                                                                <span class="heading-primary-calculation">Lifestyle(Optional)</span>
+                                                                <span class="heading-secondary-tagline">Enter your lifestyle</span>
+                                                                <button type="submit" id="skipAndSubmit" data-validate="false"
+                                                                        class="position-absolute next-step btn btn-outline-custom-default btn-success-custom pl-3 pr-3 pt-1 pb-1 skip-btn btn-spinner">
+                                                                    Skip and Submit
+                                                                </button>
+                                                            </button>
+                                                            <div id="collapseCustomInfo"
+                                                                 class="accordion-body collapse show"
+                                                                 aria-labelledby="headingCustomInfo"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12 p-0">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_annualCheckup">Annual
+                                                                                        Check-up?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_physicalExercise">How
+                                                                                        often do
+                                                                                        you do physical
+                                                                                        Exercise?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.physicalExercise) }}{{ form_errors(form.physicalExercise) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_bloodPressure">Do
+                                                                                        you suffer from
+                                                                                        Blood Pressure?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.bloodPressure) }}{{ form_errors(form.bloodPressure) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_highCholesterol">Do
+                                                                                        you have High
+                                                                                        Cholesterol?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.highCholesterol) }}{{ form_errors(form.highCholesterol) }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
+                                                                                    <label class="form-label"
+                                                                                           for="calculator_form_drivingInfraction">Driving
+                                                                                        Infractions (Last 3
+                                                                                        Years)?<span
+                                                                                                class="text-danger">*</span></label>
+                                                                                    {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 p-0">
+                                                                            <input id="termsAndConditionsUrl"
+                                                                                   data-url="{{ path('terms_and_conditions') }}"
+                                                                                   hidden>
+                                                                            <div id="calculate_submit_bottom">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
                                                 </div>
+                                                {{ form_errors(form) }}
+                                                {{ form_end(form) }}
+                                            </div>
+
+                                            <div class="wizard-inner mt-5 offset-lg-1 col-lg-10 p-0 mb-5">
+                                                <div class="connecting-line"></div>
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li role="presentation" class="active nav-tab disabled">
+                                                        <a href="#step1" data-toggle="tab" aria-controls="step1"
+                                                           role="tab" aria-expanded="true"><span
+                                                                    class="round-tab">1</span> <i class="pl-4">Info</i></a>
+                                                    </li>
+                                                    <li role="presentation" class="nav-tab disabled">
+                                                        <a href="#step2" data-toggle="tab" aria-controls="step2"
+                                                           role="tab" aria-expanded="false"><span
+                                                                    class="round-tab">2</span> <i
+                                                                    class="pl-4 flex-nowrap">Payment Info</i></a>
+                                                    </li>
+                                                    <li role="presentation" class="nav-tab disabled">
+                                                        <a href="#step3" data-toggle="tab" aria-controls="step3"
+                                                           role="tab"><span class="round-tab">3</span> <i class="pl-4">Basic
+                                                                Info</i></a>
+                                                    </li>
+                                                    <li role="presentation" class="nav-tab disabled">
+                                                        <a href="#step4" data-toggle="tab" aria-controls="step4"
+                                                           role="tab"><span class="round-tab">4</span> <i class="pl-4">Lifestyle</i></a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <button id="accountInfoNext" type="button"
-                                                data-toggle="collapse" data-target="#collapsePaymentInfo"
-                                                aria-expanded="true"
-                                                aria-controls="collapsePaymentInfo"
-                                                class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                            Next
-                                        </button>
                                     </div>
                                 </div>
                             </div>
+                        </section>
 
-                            <div class="card accordion-card" tabindex='2' data-progress="50">
-                                <button class="btn btn-link btn-block text-center card-header collapsed"
-                                        type="button"
-                                        data-toggle="collapse" data-target="#collapsePaymentInfo"
-                                        aria-expanded="true"
-                                        aria-controls="collapsePaymentInfo">
-                                    <span class="heading-primary-calculation fa fa-hand-holding-usd"></span>
-                                    <span class="heading-primary-calculation">Payment Information</span>
-                                    <span class="heading-secondary-tagline">Enter your payment information</span>
-                                </button>
-                                <div id="collapsePaymentInfo" class="accordion-body collapse"
-                                     aria-labelledby="headingPaymentInfo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="col-lg-12 p-0">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <div class="input-group date form-inline datepicker focused"
-                                                             data-date-format="mm/dd/yyyy">
-                                                            <label class="form-label"
-                                                                   for="calculator_form_paymentStartDate">Payment
-                                                                Start
-                                                                Date<span class="text-danger">*</span></label>
-                                                            {{ form_widget(form.paymentStartDate) }}{{ form_errors(form.paymentStartDate) }}
-                                                            <span class="input-group-addon float-right calendar-container"><i
-                                                                        class="fa fa-calendar"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <div class="input-group date form-inline datepicker focused"
-                                                             data-date-format="mm/dd/yyyy">
-                                                            <label class="form-label"
-                                                                   for="calculator_form_paymentEndDate">Payment End
-                                                                Date<span class="text-danger">*</span></label>
-                                                            {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }}
-                                                            <span class="input-group-addon float-right calendar-container"><i
-                                                                        class="fa fa-calendar"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="endDate-alert" class="col-12"></div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_paymentAmount">Payment
-                                                            Amount($)<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.paymentAmount, {'type':'number'}) }}{{ form_errors(form.paymentAmount) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_frequency">Payment
-                                                            Mode<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_percentStep">Percent
-                                                            step % or
-                                                            Annual % (0-10)</label>
-                                                        {{ form_widget(form.percentStep, {'type':'number'}) }}{{ form_errors(form.percentStep) }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 p-0">
-                                                <div id="calculate_submit_top">
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 pb-2" id="paymentInfobtns">
-                                            <button id="paymentInfoPrev"
-                                                    data-toggle="collapse" data-target="#collapseAccountInfo"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapseAccountInfo"
-                                                    type="button"
-                                                    class="btn btn-prev btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                                Prev
-                                            </button>
-                                            <button id="paymentInfoNext"
-                                                    data-toggle="collapse" data-target="#collapseBasicInfo"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapseBasicInfo"
-                                                    type="button"
-                                                    class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                                Next
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        {# <div class="accordion col-lg-10 pr-0 pl-0" id="accordionExample"> #}
 
-                            <div class="card accordion-card gp-hide" tabindex='3' data-progress="75">
-                                <button class="btn btn-link btn-block text-center card-header collapsed"
-                                        type="button"
-                                        data-toggle="collapse"
-                                        data-target="#collapseBasicInfo"
-                                        aria-expanded="true"
-                                        aria-controls="collapseBasicInfo">
-                                    <span class="heading-primary-calculation fa fa-barcode"></span>
-                                    <span class="heading-primary-calculation">Basic Information</span>
-                                    <span class="heading-secondary-tagline">Enter your basic information</span>
-                                </button>
-                                <div id="collapseBasicInfo" class="collapse accordion-body"
-                                     aria-labelledby="headingBasicInfo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="col-lg-12 p-0">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-4 mt-md-3 mt-xl-0">
-                                                        <label class="form-label smoker-form-label"
-                                                               for="calculator_form_smoker">Do You
-                                                            Smoke? Including
-                                                            Marijuana. Or smoked within the last 2 years?<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.smoker) }}{{ form_errors(form.smoker) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_healthStatus">What
-                                                            is the status
-                                                            of your Health?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.healthStatus) }}{{ form_errors(form.healthStatus) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_legalIssues">Do
-                                                            you Legal Issues?<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.legalIssues) }}{{ form_errors(form.legalIssues) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_DUI">In the last
-                                                            five years of
-                                                            DUI/DWI?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.DUI) }}{{ form_errors(form.DUI) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label"
-                                                               for="calculator_form_licenseSuspended">License
-                                                            Suspended in the last 5 years?<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.licenseSuspended) }}{{ form_errors(form.licenseSuspended) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_misdemeanor">Major
-                                                            Criminal
-                                                            offence in the last 10 years?<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.misdemeanor) }}{{ form_errors(form.misdemeanor) }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 pb-2">
-                                                <button id="basicInfoPrev"
-                                                        type="button"
-                                                        data-toggle="collapse"
-                                                        data-target="#collapsePaymentInfo"
-                                                        aria-expanded="true"
-                                                        aria-controls="collapsePaymentInfo"
-                                                        class="btn btn-prev btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                                    Prev
-                                                </button>
-                                                <button id="basicInfoNext"
-                                                        type="button"
-                                                        data-toggle="collapse" data-target="#collapseCustomInfo"
-                                                        aria-expanded="true"
-                                                        aria-controls="collapseCustomInfo"
-                                                        class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2">
-                                                    Next
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        {# {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }} #}
 
-                            <div class="card accordion-card gp-hide" tabindex='4' data-progress="100">
-                                <button class="btn btn-link btn-block text-center card-header collapsed"
-                                        type="button"
-                                        data-toggle="collapse"
-                                        data-target="#collapseCustomInfo"
-                                        aria-expanded="true"
-                                        aria-controls="collapseCustomInfo">
-                                    <span class="heading-primary-calculation fas fa-magic"></span>
-                                    <span class="heading-primary-calculation">Lifestyle</span>
-                                    <span class="heading-secondary-tagline">Enter your lifestyle</span>
-                                </button>
-                                <div id="collapseCustomInfo" class="accordion-body collapse"
-                                     aria-labelledby="headingCustomInfo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="col-lg-12 p-0">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_annualCheckup">Annual
-                                                            Check-up?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label"
-                                                               for="calculator_form_physicalExercise">How often do
-                                                            you do physical Exercise?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.physicalExercise) }}{{ form_errors(form.physicalExercise) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_bloodPressure">Do
-                                                            you suffer from
-                                                            Blood Pressure?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.bloodPressure) }}{{ form_errors(form.bloodPressure) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label" for="calculator_form_highCholesterol">Do
-                                                            you have High
-                                                            Cholesterol?<span class="text-danger">*</span></label>
-                                                        {{ form_widget(form.highCholesterol) }}{{ form_errors(form.highCholesterol) }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0">
-                                                        <label class="form-label"
-                                                               for="calculator_form_drivingInfraction">Driving
-                                                            Infractions (Last 3 Years)?<span
-                                                                    class="text-danger">*</span></label>
-                                                        {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 p-0">
-                                                <input id="termsAndConditionsUrl"
-                                                       data-url="{{ path('terms_and_conditions') }}" hidden>
-                                                <div id="calculate_submit_bottom">
+                        {# <div hidden> #}
+                        {# {{ form_widget(form.height) }}{{ form_errors(form.height) }} #}
+                        {# </div> #}
+                        {# <div class="card accordion-card" tabindex='1' data-progress="25"> #}
+                        {# <button class="btn btn-link btn-block text-center card-header" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" data-target="#collapseAccountInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseAccountInfo"> #}
+                        {# <span class="heading-primary-calculation fa fa-user"></span> #}
+                        {# <span class="heading-primary-calculation">Info</span> #}
+                        {# <span class="heading-secondary-tagline">Enter your info</span> #}
+                        {# </button> #}
+                        {# <div id="collapseAccountInfo" class="collapse accordion-body show" #}
+                        {# aria-labelledby="headingAccountInfo" #}
+                        {# data-parent="#accordionExample"> #}
+                        {# <div class="card-body"> #}
+                        {# <div class="col-lg-12 p-0"> #}
+                        {# <div class="row"> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_firstName">First #}
+                        {# Name<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.firstName) }}{{ form_errors(form.firstName) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_lastName">Last #}
+                        {# Name (Optional)</label> #}
+                        {# {{ form_widget(form.lastName) }}{{ form_errors(form.lastName) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_productType">Product #}
+                        {# Type<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.productType) }}{{ form_errors(form.productType) }} #}
+                        {# </div> #}
+                        {# </div> #}
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{ form_errors(form) }}
-                            {{ form_end(form) }}
-                        </div>
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused"> #}
+                        {# <label class="form-label" for="calculator_form_creditRating">Insurance #}
+                        {# Company</label> #}
+                        {# <div class="select-wrapper"> #}
+                        {# {{ form_widget(form.creditRating) }}{{ form_errors(form.creditRating) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_age">Age<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.age, {'type':'number'}) }}{{ form_errors(form.age) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_gender">Gender</label> #}
+                        {# {{ form_widget(form.gender) }}{{ form_errors(form.gender) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_weight">Weight</label> #}
+                        {# {{ form_widget(form.weight) }}{{ form_errors(form.weight) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_height">Height</label> #}
+                        {# <select id="calculator_form_height" #}
+                        {# class="height form-input filled"> #}
+                        {# <option value=""></option> #}
+                        {# <option value="4.0">4'0</option> #}
+                        {# <option value="4.1">4'1</option> #}
+                        {# <option value="4.2">4'2</option> #}
+                        {# <option value="4.3">4'3</option> #}
+                        {# <option value="4.4">4'4</option> #}
+                        {# <option value="4.5">4'5</option> #}
+                        {# <option value="4.6">4'6</option> #}
+                        {# <option value="4.7">4'7</option> #}
+                        {# <option value="4.8">4'8</option> #}
+                        {# <option value="4.9">4'9</option> #}
+                        {# <option value="4.10">4'10</option> #}
+                        {# <option value="4.11">4'11</option> #}
+                        {# <option value="5.0" selected>5'0</option> #}
+                        {# <option value="5.1">5'1</option> #}
+                        {# <option value="5.2">5'2</option> #}
+                        {# <option value="5.3">5'3</option> #}
+                        {# <option value="5.4">5'4</option> #}
+                        {# <option value="5.5">5'5</option> #}
+                        {# <option value="5.6">5'6</option> #}
+                        {# <option value="5.7">5'7</option> #}
+                        {# <option value="5.8">5'8</option> #}
+                        {# <option value="5.9">5'9</option> #}
+                        {# <option value="5.10">5'10</option> #}
+                        {# <option value="5.11">5'11</option> #}
+                        {# <option value="6.0">6'0</option> #}
+                        {# <option value="5.1">6'1</option> #}
+                        {# <option value="6.2">6'2</option> #}
+                        {# <option value="6.3">6'3</option> #}
+                        {# <option value="6.4">6'4</option> #}
+                        {# <option value="6.5">6'5</option> #}
+                        {# <option value="6.6">6'6</option> #}
+                        {# <option value="6.7">6'7</option> #}
+                        {# <option value="6.8">6'8</option> #}
+                        {# <option value="6.9">6'9</option> #}
+                        {# <option value="6.10">6'10</option> #}
+                        {# <option value="6.11">6'11</option> #}
+                        {# <option value="7.0">7'0</option> #}
+                        {# <option value="7.1">7'1</option> #}
+                        {# <option value="7.2">7'2</option> #}
+                        {# <option value="7.3">7'3</option> #}
+                        {# <option value="7.4">7'4</option> #}
+                        {# <option value="7.5">7'5</option> #}
+                        {# <option value="7.6">7'6</option> #}
+                        {# <option value="7.7">7'7</option> #}
+                        {# <option value="6.0">Prefer not to answer</option> #}
+                        {# </select> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-12 p-0"> #}
+                        {# <div class="col-lg-6 manualWeight-hide"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="manualWeight">Manual #}
+                        {# Weight(lbs)<span class="text-danger">*</span></label> #}
+                        {# <input id="manualWeight" type="number" #}
+                        {# class="form-input number-input" min="121" max="1550"> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0 focused"> #}
+                        {# <label class="form-label" for="calculator_form_phoneNo_manual">Phone #}
+                        {# Number #}
+                        {# (Optional)</label> #}
+                        {# <input type="tel" id="calculator_form_phoneNo_manual" #}
+                        {# class="form-input filled static phone-input" #}
+                        {# autocomplete="off"> #}
+                        {# <div hidden> #}
+                        {# {{ form_widget(form.phoneNo) }}{{ form_errors(form.phoneNo) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_emailAddress">Email #}
+                        {# (Optional)</label> #}
+                        {# {{ form_widget(form.emailAddress) }}{{ form_errors(form.emailAddress) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <button id="accountInfoNext" type="button" #}
+                        {# data-toggle="collapse" data-target="#collapsePaymentInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapsePaymentInfo" #}
+                        {# class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2"> #}
+                        {# Next #}
+                        {# </button> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+
+                        {# <div class="card accordion-card" tabindex='2' data-progress="50"> #}
+                        {# <button class="btn btn-link btn-block text-center card-header collapsed" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" data-target="#collapsePaymentInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapsePaymentInfo"> #}
+                        {# <span class="heading-primary-calculation fa fa-hand-holding-usd"></span> #}
+                        {# <span class="heading-primary-calculation">Payment Information</span> #}
+                        {# <span class="heading-secondary-tagline">Enter your payment information</span> #}
+                        {# </button> #}
+                        {# <div id="collapsePaymentInfo" class="accordion-body collapse" #}
+                        {# aria-labelledby="headingPaymentInfo" #}
+                        {# data-parent="#accordionExample"> #}
+                        {# <div class="card-body"> #}
+                        {# <div class="col-lg-12 p-0"> #}
+                        {# <div class="row"> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <div class="input-group date form-inline datepicker focused" #}
+                        {# data-date-format="mm/dd/yyyy"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_paymentStartDate">Payment #}
+                        {# Start #}
+                        {# Date<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.paymentStartDate) }}{{ form_errors(form.paymentStartDate) }} #}
+                        {# <span class="input-group-addon float-right calendar-container"><i #}
+                        {# class="fa fa-calendar"></i></span> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <div class="input-group date form-inline datepicker focused" #}
+                        {# data-date-format="mm/dd/yyyy"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_paymentEndDate">Payment End #}
+                        {# Date<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.paymentEndDate) }}{{ form_errors(form.paymentEndDate) }} #}
+                        {# <span class="input-group-addon float-right calendar-container"><i #}
+                        {# class="fa fa-calendar"></i></span> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div id="endDate-alert" class="col-12"></div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_paymentAmount">Payment #}
+                        {# Amount($)<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.paymentAmount, {'type':'number'}) }}{{ form_errors(form.paymentAmount) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_frequency">Payment #}
+                        {# Mode<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.frequency) }}{{ form_errors(form.frequency) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-2 mt-sm-0 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_percentStep">Percent #}
+                        {# step % or #}
+                        {# Annual % (0-10)</label> #}
+                        {# {{ form_widget(form.percentStep, {'type':'number'}) }}{{ form_errors(form.percentStep) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-12 p-0"> #}
+                        {# <div id="calculate_submit_top"> #}
+
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-12 pb-2" id="paymentInfobtns"> #}
+                        {# <button id="paymentInfoPrev" #}
+                        {# data-toggle="collapse" data-target="#collapseAccountInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseAccountInfo" #}
+                        {# type="button" #}
+                        {# class="btn btn-prev btn-outline-custom-default btn-default-custom  float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2"> #}
+                        {# Prev #}
+                        {# </button> #}
+                        {# <button id="paymentInfoNext" #}
+                        {# data-toggle="collapse" data-target="#collapseBasicInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseBasicInfo" #}
+                        {# type="button" #}
+                        {# class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2"> #}
+                        {# Next #}
+                        {# </button> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+
+                        {# <div class="card accordion-card gp-hide" tabindex='3' data-progress="75"> #}
+                        {# <button class="btn btn-link btn-block text-center card-header collapsed" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" #}
+                        {# data-target="#collapseBasicInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseBasicInfo"> #}
+                        {# <span class="heading-primary-calculation fa fa-barcode"></span> #}
+                        {# <span class="heading-primary-calculation">Basic Information</span> #}
+                        {# <span class="heading-secondary-tagline">Enter your basic information</span> #}
+                        {# </button> #}
+                        {# <div id="collapseBasicInfo" class="collapse accordion-body" #}
+                        {# aria-labelledby="headingBasicInfo" #}
+                        {# data-parent="#accordionExample"> #}
+                        {# <div class="card-body"> #}
+                        {# <div class="col-lg-12 p-0"> #}
+                        {# <div class="row"> #}
+                        {# <div class="col-lg-12"> #}
+                        {# <div class="form-group mt-3 mt-sm-4 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label smoker-form-label" #}
+                        {# for="calculator_form_smoker">Do You #}
+                        {# Smoke? Including #}
+                        {# Marijuana. Or smoked within the last 2 years?<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.smoker) }}{{ form_errors(form.smoker) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-12"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_healthStatus">What #}
+                        {# is the status #}
+                        {# of your Health?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.healthStatus) }}{{ form_errors(form.healthStatus) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_legalIssues">Do #}
+                        {# you Legal Issues?<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.legalIssues) }}{{ form_errors(form.legalIssues) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_DUI">In the last #}
+                        {# five years of #}
+                        {# DUI/DWI?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.DUI) }}{{ form_errors(form.DUI) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-12"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_licenseSuspended">License #}
+                        {# Suspended in the last 5 years?<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.licenseSuspended) }}{{ form_errors(form.licenseSuspended) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-12"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_misdemeanor">Major #}
+                        {# Criminal #}
+                        {# offence in the last 10 years?<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.misdemeanor) }}{{ form_errors(form.misdemeanor) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-12 pb-2"> #}
+                        {# <button id="basicInfoPrev" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" #}
+                        {# data-target="#collapsePaymentInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapsePaymentInfo" #}
+                        {# class="btn btn-prev btn-outline-custom-default btn-default-custom float-left pl-3 pr-3 pt-1 pb-1 mt-2 mb-2"> #}
+                        {# Prev #}
+                        {# </button> #}
+                        {# <button id="basicInfoNext" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" data-target="#collapseCustomInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseCustomInfo" #}
+                        {# class="btn-next btn btn-outline-custom-default btn-success-custom float-right pl-3 pr-3 pt-1 pb-1 mt-2 mb-2"> #}
+                        {# Next #}
+                        {# </button> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+
+                        {# <div class="card accordion-card gp-hide" tabindex='4' data-progress="100"> #}
+                        {# <button class="btn btn-link btn-block text-center card-header collapsed" #}
+                        {# type="button" #}
+                        {# data-toggle="collapse" #}
+                        {# data-target="#collapseCustomInfo" #}
+                        {# aria-expanded="true" #}
+                        {# aria-controls="collapseCustomInfo"> #}
+                        {# <span class="heading-primary-calculation fas fa-magic"></span> #}
+                        {# <span class="heading-primary-calculation">Lifestyle</span> #}
+                        {# <span class="heading-secondary-tagline">Enter your lifestyle</span> #}
+                        {# </button> #}
+                        {# <div id="collapseCustomInfo" class="accordion-body collapse" #}
+                        {# aria-labelledby="headingCustomInfo" #}
+                        {# data-parent="#accordionExample"> #}
+                        {# <div class="card-body"> #}
+                        {# <div class="col-lg-12 p-0"> #}
+                        {# <div class="row"> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_annualCheckup">Annual #}
+                        {# Check-up?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.annualCheckup) }}{{ form_errors(form.annualCheckup) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_physicalExercise">How often do #}
+                        {# you do physical Exercise?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.physicalExercise) }}{{ form_errors(form.physicalExercise) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_bloodPressure">Do #}
+                        {# you suffer from #}
+                        {# Blood Pressure?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.bloodPressure) }}{{ form_errors(form.bloodPressure) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" for="calculator_form_highCholesterol">Do #}
+                        {# you have High #}
+                        {# Cholesterol?<span class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.highCholesterol) }}{{ form_errors(form.highCholesterol) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-lg-6"> #}
+                        {# <div class="form-group mt-3 mt-sm-2 mt-md-3 mt-xl-0"> #}
+                        {# <label class="form-label" #}
+                        {# for="calculator_form_drivingInfraction">Driving #}
+                        {# Infractions (Last 3 Years)?<span #}
+                        {# class="text-danger">*</span></label> #}
+                        {# {{ form_widget(form.drivingInfraction) }}{{ form_errors(form.drivingInfraction) }} #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# <div class="col-12 p-0"> #}
+                        {# <input id="termsAndConditionsUrl" #}
+                        {# data-url="{{ path('terms_and_conditions') }}" hidden> #}
+                        {# <div id="calculate_submit_bottom"> #}
+
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# </div> #}
+                        {# {{ form_errors(form) }} #}
+                        {# {{ form_end(form) }} #}
+                        {# </div> #}
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="row">
