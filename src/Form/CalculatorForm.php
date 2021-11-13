@@ -25,7 +25,7 @@ class CalculatorForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('productType', ChoiceType::class, [
-            'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off'],
+            'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
             'placeholder' => '',
             'choices' => CalculatorEnum::productType,
             'required' => true
@@ -35,7 +35,7 @@ class CalculatorForm extends AbstractType
                 'required' => true,
             ])
             ->add('gender', ChoiceType::class, [
-                'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off',],
+                'attr' => ['class' => 'form-input', 'autocomplete' => 'off',],
                 'required' => false,
                 'choices' => CalculatorEnum::genderValuesKeys,
                 'placeholder' => ''
@@ -58,7 +58,7 @@ class CalculatorForm extends AbstractType
             ])
             ->add('height', TextType::class, ['required' => false])
             ->add('creditRating', ChoiceType::class, [
-                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off'],
                 'placeholder' => '',
                 'required' => false,
                 'choices' => $options['insuranceCompanies'],
@@ -77,7 +77,7 @@ class CalculatorForm extends AbstractType
                 'required' => true,
             ])
             ->add('frequency', ChoiceType::class, [
-                'attr' => ['class' => 'form-input filled', 'autocomplete' => 'off'],
+                'attr' => ['class' => 'form-input', 'autocomplete' => 'off'],
                 'placeholder' => '',
                 'required' => true,
                 'choices' => CalculatorEnum::frequencyValues
